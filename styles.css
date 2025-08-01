@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    overflow: hidden;
+    background-color: rgb(7, 149, 231);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+li a{
+    display: block;
+    color: whitesmoke;
+    text-align: center;
+    text-decoration: none;
+    float: left;
+    font-size: larger;
+}
+li a:hover {
+  color: #111;
+}
+
+main {
+  padding-top: 80px;
+  text-align: center;
+}

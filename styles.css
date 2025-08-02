@@ -1,38 +1,70 @@
 body {
-  margin: 0;
-  padding: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto; 
+  min-height: 100vh;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
 }
 
-ul{
-    list-style-type: none;
-    margin: 0;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    overflow: hidden;
-    background-color: rgb(7, 149, 231);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+header {
+  grid-area: header;
 }
 
-li a{
-    display: block;
-    color: whitesmoke;
-    text-align: center;
-    text-decoration: none;
-    float: left;
-    font-size: larger;
+main {
+  grid-area: content;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-areas: "ad-left main-content ad-right";
+  gap: 24px;
+  padding: 24px;
 }
+
+ul {
+  list-style-type: none; 
+}
+
+footer {
+  grid-area: footer;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
 li a:hover {
   color: #111;
 }
 
-main {
-  padding-top: 80px;
+.ad-left {
+  grid-area: ad-left;
+  background-color: grey;
+}
+
+.ad-right {
+  grid-area: ad-right;
+  background-color: grey;
+}
+
+.grid-main-content { 
+  grid-area: main-content;
+} /* Trebuie folosit pentru fiecare sectiune din corpul principal */
+
+nav ul{
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(7, 149, 231);
+}
+
+nav li a {
+  display: block;
+  color: whitesmoke;
   text-align: center;
+  text-decoration: none;
+  font-size: larger;
 }

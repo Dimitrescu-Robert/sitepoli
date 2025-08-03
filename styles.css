@@ -17,11 +17,18 @@ body {
     line-height: 1.6;
     color: #1e293b;
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    background-color: #FAF9F6;
+    margin: 0;
+    padding: 0;
+}
+
+.spatiu{
+  margin-bottom: 20px;
 }
 
 header {
   grid-area: header;
-  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+  background: linear-gradient(135deg, #191308 0%, #322A26 50%, #3a322d 100%);
   box-shadow: 0 4px 20px rgba(30, 58, 138, 0.3);
   position: relative;
   overflow: hidden;
@@ -72,6 +79,10 @@ footer {
   background-color: black;
   color: white;
   text-align: center;
+}
+
+img.logo{
+  width: 70px;
 }
 
 li a:hover {

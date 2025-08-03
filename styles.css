@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   display: grid;
   grid-template-rows: auto 1fr auto; 
@@ -6,10 +13,22 @@ body {
     "header"
     "content"
     "footer";
+    font-family: 'Source Sans Pro', sans-serif;
+    line-height: 1.6;
+    color: #1e293b;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 }
 
 header {
   grid-area: header;
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+  box-shadow: 0 4px 20px rgba(30, 58, 138, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 main {
@@ -21,8 +40,31 @@ main {
   padding: 24px;
 }
 
+nav ul{
+  list-style-type: none;
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+}
+
 ul {
   list-style-type: none; 
+}
+
+.centrat{
+  text-align: center;
+  border: none;
+}
+
+.scurtat{
+  word-break: break-all;
+  max-width: 650px; 
+  border: 1px solid #ccc;
+  margin: 0 auto;
 }
 
 footer {
@@ -51,14 +93,14 @@ li a:hover {
 } /* Trebuie folosit pentru fiecare sectiune din corpul principal */
 
 nav ul{
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-top: 24px;
-  padding-bottom: 24px;
+  list-style-type: none;
+  padding: 25px 70px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  background-color: rgb(7, 149, 231);
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
 }
 
 nav li a {
@@ -68,3 +110,23 @@ nav li a {
   text-decoration: none;
   font-size: larger;
 }
+
+.nav-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+.main-content {
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .main-content {
+    margin: 0;
+    padding: 10px;
+  }
+

@@ -17,54 +17,160 @@ body {
     line-height: 1.6;
     color: #1e293b;
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    background-color: #FAF9F6;
+    margin: 0;
+    padding: 0;
+}
+
+.spatiu{
+  margin-bottom: 20px;
 }
 
 header {
   grid-area: header;
-  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
-  box-shadow: 0 4px 20px rgba(30, 58, 138, 0.3);
-  position: relative;
+  color: #EEEEEE;
+  background: #222831;
+  box-shadow: 0 1px 10px rgba(30, 58, 138, 0.3);
+  position: sticky;
   overflow: hidden;
-}
-.container {
-  max-width: 800px;
-  margin: 0 auto;
 }
 
 main {
   grid-area: content;
-  display: grid;
+  display: grid; 
+  color: #eee9e1;
+  background-color: #393E46;
   grid-template-columns: 1fr 5fr 1fr;
   grid-template-areas: "ad-left main-content ad-right";
   gap: 24px;
   padding: 24px;
 }
+.button {
+      background-color: #5B4C48;
+        border: none;
+       padding: 15px 32px;
+       text-align: center;
+       text-decoration: none;
+       display: inline-block;
+       font-size: 16px;
+       margin: 4px 2px;
+       cursor: pointer;
+       border-radius: 50px;
+       font-weight: 700;
+    }
 
-nav ul{
-  list-style-type: none;
-  padding: 20px 32px;
+.button:hover{
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-principal{
+  background: #c3d5f0;
+  color: white;
+  border: 2px solid #c3d5f0;
+}
+
+.btn-gol{
+  background: #393E46;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-mail{
+  margin-left: 30px;
+  margin-top: 20px;
+  background: darkgray;
+  margin-right: 10px;
+}
+
+.container {
+  text-align: left;
+  border: 3px solid grey;
+  border-radius: 5px;
+  padding: 20px 32px; 
+  grid-area: main-content;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.container-de-jos{
+  text-align: left;
+  border: 3px solid grey;
+  border-radius: 5px;
+  padding: 20px 32px; 
+  grid-area: main-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.impreuna{
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  position: relative;
-  z-index: 2;
+  gap: 0.001rem;
+}
+
+.impreuna h1{
+  font-size: 35px;
+  padding: 10px;
+}
+
+.hero{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero h1{
+  font-size: 55px;
+}
+
+.hero h2{
+  font-size: 33px;
+  padding: 0;
+  color: #ghostwhite;
+  margin-top: 20px;
+}
+
+.hero-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 100px;
+  transition: 0.6s;
+  gap: 1.5rem;
 }
 
 ul {
   list-style-type: none; 
 }
-
 .centrat{
   text-align: center;
   border: none;
 }
 
 .scurtat{
-  word-break: break-all;
-  max-width: 650px; 
-  border: 1px solid #ccc;
+  word-break: break-word;
+  max-width: 1000px; 
   margin: 0 auto;
+  font-weight: 300;
+}
+
+.indented {
+  text-indent: 20px;
+} /* Daca vrei sa pui tab cum ar fi la textul tau*/
+
+.ul-resurse{
+  list-style-type: circle;
+  list-style-position: inside;
+  text-indent: 20px;
 }
 
 footer {
@@ -74,8 +180,16 @@ footer {
   text-align: center;
 }
 
-li a:hover {
-  color: #111;
+img.logo{
+  width: 70px;
+}
+
+a{
+  color: black;
+}
+
+a:hover {
+  color: #555879;
 }
 
 .ad-left {
@@ -109,7 +223,24 @@ nav li a {
   text-align: center;
   text-decoration: none;
   font-size: larger;
+  font-weight: 600;
+  transition: 0.5s;
 }
+
+nav li a:hover{
+  color: #555879;
+}
+
+.badge {
+   background: rgba(255, 255, 255, 0.2);
+   padding: 0.5rem 1rem;
+   border-radius: 20px;
+   font-size: 0.9rem;
+   margin-bottom: 1.5rem;
+   display: inline-block;
+   margin-top: 40px;
+   margin-bottom: 20px;
+  }
 
 .nav-links {
             display: flex;
@@ -129,4 +260,10 @@ nav li a {
     margin: 0;
     padding: 10px;
   }
+}
 
+section li a,
+section li a:visited {
+  color: #bc7d36;/* Keeps the same color */
+  text-decoration: none;    /* Removes underline */
+}

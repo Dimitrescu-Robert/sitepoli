@@ -288,6 +288,8 @@ nav li a:hover{
   background-color: floralwhite;
   width: 100vw;
   grid-column: 1 / -1;
+  border-radius: 15px;
+  border: 3px solid grey;
 }
 
 .valoare-header{

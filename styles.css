@@ -30,9 +30,12 @@ header {
   grid-area: header;
   color: #EEEEEE;
   background: #222831;
-  box-shadow: 0 1px 10px rgba(30, 58, 138, 0.3);
+  padding: 1rem 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
   overflow: hidden;
+  top: 0;
+  z-index: 100;
 }
 
 main {
@@ -45,6 +48,9 @@ main {
   gap: 24px;
   padding: 24px;
 }
+
+/* BUTOANE */
+
 .button {
       background-color: #5B4C48;
         border: none;
@@ -121,19 +127,22 @@ main {
   padding: 10px;
 }
 
+/* HERO */
+
 .hero{
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  padding-bottom: 3rem;
 }
 
 .hero h1{
-  font-size: 55px;
+  font-size: 50px;
 }
 
 .hero h2{
-  font-size: 33px;
+  font-size: 30px;
   padding: 0;
   color: #ghostwhite;
   margin-top: 20px;
@@ -143,10 +152,23 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 100px;
+  padding: 35px 100px;
   transition: 0.6s;
   gap: 1.5rem;
+  l
 }
+
+.badge {
+   background: rgba(255, 255, 255, 0.2);
+   padding: 0.5rem 1rem;
+   border-radius: 20px;
+   font-size: 0.9rem;
+   margin-bottom: 1.5rem;
+   display: inline-block;
+   margin-top: 40px;
+   margin-bottom: 20px;
+  }
+
 
 ul {
   list-style-type: none; 
@@ -206,47 +228,141 @@ a:hover {
   grid-area: main-content;
 } /* Trebuie folosit pentru fiecare sectiune din corpul principal */
 
-nav ul{
-  list-style-type: none;
-  padding: 25px 70px;
+/* Navigation */
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.nav-stanga{
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 200px;
+}
+
+nav ul{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   flex-wrap: wrap;
-  position: relative;
-  z-index: 2;
+  list-style: none;
 }
 
 nav li a {
   display: block;
+  padding: 10px 20px;
   color: whitesmoke;
-  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 700;
   text-decoration: none;
-  font-size: larger;
-  font-weight: 600;
   transition: 0.5s;
+  margin-right: 100px;
 }
 
 nav li a:hover{
   color: #555879;
 }
 
-.badge {
-   background: rgba(255, 255, 255, 0.2);
-   padding: 0.5rem 1rem;
-   border-radius: 20px;
-   font-size: 0.9rem;
-   margin-bottom: 1.5rem;
-   display: inline-block;
-   margin-top: 40px;
-   margin-bottom: 20px;
-  }
-
 .nav-links {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
         }
+.nav-links a:hover{
+    opacity: 0.8;
+}
+
+/* Value*/
+
+.valoare{
+  margin-top: 4rem;
+  padding: 4rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: floralwhite;
+  width: 100vw;
+  grid-column: 1 / -1;
+}
+
+.valoare-header{
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 0 2rem;
+  color: #1A2130;
+}
+
+.valoare-header h2{
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #1A2130;
+}
+
+.value-header p{
+  color: #eee9e1;
+  opacity: 0.9;
+}
+
+.valoare-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+.valoare-card{
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  text-align: center;
+}
+
+.valoare-card:hover{
+  transform: translateY(-5px);
+}
+
+.valoare-icon{
+  width: 80px;
+  height: 80px;
+  background: #393E46;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 2rem;
+}
+
+.valoare-titlu{
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;  
+  color: #333;
+}
+
+.valoare-detalii{
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.valoare-highlight{
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #667eea;
+  font-weight: 600;
+}
+
+
 .main-content {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }

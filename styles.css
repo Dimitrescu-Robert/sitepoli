@@ -41,7 +41,7 @@ header {
 main {
   grid-area: content;
   display: grid; 
-  color: #eee9e1;
+  color: #fffff1;
   background-color: #393E46;
   grid-template-columns: 1fr 5fr 1fr;
   grid-template-areas: "ad-left main-content ad-right";
@@ -52,19 +52,19 @@ main {
 /* BUTOANE */
 
 .button {
-      background-color: #5B4C48;
-        border: none;
-       padding: 15px 32px;
-       text-align: center;
-       text-decoration: none;
-       display: inline-block;
-       font-size: 16px;
-       margin: 4px 2px;
-       cursor: pointer;
-       border-radius: 50px;
-       font-weight: 700;
-    }
-
+  background-color: #5B4C48;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 50px;
+  font-weight: 700;
+      }
+ 
 .button:hover{
   padding: 1rem 2rem;
   border-radius: 50px;
@@ -78,14 +78,14 @@ main {
 
 .btn-principal{
   background: #c3d5f0;
-  color: white;
+  color: #fffff1;
   border: 2px solid #c3d5f0;
 }
 
 .btn-gol{
-  background: #393E46;
-  color: white;
-  border: 2px solid white;
+  background: #3b444b;
+  color: #fffff1;
+  border: 2px solid #fffff1;
 }
 
 .btn-mail{
@@ -135,6 +135,11 @@ main {
   align-items: center;
   text-align: center;
   padding-bottom: 3rem;
+  border-radius: 15px;
+  border: 3px solid #3b444b;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .hero h1{
@@ -233,7 +238,7 @@ nav{
 .nav-stanga{
   display: flex;
   align-items: center;
-  color: white;
+  color: #fffff1;
   font-size: 20px;
   font-weight: bold;
   margin-left: 200px;
@@ -250,7 +255,7 @@ nav ul{
 nav li a {
   display: block;
   padding: 10px 20px;
-  color: whitesmoke;
+  color: #fffff1;
   font-size: 1.15rem;
   font-weight: 700;
   text-decoration: none;
@@ -357,6 +362,44 @@ nav li a:hover{
   font-weight: 600;
 }
 
+/* Poveste */
+  
+.poveste{
+  margin-top: 5rem;
+  padding: 4rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #18202f;
+  width: 100vw;
+  grid-column: 1 / -1;
+  border-radius: 15px;
+  border: 3px solid #3b444b;
+  color: #fffff1;
+}
+
+
+.poveste h2{
+  text-align: center;
+  margin-top: -10px;
+  font-size: 2.3rem;
+  margin-bottom: 1rem;
+}
+
+.poveste p{
+  text-align: center;
+  max-width: 900px;
+  word-break: break-word;
+  margin: 0 auto;
+  font-size: 19px;
+  margin-bottom: 1rem;
+}
+
+.poveste-box{
+  background: rgba(255, 255, 255, 0.13);
+  padding: 1.5rem;
+  border-radius: 15px;
+  margin: 2rem 5rem;
+}
 
 .main-content {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);

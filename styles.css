@@ -135,8 +135,6 @@ main {
   align-items: center;
   text-align: center;
   padding-bottom: 3rem;
-  border-radius: 15px;
-  border: 3px solid #3b444b;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
@@ -369,11 +367,9 @@ nav li a:hover{
   padding: 4rem 0;
   max-width: 1200px;
   margin: 0 auto;
-  background-color: #18202f;
+  background-color: #393E46;
   width: 100vw;
   grid-column: 1 / -1;
-  border-radius: 15px;
-  border: 3px solid #3b444b;
   color: #fffff1;
 }
 

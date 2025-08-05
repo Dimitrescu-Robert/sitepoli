@@ -206,13 +206,6 @@ img.logo{
   width: 70px;
 }
 
-a{
-  color: black;
-}
-
-a:hover {
-  color: #555879;
-}
 
 .ad-left {
   grid-area: ad-left;
@@ -385,3 +378,9 @@ section li a:visited {
   color: #bc7d36;/* Keeps the same color */
   text-decoration: none;    /* Removes underline */
 }
+
+section li a:hover{
+  color: #555879;
+  text-decoration: none;
+}
+

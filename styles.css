@@ -13,13 +13,14 @@ body {
     "header"
     "content"
     "footer";
-    font-family: 'Source Sans Pro', sans-serif;
-    line-height: 1.6;
-    color: #1e293b;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    background-color: #FAF9F6;
-    margin: 0;
-    padding: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  line-height: 1.6;
+  color: #1e293b;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background-color: #FAF9F6;
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
 }
 
 .spatiu{
@@ -115,6 +116,13 @@ main {
   display: flex;
   flex-direction: column;
 }
+
+
+.container h1{
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+/* DROPDOWN */
 
 .impreuna{
   display: flex;
@@ -390,11 +398,110 @@ nav li a:hover{
   margin-bottom: 1rem;
 }
 
+
 .poveste-box{
   background: rgba(255, 255, 255, 0.13);
   padding: 1.5rem;
   border-radius: 15px;
   margin: 2rem 5rem;
+}
+
+/* SUBIECTE */
+
+.subiecte-box{
+  margin: 10px 900px 10px 0px;
+  padding: 2px 0.5rem;
+  border-radius: 15px;
+  background: #6f7379;
+  cursor: pointer;
+  transition: all 0.3 ease;
+  user-select: none;
+}
+
+.subiecte-box:hover{
+  background-color: #2d3748;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.subiecte-box:active {
+  transform: translateY(0);
+}
+
+.subiecte-box.active {
+  background-color: #4299e1;
+  box-shadow: 0 0 15px rgba(66, 153, 225, 0.3);
+}
+
+.set-container {
+  margin-bottom: 5px;
+}
+
+/* DROPDOWN */
+
+.dropdown-section {
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  background-color: none;
+  border-radius: 12px;
+  margin-top: 15px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+ }
+
+.dropdown-section.show {
+  max-height: 200px;
+  padding: 20px 25px;
+  border-color: grey;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Container pentru linkuri */
+
+.sub-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Coloane responsive */
+  gap: 2rem;
+  padding: 0 2rem;
+  margin-left: 30px;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease 0.1s;
+}
+
+.dropdown-section.show .sub-links {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Linkurile pentru subiecte */
+
+.sub-link {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 12px 0;
+  border-bottom: 1px solid #222831;
+  transition: all 0.2s ease;
+  font-size: 16px;
+}
+
+.sub-link:hover {
+  color: #1e293b;
+  padding-left: 10px;
+}
+
+.sub-link:last-child {
+  border-bottom: none;
+}
+
+/* Efect de încărcare */
+
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
 }
 
 .main-content {
@@ -410,6 +517,21 @@ nav li a:hover{
     margin: 0;
     padding: 10px;
   }
+
+  .subjects-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .set-button {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
 }
 
 section li a,
@@ -419,6 +541,7 @@ section li a:visited {
 }
 
 section li a:hover{
+  transition: 0.3s;
   color: #555879;
   text-decoration: none;
 }

@@ -290,6 +290,21 @@ nav a:hover{
   opacity: 0.8;
 }
 
+.hamburger{
+  display:none;
+  cursor: pointer;
+}
+
+.bar{
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: white;
+}
+
 /* Value*/
 
 .valoare{
@@ -565,11 +580,7 @@ nav a:hover{
   .valoare-header h2 {
     font-size: 1.8rem;
   }
-  
-  .nav-stanga {
-    margin-left: 1rem;
-  }
-  
+
   .sidebar {
     display: none;
   }
@@ -592,6 +603,42 @@ nav a:hover{
   .set-button {
     padding: 12px 20px;
     font-size: 14px;
+  }
+
+  .hamburger{
+    display: block;
+  }
+
+  .hamburger.activate .bar:nth-child(2){
+    opacity: 0;
+  }
+
+  .hamburger.activate .bar:nth-child(1){
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.activate .bar:nth-child(3){
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .nav-elements{
+    position:fixed;
+    left: -100%;
+    top:70px;
+    gap: 0;
+    flex-direction: column;
+    background-color: #1A2130;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+  }
+
+  nav li a{
+    margin: 16px 0;
+  }
+
+  .nav-elements.active{
+    left:0;
   }
 }
 

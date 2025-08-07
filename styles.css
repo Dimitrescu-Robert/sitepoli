@@ -1,3 +1,5 @@
+/* Worldwide Selectors */
+
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 *{
   padding: 0;
@@ -50,7 +52,18 @@ main {
   padding: 24px;
 }
 
-/* BUTOANE */
+ul {
+  list-style-type: none; 
+}
+
+em{
+  color: #fffff1;
+  font-weight: bold;
+  font-style: normal;
+  padding: 0px 5px 0px 0px;
+}
+
+/* Butoane */
 
 .button {
   background-color: #5B4C48;
@@ -64,7 +77,7 @@ main {
   cursor: pointer;
   border-radius: 50px;
   font-weight: 700;
-      }
+}
  
 .button:hover{
   padding: 1rem 2rem;
@@ -178,12 +191,8 @@ main {
    display: inline-block;
    margin-top: 40px;
    margin-bottom: 20px;
-  }
-
-
-ul {
-  list-style-type: none; 
 }
+
 .centrat{
   text-align: center;
   border: none;
@@ -213,11 +222,6 @@ footer {
   text-align: center;
 }
 
-img.logo{
-  width: 70px;
-}
-
-
 .ad-left {
   grid-area: ad-left;
   background-color: grey;
@@ -238,16 +242,7 @@ nav{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
-}
-
-.nav-stanga{
-  display: flex;
-  align-items: center;
-  color: #fffff1;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-left: 6rem;
+  padding: 0rem 5rem;
 }
 
 nav ul{
@@ -255,31 +250,40 @@ nav ul{
   justify-content: flex-end;
   align-items: center;
   flex-wrap: wrap;
-  list-style: none;
 }
 
-nav li a {
+nav a {
   display: block;
-  padding: 0.8rem 1.1rem;
+  padding: 0.25 rem;
   color: #fffff1;
   font-size: 1.15rem;
   font-weight: 700;
   text-decoration: none;
   transition: 0.5s;
-  margin-right: 2rem;
+  margin-right: 3rem;
 }
 
-nav li a:hover{
+nav ul li:last-child a {
+  margin-right: 0;
+}
+
+.logonav{
+  width: 5rem;
+  height: auto;
+}
+
+nav a:hover{
   color: #555879;
 }
 
 .nav-links {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .nav-links a:hover{
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 /* Value*/
@@ -381,7 +385,6 @@ nav li a:hover{
   color: #fffff1;
 }
 
-
 .poveste h2{
   text-align: center;
   margin-top: -10px;
@@ -404,7 +407,6 @@ nav li a:hover{
   font-size: 19px;
   margin-bottom: 1rem;
 }
-
 
 .poveste-box{
   background: rgba(255, 255, 255, 0.13);
@@ -455,7 +457,7 @@ nav li a:hover{
   margin-top: 15px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid transparent;
- }
+}
 
 .dropdown-section.show {
   max-height: 200px;
@@ -467,13 +469,6 @@ nav li a:hover{
 .dropdown-design{
   display: inline; 
   color: #bc7d36;
-}
-
-em{
-  color: #fffff1;
-  font-weight: bold;
-  font-style: normal;
-  padding: 0px 5px 0px 0px;
 }
 
 /* Container pentru linkuri */
@@ -489,7 +484,6 @@ em{
   transform: translateY(-10px);
   transition: all 0.3s ease 0.1s;
 }
-
 
 .sus{
   display: inline;
@@ -575,4 +569,3 @@ section li a:hover{
   color: #555879;
   text-decoration: none;
 }
-

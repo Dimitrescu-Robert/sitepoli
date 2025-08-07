@@ -23,6 +23,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .spatiu{
@@ -154,29 +155,32 @@ em{
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
   padding-bottom: 3rem;
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 1.1rem;
+  border-radius: 15px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .hero h1{
-  font-size: 50px;
+  font-size: 3rem;
 }
 
 .hero h2{
-  font-size: 30px;
+  font-size: 1.8rem;
   padding: 0;
   color: #ghostwhite;
-  margin-top: 20px;
+  margin-top: 0.6rem;
 }
 
 .hero-btn{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 35px 100px;
+  padding: 2rem 8rem;
   transition: 0.6s;
   gap: 1.5rem;
   l
@@ -291,10 +295,8 @@ nav a:hover{
 .valoare{
   margin-top: 4rem;
   padding: 4rem 0;
-  max-width: 1200px;
   margin: 0 auto;
   background-color: floralwhite;
-  width: 100vw;
   grid-column: 1 / -1;
   border-radius: 15px;
   border: 3px solid grey;
@@ -377,12 +379,11 @@ nav a:hover{
 .poveste{
   margin-top: 5rem;
   padding: 4rem 0;
-  max-width: 1200px;
   margin: 0 auto;
   background-color: #393E46;
-  width: 100vw;
   grid-column: 1 / -1;
   color: #fffff1;
+  border-radius: 15px;
 }
 
 .poveste h2{
@@ -533,6 +534,42 @@ nav a:hover{
 }
 
 @media screen and (max-width: 768px) {
+  main {
+    grid-template-columns: 1fr;
+    grid-template-areas: "main-content";
+    padding: 12px;
+  }
+  
+  .ad-left, .ad-right {
+    display: none;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .hero h2 {
+    font-size: 1.2rem;
+  }
+  
+  .hero-btn {
+    padding: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .poveste-box {
+    margin: 1rem;
+  }
+  
+  .valoare-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .nav-stanga {
+    margin-left: 1rem;
+  }
+  
   .sidebar {
     display: none;
   }

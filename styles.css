@@ -26,10 +26,6 @@ body {
   overflow-x: hidden;
 }
 
-.spatiu{
-  margin-bottom: 20px;
-}
-
 header {
   grid-area: header;
   color: #EEEEEE;

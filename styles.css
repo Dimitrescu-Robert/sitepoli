@@ -267,6 +267,11 @@ nav a {
   margin-right: 3rem;
 }
 
+.logonav{
+  margin-top: 3px;
+  margin-left: 2.5rem;
+}
+
 nav ul li:last-child a {
   margin-right: 0;
 }
@@ -405,8 +410,13 @@ nav a:hover{
   text-align: center;
   margin-top: -10px;
   font-size: 2.3rem;
-  margin-bottom: 1rem;
   border-radius: 4px;
+  margin-bottom: 0.6rem;
+}
+
+.poveste h3{
+  margin-bottom: 0.1rem;
+  font-size: 1.4rem;
 }
 
 .poveste h4{
@@ -416,27 +426,25 @@ nav a:hover{
   font-size: 1.2rem;}
 
 .poveste p{
-  text-align: center;
   max-width: 900px;
   word-break: break-word;
   margin: 0 auto;
   font-size: 19px;
-  margin-bottom: 1rem;
 }
 
 .poveste-box{
   background: rgba(255, 255, 255, 0.13);
-  padding: 1.5rem;
+  padding: 1rem 1.5rem 0rem 1.5rem;
   border-radius: 15px;
-  margin: 2rem 5rem;
+  margin: 0 auto 1rem 0;
 }
 
 /* SUBIECTE */
 
 .subiecte-box{
-  margin: 1rem 25rem 1rem 0rem;
-  padding: 2px 0.5rem;
-  border-radius: 15px;
+  margin: 1rem 34% 1rem 0rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 1rem;
   background: #6f7379;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -544,6 +552,7 @@ nav a:hover{
   cursor: default;
 }
 
+
 .main-content {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
@@ -574,7 +583,7 @@ nav a:hover{
   }
   
   .poveste-box {
-    margin: 1rem;
+    margin: 0.6rem;
   }
   
   .valoare-header h2 {
@@ -583,6 +592,49 @@ nav a:hover{
 
   .sidebar {
     display: none;
+  }
+
+  .dropdown-section.show {
+    max-height: 55vh;
+    padding: 0rem;
+    overflow: hidden;
+  }
+  .sub-links {
+    display: flex;              
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;     
+    gap: 0.5rem;        
+    padding: 1rem;
+    margin-left: 0;
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .set-container{
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+
+  .sub-link {
+    width: 100%;
+    margin: 0;
+    border-bottom: 0.1rem solid rgba(255,255,255,0.1);
+    text-align: left;
+  }
+
+  .logonav{
+    margin-left: 0.5rem;
+  }
+
+
+  .sub-link:last-child {
+    border-bottom: none;
+  }
+
+  .subiecte-box{
+    margin: 1rem 0rem;
+    padding: 0.4rem;
   }
 
   .main-content {
@@ -623,14 +675,14 @@ nav a:hover{
 
   .nav-elements{
     position:fixed;
-    left: -100%;
-    top:70px;
+    left: 0;
+    top: -100%;
     gap: 0;
     flex-direction: column;
     background-color: #1A2130;
     width: 100%;
     text-align: center;
-    transition: 0.3s;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   nav li a{
@@ -638,7 +690,7 @@ nav a:hover{
   }
 
   .nav-elements.active{
-    left:0;
+    top: 13%;
   }
 }
 

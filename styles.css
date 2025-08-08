@@ -49,8 +49,24 @@ main {
   padding: 24px;
 }
 
+footer {
+  grid-area: footer;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+
 ul {
   list-style-type: none; 
+}
+
+a{
+  text-decoration: none;
+}
+
+a:hover{
+  color: #555879;
 }
 
 em{
@@ -109,7 +125,7 @@ em{
 .container {
   text-align: left;
   border: 3px solid grey;
-  border-radius: 5px;
+  border-radius: 15px;
   padding: 20px 32px; 
   grid-area: main-content;
   display: flex;
@@ -120,13 +136,12 @@ em{
 .container-de-jos{
   text-align: left;
   border: 3px solid grey;
-  border-radius: 5px;
+  border-radius: 15px;
   padding: 20px 32px; 
   grid-area: main-content;
   display: flex;
   flex-direction: column;
 }
-
 
 .container h1{
   font-size: 1.5em;
@@ -215,13 +230,6 @@ em{
   text-indent: 20px;
 }
 
-footer {
-  grid-area: footer;
-  background-color: black;
-  color: white;
-  text-align: center;
-}
-
 .ad-left {
   grid-area: ad-left;
   background-color: grey;
@@ -258,7 +266,6 @@ nav a {
   color: #fffff1;
   font-size: 1.15rem;
   font-weight: 700;
-  text-decoration: none;
   transition: 0.5s;
   margin-right: 3rem;
 }
@@ -275,10 +282,6 @@ nav ul li:last-child a {
 .logonav{
   width: 5rem;
   height: auto;
-}
-
-nav a:hover{
-  color: #555879;
 }
 
 .nav-links {
@@ -386,8 +389,19 @@ nav a:hover{
   padding: 1rem;
   border-radius: 8px;
   font-size: 0.9rem;
-  color: #667eea;
   font-weight: 600;
+}
+
+.valoare-highlight a {
+  color: blue;
+}
+
+.valoare-highlight a:visited {
+  color: blue; /* ensures visited links stay the same */
+}
+
+.valoare-highlight a:hover {
+  color: #555879;
 }
 
 /* Poveste */
@@ -491,6 +505,18 @@ nav a:hover{
   color: #bc7d36;
 }
 
+/* Despre noi*/
+
+.despre-noi-doi{
+  display: flex;
+}
+
+.despre-noi h1{
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
 /* Container pentru linkuri */
 
 .sub-links {
@@ -547,7 +573,6 @@ nav a:hover{
   pointer-events: none;
   cursor: default;
 }
-
 
 .main-content {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);

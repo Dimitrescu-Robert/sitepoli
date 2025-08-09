@@ -19,7 +19,7 @@ body {
   line-height: 1.6;
   color: #1e293b;
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  background-color: #FAF9F6;
+  background-color: #FEF9EF;
   margin: 0;
   padding: 0;
   overflow-y: scroll;
@@ -28,7 +28,7 @@ body {
 
 header {
   grid-area: header;
-  color: #EEEEEE;
+  color: #FEF9EF;
   background: #222831;
   padding: 1rem 0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -52,10 +52,9 @@ main {
 footer {
   grid-area: footer;
   background-color: #222831;
-  color: white;
+  color: #fffff1;
   text-align: center;
 }
-
 
 ul {
   list-style-type: none; 
@@ -79,7 +78,7 @@ em{
 /* Butoane */
 
 .button {
-  background-color: #5B4C48;
+  background-color: #808080;
   border: none;
   padding: 15px 32px;
   text-align: center;
@@ -110,7 +109,7 @@ em{
 }
 
 .btn-gol{
-  background: #3b444b;
+  background: #393E46;
   color: #fffff1;
   border: 2px solid #fffff1;
 }
@@ -118,13 +117,13 @@ em{
 .btn-mail{
   margin-left: 30px;
   margin-top: 20px;
-  background: darkgray;
+  background: #222831;
   margin-right: 10px;
 }
 
 .container {
   text-align: left;
-  border: 3px solid grey;
+  border: 3px solid #808080;
   border-radius: 15px;
   padding: 20px 32px; 
   grid-area: main-content;
@@ -136,7 +135,7 @@ em{
 
 .container-de-jos{
   text-align: left;
-  border: 3px solid grey;
+  border: 3px solid #808080;
   border-radius: 15px;
   padding: 20px 32px; 
   grid-area: main-content;
@@ -185,7 +184,7 @@ em{
 .hero h2{
   font-size: 1.8rem;
   padding: 0;
-  color: #f8f8ff;
+  color: #FFFFF1;
   margin-top: 0.6rem;
 }
 
@@ -233,12 +232,12 @@ em{
 
 .ad-left {
   grid-area: ad-left;
-  background-color: grey;
+  background-color: #808080;
 }
 
 .ad-right {
   grid-area: ad-right;
-  background-color: grey;
+  background-color: #808080;
 }
 
 .grid-main-content { 
@@ -313,7 +312,7 @@ nav ul li:last-child a {
   margin-top: 4rem;
   padding: 4rem 0;
   margin: 0 auto;
-  background-color: floralwhite;
+  background-color: #FEF9EF;
   grid-column: 1 / -1;
   border-radius: 15px;
   border: 3px solid grey;
@@ -333,7 +332,6 @@ nav ul li:last-child a {
 }
 
 .value-header p{
-  color: #eee9e1;
   opacity: 0.9;
 }
 
@@ -373,11 +371,11 @@ nav ul li:last-child a {
   font-size: 1.4rem;
   font-weight: 600;
   margin-bottom: 1rem;  
-  color: #333;
+  color: #393E46;
 }
 
 .valoare-detalii{
-  color: #666;
+  color: #808080;
   line-height: 1.6;
   margin-bottom: 1rem;
 }
@@ -391,11 +389,11 @@ nav ul li:last-child a {
 }
 
 .valoare-highlight a {
-  color: #C3D5F0;
+  color: #4299e1;
 }
 
 .valoare-highlight a:visited {
-  color: #C3D5F0; /* ensures visited links stay the same */
+  color: #4299e1; /* ensures visited links stay the same */
 }
 
 .valoare-highlight a:hover {
@@ -442,7 +440,7 @@ nav ul li:last-child a {
 }
 
 .poveste-box{
-  background: rgba(255, 255, 255, 0.13);
+  background: #393E46;
   padding: 1rem 1.5rem 0rem 1.5rem;
   border-radius: 15px;
   margin: 0 auto 1rem 0;
@@ -460,7 +458,7 @@ nav ul li:last-child a {
   margin: 1rem 34% 1rem 0rem;
   padding: 0.2rem 0.5rem;
   border-radius: 1rem;
-  background: #6f7379;
+  background: #808080;
   cursor: pointer;
   transition: all 0.3s ease;
   user-select: none;
@@ -477,7 +475,7 @@ nav ul li:last-child a {
 }
 
 .subiecte-box.active {
-  background-color: #4299e1;
+  background-color: #7BA0D9;
   box-shadow: 0 0 15px rgba(66, 153, 225, 0.3);
 }
 
@@ -501,7 +499,7 @@ nav ul li:last-child a {
 .dropdown-section.show {
   max-height: 200px;
   padding: 20px 25px;
-  border-color: grey;
+  border-color: 808080;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 

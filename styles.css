@@ -51,7 +51,7 @@ main {
 
 footer {
   grid-area: footer;
-  background-color: black;
+  background-color: #222831;
   color: white;
   text-align: center;
 }
@@ -131,6 +131,7 @@ em{
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
+  background: linear-gradient(145deg, #222831, #1a1f24, #243140);
 }
 
 .container-de-jos{
@@ -141,6 +142,7 @@ em{
   grid-area: main-content;
   display: flex;
   flex-direction: column;
+  background: linear-gradient(145deg, #222831, #1a1f24, #243140);
 }
 
 .container h1{
@@ -183,7 +185,7 @@ em{
 .hero h2{
   font-size: 1.8rem;
   padding: 0;
-  color: #ghostwhite;
+  color: #f8f8ff;
   margin-top: 0.6rem;
 }
 
@@ -194,18 +196,17 @@ em{
   padding: 2rem 8rem;
   transition: 0.6s;
   gap: 1.5rem;
-  l
 }
 
 .badge {
-   background: rgba(255, 255, 255, 0.2);
-   padding: 0.5rem 1rem;
-   border-radius: 20px;
-   font-size: 0.9rem;
-   margin-bottom: 1.5rem;
-   display: inline-block;
-   margin-top: 40px;
-   margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .centrat{
@@ -273,15 +274,12 @@ nav a {
 .logonav{
   margin-top: 3px;
   margin-left: 2.5rem;
+  width: 5rem;
+  height: auto;
 }
 
 nav ul li:last-child a {
   margin-right: 0;
-}
-
-.logonav{
-  width: 5rem;
-  height: auto;
 }
 
 .nav-links {
@@ -393,11 +391,11 @@ nav ul li:last-child a {
 }
 
 .valoare-highlight a {
-  color: blue;
+  color: #C3D5F0;
 }
 
 .valoare-highlight a:visited {
-  color: blue; /* ensures visited links stay the same */
+  color: #C3D5F0; /* ensures visited links stay the same */
 }
 
 .valoare-highlight a:hover {
@@ -433,7 +431,8 @@ nav ul li:last-child a {
   text-align: center;
   margin-bottom: 1rem;
   font-weight: 300;
-  font-size: 1.2rem;}
+  font-size: 1.2rem;
+}
 
 .poveste p{
   max-width: 900px;
@@ -447,6 +446,12 @@ nav ul li:last-child a {
   padding: 1rem 1.5rem 0rem 1.5rem;
   border-radius: 15px;
   margin: 0 auto 1rem 0;
+}
+
+.poveste-box h4{
+  margin-bottom: 1rem;
+  font-weight: 300;
+  font-size: 1.2rem;
 }
 
 /* SUBIECTE */
@@ -502,7 +507,7 @@ nav ul li:last-child a {
 
 .dropdown-design{
   display: inline; 
-  color: #bc7d36;
+  color: #C3D5F0;
 }
 
 /* Despre noi*/
@@ -515,6 +520,32 @@ nav ul li:last-child a {
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 1rem;
+}
+
+.despre-noi-doi{
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  grid-template-areas:
+    "alex-area robert-area";
+}
+
+.alex-box{
+  grid-area: alex-area;
+  padding: 24px;
+  align-items: center;
+}
+
+.robert-box{
+  grid-area: robert-area;
+  padding: 24px;
+  align-items: center;
+}
+
+.pozaprofil{
+  border-radius: 50%;
+  width: 15rem;
+  height: auto;
+  margin: 1rem;
 }
 
 /* Container pentru linkuri */
@@ -717,7 +748,7 @@ nav ul li:last-child a {
 
 section li a,
 section li a:visited {
-  color: #bc7d36;/* Keeps the same color */
+  color: #C3D5F0;/* Keeps the same color */
   text-decoration: none;    /* Removes underline */
 }
 

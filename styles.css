@@ -709,17 +709,18 @@ nav ul li:last-child a {
 
   .hamburger{
     display: block;
+    z-index: 9999;
   }
 
-  .hamburger.activate .bar:nth-child(2){
+  .hamburger.active .bar:nth-child(2){
     opacity: 0;
   }
 
-  .hamburger.activate .bar:nth-child(1){
+  .hamburger.active .bar:nth-child(1){
     transform: translateY(8px) rotate(45deg);
   }
 
-  .hamburger.activate .bar:nth-child(3){
+  .hamburger.active .bar:nth-child(3){
     transform: translateY(-8px) rotate(-45deg);
   }
 
@@ -740,7 +741,7 @@ nav ul li:last-child a {
   }
 
   .nav-elements.active{
-    top: 13%;
+    top: 10%;
   }
 }
 

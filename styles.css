@@ -45,8 +45,8 @@ main {
   background-color: #393E46;
   grid-template-columns: 1fr 5fr 1fr;
   grid-template-areas: "ad-left main-content ad-right";
-  gap: 24px;
-  padding: 24px;
+  gap: 1.5rem;
+  padding: 1.5rem;
 }
 
 footer {
@@ -80,11 +80,11 @@ em{
 .button {
   background-color: #808080;
   border: none;
-  padding: 15px 32px;
+  padding: 1rem 2rem;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 1rem;
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 50px;
@@ -125,11 +125,11 @@ em{
   text-align: left;
   border: 3px solid #808080;
   border-radius: 15px;
-  padding: 20px 32px; 
+  padding: 1.5rem 2rem; 
   grid-area: main-content;
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
   background: linear-gradient(145deg, #222831, #1a1f24, #243140);
 }
 
@@ -137,7 +137,7 @@ em{
   text-align: left;
   border: 3px solid #808080;
   border-radius: 15px;
-  padding: 20px 32px; 
+  padding: 1.5rem 2rem; 
   grid-area: main-content;
   display: flex;
   flex-direction: column;
@@ -172,7 +172,7 @@ em{
   padding-bottom: 3rem;
   margin: 0 auto;
   padding: 0 1.1rem;
-  border-radius: 15px;
+  border-radius: 1rem;
   width: 100%;
   box-sizing: border-box;
 }
@@ -611,7 +611,7 @@ nav ul li:last-child a {
   main {
     grid-template-columns: 1fr;
     grid-template-areas: "main-content";
-    padding: 12px;
+    padding: 0.5rem;
   }
   
   .ad-left, .ad-right {

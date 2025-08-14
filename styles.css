@@ -260,7 +260,7 @@ nav ul{
   flex-wrap: wrap;
 }
 
-nav a {
+nav li a {
   display: block;
   padding: 0.25 rem;
   color: #fffff1;

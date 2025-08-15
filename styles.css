@@ -54,6 +54,7 @@ footer {
   background-color: #222831;
   color: #fffff1;
   text-align: center;
+  padding: 1rem;
 }
 
 ul {
@@ -521,6 +522,7 @@ nav ul li:last-child a {
 }
 
 .despre-noi-doi{
+  gap: 1.5rem;
   display: grid;
   grid-template-columns: 1fr 1fr; 
   grid-template-areas:
@@ -529,14 +531,20 @@ nav ul li:last-child a {
 
 .alex-box{
   grid-area: alex-area;
-  padding: 24px;
+  padding: 1.5rem;
   align-items: center;
 }
 
 .robert-box{
   grid-area: robert-area;
-  padding: 24px;
+  padding: 1.5rem;
   align-items: center;
+}
+
+.text-profil{
+  border-radius: 15px;
+  margin: 1rem;
+  background-color: #393E46;
 }
 
 .pozaprofil{
@@ -607,7 +615,7 @@ nav ul li:last-child a {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 830px) {
   main {
     grid-template-columns: 1fr;
     grid-template-areas: "main-content";
@@ -644,11 +652,19 @@ nav ul li:last-child a {
     display: none;
   }
 
+  .despre-noi-doi {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "alex-area"
+      "robert-area";
+  }
+
   .dropdown-section.show {
     max-height: 55vh;
     padding: 0rem;
     overflow: hidden;
   }
+
   .sub-links {
     display: flex;              
     flex-direction: column;
@@ -676,7 +692,6 @@ nav ul li:last-child a {
   .logonav{
     margin-left: 0.5rem;
   }
-
 
   .sub-link:last-child {
     border-bottom: none;
@@ -747,8 +762,8 @@ nav ul li:last-child a {
 
 section li a,
 section li a:visited {
-  color: #C3D5F0;/* Keeps the same color */
-  text-decoration: none;    /* Removes underline */
+  color: #C3D5F0;
+  text-decoration: none;
 }
 
 section li a:hover{

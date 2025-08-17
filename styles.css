@@ -130,7 +130,7 @@ em{
   grid-area: main-content;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   background: linear-gradient(145deg, #222831, #1a1f24, #243140);
 }
 
@@ -553,6 +553,19 @@ nav ul li:last-child a {
   height: auto;
   margin: 1rem;
 }
+
+/* INFORMATII */
+
+.titluinfo{
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.INFO-CTIvsIS{
+  margin-top: 0px;
+}
+
 
 /* Container pentru linkuri */
 

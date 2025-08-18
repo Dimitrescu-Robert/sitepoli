@@ -242,10 +242,11 @@ em{
   border: 3px solid grey;
 }
 
-.pag-res{
+.pag-intro{
   padding-bottom: 2rem;
 }
-.pag-res h1{
+
+.pag-intro h1{
   text-align: left;
   margin-top: -10px;
   font-size: 2.3rem;

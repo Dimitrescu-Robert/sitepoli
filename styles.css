@@ -633,6 +633,91 @@ nav ul li:last-child a {
   object-fit: cover; 
 }
 
+/* Contact*/
+
+.contact{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+form{
+  max-width: 600px;
+  width: 100%;
+  background-color: #FFFFF1;
+  padding: 25px 25px 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  color: #222831;
+  margin: 25px;
+}
+
+form h2{
+  font-size: 30px;
+  text-align: center;
+}
+
+form .input-box{
+  margin-top: 20px;
+}
+
+.input-box .field {
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: 2px solid #222831;
+  border-radius:6px;
+  outline: none;
+  padding: 15px;
+  font-size: 16px;
+  color: #222831;
+  margin-top: 8px;
+}
+
+.input-box .field.mess{
+  height: 200px;
+  resize: none;
+}
+
+form button{
+  width: 100%;
+  height: 55px;
+  background:#7BA0D9;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  font-size:16px;
+  color: #F8F9FA;
+  font-weight: 500;
+  margin-top: 25px;
+  transition: .5s;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #555879;
+}
+
+form, 
+form input, 
+form textarea, 
+form button, 
+form label {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Default color */
+.swal2-confirm {
+  background-color: #7BA0D9 !important;
+  color: #fff !important;
+}
+
+/* Hover color */
+.swal2-confirm:hover {
+  background-color: #555879 !important;
+}
+
 /* Efect de încărcare */
 
 .loading {

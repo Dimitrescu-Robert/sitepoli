@@ -28,10 +28,24 @@
         <main>
             <div class="ad-left"></div>
             <section class="grid-main-content">
-                <div class = "impreuna">
-                    <h1 style="font-size: 35px;">Aici va fi mailul de contakt</h1>
-                    <a class = "button btn-mail" href="mailto:alexlacatus@gmail.com">EMAIL</a>
-                </div>
+                <section class="contact">
+                    <form id="contact-form">
+                        <h2>Contactează-ne!</h2>
+                        <div class="input-box">
+                            <label for="fullname">Nume complet</label>
+                                <input type="text" id="fullname" name="fullname" class="field" placeholder="Introdu numele tau complet" required />
+                        </div>
+                        <div class="input-box">
+                            <label for="email">Adresa de email</label>
+                            <input type="email" id="email" name="email" class="field" placeholder="Introdu adresa ta de email" required />
+                        </div>
+                        <div class="input-box">
+                            <label for="message">Mesajul tău</label>
+                            <textarea id="message" name="message" class="field mess" placeholder="Scrie mesajul tău" required></textarea>
+                        </div>
+                        <button type="submit">Trimite</button>
+                    </form>
+                </section>
             </section>
             <div class="ad-right"></div>
         </main>
@@ -42,5 +56,6 @@
                 <div>&copy; 2025 AdmiterePoli. Toate drepturile rezervate. Creat de studenți, pentru viitori studenți.</div>
         </footer>
         <script src="main.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </body>
 </html>

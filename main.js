@@ -1,3 +1,4 @@
+
 class SimpleDropdown {
                 constructor() {
                     this.activeDropdown = null;
@@ -93,3 +94,66 @@ document.querySelectorAll("nav li a").forEach(n => n.addEventListener("click", (
     hamburger.classList.remove("active");
     navMenu.classList.remove("active");
 }));
+
+// Contact Form
+
+const form = document.getElementById('contact-form');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+  const accessKey = "88b1faa6-673f-4b31-8afd-caba70f04452";
+  const recipients = [
+    "robertdimitrescu@gmail.com",
+    "alexlacatus@gmail.com"
+  ];
+
+  Swal.fire({
+    title: 'Se trimite mesajul...',
+    timer: 1000,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  });
+
+  const sendPromises = recipients.map(email => {
+    const fd = new FormData(form);
+    fd.append("to", email);
+    fd.append("access_key", accessKey);
+    const json = JSON.stringify(Object.fromEntries(fd));
+
+    return fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: json
+    }).then(res => res.json());
+  });
+
+  Promise.all(sendPromises)
+    .then(results => {
+      Swal.fire({
+        title: 'Succes!',
+        text: 'Mesaj trimis cu succes către toți destinatarii!',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#555879'
+      });
+    })
+    .catch(error => {
+      console.log(error);
+      Swal.fire({
+        title: 'Oops!',
+        text: 'A apărut o eroare la trimiterea mesajului!',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#555879'
+      });
+    })
+    .finally(() => {
+      form.reset();
+    });
+});

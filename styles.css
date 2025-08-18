@@ -54,7 +54,8 @@ footer {
   background-color: #222831;
   color: #fffff1;
   text-align: center;
-  padding: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
 }
 
 ul {
@@ -171,7 +172,7 @@ em{
   justify-content: center;
   text-align: center;
   padding-bottom: 3rem;
-  margin: 0 auto;
+  margin: 0 auto 1.5rem auto;
   padding: 0 1.1rem;
   border-radius: 1rem;
   width: 100%;
@@ -241,6 +242,17 @@ em{
   border: 3px solid grey;
 }
 
+.pag-res{
+  padding-bottom: 2rem;
+}
+.pag-res h1{
+  text-align: left;
+  margin-top: -10px;
+  font-size: 2.3rem;
+  border-radius: 4px;
+  margin-bottom: 0.6rem;
+}
+
 .intro-grid{
   gap: 2rem;
   padding: 0 2rem;
@@ -261,7 +273,6 @@ em{
 .intro-card:hover{
   transform: translateY(-30px);
 }
-
 
 .ad-left {
   grid-area: ad-left;
@@ -344,7 +355,7 @@ nav ul li:last-child a {
 .valoare{
   margin-top: 4rem;
   padding: 4rem 0;
-  margin: 0 auto;
+  margin: 0 auto 1.5rem auto;
   background-color: #FEF9EF;
   grid-column: 1 / -1;
   border-radius: 15px;
@@ -438,7 +449,7 @@ nav ul li:last-child a {
 .poveste{
   margin-top: 5rem;
   padding: 4rem 0;
-  margin: 0 auto;
+  margin: 0 auto 1.5rem auto;
   background-color: #393E46;
   grid-column: 1 / -1;
   color: #fffff1;
@@ -576,6 +587,7 @@ nav ul li:last-child a {
 
 .despre-noi-doi{
   display: flex;
+  padding-bottom: 2.5rem;
 }
 
 .despre-noi h1{

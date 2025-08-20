@@ -54,7 +54,8 @@ footer {
   background-color: #222831;
   color: #fffff1;
   text-align: center;
-  padding: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
 }
 
 ul {
@@ -134,17 +135,6 @@ em{
   background: linear-gradient(145deg, #222831, #1a1f24, #243140);
 }
 
-.container-de-jos{
-  text-align: left;
-  border: 3px solid #808080;
-  border-radius: 15px;
-  padding: 1.5rem 2rem; 
-  grid-area: main-content;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(145deg, #222831, #1a1f24, #243140);
-}
-
 .container h1{
   font-size: 1.5em;
   margin-bottom: 15px;
@@ -171,7 +161,7 @@ em{
   justify-content: center;
   text-align: center;
   padding-bottom: 3rem;
-  margin: 0 auto;
+  margin: 0 auto 1.5rem auto;
   padding: 0 1.1rem;
   border-radius: 1rem;
   width: 100%;
@@ -223,12 +213,84 @@ em{
 
 .indented {
   text-indent: 20px;
-} /* Daca vrei sa pui tab cum ar fi la textul tau*/
+}
+
+/* Resurse*/
+
+.image-grid{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: "left right";
+  align-items: center;
+}
+
+.left-grid{
+  grid-area: left;
+}
+
+.right-grid{
+  grid-area: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-grid img {
+  border-radius: 50%;
+  display: block;
+  margin: 1rem auto;
+  max-width: 90%;
+  height: auto;
+  object-fit: cover;
+}
 
 .ul-resurse{
   list-style-type: circle;
   list-style-position: inside;
   text-indent: 20px;
+}
+
+.intro-resurse{
+  margin-top: 4rem;
+  padding: 6.5rem 0 3rem 0;
+  margin: 0 auto;
+  background-color: #FEF9EF;
+  grid-row: 1 / -1;
+  border-radius: 15px;
+  border: 3px solid grey;
+}
+
+.pag-intro{
+  padding-bottom: 2rem;
+}
+
+.pag-intro h1{
+  text-align: left;
+  margin-top: -10px;
+  font-size: 2.3rem;
+  border-radius: 4px;
+  margin-bottom: 0.6rem;
+}
+
+.intro-grid{
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+.intro-card{
+  background: white;
+  padding: 1.5rem; /* Schimba aici pentru overlap*/
+  border-radius: 15px;
+  box-shadow: 0 0 12px rgba(50,50,50,0.4);
+  transition: transform 0.3s;
+  text-align: center;
+  margin-top: -3rem;
+  position: relative;       
+  z-index: 1;    
+}
+
+.intro-card:hover{
+  transform: translateY(-30px);
 }
 
 .ad-left {
@@ -312,7 +374,7 @@ nav ul li:last-child a {
 .valoare{
   margin-top: 4rem;
   padding: 4rem 0;
-  margin: 0 auto;
+  margin: 0 auto 1.5rem auto;
   background-color: #FEF9EF;
   grid-column: 1 / -1;
   border-radius: 15px;
@@ -406,7 +468,7 @@ nav ul li:last-child a {
 .poveste{
   margin-top: 5rem;
   padding: 4rem 0;
-  margin: 0 auto;
+  margin: 0 auto 1.5rem auto;
   background-color: #393E46;
   grid-column: 1 / -1;
   color: #fffff1;
@@ -545,6 +607,7 @@ nav ul li:last-child a {
 
 .despre-noi-doi{
   display: flex;
+  padding-bottom: 2.5rem;
 }
 
 .despre-noi h1{
@@ -668,6 +731,91 @@ nav ul li:last-child a {
   object-fit: cover; 
 }
 
+/* Contact*/
+
+.contact{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+form{
+  max-width: 600px;
+  width: 100%;
+  background-color: #FFFFF1;
+  padding: 25px 25px 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  color: #222831;
+  margin: 25px;
+}
+
+form h2{
+  font-size: 30px;
+  text-align: center;
+}
+
+form .input-box{
+  margin-top: 20px;
+}
+
+.input-box .field {
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: 2px solid #222831;
+  border-radius:6px;
+  outline: none;
+  padding: 15px;
+  font-size: 16px;
+  color: #222831;
+  margin-top: 8px;
+}
+
+.input-box .field.mess{
+  height: 200px;
+  resize: none;
+}
+
+form button{
+  width: 100%;
+  height: 55px;
+  background:#7BA0D9;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  font-size:16px;
+  color: #F8F9FA;
+  font-weight: 500;
+  margin-top: 25px;
+  transition: .5s;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #555879;
+}
+
+form, 
+form input, 
+form textarea, 
+form button, 
+form label {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Default color */
+.swal2-confirm {
+  background-color: #7BA0D9 !important;
+  color: #fff !important;
+}
+
+/* Hover color */
+.swal2-confirm:hover {
+  background-color: #555879 !important;
+}
+
 /* Efect de încărcare */
 
 .loading {
@@ -718,6 +866,20 @@ section li a:hover{
     "alex-area"
     "robert-area";
   }
+
+  .image-grid{
+    grid-template-columns: 1fr;
+    grid-template-areas: "left";
+  }  
+
+  .left-grid{
+    grid-area: left;
+  }
+
+  .right-grid {
+    display: none;
+  }
+  
 }
 
 @media screen and (max-width: 830px) {
@@ -861,5 +1023,18 @@ section li a:hover{
 
   .nav-elements.active{
     top: 94.79px;
+  }
+
+  .image-grid{
+    grid-template-columns: 1fr;
+    grid-template-areas: "left";
+  }  
+
+  .left-grid{
+    grid-area: left;
+  }
+
+  .right-grid {
+    display: none;
   }
 }

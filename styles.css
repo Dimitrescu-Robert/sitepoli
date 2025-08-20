@@ -456,7 +456,7 @@ nav ul li:last-child a {
 /* SUBIECTE */
 
 .subiecte-box{
-  margin: 1rem 34% 1rem 0rem;
+  margin: 1rem 50% 1rem 0rem;
   padding: 0.2rem 0.5rem;
   border-radius: 1rem;
   background: #808080;
@@ -498,15 +498,46 @@ nav ul li:last-child a {
 }
 
 .dropdown-section.show {
-  max-height: 200px;
-  padding: 20px 25px;
-  border-color: 808080;
+  max-height: 1000px;
+  padding: 2rem;
+  border-color: #808080;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 .dropdown-design{
   display: inline; 
-  color: #C3D5F0;
+}
+
+.dropdown-design li p{
+  color: #C3D5F0;  
+
+}
+
+/* Container pentru linkuri */
+
+.sub-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr)); /* Coloane responsive */
+  width: 100%;
+  opacity: 0;
+  gap: 4px; 
+  transform: translateY(-10px);
+  transition: all 0.3s ease 0.1s;
+}
+
+.sub-links section{
+  display: flex;
+  flex-direction: column; 
+  align-items: center;   
+}
+
+.sus{
+  display: inline;
+}
+
+.dropdown-section.show .sub-links {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Despre noi*/
@@ -547,7 +578,7 @@ nav ul li:last-child a {
   background-color: #393E46;
 }
 
-.pozaprofil{
+.pozaprofil {
   border-radius: 50%;
   width: 15rem;
   height: auto;
@@ -594,21 +625,11 @@ nav ul li:last-child a {
 
 .sub-link {
   display: block;
-  color: white;
-  text-decoration: none;
-  padding: 12px 0;
-  border-bottom: 1px solid #222831;
-  transition: all 0.2s ease;
-  font-size: 16px;
-}
-
-.sub-link:hover {
-  color: #1e293b;
-  padding-left: 10px;
-}
-
-.sub-link:last-child {
-  border-bottom: none;
+  margin: 1rem auto; 
+  width: 100%;      
+  max-width: 200px;
+  height: auto;
+  object-fit: cover; 
 }
 
 /* Efect de încărcare */
@@ -626,6 +647,41 @@ nav ul li:last-child a {
 
 .main-content {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+section li a,
+section li a:visited {
+  color: #C3D5F0;
+  text-decoration: none;
+}
+
+section li a:hover{
+  transition: 0.3s;
+  color: #555879;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1100px) and (min-width: 830px){
+  .dropdown-design p {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start;
+    gap: 4px; 
+  }
+
+  .links {
+    display: inline-flex;
+    flex-wrap: nowrap;  
+    white-space: nowrap; 
+    gap: 4px;
+  }
+
+  .despre-noi-doi {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "alex-area"
+    "robert-area";
+  }
 }
 
 @media screen and (max-width: 830px) {
@@ -752,16 +808,15 @@ nav ul li:last-child a {
     transform: translateY(-8px) rotate(-45deg);
   }
 
-  .nav-elements{
-    position:fixed;
-    left: 0;
-    top: -100%;
-    gap: 0;
-    flex-direction: column;
-    background-color: #1A2130;
-    width: 100%;
-    text-align: center;
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  .nav-elements {
+  position: fixed;
+  top: -100%; 
+  left: 0;
+  width: 100%;
+  background-color: #1A2130;
+  flex-direction: column;
+  text-align: center;
+  transition: top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   nav li a{
@@ -769,18 +824,6 @@ nav ul li:last-child a {
   }
 
   .nav-elements.active{
-    top: 11%;
+    top: 94.79px;
   }
-}
-
-section li a,
-section li a:visited {
-  color: #C3D5F0;
-  text-decoration: none;
-}
-
-section li a:hover{
-  transition: 0.3s;
-  color: #555879;
-  text-decoration: none;
 }

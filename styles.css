@@ -458,6 +458,8 @@ nav ul li:last-child a {
 .subiecte-box{
   margin: 1rem 50% 1rem 0rem;
   padding: 0.2rem 0.5rem;
+  display: flex;
+  gap: 20px;        /* spațiu între ele */
   border-radius: 1rem;
   background: #808080;
   cursor: pointer;
@@ -492,7 +494,6 @@ nav ul li:last-child a {
   overflow: hidden;
   background-color: none;
   border-radius: 12px;
-  margin-top: 15px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid transparent;
 }
@@ -590,11 +591,46 @@ nav ul li:last-child a {
 .titluinfo{
   font-weight: 600;
   font-size: 1.1rem;
-  text-align: center;
+  text-align: left;
+  color: #FEF9EF;
+}
+
+.titluinfo h3{
+  font-weight: 600;
 }
 
 .INFO-CTIvsIS{
   margin-top: 0px;
+}
+
+.section-icon {
+  margin-top: 0.4rem;
+  width: 6rem;
+  height: 3.3rem;
+  background: #FEF9EF;
+  border-radius:1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.65rem;
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+  }
+
+.section-titlu{
+  margin: 0;
+  padding: 0;
+}
+
+.subiecte-box-info{
+  margin: 1rem 29% 1rem 0rem;
+  padding: 0.2rem 0.5rem;
+  display: flex;
+  gap: 20px;        /* spațiu între ele */
+  border-radius: 1rem;
+  background: #808080;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
 }
 
 

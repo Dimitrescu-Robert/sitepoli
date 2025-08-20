@@ -6,7 +6,7 @@ class SimpleDropdown {
 
                 init() {
                     // Event listeners pentru textele Set (clickabile)
-                    const setTexts = document.querySelectorAll('.subiecte-box');
+                    const setTexts = document.querySelectorAll('.subiecte-box, .subiecte-box-info');
                     setTexts.forEach(text => {
                         text.addEventListener('click', (e) => this.toggleDropdown(e));
                     });
@@ -20,7 +20,7 @@ class SimpleDropdown {
 
                     // Închide dropdown când faci click în afara lui
                     document.addEventListener('click', (e) => {
-                        if (!e.target.closest('.set-container') && !e.target.classList.contains('subiecte-box')){
+                        if (!e.target.closest('.set-container') && !e.target.classList.contains('subiecte-box, .subiecte-box-info')){
                             this.closeAllDropdowns();
                         }
                     });

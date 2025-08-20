@@ -135,17 +135,6 @@ em{
   background: linear-gradient(145deg, #222831, #1a1f24, #243140);
 }
 
-.container-de-jos{
-  text-align: left;
-  border: 3px solid #808080;
-  border-radius: 15px;
-  padding: 1.5rem 2rem; 
-  grid-area: main-content;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(145deg, #222831, #1a1f24, #243140);
-}
-
 .container h1{
   font-size: 1.5em;
   margin-bottom: 15px;
@@ -224,7 +213,36 @@ em{
 
 .indented {
   text-indent: 20px;
-} /* Daca vrei sa pui tab cum ar fi la textul tau*/
+}
+
+/* Resurse*/
+
+.image-grid{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: "left right";
+  align-items: center;
+}
+
+.left-grid{
+  grid-area: left;
+}
+
+.right-grid{
+  grid-area: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-grid img {
+  border-radius: 50%;
+  display: block;
+  margin: 1rem auto;
+  max-width: 90%;
+  height: auto;
+  object-fit: cover;
+}
 
 .ul-resurse{
   list-style-type: circle;
@@ -768,6 +786,20 @@ section li a:hover{
     "alex-area"
     "robert-area";
   }
+
+  .image-grid{
+    grid-template-columns: 1fr;
+    grid-template-areas: "left";
+  }  
+
+  .left-grid{
+    grid-area: left;
+  }
+
+  .right-grid {
+    display: none;
+  }
+  
 }
 
 @media screen and (max-width: 830px) {
@@ -911,5 +943,18 @@ section li a:hover{
 
   .nav-elements.active{
     top: 94.79px;
+  }
+
+  .image-grid{
+    grid-template-columns: 1fr;
+    grid-template-areas: "left";
+  }  
+
+  .left-grid{
+    grid-area: left;
+  }
+
+  .right-grid {
+    display: none;
   }
 }

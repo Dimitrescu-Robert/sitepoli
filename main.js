@@ -77,9 +77,9 @@ class SimpleDropdown {
 }
 
 // Inițializează când se încarcă pagina
-    document.addEventListener('DOMContentLoaded', function() {
-        new SimpleDropdown();
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    new SimpleDropdown();
+});
 
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".nav-elements");

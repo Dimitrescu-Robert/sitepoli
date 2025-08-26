@@ -949,13 +949,6 @@ section li a:hover{
     overflow-x: hidden;
   }
 
-  .sub-link {
-    width: 100%;
-    margin: 0;
-    border-bottom: 0.1rem solid rgba(255,255,255,0.1);
-    text-align: left;
-  }
-
   .logonav{
     margin-left: 0.5rem;
   }

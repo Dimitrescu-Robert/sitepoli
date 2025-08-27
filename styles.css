@@ -845,10 +845,21 @@ section li a:hover{
   text-decoration: none;
 }
 
-iframe#pdfFrame {
+div#pdfViewer {
     width: 100%;
-    height: 80vh;
     border: 0;
+    height:85vh; 
+    overflow:auto; 
+    background:#222;
+}
+
+#pdfViewer canvas {
+  max-width: 100%;   /* shrink if too wide */
+  height: auto;      /* keep proportions */
+  margin: 10px auto; /* center with spacing */
+  display: block;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5); /* makes it look like paper */
+  border-radius: 4px;
 }
 
 @media screen and (max-width: 1100px) and (min-width: 830px){

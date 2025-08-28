@@ -139,6 +139,9 @@ em{
   font-size: 1.5em;
   margin-bottom: 15px;
 }
+
+
+
 /* DROPDOWN */
 
 .impreuna{
@@ -436,7 +439,7 @@ nav ul li:last-child a {
   
 .poveste{
   margin-top: 5rem;
-  padding: 4rem 0;
+  padding: 3rem 0 1rem 0;
   margin: 0 auto 1.5rem auto;
   background-color: #393E46;
   grid-column: 1 / -1;
@@ -987,7 +990,7 @@ div#pdfViewer {
   .section-icon{
     height: 7.2rem;
   }
-  
+
   .logonav{
     margin-left: 0.5rem;
   }

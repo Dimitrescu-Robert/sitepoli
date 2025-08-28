@@ -657,8 +657,29 @@ nav ul li:last-child a {
   font-weight: 600;
 }
 
+.titlu-info h1{
+  margin: 1rem 0;
+  font-size: 2.4rem;
+  text-align: center;
+}
+
+.titlu-info-box{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  background-color: rgba(225, 225, 225, 0.1);
+  padding: 2rem 3.4rem;
+  border-radius: 1rem;
+  width: 90%;
+}
+
+.titlu-info h2{
+  font-size: 1.6rem;
+  color: #fffff1;
+}
+
 .subiecte-box-info{
-  margin: 1rem 20% 1rem 0rem;
+  margin: 1rem 20% 1rem 0;
   padding: 0.2rem 0.5rem;
   display: flex;
   gap: 20px;        /* spațiu între ele */
@@ -709,7 +730,62 @@ nav ul li:last-child a {
   box-shadow: 0 0 15px rgba(66, 153, 225, 0.3);
 }
 
+.sub-info{
+  font-size: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
 
+.sub-link-info{
+  color: lightblue;
+}
+
+.sub-link-info:hover{
+  transition: all 0.4s;
+}
+
+.sfat-info{
+  background: rgba(123, 160, 217, 0.1);
+  border: 1px solid #7BA0D9;
+  margin: 2rem 3% 0 3%;
+  border-radius: 1rem;
+  padding: 1.3rem;
+}
+
+.sfat-info p{
+  font-size: 1.1rem;
+}
+
+.sfat-info a{
+  color: lightblue;
+}
+
+.sfat-info a:hover{
+  color: black;
+  transition: all 0.4s;
+}
+
+.warning-info{
+  background: rgba(255, 202, 75, 0.1);
+  border: 1px solid #FFCA4B;
+  margin: 2rem 3% 0 3%;
+  border-radius: 1rem;
+  padding: 1.3rem;
+}
+
+.warning-info p{
+  font-size: 1.1rem;
+}
+
+.warning-info a{
+  color: lightblue;
+}
+
+.warning-info a:hover{
+  color: black;
+  transition: all 0.4s;
+}
 
 /* Container pentru linkuri */
 

@@ -161,7 +161,7 @@ em{
   justify-content: center;
   text-align: center;
   padding-bottom: 3rem;
-  margin: 0 auto 1.5rem auto;
+  margin: 0 auto 0 auto;
   padding: 0 1.1rem;
   border-radius: 1rem;
   width: 100%;
@@ -343,7 +343,7 @@ nav ul li:last-child a {
 .valoare{
   margin-top: 4rem;
   padding: 4rem 0;
-  margin: 0 auto 1.5rem auto;
+  margin: 0 auto 0 auto;
   background-color: #FEF9EF;
   grid-column: 1 / -1;
   border-radius: 15px;
@@ -435,9 +435,8 @@ nav ul li:last-child a {
 /* Poveste */
   
 .poveste{
-  margin-top: 5rem;
-  padding: 4rem 0;
-  margin: 0 auto 1.5rem auto;
+  padding: 2rem 0;
+  margin: 0 auto 0 auto;
   background-color: #393E46;
   grid-column: 1 / -1;
   color: #fffff1;
@@ -449,7 +448,6 @@ nav ul li:last-child a {
   margin-top: -10px;
   font-size: 2.3rem;
   border-radius: 4px;
-  margin-bottom: 0.6rem;
 }
 
 .poveste h3{
@@ -644,7 +642,7 @@ nav ul li:last-child a {
   font-size: 1.65rem;
   box-shadow: 0 8px 25px rgba(0, 0, 1, 0.3);
   transition: background-color 0.4s ease 0.01s;
-  }
+}
 
 .section-titlu{
   margin: 0.2rem;

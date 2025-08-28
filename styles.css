@@ -372,9 +372,9 @@ nav ul li:last-child a {
 
 .valoare-grid{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  padding: 0 2rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 0 1.2rem;
 }
 
 .valoare-card{
@@ -440,7 +440,7 @@ nav ul li:last-child a {
 .poveste{
   margin-top: 5rem;
   padding: 3rem 0 1rem 0;
-  margin: 0 auto 1.5rem auto;
+  margin: 0 auto 0 auto;
   background-color: #393E46;
   grid-column: 1 / -1;
   color: #fffff1;
@@ -884,6 +884,10 @@ div#pdfViewer {
     gap: 4px; 
   }
 
+  .valoare-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .links {
     display: inline-flex;
     flex-wrap: nowrap;  
@@ -941,6 +945,10 @@ div#pdfViewer {
     font-size: 1.8rem;
   }
 
+  .valoare-grid{
+    grid-template-columns: 1fr;
+  }
+
   .sidebar {
     display: none;
   }
@@ -987,7 +995,7 @@ div#pdfViewer {
   }
 
   .section-icon{
-    height: 7.2rem;
+    height: 5.5rem;
   }
 
   .logonav{

@@ -250,16 +250,6 @@ em{
   text-indent: 20px;
 }
 
-.intro-resurse{
-  margin-top: 4rem;
-  padding: 6.5rem 0 3rem 0;
-  margin: 0 auto;
-  background-color: #FEF9EF;
-  grid-row: 1 / -1;
-  border-radius: 15px;
-  border: 3px solid grey;
-}
-
 .pag-intro{
   padding-bottom: 2rem;
 }
@@ -270,27 +260,6 @@ em{
   font-size: 2.3rem;
   border-radius: 4px;
   margin-bottom: 0.6rem;
-}
-
-.intro-grid{
-  gap: 2rem;
-  padding: 0 2rem;
-}
-
-.intro-card{
-  background: white;
-  padding: 1.5rem; /* Schimba aici pentru overlap*/
-  border-radius: 15px;
-  box-shadow: 0 0 12px rgba(50,50,50,0.4);
-  transition: transform 0.3s;
-  text-align: center;
-  margin-top: -3rem;
-  position: relative;       
-  z-index: 1;    
-}
-
-.intro-card:hover{
-  transform: translateY(-30px);
 }
 
 .ad-left {
@@ -305,7 +274,7 @@ em{
 
 .grid-main-content { 
   grid-area: main-content;
-} /* Trebuie folosit pentru fiecare sectiune din corpul principal */
+}
 
 /* Navigation */
 
@@ -888,6 +857,23 @@ section li a:hover{
   text-decoration: none;
 }
 
+div#pdfViewer {
+    width: 100%;
+    border: 0;
+    height:85vh; 
+    overflow:auto; 
+    background:#222;
+}
+
+#pdfViewer canvas {
+  max-width: 100%;
+  height: auto;     
+  margin: 10px auto;
+  display: block;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  border-radius: 4px;
+}
+
 @media screen and (max-width: 1100px) and (min-width: 830px){
   .dropdown-design p {
     display: flex;
@@ -1001,7 +987,7 @@ section li a:hover{
   .section-icon{
     height: 7.2rem;
   }
-
+  
   .logonav{
     margin-left: 0.5rem;
   }

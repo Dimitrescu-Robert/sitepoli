@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdmiterePoli</title>
+    <link rel="icon" type="image/png" href="images/logonoutrans.png">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">
+                <img src="images/logonoutrans.png" alt="logo" class="logonav">
+            </a>            
+            <ul class="nav-elements">
+                <li><a href="informatii.html">Informatii generale</a></li>
+                <li><a href="subiecte.html">Subiecte/Rezolvari</a></li>
+                <li><a href="resurse.html">Resurse</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="ad-left"></div>
+        <section class="grid-main-content">
+            <div id="pdfViewer"></div>
+        </section>
+        <div class="ad-right"></div>
+    </main>
+    <footer>   
+        <a href="contact.html" style="color: white; text-decoration: none;"> Contact</a>
+        <div>Termeni si conditii</div>
+        <div>Politica de Confidentialitate</div>
+        <div>&copy; 2025 AdmiterePoli. Toate drepturile rezervate. Creat de studenți, pentru viitori studenți.</div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const file = params.get("file");
+
+        const pdfMap = {
+            "a2025-m-subiect":   "pdfs/admitere2025-mate-subiect.pdf",
+            "a2025-m-barem":     "pdfs/admitere2025-mate-barem.pdf",
+            "a2025-m-rezolvare": "pdfs/admitere2025-mate-rezolvare.pdf",
+            "a2025-i-subiect":   "pdfs/admitere2025-info-subiect.pdf",
+            "a2025-i-barem":     "pdfs/admitere2025-info-barem.pdf",
+            "a2025-i-rezolvare": "pdfs/admitere2025-info-rezolvare.pdf"
+        };
+
+        const container = document.getElementById("pdfViewer");
+
+        if (file && pdfMap[file]) {
+            const url = pdfMap[file];
+
+            const loadingTask = pdfjsLib.getDocument(url);
+            loadingTask.promise.then(function(pdf) {
+                console.log("PDF loaded, total pages =", pdf.numPages);
+
+                // Render all pages
+                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                    pdf.getPage(pageNum).then(function(page) {
+                        const scale = 1.3;
+                        const viewport = page.getViewport({ scale });
+
+                        const canvas = document.createElement("canvas");
+                        canvas.style.display = "block";
+                        canvas.style.margin = "0 auto 20px auto";
+                        const context = canvas.getContext("2d");
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+
+                        container.appendChild(canvas);
+
+                        page.render({ canvasContext: context, viewport: viewport });
+                    });
+                }
+            });
+        } else {
+            container.innerHTML = "<h2 style='text-align:center;margin-top:20%;color:white'>PDF not found</h2>";
+        }
+    </script>
+</body>
+</html>

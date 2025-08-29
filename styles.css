@@ -50,12 +50,14 @@ main {
 }
 
 footer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   grid-area: footer;
   background-color: #222831;
   color: #fffff1;
   text-align: center;
-  padding-top: 2rem;
-  padding-bottom: 1rem;
+  padding :1rem;
 }
 
 ul {
@@ -665,7 +667,8 @@ nav ul li:last-child a {
 
 .titlu-info-box{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  text-align: center;
   margin: 0 auto;
   background-color: rgba(225, 225, 225, 0.1);
   padding: 2rem 3.4rem;

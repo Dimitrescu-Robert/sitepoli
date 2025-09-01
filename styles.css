@@ -214,6 +214,13 @@ em{
   font-weight: 300;
 }
 
+.scurtat2{
+  word-break: break-word;
+  max-width: 1150px; 
+  margin: 0 auto;
+  font-weight: 300;
+}
+
 .indented {
   text-indent: 20px;
 }
@@ -972,12 +979,13 @@ div#pdfViewer {
   }
 }
 
-@media screen and (max-width: 1280px) and (min-width: 1025px){
+@media screen and (max-width: 1280px) and (min-width: 1198px){
   .dropdown-design p {
-    display: flex;
-    flex-direction: column; 
-    align-items: flex-start;
-    gap: 4px; 
+    gap: 4px;
+  }
+
+  .sub-links{
+    margin-left: 0;
   }
 
   .valoare-grid {
@@ -985,6 +993,39 @@ div#pdfViewer {
   }
 
   .links {
+    margin-top: -0.65rem;
+    display: inline-flex;
+    flex-wrap: nowrap;  
+    white-space: nowrap; 
+    gap: 4px;
+  }
+
+  .despre-noi-doi {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "alex-area"
+    "robert-area";
+  }
+}
+
+@media screen and (max-width: 1197px) and (min-width: 1025px){
+  .dropdown-design p {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .sub-links{
+    margin-left: 0;
+  }
+
+  .valoare-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .links {
+    margin-top: -0.65rem;
     display: inline-flex;
     flex-wrap: nowrap;  
     white-space: nowrap; 

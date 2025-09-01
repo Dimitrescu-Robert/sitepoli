@@ -139,10 +139,8 @@ em{
 
 .container h1{
   font-size: 1.5em;
-  margin-bottom: 15px;
+  margin-bottom: 0.2rem;
 }
-
-
 
 /* DROPDOWN */
 
@@ -231,6 +229,15 @@ em{
 
 .left-grid{
   grid-area: left;
+}
+
+.left-grid h3{
+  font-size: 1.2rem;
+  margin-top: 1.15rem;
+}
+
+.left-grid ul{
+  font-size: 1.05rem;
 }
 
 .right-grid{
@@ -402,6 +409,7 @@ nav ul li:last-child a {
   justify-content: center;
   margin: 0 auto 1.5rem;
   font-size: 2rem;
+  user-select: none;
 }
 
 .valoare-titlu{
@@ -418,22 +426,25 @@ nav ul li:last-child a {
 }
 
 .valoare-highlight{
-  background: #f8f9fa;
+  color: #4299e1;
+  display: block;
+  background: #e2effc;
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 1rem;
   font-size: 0.9rem;
   font-weight: 600;
+  transition: all ease 0.3s;
 }
 
-.valoare-highlight a {
+.valoare-highlight a{
   color: #4299e1;
 }
 
-.valoare-highlight a:visited {
+.valoare-highlight :visited {
   color: #4299e1; /* ensures visited links stay the same */
 }
 
-.valoare-highlight a:hover {
+.valoare-highlight :hover {
   color: #555879;
 }
 

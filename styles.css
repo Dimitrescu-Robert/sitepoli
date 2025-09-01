@@ -377,6 +377,7 @@ nav ul li:last-child a {
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   padding: 0 1.2rem;
+  align-items: stretch;
 }
 
 .valoare-card{
@@ -702,7 +703,6 @@ nav ul li:last-child a {
   font-size: 1.3rem;
 }
 
-
 .subiecte-box-info:hover{
   background-color: #878787;
   transform: translateY(-2px);
@@ -955,7 +955,13 @@ div#pdfViewer {
   border-radius: 4px;
 }
 
-@media screen and (max-width: 1100px) and (min-width: 830px){
+@media screen and (max-width: 1440px) and (min-width: 1281px){
+  .valoare-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 1280px) and (min-width: 1025px){
   .dropdown-design p {
     display: flex;
     flex-direction: column; 
@@ -980,6 +986,29 @@ div#pdfViewer {
     "alex-area"
     "robert-area";
   }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 769px){
+  main {
+    grid-template-columns: 1fr;
+    grid-template-areas: "main-content";
+    padding: 0.5rem;
+  }
+  
+  .ad-left, .ad-right {
+    display: none;
+  }
+
+  .valoare-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .despre-noi-doi {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "alex-area"
+    "robert-area";
+  }
 
   .image-grid{
     grid-template-columns: 1fr;
@@ -995,7 +1024,7 @@ div#pdfViewer {
   }
 }
 
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 768px) {
   main {
     grid-template-columns: 1fr;
     grid-template-areas: "main-content";

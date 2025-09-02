@@ -270,7 +270,7 @@ em{
 }
 
 .pag-intro{
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
 }
 
 .pag-intro h1{
@@ -1022,7 +1022,7 @@ div#pdfViewer {
   }
 
   .titlu-info-box{
-    font-size: ;
+    font-size: 1.3rem;
   }
 
 }

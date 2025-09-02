@@ -690,7 +690,7 @@ nav ul li:last-child a {
   text-align: center;
   margin: 0 auto;
   background-color: rgba(225, 225, 225, 0.1);
-  padding: 2rem 3.4rem;
+  padding: 1.2rem 3rem;
   border-radius: 1rem;
   width: 90%;
 }
@@ -1006,6 +1006,14 @@ div#pdfViewer {
     "alex-area"
     "robert-area";
   }
+  .titlu-info h1{
+    font-size: 2.2rem;
+  }
+
+  .titlu-info-box{
+    font-size: ;
+  }
+
 }
 
 @media screen and (max-width: 1197px) and (min-width: 1025px){
@@ -1038,6 +1046,15 @@ div#pdfViewer {
     "alex-area"
     "robert-area";
   }
+
+  .titlu-info h1{
+    font-size: 1.9rem;
+  }
+
+  .titlu-info h2{
+    font-size: 1.4rem;
+  }
+
 }
 
 @media screen and (max-width: 1024px) and (min-width: 769px){
@@ -1074,6 +1091,11 @@ div#pdfViewer {
   .right-grid {
     display: none;
   }
+
+  .titlu-info h1{
+    font-size: 2.3rem;
+  }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -1121,7 +1143,6 @@ div#pdfViewer {
   }
 
   .dropdown-section.show {
-    max-height: 55vh;
     padding: 0rem;
     overflow: hidden;
   }
@@ -1152,6 +1173,14 @@ div#pdfViewer {
 
   .subiecte-box-info{
     margin: 1rem 0 1rem 0rem;
+  }
+
+  .sfat-info{
+    margin: 0 3% 0.4rem 3%;
+  }
+
+  .warning-info{
+    margin: 0 3% 0.4rem 3%;
   }
 
   .section-icon{
@@ -1208,6 +1237,14 @@ div#pdfViewer {
     transform: translateY(-8px) rotate(-45deg);
   }
 
+  .titlu-info-box{
+    display: none;
+  }
+
+  .titlu-info h1{
+    font-size: 1.8rem;
+  }
+
   .nav-elements {
   position: fixed;
   top: -100%; 
@@ -1240,3 +1277,18 @@ div#pdfViewer {
     display: none;
   }
 }
+
+@media screen and (max-width: 650px){
+  .pag-intro{
+    padding-bottom: 0;
+  }
+
+  .pag-intro h1{
+    margin-bottom: 0;
+  }
+
+  .pag-intro h2{
+    display: none;
+  }
+}
+

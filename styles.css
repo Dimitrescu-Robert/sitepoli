@@ -229,7 +229,7 @@ em{
 
 .image-grid{
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 2fr;
   grid-template-areas: "left right";
   align-items: center;
 }
@@ -258,7 +258,7 @@ em{
   border-radius: 50%;
   display: block;
   margin: 1rem auto;
-  max-width: 90%;
+  max-width: 80%;
   height: auto;
   object-fit: cover;
 }
@@ -973,6 +973,17 @@ div#pdfViewer {
   border-radius: 4px;
 }
 
+@media (min-width: 1440px){
+  .right-grid img {
+  border-radius: 50%;
+  display: block;
+  margin: 1rem auto;
+  max-width: 350px;
+  height: auto;
+  object-fit: cover;
+  }
+}
+
 @media screen and (max-width: 1440px) and (min-width: 1281px){
   .valoare-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1121,7 +1132,6 @@ div#pdfViewer {
   }
 
   .dropdown-section.show {
-    max-height: 55vh;
     padding: 0rem;
     overflow: hidden;
   }

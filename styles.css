@@ -270,7 +270,7 @@ em{
 }
 
 .pag-intro{
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
 }
 
 .pag-intro h1{
@@ -973,7 +973,7 @@ div#pdfViewer {
   border-radius: 4px;
 }
 
-@media (min-width: 1440px){
+@media (min-width: 1670px){
   .right-grid img {
   border-radius: 50%;
   display: block;
@@ -981,6 +981,33 @@ div#pdfViewer {
   max-width: 350px;
   height: auto;
   object-fit: cover;
+  }
+
+  .valoare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+  }
+
+  .valoare-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+  }
+}
+
+@media screen and (max-width: 1670px) and (min-width: 1440px){
+  .right-grid img {
+  border-radius: 50%;
+  display: block;
+  margin: 1rem auto;
+  max-width: 350px;
+  height: auto;
+  object-fit: cover;
+  }
+  .valoare-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -1302,4 +1329,3 @@ div#pdfViewer {
     display: none;
   }
 }
-

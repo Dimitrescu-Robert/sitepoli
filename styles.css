@@ -655,6 +655,16 @@ nav ul li:last-child a {
   margin-top: 0px;
 }
 
+.logo-etti{
+  width: 2em;
+  height: 1em;
+}
+
+.logo-acs{
+  width: 2.;
+  height: 2.36em;
+}
+
 .section-icon {
   margin: 0.2rem 0 0.2rem 0;
   width: 7rem;

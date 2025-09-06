@@ -1195,6 +1195,14 @@ div#pdfViewer {
     overflow: hidden;
   }
 
+  .poveste-box{
+    margin: 0 auto 1rem 0;
+  }
+
+  .poveste-box h4{
+    font-size: 1rem;
+  }
+
   .sub-links {
     display: flex;              
     flex-direction: column;

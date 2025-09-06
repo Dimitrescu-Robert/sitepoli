@@ -62,8 +62,6 @@
             const loadingTask = pdfjsLib.getDocument(url);
             loadingTask.promise.then(function(pdf) {
                 console.log("PDF loaded, total pages =", pdf.numPages);
-
-                // Render all pages
                 for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
                     pdf.getPage(pageNum).then(function(page) {
                         const scale = 1.3;

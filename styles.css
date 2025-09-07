@@ -1,5 +1,3 @@
-/* Worldwide Selectors */
-
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 *{
   padding: 0;
@@ -449,7 +447,7 @@ nav ul li:last-child a {
 }
 
 .valoare-highlight :visited {
-  color: #4299e1; /* ensures visited links stay the same */
+  color: #4299e1;
 }
 
 .valoare-highlight :hover {
@@ -513,7 +511,7 @@ nav ul li:last-child a {
   margin: 1rem 50% 1rem 0rem;
   padding: 0.2rem 0.5rem;
   display: flex;
-  gap: 20px;        /* spațiu între ele */
+  gap: 20px;
   border-radius: 1rem;
   background: #808080;
   cursor: pointer;
@@ -568,7 +566,7 @@ nav ul li:last-child a {
 
 .sub-links {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr)); /* Coloane responsive */
+  grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
   width: 100%;
   opacity: 0;
   gap: 4px; 
@@ -714,7 +712,7 @@ nav ul li:last-child a {
   margin: 1rem 20% 1rem 0;
   padding: 0.2rem 0.5rem;
   display: flex;
-  gap: 20px;        /* spațiu între ele */
+  gap: 20px;       
   border-radius: 1rem;
   background: #e1e1e1;
   cursor: pointer;
@@ -822,7 +820,7 @@ nav ul li:last-child a {
 
 .sub-links {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr)); /* Coloane responsive */
+  grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr)); 
   gap: 2rem;
   padding: 0 1.4rem;
   margin-left: 30px;

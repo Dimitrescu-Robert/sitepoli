@@ -77,6 +77,10 @@ em{
   padding: 0px 5px 0px 0px;
 }
 
+img, button{
+  max-width: 100%;
+}
+
 /* Butoane */
 
 .button {
@@ -471,6 +475,7 @@ nav ul li:last-child a {
   margin-top: -10px;
   font-size: 2.3rem;
   border-radius: 4px;
+  margin: 0 1.2rem;
 }
 
 .poveste h3{
@@ -1343,5 +1348,13 @@ div#pdfViewer {
 
   .pag-intro h2{
     display: none;
+  }
+
+  .poveste h2{
+    font-size: 2.1rem;
+  }
+
+  .despre-noi h1{
+    font-size: 2.2rem;
   }
 }

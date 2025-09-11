@@ -619,12 +619,14 @@ nav ul li:last-child a {
   grid-area: alex-area;
   padding: 1.5rem;
   align-items: center;
+  font-size:24px;
 }
 
 .robert-box{
   grid-area: robert-area;
   padding: 1.5rem;
   align-items: center;
+  font-size:24px;
 }
 
 .text-profil{

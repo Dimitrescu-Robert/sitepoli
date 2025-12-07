@@ -661,19 +661,20 @@ nav ul li:last-child a {
 }
 
 .logo-etti{
-  width: 2em;
   height: 1em;
 }
 
 .logo-acs{
-  width: 2.;
   height: 2.36em;
 }
 
 .section-icon {
-  margin: 0.2rem 0 0.2rem 0;
+  margin: 0.2rem 0 0.2 rem 0;
   width: 7rem;
-  height: 5rem;
+  height: 7rem;
+  min-width: 7rem;
+  min-height: 6rem;
+  flex-shrink: 0;
   background: #e1e1e1;
   border-radius:1rem;
   display: flex;
@@ -1259,6 +1260,48 @@ div#pdfViewer {
   .subiecte-box{
     margin: 1rem 0rem;
     padding: 0.4rem;
+  }
+
+  .subiecte-box-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5rem;
+    height: auto;
+    gap: 10px;
+  }
+
+  .section-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    min-height: 3.5rem;
+    min-height: 3.5rem;
+    font-size: 1.5rem;
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .section-titlu {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 0;
+    padding: 0;
+    width: auto;
+  }
+
+  .section-titlu p strong {
+    font-size: 0.95rem;
+    line-height: 1.2;
+    display: block;
+  }
+
+  .section-titlu p:nth-child(2) {
+    display: none;
+  }
+
+  .subiecte-box-info p {
+    margin: 0;
   }
 
   .main-content {

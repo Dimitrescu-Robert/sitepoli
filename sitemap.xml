@@ -9,57 +9,54 @@
   <loc>https://admiterepoli.com/</loc>
   <priority>1.00</priority>
 </url>
+
 <url>
-  <loc>https://admiterepoli.com/index.html</loc>
+  <loc>https://admiterepoli.com/informatii</loc>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://admiterepoli.com/informatii.html</loc>
+  <loc>https://admiterepoli.com/subiecte</loc>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://admiterepoli.com/subiecte.html</loc>
+  <loc>https://admiterepoli.com/resurse</loc>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://admiterepoli.com/resurse.html</loc>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://admiterepoli.com/contact.html</loc>
+  <loc>https://admiterepoli.com/contact</loc>
   <priority>0.80</priority>
 </url>
 
 <url>
-  <loc>https://admiterepoli.com/simulare-2025-matematica-barem.html</loc>
+  <loc>https://admiterepoli.com/simulare-2025-matematica-barem</loc>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://admiterepoli.com/simulare-2025-informatica-barem.html</loc>
+  <loc>https://admiterepoli.com/simulare-2025-informatica-barem</loc>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://admiterepoli.com/preadmitere-2025-matematica-barem.html</loc>
+  <loc>https://admiterepoli.com/preadmitere-2025-matematica-barem</loc>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://admiterepoli.com/preadmitere-2025-informatica-barem.html</loc>
+  <loc>https://admiterepoli.com/preadmitere-2025-informatica-barem</loc>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://admiterepoli.com/rezolvare-preadmitere-2025-matematica.html</loc>
+  <loc>https://admiterepoli.com/rezolvare-preadmitere-2025-matematica</loc>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://admiterepoli.com/admitere-2025-matematica-barem.html</loc>
+  <loc>https://admiterepoli.com/admitere-2025-matematica-barem</loc>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://admiterepoli.com/admitere-2025-informatica-barem.html</loc>
+  <loc>https://admiterepoli.com/admitere-2025-informatica-barem</loc>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://admiterepoli.com/rezolvare-admitere-2025-informatica.html</loc>
+  <loc>https://admiterepoli.com/rezolvare-admitere-2025-informatica</loc>
   <priority>0.80</priority>
 </url>
 

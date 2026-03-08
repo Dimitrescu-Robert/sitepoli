@@ -1384,11 +1384,16 @@ div#pdfViewer {
 }
 
 @media screen and (max-width: 650px){
+  h3.indented{
+    display: none;
+  }
+
   .pag-intro{
     padding-bottom: 0;
   }
 
   .pag-intro h1{
+    font-size: 1.7rem;
     margin-bottom: 0;
   }
 

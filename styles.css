@@ -139,7 +139,7 @@ img, button{
 }
 
 .container h1{
-  font-size: 1.5em;
+  font-size: 1.9rem;
   margin-bottom: 0.2rem;
 }
 
@@ -271,7 +271,11 @@ img, button{
 }
 
 .pag-intro{
-  padding-bottom: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  color: #dedee4;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
 .pag-intro h1{
@@ -279,7 +283,20 @@ img, button{
   margin-top: -10px;
   font-size: 2.3rem;
   border-radius: 4px;
+  padding: 0.8rem;
   margin-bottom: 0.6rem;
+  letter-spacing: -0.5px;
+}
+
+.pag-intro h2.indented {
+    font-weight: 400;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.pag-intro h2.indented b {
+    font-weight: 600;
+    color: #ffffff;
 }
 
 .ad-left {
@@ -515,7 +532,7 @@ nav ul li:last-child a {
 
 .subiecte-box{
   margin: 1rem 50% 1rem 0rem;
-  padding: 0.2rem 0.5rem;
+  padding: 0.2rem 0.8rem;
   display: flex;
   gap: 20px;
   border-radius: 1rem;
@@ -1393,7 +1410,7 @@ div#pdfViewer {
   }
 
   .pag-intro h1{
-    font-size: 1.7rem;
+    font-size: 1.9rem;
     margin-bottom: 0;
   }
 

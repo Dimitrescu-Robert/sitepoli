@@ -842,6 +842,19 @@ nav ul li:last-child a {
   transition: all 0.4s;
 }
 
+.link-comparatie {
+  color: #fdd835; 
+  text-decoration: none; 
+  font-weight: 600; 
+  font-size: 1.05rem; 
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.link-comparatie:hover {
+  color: #63561e !important;
+}
+
 /* Container pentru linkuri */
 
 .sub-links {
@@ -874,6 +887,87 @@ nav ul li:last-child a {
   max-width: 200px;
   height: auto;
   object-fit: cover; 
+}
+
+/* Pagina CTI vs IS */
+
+.comparison-table-wrapper {
+  overflow-x: hidden;
+  margin: 2rem 0;
+}
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgba(255, 255, 255, 0.03);
+  color: #e2e8f0;
+  text-align: left;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.comparison-table th, .comparison-table td {
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.comparison-table th {
+  background-color: rgba(0, 0, 0, 0.4);
+  font-weight: 600;
+  color: #fff;
+}
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.side-by-side {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 1rem;
+}
+.side-box {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.side-box h3 {
+  margin-top: 0;
+  color: #e5c07b;
+}
+
+.verdict-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 1rem;
+}
+.verdict-box {
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid;
+}
+
+.verdict-cti {
+  background: rgba(130, 141, 248, 0.1); 
+  border-left-color: #828df8;
+}
+.verdict-cti h3 {
+  color: #828df8 !important;
+}
+
+.verdict-is {
+  background: rgba(77, 182, 172, 0.1);
+  border-left-color: #4db6ac;
+}
+.verdict-is h3 {
+  color: #4db6ac !important;
+}
+
+.verdict-myth {
+  background: rgba(224, 108, 117, 0.1);
+  border-left-color: #daad6a;
+}
+.verdict-myth h3 {
+  color: #e2ae5f !important;
 }
 
 /* Contact*/
@@ -1397,6 +1491,64 @@ div#pdfViewer {
 
   .right-grid {
     display: none;
+  }
+
+  .side-by-side {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-table thead {
+    display: none; 
+  }
+  .comparison-table, .comparison-table tbody, .comparison-table tr, .comparison-table td {
+    display: block;
+    width: 100%;
+  }
+  .comparison-table tr {
+    margin-bottom: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .comparison-table td {
+      text-align: right;
+      padding: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      position: relative;
+  }
+  .comparison-table td:last-child {
+      border-bottom: none;
+  }
+
+  .comparison-table td:first-child {
+    background: rgba(255, 255, 255, 0.03);
+    text-align: center;
+    font-size: 1.1rem;
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .comparison-table td:nth-child(2)::before {
+    content: "CTI";
+    float: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #fff;
+    background-color: #939ad84b;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-right: 10px;
+  }
+  .comparison-table td:nth-child(3)::before {
+    content: "IS";
+    float: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #fff;
+    background-color: #4db6ac62;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-right: 10px;
   }
 }
 

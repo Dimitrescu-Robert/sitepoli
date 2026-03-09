@@ -26,6 +26,27 @@
   <loc>https://admiterepoli.com/contact</loc>
   <priority>0.80</priority>
 </url>
+<url>
+  <loc>https://admiterepoli.com/cti-vs-is</loc>
+  <priority>0.80</priority>
+</url>
+
+<url>
+  <loc>https://admiterepoli.com/rezolvare-simulare-2026-matematica</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/simulare-2026-matematica-barem</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/simulare-2026-informatica-barem</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/rezolvare-simulare-2026-informatica</loc>
+  <priority>0.80</priority>
+</url>
 
 <url>
   <loc>https://admiterepoli.com/simulare-2025-matematica-barem</loc>
@@ -59,7 +80,18 @@
   <loc>https://admiterepoli.com/rezolvare-admitere-2025-informatica</loc>
   <priority>0.80</priority>
 </url>
-
+<url>
+  <loc>https://admiterepoli.com/rezolvare-admitere-2025-matematica</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/rezolvare-preadmitere-2024-matematica</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/preadmitere-2024-matematica-barem</loc>
+  <priority>0.80</priority>
+</url>
 <url>
   <loc>https://admiterepoli.com/document/Termeni%20%C8%99i%20Condi%C8%9Bii%20%E2%80%93%20admiterepoli.pdf</loc>
   <priority>0.80</priority>

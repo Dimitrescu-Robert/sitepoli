@@ -181,12 +181,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const now = new Date().getTime();
-        const sevenDays = 7 * 24 * 60 * 60 * 1000;
+        const oneDay = 24 * 60 * 60 * 1000;
         const lastShownTime = lastShown ? parseInt(lastShown, 10) : 0;
 
         // Show if never shown, if value is invalid, or if 7 days have passed
-        //if (!lastShown || isNaN(lastShownTime) || (now - lastShownTime > sevenDays)) {
-        if (1) {
+        //if (!lastShown || isNaN(lastShownTime) || (now - lastShownTime > oneDay)) {
+        if (0) {
             setTimeout(function() {
                 popup.style.display = 'flex';
                 // Trigger animation

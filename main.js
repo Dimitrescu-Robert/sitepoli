@@ -84,80 +84,202 @@ document.addEventListener('DOMContentLoaded', function() {
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".nav-elements");
 
-hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active");
-    navMenu.classList.toggle("active");
-});
+if (hamburger && navMenu) {
+    hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+    });
 
-document.querySelectorAll("nav li a").forEach(n => n.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    navMenu.classList.remove("active");
-}));
+    document.querySelectorAll("nav li a").forEach(n => n.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+    }));
+}
 
 // Contact Form
 
 const form = document.getElementById('contact-form');
 
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
+if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
 
-  const formData = new FormData(form);
-  const accessKey = "6eaadb1c-89a0-4ec2-8e96-acb65cf36873";
+      const formData = new FormData(form);
+      const accessKey = "6eaadb1c-89a0-4ec2-8e96-acb65cf36873";
 
-  const recipient = "admiterepoli@gmail.com";
+      const recipient = "admiterepoli@gmail.com";
 
-  Swal.fire({
-    title: 'Se trimite mesajul...',
-    timer: 1000,
-    didOpen: () => {
-      Swal.showLoading();
-    }
-  });
-
-  formData.append("access_key", accessKey);
-  formData.append("to", recipient);
-
-  const json = JSON.stringify(Object.fromEntries(formData));
-
-  fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: json
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.success) {
-        Swal.fire({
-          title: 'Succes!',
-          text: 'Mesaj trimis cu succes!',
-          icon: 'success',
-          confirmButtonText: 'OK',
-          confirmButtonColor: '#555879'
-        });
-      } else {
-        Swal.fire({
-          title: 'Oops!',
-          text: data.message || 'A apărut o eroare la trimitere!',
-          icon: 'error',
-          confirmButtonText: 'OK',
-          confirmButtonColor: '#555879'
-        });
-      }
-    })
-    .catch(error => {
-      console.log(error);
       Swal.fire({
-        title: 'Oops!',
-        text: 'A apărut o eroare la trimitere!',
-        icon: 'error',
-        confirmButtonText: 'OK',
-        confirmButtonColor: '#555879'
+        title: 'Se trimite mesajul...',
+        timer: 1000,
+        didOpen: () => {
+          Swal.showLoading();
+        }
       });
-    })
-    .finally(() => {
-      form.reset();
+
+      formData.append("access_key", accessKey);
+      formData.append("to", recipient);
+
+      const json = JSON.stringify(Object.fromEntries(formData));
+
+      fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: json
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            Swal.fire({
+              title: 'Succes!',
+              text: 'Mesaj trimis cu succes!',
+              icon: 'success',
+              confirmButtonText: 'OK',
+              confirmButtonColor: '#555879'
+            });
+          } else {
+            Swal.fire({
+              title: 'Oops!',
+              text: data.message || 'A apărut o eroare la trimitere!',
+              icon: 'error',
+              confirmButtonText: 'OK',
+              confirmButtonColor: '#555879'
+            });
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          Swal.fire({
+            title: 'Oops!',
+            text: 'A apărut o eroare la trimitere!',
+            icon: 'error',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#555879'
+          });
+        })
+        .finally(() => {
+          form.reset();
+        });
     });
-});
+}
+
+/* Upgraded Newsletter Popup Logic */
+document.addEventListener('DOMContentLoaded', function() {
+    const popup = document.getElementById('newsletter-popup');
+    if (!popup) return;
+
+    // Track Popup Open
+    function showPopup() {
+        let lastShown = null;
+        try {
+            lastShown = localStorage.getItem('newsletter_last_shown');
+        } catch (e) {
+            console.warn('[Newsletter] LocalStorage access failed:', e);
+        }
+
+        const now = new Date().getTime();
+        const sevenDays = 7 * 24 * 60 * 60 * 1000;
+        const lastShownTime = lastShown ? parseInt(lastShown, 10) : 0;
+
+        // Show if never shown, if value is invalid, or if 7 days have passed
+        //if (!lastShown || isNaN(lastShownTime) || (now - lastShownTime > sevenDays)) {
+        if (1) {
+            setTimeout(function() {
+                popup.style.display = 'flex';
+                // Trigger animation
+                setTimeout(() => popup.classList.add('active'), 10);
+                console.log('[Analytics] Newsletter Popup Opened');
+            }, 12000); // 12 seconds delay (requested 10-15s)
+        }
+    }
+
+    showPopup();
+
+    const closeBtn = popup.querySelector('.close-btn');
+    
+    function dismissPopup(actionType) {
+        popup.classList.remove('active');
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 300); // Wait for fade out
+        
+        try {
+            localStorage.setItem('newsletter_last_shown', new Date().getTime().toString());
+        } catch (e) {
+            console.warn('[Newsletter] Failed to save dismissal:', e);
+        }
+        console.log(`[Analytics] Newsletter Popup Dismissed (${actionType})`);
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => dismissPopup('Close Button'));
+    }
+
+    // Handle "Nu acum" link if it exists
+    const dismissLink = popup.querySelector('.dismiss-link');
+    if (dismissLink) {
+        dismissLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            dismissPopup('Dismiss Link');
+        });
+    }
+
+    // Close on click outside
+    window.addEventListener('click', function(event) {
+        if (event.target === popup) {
+            dismissPopup('Outside Click');
+        }
+    });
+
+    // --- BUCATA NOUĂ ÎNCEPE AICI ---
+    const newsletterForm = document.getElementById('newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Oprim browserul să schimbe pagina/tabul
+            
+            const submitBtn = newsletterForm.querySelector('.glass-btn');
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = "Se trimite...";
+            submitBtn.disabled = true;
+
+            // Luăm adresa de email din formular
+            const formData = new FormData(newsletterForm);
+
+            // O trimitem către Brevo în fundal, absolut invizibil
+            fetch(newsletterForm.action, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors' // Secretul care face trimiterea silențioasă
+            }).then(() => {
+                // Afișăm succesul
+                const content = popup.querySelector('.newsletter-content');
+                content.innerHTML = `
+                    <button class="close-btn" aria-label="Close">&times;</button>
+                    <div style="padding: 1rem 0;">
+                        <h3 class="glass-headline" style="color: #0f172a !important;">Ești în echipă! 🎓</h3>
+                        <p class="glass-body">Verifică inbox-ul pentru primul email.</p>
+                    </div>
+                `;
+
+                const newCloseBtn = content.querySelector('.close-btn');
+                if (newCloseBtn) {
+                    newCloseBtn.addEventListener('click', () => dismissPopup('Success State'));
+                }
+                
+                setTimeout(() => {
+                    dismissPopup('Auto Success');
+                }, 4000);
+
+            }).catch(error => {
+                console.error('Eroare:', error);
+                submitBtn.innerText = "Eroare. Mai încearcă.";
+                submitBtn.disabled = false;
+            });
+        });
+    }
+    // --- BUCATA NOUĂ SE TERMINĂ AICI ---
+
+}); // Ultima linie din fișier (închiderea de la DOMContentLoaded)

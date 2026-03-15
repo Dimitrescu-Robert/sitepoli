@@ -79,6 +79,18 @@ class SimpleDropdown {
 // Inițializează când se încarcă pagina
 document.addEventListener('DOMContentLoaded', function() {
     new SimpleDropdown();
+
+    // Smooth scroll pentru butonul "Povestea noastră"
+    const poetveaBtn = document.querySelector('a[href="#despre-noi"]');
+    if (poetveaBtn) {
+        poetveaBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.getElementById('despre-noi');
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    }
 });
 
 const hamburger = document.querySelector(".hamburger");

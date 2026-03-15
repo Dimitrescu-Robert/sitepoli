@@ -102,7 +102,7 @@ header {
   background: rgba(34, 40, 49, 0.75);
   backdrop-filter: blur(24px) saturate(1.6);
   -webkit-backdrop-filter: blur(24px) saturate(1.6);
-  padding: 0.85rem 0;
+  padding: 0.85rem 0 0;
   box-shadow: 0 1px 0 rgba(255,255,255,0.07), 0 4px 30px rgba(0,0,0,0.45);
   border-bottom: 1px solid var(--glass-border);
   position: sticky;
@@ -120,7 +120,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 3rem;
+  padding: 0 3rem 0.85rem;
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
@@ -1443,6 +1443,41 @@ img, button { max-width: 100%; }
     color: #94a3b8;
 }
 
+/* Ticker implementation */
+
+.news-ticker-container {
+  width: 100%;
+  max-width: 100vw; 
+  min-width: 0; 
+  background-color: #d32f2f;
+  color: #ffffff;
+  padding: 12px 0;
+  overflow: hidden; 
+  white-space: nowrap; 
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+.news-ticker-text {
+  display: inline-block;
+  padding-left: 100%; 
+  animation: ticker-move 25s linear infinite; 
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+@keyframes ticker-move {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
 /* CTI vs IS PAGE */
 
 .comparison-table-wrapper {
@@ -2002,17 +2037,18 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
   header {
     backdrop-filter: blur(24px) !important;
   }
-  
+
   header::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    height: 100%; 
     background: rgba(34, 40, 49, 0.97);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
     z-index: 1;
+    transition: height 0.4s ease-in-out; 
   }
   
   nav > a, 
@@ -2042,6 +2078,35 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
     display: none;
   }
   
+  /* 1. Tell the ticker how to animate when it moves */
+  .news-ticker-container {
+    transition: transform 0.4s ease-in-out; 
+  }
+
+  /* 2. When the hamburger is active, push the ticker down! */
+  header:has(.hamburger.active) .news-ticker-container {
+    /* This pushes the ticker down exactly below your links. 
+       You will need to adjust this number slightly to make it perfect! */
+    transform: translateY(205px); 
+  }
+
+  /* 1. Shrink the dark background to only cover the top bar (Logo & X button) */
+  header:has(.hamburger.active)::before {
+    bottom: auto;
+    height: 87px; /* You may need to tweak this number slightly so it perfectly frames your logo */
+  }
+
+  /* 2. Stop the invisible, empty header space from blocking clicks on your first link */
+  header:has(.hamburger.active) {
+    pointer-events: none;
+  }
+  
+  /* 3. Re-enable clicks for your actual navigation and the ticker so they still work! */
+  header:has(.hamburger.active) nav,
+  header:has(.hamburger.active) .news-ticker-container {
+    pointer-events: auto;
+  }
+
   .comparison-table, 
   .comparison-table tbody, 
   .comparison-table tr, 

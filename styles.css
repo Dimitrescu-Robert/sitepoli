@@ -1443,6 +1443,38 @@ img, button { max-width: 100%; }
     color: #94a3b8;
 }
 
+/* --- WhatsApp Integration for Newsletter Popup --- */
+#newsletter-popup .separator-text {
+    margin: 1rem 0 0.5rem 0;
+    color: #64748b;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+#newsletter-popup .whatsapp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #25D366;
+    color: #ffffff;
+    padding: 14px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+#newsletter-popup .whatsapp-btn:hover {
+    background: #128C7E;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
 /* CTI vs IS PAGE */
 
 .comparison-table-wrapper {
@@ -2108,5 +2140,25 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
     }
     #newsletter-popup .glass-headline {
         font-size: 1.5rem;
+    }
+
+    #newsletter-popup .newsletter-content {
+        padding: 2.5rem 1.5rem;
+        width: 95%; /* Marit putin ca sa incapa mai bine pe mobil */
+    }
+    #newsletter-popup .glass-headline {
+        font-size: 1.5rem;
+    }
+    
+    /* BUNE PRACTICI MOBILE: Formulare si butoane mai usor de apasat cu degetul */
+    #newsletter-popup input[type="email"] {
+        padding: 16px 20px;
+        font-size: 1.1rem;
+    }
+    
+    #newsletter-popup .glass-btn, 
+    #newsletter-popup .whatsapp-btn {
+        padding: 18px;
+        font-size: 1.1rem;
     }
 }

@@ -352,7 +352,7 @@ img, button { max-width: 100%; }
   text-align: left;
   border: 1px solid var(--glass-border);
   border-radius: 20px;
-  padding: 2rem 2.5rem;
+  padding: 2rem 2rem;
   grid-area: main-content;
   display: flex;
   flex-direction: column;

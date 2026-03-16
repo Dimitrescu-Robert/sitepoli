@@ -4,12 +4,92 @@
     <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulare Gratuită - AdmiterePoli</title>
-    <meta name="description" content="Testează-ți nivelul pentru admiterea la Politehnică cu o simulare gratuită!">
+    
+    <title>Simulare Profesionistă | AdmiterePoli</title>
+    <meta name="description" content="Testează-ți cunoștințele la Matematică și Informatică pentru admiterea la Politehnică.">
+    
     <link rel="icon" type="image/png" href="logosquared.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+
+    <style>
+        /* Stiluri specifice pentru quiz, perfect integrate cu tema "liquid glass" */
+        .quiz-problem {
+            background: var(--glass-bg-light);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-heading);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .quiz-problem:hover {
+            border-color: rgba(123, 160, 217, 0.3);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.3);
+        }
+
+        .quiz-problem img {
+            border-radius: 10px;
+            margin: 1.5rem auto;
+            display: block;
+            max-width: 250px;
+            background: rgba(255, 255, 255, 0.9); /* Fundal alb subtil pentru contrastul desenului negru */
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .quiz-answers label {
+            display: block;
+            margin: 12px 0;
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 12px 18px;
+            background: rgba(123, 160, 217, 0.05);
+            border: 1px solid rgba(123, 160, 217, 0.12);
+            border-radius: 10px;
+            transition: all 0.25s ease;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .quiz-answers label:hover {
+            background: rgba(123, 160, 217, 0.15);
+            border-color: rgba(123, 160, 217, 0.45);
+            transform: translateX(4px);
+        }
+
+        .quiz-answers input[type="radio"] {
+            margin-right: 12px;
+            accent-color: var(--accent);
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        pre {
+            background: rgba(0, 0, 0, 0.35) !important;
+            padding: 1.5rem !important;
+            border-radius: 10px !important;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace !important;
+            border: 1px solid var(--glass-border);
+            margin: 1.5rem 0 !important;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace !important;
+            color: #e5c07b;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -21,7 +101,6 @@
                 <li><a href="./informatii">Informații generale</a></li>
                 <li><a href="./subiecte">Subiecte/Rezolvări</a></li>
                 <li><a href="./resurse">Resurse</a></li>
-                <li><a href="./simulare" style="color: var(--accent);">Simulare Gratuită</a></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -30,21 +109,18 @@
             </div>
         </nav>
     </header>
-
+    
     <main>
         <div class="grid-main-content">
             <section class="container">
                 <div class="pag-intro">
-                    <h1 style="text-align: center;">Simulare Gratuită Preadmitere</h1>
-                    <h2 class="indented scurtat2">🚀 <b>Testează-ți cunoștințele înainte de examen!</b> Rezolvă grilele de mai jos și află pe loc nota pe care ai lua-o la admitere. La final, te așteaptă o surpriză.</h2>
+                    <h1 style="text-align: center;">Simulare Profesionistă</h1>
+                    <h2 class="indented scurtat2" style="text-align: center; margin-top: 10px;">
+                        🔥 <b>Testează-ți cunoștințele înainte de examenul propriu-zis. Mult succes!</b>
+                    </h2>
                 </div>
                 
-                <div style="margin-top: 1.5rem; border-radius: 12px; overflow: hidden; background: rgba(123, 160, 217, 0.02); border: 1px solid var(--glass-border); padding: 10px;">
-                    
-                    <iframe data-tally-src="https://tally.so/r/lbROLv?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" title="Simulare Gratuita"></iframe>
-                    
-                    <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
-                </div>
+                <div id="quiz-form" style="margin-top: 1.5rem;"></div>
             </section>
         </div>
     </main>
@@ -55,6 +131,117 @@
         <a href="document/Politica de Confidențialitate - admiterepoli.com.pdf" style="color: white; text-decoration: none;" target="_blank">Politica de Confidențialitate</a>
         <div>&copy; 2026 AdmiterePoli. Toate drepturile rezervate. Creat de studenți, pentru viitori studenți.</div>
     </footer>
+
     <script src="main.js"></script>
+
+    <script>
+    // Setul de probleme
+    // Setul de probleme
+    const problems = [
+      {
+        text: "5. Popice: În câte moduri distincte pot fi aranjate popicele din imagine?",
+        img: "triunghi.png",
+        answers: [
+          "A) \\(4! \\times 6!\\)",
+          "B) 0",
+          "C) 3456",
+          "D) 1152",
+          "E) \\(4! \\times 2 \\times C_6^2\\)"
+        ],
+        correct: "D"
+      },
+      {
+        text: `4. Tren: O garnitură de tren este formată din N vagoane. Fiecare vagon este legat strict de vagonul aflat imediat în spatele său. În limbajul C, mecanicul trenului folosește următoarea structură și pointeri:
+
+<pre><code class="c">struct Vagon {
+    int id_vagon;
+    struct Vagon* legatura_urmatoare;
+};
+
+struct Vagon* InversareTren(struct Vagon* primul_vagon) {
+    struct Vagon* curent = primul_vagon;
+    struct Vagon* anterior = NULL;
+    struct Vagon* viitor = NULL;
+    while (curent != NULL) {
+        viitor = (*curent).legatura_urmatoare;
+        // [ ... LINIE LIPSA ... ]
+        anterior = curent;
+        curent = viitor;
+    }
+    return anterior;
+}</code></pre>
+
+Care este instrucțiunea corectă pe linia lipsă și complexitatea de timp?`,
+        img: "",
+        answers: [
+          "A) \\(\\text{anterior.legatura\\_urmatoare} \\gets \\text{curent} \\quad (\\mathcal{O}(N))\\)",
+          "B) \\(\\text{curent.legatura\\_urmatoare} \\gets \\text{anterior} \\quad (\\mathcal{O}(N^2))\\)",
+          "C) \\(\\text{viitor.legatura\\_urmatoare} \\gets \\text{anterior} \\quad (\\mathcal{O}(\\log N))\\)",
+          "D) \\(\\text{curent.legatura\\_urmatoare} \\gets \\text{anterior} \\quad (\\mathcal{O}(N))\\)",
+          "E) \\(\\text{curent.legatura\\_urmatoare} \\gets \\text{viitor} \\quad (\\mathcal{O}(1))\\)"
+        ],
+        correct: "D"
+      }
+    ];
+
+    // Generare cod unic participant
+    const userCode = 'ST' + Math.floor(Math.random()*1000000);
+
+    // Folosim o variabilă nouă ca să nu intre în conflict cu main.js
+    const quizForm = document.getElementById("quiz-form");
+    
+    problems.forEach((p, index) => {
+      let html = `<div class="quiz-problem">
+                    <h3 style="margin-bottom: 1rem; font-size: 1.3rem; font-weight: 600;">${p.text}</h3>`;
+      if(p.img) html += `<img src="${p.img}" alt="Imagine problema">`;
+      html += `<div class="quiz-answers">`;
+      
+      p.answers.forEach(ans => {
+        const val = ans.charAt(0);
+        html += `<label><input type="radio" name="p${index}" value="${val}"> ${ans}</label>`;
+      });
+      
+      html += `</div></div>`;
+      quizForm.innerHTML += html;
+    });
+
+    // Adăugare buton folosind clasele site-ului
+    quizForm.innerHTML += `
+        <div style="text-align: center; margin-top: 2.5rem; margin-bottom: 1rem;">
+            <button type="button" class="button btn-principal" style="font-size: 1.15rem; padding: 1rem 3rem;" onclick="submitQuiz()">
+                Finalizează și Vezi Scorul
+            </button>
+        </div>`;
+
+    // Funcția care randează rezultatul
+    function submitQuiz() {
+      let answersGiven = [];
+      
+      problems.forEach((p, index) => {
+        const selected = document.querySelector(`input[name="p${index}"]:checked`);
+        const ans = selected ? selected.value : null;
+        answersGiven.push({problem: index + 1, answer: ans, correct: p.correct});
+      });
+      
+      const score = answersGiven.filter(a => a.answer === a.correct).length;
+      
+      quizForm.innerHTML = `
+        <div class="quiz-problem" style="text-align: center; padding: 3rem 2rem;">
+            <h2 style="font-size: 2.5rem; background: linear-gradient(135deg, #fffff1 0%, #34d399 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1.5rem;">
+                Scor final: ${score} / ${problems.length}
+            </h2>
+            <div style="background: rgba(123, 160, 217, 0.05); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 12px; display: inline-block; margin-bottom: 2rem;">
+                <p style="font-size: 1.2rem; margin: 0;">Codul tău de participant: <strong style="color: var(--gold); letter-spacing: 1px; font-family: 'JetBrains Mono', monospace;">${userCode}</strong></p>
+            </div>
+            <p style="color: var(--muted); margin-bottom: 1rem; text-align: left; font-weight: 600;">JSON răspunsuri pentru raport:</p>
+            <pre style="text-align: left; margin: 0;">${JSON.stringify(answersGiven, null, 2)}</pre>
+        </div>`;
+        
+      console.log("Date trimise către server:", {code: userCode, answers: answersGiven});
+      
+      renderMathInElement(quizForm);
+      window.scrollTo({ top: document.querySelector('.pag-intro').offsetTop - 100, behavior: 'smooth' });
+    }
+    </script>
 </body>
 </html>

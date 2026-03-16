@@ -1640,6 +1640,75 @@ form button:not([type]):hover,
 .impreuna { display: flex; align-items: center; gap: 0.001rem; }
 .impreuna h1 { font-size: 35px; padding: 10px; }
 
+/* Countdown */
+
+/* Base Liquid Glass Oval */
+.liquid-glass-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 3.5rem;
+  min-width: 280px;
+  border-radius: 100px; /* Forces the perfect oval shape */
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace; /* Monospace keeps numbers from shifting */
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer line across the top edge (from your design system) */
+.liquid-glass-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  border-radius: 50px 50px 0 0;
+  pointer-events: none;
+}
+
+/* ⏳ STATE: Locked (Counting Down) */
+.liquid-glass-btn.locked {
+  background: var(--glass-bg-light); 
+  border: 1px solid var(--glass-border);
+  color: var(--muted);
+  backdrop-filter: blur(16px) saturate(1.5);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2), inset 0 1px 0 var(--glass-shine);
+  cursor: not-allowed;
+  pointer-events: none; /* Crucial: Prevents clicking the link early */
+}
+
+/* ✅ STATE: Active (Countdown Finished) */
+.liquid-glass-btn.active {
+  background: rgba(123, 160, 217, 0.15);
+  color: #c3d5f0;
+  border: 1.5px solid rgba(123, 160, 217, 0.5);
+  box-shadow: 0 8px 32px rgba(123,160,217,0.25), inset 0 1px 0 rgba(255,255,255,0.1);
+  cursor: pointer;
+  pointer-events: auto; /* Re-enables clicking */
+}
+
+.liquid-glass-btn.active:hover {
+  background: rgba(123, 160, 217, 0.28);
+  border-color: rgba(123, 160, 217, 0.8);
+  box-shadow: 0 12px 40px rgba(123,160,217,0.35), 0 0 0 1px rgba(123,160,217,0.15);
+  transform: translateY(-3px);
+  color: #fff;
+}
+
+/* Logic for swapping the text */
+.liquid-glass-btn .ready-text { display: none; }
+.liquid-glass-btn.active .countdown-text { display: none; }
+.liquid-glass-btn.active .ready-text { 
+  display: inline-block; 
+  animation: fadeIn 0.5s ease; /* Using your existing fadeIn animation */
+}
+
 /* KEYFRAME ANIMATIONS */
 
 @keyframes fadeInUp {

@@ -294,4 +294,40 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     // --- BUCATA NOUĂ SE TERMINĂ AICI ---
 
+    // Countdown logic
+// Set your target date here!
+const targetDate = new Date("Mar 21, 2026 10:00:00").getTime();
+const btn = document.getElementById("glass-countdown-btn");
+const timerText = document.getElementById("countdown-timer");
+
+const updateCountdown = setInterval(() => {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  // If the countdown is finished
+  if (distance <= 0) {
+    clearInterval(updateCountdown);
+    
+    // Swap the classes to unlock the button
+    btn.classList.remove("locked");
+    btn.classList.add("active");
+    
+  } else {
+    // Math to calculate time remaining
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Formats numbers to always have two digits (e.g., "09" instead of "9")
+    const d = String(days).padStart(2, '0');
+    const h = String(hours).padStart(2, '0');
+    const m = String(minutes).padStart(2, '0');
+    const s = String(seconds).padStart(2, '0');
+
+    // Display the result
+    timerText.innerText = `${d}z ${h}h ${m}m ${s}s`;
+  }
+}, 1000);
+
 }); // Ultima linie din fișier (închiderea de la DOMContentLoaded)

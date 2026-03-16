@@ -2229,4 +2229,15 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
         padding: 18px;
         font-size: 1.1rem;
     }
+  
+    .liquid-glass-btn {
+      padding: 0.7rem 1rem;     
+      width: 100%;           
+      max-width: 280px;        
+      font-size: 0.75rem;         
+      letter-spacing: 0;          
+      white-space: nowrap;
+      display: flex; 
+      margin: 0 auto;
+  }
 }

@@ -2028,7 +2028,7 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
   }
   
   .nav-elements.active {
-    transform: translateY(95.4px);
+    transform: translateY(91px);
   }
   
   header {
@@ -2150,7 +2150,6 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
         font-size: 1.5rem;
     }
     
-    /* BUNE PRACTICI MOBILE: Formulare si butoane mai usor de apasat cu degetul */
     #newsletter-popup input[type="email"] {
         padding: 16px 20px;
         font-size: 1.1rem;

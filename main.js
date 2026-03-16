@@ -197,8 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const lastShownTime = lastShown ? parseInt(lastShown, 10) : 0;
 
         // Show if never shown, if value is invalid, or if 7 days have passed
-        //if (!lastShown || isNaN(lastShownTime) || (now - lastShownTime > oneDay)) {
-        if (1) {
+        if (!lastShown || isNaN(lastShownTime) || (now - lastShownTime > oneDay)) {
             setTimeout(function() {
                 popup.style.display = 'flex';
                 // Trigger animation

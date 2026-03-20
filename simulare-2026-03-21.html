@@ -49,43 +49,6 @@
     <main>
         <div class="grid-main-content">
             <section class="container" style="padding-bottom: 1rem; overflow: visible;">
-
-                <!-- ===== START SCREEN ===== -->
-                <div id="start-screen" class="sim-start">
-                    <h1>Simulare Profesionista</h1>
-                    <p class="sim-start-subtitle">Testeaza-ti cunostintele la <b>Informatica</b> si <b>Matematica</b> intr-o simulare completa, la fel ca la examenul real.</p>
-
-                    <div class="sim-rules">
-                        <h3>Regulament</h3>
-                        <div class="sim-rules-list">
-                            <div class="sim-rule">
-                                <div class="sim-rule-icon r-time">&#9201;</div>
-                                <div>Ai la dispozitie <b>3 ore</b> din momentul in care apesi butonul de start. Cronometrul porneste imediat.</div>
-                            </div>
-                            <div class="sim-rule">
-                                <div class="sim-rule-icon r-info">{ }</div>
-                                <div>Sectiunea <b>Informatica</b> contine 10 intrebari grila cu raspuns unic.</div>
-                            </div>
-                            <div class="sim-rule">
-                                <div class="sim-rule-icon r-mate">&sum;</div>
-                                <div>Sectiunea <b>Matematica</b> contine 10 intrebari grila cu raspuns unic.</div>
-                            </div>
-                            <div class="sim-rule">
-                                <div class="sim-rule-icon r-switch">&#8644;</div>
-                                <div>Poti naviga liber intre cele doua sectiuni <b>fara sa pierzi progresul</b>.</div>
-                            </div>
-                            <div class="sim-rule">
-                                <div class="sim-rule-icon r-submit">&#10003;</div>
-                                <div>La final apesi <b>un singur buton</b> de finalizare. Scorul apare doar dupa ce trimiti ambele sectiuni.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="sim-start-btn" onclick="startExam()">
-                        Incepe Simularea
-                    </button>
-                </div>
-
                 <!-- ===== QUIZ AREA (hidden until start) ===== -->
                 <div id="quiz-area" class="sim-quiz-area">
 
@@ -411,7 +374,6 @@
     // ===== START EXAM =====
     function startExam() {
         examStarted = true;
-        document.getElementById('start-screen').style.display = 'none';
         document.getElementById('quiz-area').classList.add('active');
 
         renderQuestions('info', problemsInfo);
@@ -764,7 +726,10 @@
         `;
         document.body.appendChild(overlay);
         setTimeout(() => overlay.classList.add('show'), 10);
-    }
+        };
+        window.addEventListener('DOMContentLoaded', () => {
+            startExam();
+        });
     </script>
 </body>
 </html>

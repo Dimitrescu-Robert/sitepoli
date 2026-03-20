@@ -198,8 +198,7 @@
         text: `Recursivitate - Numararea apelurilor (Arbore de executie). Cate apeluri ale functiei <code>g</code> se executa <b>in total</b> (incluzand apelul initial) pentru evaluarea expresiei <code>g(5)</code>?
     <pre><code class="cpp">int g(int n) {
     if (n <= 1) return 1;
-    return g(n-1) + g(n-2)
-        + g(n-3);
+    return g(n-1) + g(n-2) + g(n-3);
     }</code></pre>`,
         answers: ["a) 13","b) 15","c) 9","d) 25","e) 11","f) 7"],
         correct: "d"
@@ -259,22 +258,22 @@
         correct: "d"
     },
     {
-        text: `Un set de 10 popice de bowling, numerotate de la 1 la 10, trebuie aranjate in formatia standard triunghiulara.
-    <div style="text-align: center; margin: 1rem 0;">
-        <img src="triunghi.png" style="width: 50%; max-width: 220px;" alt="Diagrama popice">
-    </div>
-    1. Popicele cu numerele 1, 3, 5 si 7 <b>nu</b> au voie sa fie adiacente.<br><br>
-    2. Suma <b>popicelor pare vecine direct</b> cu popicul 10 trebuie sa fie exact 10.<br><br>
-    In cate moduri distincte pot fi aranjate cele 10 popice respectand ambele reguli?`,
-        answers: [
-        "A) \\(4! \\times 6!\\)",
-        "B) 0",
-        "C) 3456",
-        "D) 1152",
-        "E) \\(4! \\times 2 \\times C_6^2\\)",
-        "F) Niciuna din variantele de mai sus"
-        ],
-        correct: "D"
+        text: `Un set de 10 popice de bowling, numerotate de la 1 la 10, trebuie aranjate în formația standard triunghiulară: un popic pe rândul 1, două pe rândul 2, trei pe rândul 3 și patru pe rândul 4, așezate ca în imaginea alăturată. Pentru un joc special, organizatorii impun următoarele două reguli stricte de așezare:
+        <div style="text-align: center; margin: 1.5rem 0;">
+            <img src="triunghi.png" style="width: 35%; max-width: 250px;" alt="Diagramă popice">
+        </div>
+        1. Popicele cu numerele 1, 3, 5 și 7 <b>nu</b> au voie să fie adiacente (nu se pot atinge direct între ele).<br><br>
+        2. Dacă adunăm numerele de pe toate <b>popicele pare care sunt vecine direct</b> cu popicul 10, suma lor trebuie să fie exact 10. (Popicele impare vecine cu 10 sunt ignorate la acest calcul).<br><br>
+        În câte moduri distincte pot fi aranjate cele 10 popice astfel încât să respecte ambele reguli simultan?`,
+            answers: [
+                "a) \\(4! \\times 6!\\)",
+                "b) 0",
+                "c) 3456",
+                "d) 1152",
+                "e) \\(4! \\times 2 \\times C_6^2\\)",
+                "f) Niciuna din variantele de mai sus"
+            ],
+            correct: "d"
     },
     {
         text: `Considerati urmatoarea functie recursiva in C++:

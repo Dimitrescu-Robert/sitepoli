@@ -291,7 +291,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-    // --- BUCATA NOUĂ SE TERMINĂ AICI ---
 
     // Countdown logic
 // Set your target date here!

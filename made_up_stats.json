@@ -1,0 +1,272 @@
+[
+  {
+    "id_participant": "ST412903",
+    "timp_folosit": "42m 15s",
+    "scor_total": 20,
+    "scor_info": 10,
+    "scor_mate": 10,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"D","correct":"D"},{"problem":8,"answer":"d","correct":"d"},{"problem":9,"answer":"e","correct":"e"},{"problem":10,"answer":"d","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"c","correct":"c"},{"problem":7,"answer":"5","correct":"5"},{"problem":8,"answer":"b","correct":"b"},{"problem":9,"answer":"a","correct":"a"},{"problem":10,"answer":"a","correct":"a"}]
+  },
+  {
+    "id_participant": "ST380661",
+    "timp_folosit": "14s",
+    "scor_total": 0,
+    "scor_info": 0,
+    "scor_mate": 0,
+    "detalii_info": [{"problem":1,"answer":null,"correct":"d"},{"problem":2,"answer":null,"correct":"d"},{"problem":3,"answer":null,"correct":"b"},{"problem":4,"answer":null,"correct":"c"},{"problem":5,"answer":null,"correct":"b"},{"problem":6,"answer":null,"correct":"d"},{"problem":7,"answer":null,"correct":"D"},{"problem":8,"answer":null,"correct":"d"},{"problem":9,"answer":null,"correct":"e"},{"problem":10,"answer":null,"correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":null,"correct":"b"},{"problem":2,"answer":null,"correct":"b"},{"problem":3,"answer":null,"correct":"c"},{"problem":4,"answer":null,"correct":"d"},{"problem":5,"answer":null,"correct":"c"},{"problem":6,"answer":null,"correct":"c"},{"problem":7,"answer":null,"correct":"5"},{"problem":8,"answer":null,"correct":"b"},{"problem":9,"answer":null,"correct":"a"},{"problem":10,"answer":null,"correct":"a"}]
+  },
+  {
+    "id_participant": "ST928114",
+    "timp_folosit": "55m 02s",
+    "scor_total": 15,
+    "scor_info": 8,
+    "scor_mate": 7,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"a","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"D","correct":"D"},{"problem":8,"answer":"d","correct":"d"},{"problem":9,"answer":"a","correct":"e"},{"problem":10,"answer":"d","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"a","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"c","correct":"c"},{"problem":7,"answer":"5","correct":"5"},{"problem":8,"answer":"b","correct":"b"},{"problem":9,"answer":"b","correct":"a"},{"problem":10,"answer":"b","correct":"a"}]
+  },
+  {
+    "id_participant": "ST105822",
+    "timp_folosit": "28m 30s",
+    "scor_total": 10,
+    "scor_info": 5,
+    "scor_mate": 5,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"a","correct":"d"},{"problem":7,"answer":"A","correct":"D"},{"problem":8,"answer":"a","correct":"d"},{"problem":9,"answer":"a","correct":"e"},{"problem":10,"answer":"a","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"a","correct":"c"},{"problem":7,"answer":"1","correct":"5"},{"problem":8,"answer":"a","correct":"b"},{"problem":9,"answer":"c","correct":"a"},{"problem":10,"answer":"c","correct":"a"}]
+  },
+  {
+    "id_participant": "ST773490",
+    "timp_folosit": "1h 12m",
+    "scor_total": 18,
+    "scor_info": 9,
+    "scor_mate": 9,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"A","correct":"D"},{"problem":8,"answer":"d","correct":"d"},{"problem":9,"answer":"e","correct":"e"},{"problem":10,"answer":"d","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"c","correct":"c"},{"problem":7,"answer":"5","correct":"5"},{"problem":8,"answer":"b","correct":"b"},{"problem":9,"answer":"b","correct":"a"},{"problem":10,"answer":"a","correct":"a"}]
+  },
+  {
+    "id_participant": "ST229401",
+    "timp_folosit": "4m 10s",
+    "scor_total": 4,
+    "scor_info": 2,
+    "scor_mate": 2,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"a","correct":"d"},{"problem":3,"answer":"c","correct":"b"},{"problem":4,"answer":"d","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"a","correct":"d"},{"problem":7,"answer":"B","correct":"D"},{"problem":8,"answer":"c","correct":"d"},{"problem":9,"answer":"a","correct":"e"},{"problem":10,"answer":null,"correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"a","correct":"b"},{"problem":3,"answer":"b","correct":"c"},{"problem":4,"answer":"c","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"a","correct":"c"},{"problem":7,"answer":"2","correct":"5"},{"problem":8,"answer":"c","correct":"b"},{"problem":9,"answer":null,"correct":"a"},{"problem":10,"answer":null,"correct":"a"}]
+  },
+  {
+    "id_participant": "ST881023",
+    "timp_folosit": "40m 00s",
+    "scor_total": 12,
+    "scor_info": 10,
+    "scor_mate": 2,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"D","correct":"D"},{"problem":8,"answer":"d","correct":"d"},{"problem":9,"answer":"e","correct":"e"},{"problem":10,"answer":"d","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"a","correct":"c"},{"problem":4,"answer":"a","correct":"d"},{"problem":5,"answer":"a","correct":"c"},{"problem":6,"answer":"a","correct":"c"},{"problem":7,"answer":"1","correct":"5"},{"problem":8,"answer":null,"correct":"b"},{"problem":9,"answer":null,"correct":"a"},{"problem":10,"answer":null,"correct":"a"}]
+  },
+  {
+    "id_participant": "ST562311",
+    "timp_folosit": "39m 45s",
+    "scor_total": 11,
+    "scor_info": 1,
+    "scor_mate": 10,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"a","correct":"d"},{"problem":3,"answer":"a","correct":"b"},{"problem":4,"answer":"a","correct":"c"},{"problem":5,"answer":"a","correct":"b"},{"problem":6,"answer":"a","correct":"d"},{"problem":7,"answer":"C","correct":"D"},{"problem":8,"answer":"a","correct":"d"},{"problem":9,"answer":"a","correct":"e"},{"problem":10,"answer":"a","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"c","correct":"c"},{"problem":7,"answer":"5","correct":"5"},{"problem":8,"answer":"b","correct":"b"},{"problem":9,"answer":"a","correct":"a"},{"problem":10,"answer":"a","correct":"a"}]
+  },
+  {
+    "id_participant": "ST649920",
+    "timp_folosit": "18m 12s",
+    "scor_total": 7,
+    "scor_info": 7,
+    "scor_mate": 0,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"D","correct":"D"},{"problem":8,"answer":null,"correct":"d"},{"problem":9,"answer":null,"correct":"e"},{"problem":10,"answer":null,"correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":null,"correct":"b"},{"problem":2,"answer":null,"correct":"b"},{"problem":3,"answer":null,"correct":"c"},{"problem":4,"answer":null,"correct":"d"},{"problem":5,"answer":null,"correct":"c"},{"problem":6,"answer":null,"correct":"c"},{"problem":7,"answer":null,"correct":"5"},{"problem":8,"answer":null,"correct":"b"},{"problem":9,"answer":null,"correct":"a"},{"problem":10,"answer":null,"correct":"a"}]
+  },
+  {
+    "id_participant": "ST111222",
+    "timp_folosit": "1h 25m",
+    "scor_total": 16,
+    "scor_info": 8,
+    "scor_mate": 8,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"A","correct":"D"},{"problem":8,"answer":"d","correct":"d"},{"problem":9,"answer":"a","correct":"e"},{"problem":10,"answer":"d","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"c","correct":"c"},{"problem":7,"answer":"3","correct":"5"},{"problem":8,"answer":"b","correct":"b"},{"problem":9,"answer":"b","correct":"a"},{"problem":10,"answer":"a","correct":"a"}]
+  },
+  {
+    "id_participant": "ST900014",
+    "timp_folosit": "33m 10s",
+    "scor_total": 13,
+    "scor_info": 6,
+    "scor_mate": 7,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"C","correct":"D"},{"problem":8,"answer":"a","correct":"d"},{"problem":9,"answer":"c","correct":"e"},{"problem":10,"answer":"b","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"c","correct":"c"},{"problem":7,"answer":"5","correct":"5"},{"problem":8,"answer":"a","correct":"b"},{"problem":9,"answer":"b","correct":"a"},{"problem":10,"answer":"c","correct":"a"}]
+  },
+  {
+    "id_participant": "ST344555",
+    "timp_folosit": "1h 05m",
+    "scor_total": 19,
+    "scor_info": 9,
+    "scor_mate": 10,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"D","correct":"D"},{"problem":8,"answer":"d","correct":"d"},{"problem":9,"answer":"a","correct":"e"},{"problem":10,"answer":"d","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"c","correct":"c"},{"problem":7,"answer":"5","correct":"5"},{"problem":8,"answer":"b","correct":"b"},{"problem":9,"answer":"a","correct":"a"},{"problem":10,"answer":"a","correct":"a"}]
+  },
+  {
+    "id_participant": "ST701239",
+    "timp_folosit": "22m 11s",
+    "scor_total": 8,
+    "scor_info": 4,
+    "scor_mate": 4,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"a","correct":"b"},{"problem":4,"answer":"b","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"c","correct":"d"},{"problem":7,"answer":"A","correct":"D"},{"problem":8,"answer":"a","correct":"d"},{"problem":9,"answer":"e","correct":"e"},{"problem":10,"answer":"b","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"a","correct":"c"},{"problem":4,"answer":"b","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"a","correct":"c"},{"problem":7,"answer":"4","correct":"5"},{"problem":8,"answer":"a","correct":"b"},{"problem":9,"answer":"a","correct":"a"},{"problem":10,"answer":"b","correct":"a"}]
+  },
+  {
+    "id_participant": "ST456789",
+    "timp_folosit": "5m 45s",
+    "scor_total": 2,
+    "scor_info": 1,
+    "scor_mate": 1,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"a","correct":"d"},{"problem":3,"answer":"c","correct":"b"},{"problem":4,"answer":"b","correct":"c"},{"problem":5,"answer":"a","correct":"b"},{"problem":6,"answer":"b","correct":"d"},{"problem":7,"answer":"B","correct":"D"},{"problem":8,"answer":"c","correct":"d"},{"problem":9,"answer":"a","correct":"e"},{"problem":10,"answer":"c","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"a","correct":"b"},{"problem":3,"answer":"b","correct":"c"},{"problem":4,"answer":"c","correct":"d"},{"problem":5,"answer":"a","correct":"c"},{"problem":6,"answer":"b","correct":"c"},{"problem":7,"answer":"1","correct":"5"},{"problem":8,"answer":"c","correct":"b"},{"problem":9,"answer":"b","correct":"a"},{"problem":10,"answer":"b","correct":"a"}]
+  },
+  {
+    "id_participant": "ST654321",
+    "timp_folosit": "45m 20s",
+    "scor_total": 17,
+    "scor_info": 9,
+    "scor_mate": 8,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"D","correct":"D"},{"problem":8,"answer":"d","correct":"d"},{"problem":9,"answer":"a","correct":"e"},{"problem":10,"answer":"d","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"c","correct":"c"},{"problem":7,"answer":"3","correct":"5"},{"problem":8,"answer":"b","correct":"b"},{"problem":9,"answer":"a","correct":"a"},{"problem":10,"answer":"b","correct":"a"}]
+  },
+  {
+    "id_participant": "ST808080",
+    "timp_folosit": "58m 12s",
+    "scor_total": 14,
+    "scor_info": 7,
+    "scor_mate": 7,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"D","correct":"D"},{"problem":8,"answer":"a","correct":"d"},{"problem":9,"answer":"a","correct":"e"},{"problem":10,"answer":"b","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"c","correct":"c"},{"problem":7,"answer":"5","correct":"5"},{"problem":8,"answer":"a","correct":"b"},{"problem":9,"answer":"b","correct":"a"},{"problem":10,"answer":"b","correct":"a"}]
+  },
+  {
+    "id_participant": "ST123987",
+    "timp_folosit": "12m 34s",
+    "scor_total": 6,
+    "scor_info": 3,
+    "scor_mate": 3,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"a","correct":"c"},{"problem":5,"answer":"a","correct":"b"},{"problem":6,"answer":"b","correct":"d"},{"problem":7,"answer":"A","correct":"D"},{"problem":8,"answer":"c","correct":"d"},{"problem":9,"answer":"a","correct":"e"},{"problem":10,"answer":"b","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"a","correct":"d"},{"problem":5,"answer":"a","correct":"c"},{"problem":6,"answer":"b","correct":"c"},{"problem":7,"answer":"2","correct":"5"},{"problem":8,"answer":"a","correct":"b"},{"problem":9,"answer":"b","correct":"a"},{"problem":10,"answer":"c","correct":"a"}]
+  },
+  {
+    "id_participant": "ST987123",
+    "timp_folosit": "1h 29m",
+    "scor_total": 20,
+    "scor_info": 10,
+    "scor_mate": 10,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"D","correct":"D"},{"problem":8,"answer":"d","correct":"d"},{"problem":9,"answer":"e","correct":"e"},{"problem":10,"answer":"d","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"c","correct":"c"},{"problem":7,"answer":"5","correct":"5"},{"problem":8,"answer":"b","correct":"b"},{"problem":9,"answer":"a","correct":"a"},{"problem":10,"answer":"a","correct":"a"}]
+  },
+  {
+    "id_participant": "ST333444",
+    "timp_folosit": "2m 05s",
+    "scor_total": 1,
+    "scor_info": 0,
+    "scor_mate": 1,
+    "detalii_info": [{"problem":1,"answer":"a","correct":"d"},{"problem":2,"answer":"b","correct":"d"},{"problem":3,"answer":"c","correct":"b"},{"problem":4,"answer":"a","correct":"c"},{"problem":5,"answer":"c","correct":"b"},{"problem":6,"answer":"a","correct":"d"},{"problem":7,"answer":"B","correct":"D"},{"problem":8,"answer":"b","correct":"d"},{"problem":9,"answer":"a","correct":"e"},{"problem":10,"answer":"c","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"c","correct":"b"},{"problem":3,"answer":"a","correct":"c"},{"problem":4,"answer":"a","correct":"d"},{"problem":5,"answer":"a","correct":"c"},{"problem":6,"answer":"b","correct":"c"},{"problem":7,"answer":"1","correct":"5"},{"problem":8,"answer":"a","correct":"b"},{"problem":9,"answer":"c","correct":"a"},{"problem":10,"answer":"b","correct":"a"}]
+  },
+  {
+    "id_participant": "ST776655",
+    "timp_folosit": "48m 10s",
+    "scor_total": 15,
+    "scor_info": 9,
+    "scor_mate": 6,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"D","correct":"D"},{"problem":8,"answer":"d","correct":"d"},{"problem":9,"answer":"e","correct":"e"},{"problem":10,"answer":"a","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"c","correct":"c"},{"problem":7,"answer":"1","correct":"5"},{"problem":8,"answer":"a","correct":"b"},{"problem":9,"answer":"b","correct":"a"},{"problem":10,"answer":"c","correct":"a"}]
+  },
+  {
+    "id_participant": "ST101010",
+    "timp_folosit": "25m 00s",
+    "scor_total": 10,
+    "scor_info": 10,
+    "scor_mate": 0,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"D","correct":"D"},{"problem":8,"answer":"d","correct":"d"},{"problem":9,"answer":"e","correct":"e"},{"problem":10,"answer":"d","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"a","correct":"b"},{"problem":2,"answer":"a","correct":"b"},{"problem":3,"answer":"a","correct":"c"},{"problem":4,"answer":"a","correct":"d"},{"problem":5,"answer":"a","correct":"c"},{"problem":6,"answer":"a","correct":"c"},{"problem":7,"answer":"1","correct":"5"},{"problem":8,"answer":"a","correct":"b"},{"problem":9,"answer":"b","correct":"a"},{"problem":10,"answer":"b","correct":"a"}]
+  },
+  {
+    "id_participant": "ST202020",
+    "timp_folosit": "1h 15m",
+    "scor_total": 19,
+    "scor_info": 10,
+    "scor_mate": 9,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"D","correct":"D"},{"problem":8,"answer":"d","correct":"d"},{"problem":9,"answer":"e","correct":"e"},{"problem":10,"answer":"d","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"c","correct":"c"},{"problem":7,"answer":"5","correct":"5"},{"problem":8,"answer":"b","correct":"b"},{"problem":9,"answer":"a","correct":"a"},{"problem":10,"answer":"b","correct":"a"}]
+  },
+  {
+    "id_participant": "ST909090",
+    "timp_folosit": "19m 40s",
+    "scor_total": 5,
+    "scor_info": 2,
+    "scor_mate": 3,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"a","correct":"b"},{"problem":4,"answer":"a","correct":"c"},{"problem":5,"answer":"a","correct":"b"},{"problem":6,"answer":"b","correct":"d"},{"problem":7,"answer":"A","correct":"D"},{"problem":8,"answer":"c","correct":"d"},{"problem":9,"answer":"a","correct":"e"},{"problem":10,"answer":"c","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"a","correct":"d"},{"problem":5,"answer":"b","correct":"c"},{"problem":6,"answer":"a","correct":"c"},{"problem":7,"answer":"2","correct":"5"},{"problem":8,"answer":"c","correct":"b"},{"problem":9,"answer":"b","correct":"a"},{"problem":10,"answer":"c","correct":"a"}]
+  },
+  {
+    "id_participant": "ST445566",
+    "timp_folosit": "51m 33s",
+    "scor_total": 16,
+    "scor_info": 8,
+    "scor_mate": 8,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"D","correct":"D"},{"problem":8,"answer":"d","correct":"d"},{"problem":9,"answer":"a","correct":"e"},{"problem":10,"answer":"a","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"c","correct":"c"},{"problem":7,"answer":"5","correct":"5"},{"problem":8,"answer":"b","correct":"b"},{"problem":9,"answer":"b","correct":"a"},{"problem":10,"answer":"b","correct":"a"}]
+  },
+  {
+    "id_participant": "ST852963",
+    "timp_folosit": "37m 18s",
+    "scor_total": 13,
+    "scor_info": 5,
+    "scor_mate": 8,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"a","correct":"d"},{"problem":7,"answer":"C","correct":"D"},{"problem":8,"answer":"b","correct":"d"},{"problem":9,"answer":"a","correct":"e"},{"problem":10,"answer":"c","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"c","correct":"c"},{"problem":7,"answer":"5","correct":"5"},{"problem":8,"answer":"b","correct":"b"},{"problem":9,"answer":"c","correct":"a"},{"problem":10,"answer":"b","correct":"a"}]
+  },
+  {
+    "id_participant": "ST741852",
+    "timp_folosit": "8m 50s",
+    "scor_total": 8,
+    "scor_info": 4,
+    "scor_mate": 4,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"a","correct":"b"},{"problem":6,"answer":"a","correct":"d"},{"problem":7,"answer":"A","correct":"D"},{"problem":8,"answer":"c","correct":"d"},{"problem":9,"answer":"a","correct":"e"},{"problem":10,"answer":"c","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"a","correct":"c"},{"problem":6,"answer":"b","correct":"c"},{"problem":7,"answer":"1","correct":"5"},{"problem":8,"answer":"c","correct":"b"},{"problem":9,"answer":"b","correct":"a"},{"problem":10,"answer":"c","correct":"a"}]
+  },
+  {
+    "id_participant": "ST369258",
+    "timp_folosit": "1h 01m",
+    "scor_total": 18,
+    "scor_info": 10,
+    "scor_mate": 8,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"D","correct":"D"},{"problem":8,"answer":"d","correct":"d"},{"problem":9,"answer":"e","correct":"e"},{"problem":10,"answer":"d","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"c","correct":"c"},{"problem":7,"answer":"4","correct":"5"},{"problem":8,"answer":"b","correct":"b"},{"problem":9,"answer":"a","correct":"a"},{"problem":10,"answer":"b","correct":"a"}]
+  },
+  {
+    "id_participant": "ST159753",
+    "timp_folosit": "29m 14s",
+    "scor_total": 11,
+    "scor_info": 6,
+    "scor_mate": 5,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"A","correct":"D"},{"problem":8,"answer":"b","correct":"d"},{"problem":9,"answer":"a","correct":"e"},{"problem":10,"answer":"c","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"a","correct":"c"},{"problem":7,"answer":"2","correct":"5"},{"problem":8,"answer":"a","correct":"b"},{"problem":9,"answer":"b","correct":"a"},{"problem":10,"answer":"c","correct":"a"}]
+  },
+  {
+    "id_participant": "ST852074",
+    "timp_folosit": "59m 59s",
+    "scor_total": 17,
+    "scor_info": 8,
+    "scor_mate": 9,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"D","correct":"D"},{"problem":8,"answer":"d","correct":"d"},{"problem":9,"answer":"a","correct":"e"},{"problem":10,"answer":"c","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"c","correct":"c"},{"problem":7,"answer":"5","correct":"5"},{"problem":8,"answer":"b","correct":"b"},{"problem":9,"answer":"a","correct":"a"},{"problem":10,"answer":"b","correct":"a"}]
+  },
+  {
+    "id_participant": "ST147258",
+    "timp_folosit": "35m 22s",
+    "scor_total": 20,
+    "scor_info": 10,
+    "scor_mate": 10,
+    "detalii_info": [{"problem":1,"answer":"d","correct":"d"},{"problem":2,"answer":"d","correct":"d"},{"problem":3,"answer":"b","correct":"b"},{"problem":4,"answer":"c","correct":"c"},{"problem":5,"answer":"b","correct":"b"},{"problem":6,"answer":"d","correct":"d"},{"problem":7,"answer":"D","correct":"D"},{"problem":8,"answer":"d","correct":"d"},{"problem":9,"answer":"e","correct":"e"},{"problem":10,"answer":"d","correct":"d"}],
+    "detalii_mate": [{"problem":1,"answer":"b","correct":"b"},{"problem":2,"answer":"b","correct":"b"},{"problem":3,"answer":"c","correct":"c"},{"problem":4,"answer":"d","correct":"d"},{"problem":5,"answer":"c","correct":"c"},{"problem":6,"answer":"c","correct":"c"},{"problem":7,"answer":"5","correct":"5"},{"problem":8,"answer":"b","correct":"b"},{"problem":9,"answer":"a","correct":"a"},{"problem":10,"answer":"a","correct":"a"}]
+  }
+]

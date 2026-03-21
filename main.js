@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Countdown logic
 // Set your target date here!
-const targetDate = new Date("Mar 21, 2026 15:00:00").getTime();
+const targetDate = new Date("Mar 21, 2026 15:10:00").getTime();
 const btn = document.getElementById("glass-countdown-btn");
 const timerText = document.getElementById("countdown-timer");
 

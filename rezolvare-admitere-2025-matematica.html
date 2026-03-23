@@ -109,13 +109,16 @@
                     const canvas = document.createElement("canvas");
                     canvas.style.display = "block";
                     canvas.style.margin = "0 auto 20px auto";
+                    const outputScale = window.devicePixelRatio || 1;
                     const context = canvas.getContext("2d");
-                    canvas.height = viewport.height;
-                    canvas.width = viewport.width;
+                    canvas.width = Math.floor(viewport.width * outputScale);
+                    canvas.height = Math.floor(viewport.height * outputScale);
+                    canvas.style.width = Math.floor(viewport.width) + "px";
+                    canvas.style.height = Math.floor(viewport.height) + "px";
 
                     container.appendChild(canvas);
 
-                    page.render({ canvasContext: context, viewport: viewport });
+                    page.render({ canvasContext: context, viewport: viewport, transform: [outputScale, 0, 0, outputScale, 0, 0] });
                 });
             }
         }).catch(function(error) {

@@ -94,7 +94,9 @@
         loadingTask.promise.then(function(pdf) {
             for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
                 pdf.getPage(pageNum).then(function(page) {
-                    const scale = 1.3;
+                    const baseViewport = page.getViewport({ scale: 1 });
+                    const containerWidth = container.clientWidth || window.innerWidth;
+                    const scale = Math.min(1.3, containerWidth / baseViewport.width);
                     const viewport = page.getViewport({ scale });
 
                     const canvas = document.createElement("canvas");
@@ -118,15 +120,15 @@
 
         <!-- Newsletter Popup Liquid Glass -->
     <div id="newsletter-popup">
-        <div class="newsletter-content">
+                <div class="newsletter-content">
             <button class="close-btn" aria-label="Close">&times;</button>
-            <h3 class="glass-headline">Primești subiecte rezolvate direct în inbox</h3>
-            <p class="glass-body">Subiecte rezolvate, bareme și sfaturi de la studenți, livrate săptămânal pentru pregătirea ta.</p>
-             <form id="newsletter-form" class="newsletter-form" action="https://17f0099f.sibforms.com/serve/MUIFAMHWLUfsaf7msc30QlFV3re2CJ16EQGFCaue-Lm9AMpH_iXwZRGN0Zl5vb7RT4RTMAWG4YnhN0QgEdzJq8GaQHWHW4n51mrC1Mx3PY4LN8qyFsXLTWns7gYWkKeUsL4HXO5g9tvfyaN3AS31SUwNTY3AbjWDoNViN-jZwo82nOOhHt0_nK1xUwj427gV8sUWfL59aJZT69Ggiw==" method="POST">                <input type="email" id="newsletter-email" name="EMAIL" placeholder="Introdu adresa de email..." required aria-label="Email Address">
-                <button type="submit" class="glass-btn">Vreau să mă pregătesc</button>
-            </form>
-            <a href="#" class="dismiss-link">Nu acum</a>
-            <p class="trust-microcopy">Fără spam. Renunți oricând.</p>
+            <h3 class="glass-headline">Antrenament zilnic pentru Politehnică</h3>
+            <div class="popup-benefits">
+                <p>Un <strong>set de probleme „teaser"</strong> în fiecare seară</p>
+                <p>Sesiuni LIVE de simulări pe Google Meet</p>
+            </div>
+            <a href="https://chat.whatsapp.com/Fc7xjNckFGYBE9E16xsZ1D" target="_blank" class="whatsapp-btn" id="whatsapp-link">Intră în grupul de WhatsApp</a>
+            <a href="#" class="dismiss-link popup-microcopy">Nu acum &middot; Fără spam</a>
         </div>
     </div>
     <noscript>

@@ -178,154 +178,101 @@ if (form) {
     });
 }
 
-/* Upgraded Newsletter Popup Logic */
+/* ── Newsletter / WhatsApp Popup ── */
 document.addEventListener('DOMContentLoaded', function() {
     const popup = document.getElementById('newsletter-popup');
-    if (!popup) return;
+    if (!popup) return; // Pagina nu are popup, ieșim
 
-    // Track Popup Open
-    function showPopup() {
-        let lastShown = null;
-        try {
-            lastShown = localStorage.getItem('newsletter_last_shown');
-        } catch (e) {
-            console.warn('[Newsletter] LocalStorage access failed:', e);
-        }
+    const STORAGE_KEY  = 'newsletter_last_shown';
+    const COOLDOWN_MS  = 0; 
+    const SHOW_DELAY   = 12000; 
 
-        const now = new Date().getTime();
-        const oneDay = 24 * 60 * 60 * 1000;
-        const lastShownTime = lastShown ? parseInt(lastShown, 10) : 0;
-
-        // Show if never shown, if value is invalid, or if 7 days have passed
-        if (!lastShown || isNaN(lastShownTime) || (now - lastShownTime > oneDay)) {
-            setTimeout(function() {
-                popup.style.display = 'flex';
-                // Trigger animation
-                setTimeout(() => popup.classList.add('active'), 10);
-                console.log('[Analytics] Newsletter Popup Opened');
-            }, 12000); // 12 seconds delay (requested 10-15s)
-        }
-    }
-
-    showPopup();
-
-    const closeBtn = popup.querySelector('.close-btn');
-    
+    // ── Ascunde popup-ul și salvează timestamp-ul curent în localStorage.
+    //    Apelată indiferent de modul în care utilizatorul interacționează.
     function dismissPopup(actionType) {
         popup.classList.remove('active');
-        setTimeout(() => {
-            popup.style.display = 'none';
-        }, 300); // Wait for fade out
-        
+        // Așteptăm animația de fade-out înainte de display:none
+        setTimeout(() => { popup.style.display = 'none'; }, 300);
+
         try {
-            localStorage.setItem('newsletter_last_shown', new Date().getTime().toString());
+            localStorage.setItem(STORAGE_KEY, Date.now().toString());
         } catch (e) {
-            console.warn('[Newsletter] Failed to save dismissal:', e);
+            console.warn('[Popup] Nu s-a putut salva în localStorage:', e);
         }
-        console.log(`[Analytics] Newsletter Popup Dismissed (${actionType})`);
+        console.log('[Popup] Închis via:', actionType);
     }
 
+    // ── Afișează popup-ul dacă nu au trecut 24 de ore de la ultima interacțiune.
+    function tryShowPopup() {
+        let lastShownTime = 0;
+        try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) lastShownTime = parseInt(stored, 10) || 0;
+        } catch (e) {
+            console.warn('[Popup] Nu s-a putut citi localStorage:', e);
+        }
+
+        const cooldownExpired = (Date.now() - lastShownTime) > COOLDOWN_MS;
+
+        if (cooldownExpired) {
+            setTimeout(function() {
+                popup.style.display = 'flex';
+                // Micro-delay pentru a declanșa tranziția CSS
+                setTimeout(() => popup.classList.add('active'), 10);
+            }, SHOW_DELAY);
+        }
+    }
+
+    tryShowPopup();
+
+    // ── Butonul "X" ──────────────────────────────────────────────────────────
+    const closeBtn = popup.querySelector('.close-btn');
     if (closeBtn) {
-        closeBtn.addEventListener('click', () => dismissPopup('Close Button'));
+        closeBtn.addEventListener('click', () => dismissPopup('close-btn'));
     }
 
-    // Handle "Nu acum" link if it exists
+    // ── Link-ul "Nu, mulțumesc" ───────────────────────────────────────────────
     const dismissLink = popup.querySelector('.dismiss-link');
     if (dismissLink) {
-        dismissLink.addEventListener('click', (e) => {
+        dismissLink.addEventListener('click', function(e) {
             e.preventDefault();
-            dismissPopup('Dismiss Link');
+            dismissPopup('dismiss-link');
         });
     }
 
-    // Close on click outside
-    window.addEventListener('click', function(event) {
-        if (event.target === popup) {
-            dismissPopup('Outside Click');
-        }
+    // ── Link-ul WhatsApp – utilizatorul a acționat, resetăm timer-ul ─────────
+    const whatsappLink = document.getElementById('whatsapp-link');
+    if (whatsappLink) {
+        whatsappLink.addEventListener('click', () => dismissPopup('whatsapp-link'));
+        // Nota: nu prevenim navigarea (target="_blank") – browser-ul deschide
+        // grupul WA în tab nou, iar popup-ul se închide în background.
+    }
+
+    // ── Click în afara popup-ului ─────────────────────────────────────────────
+    window.addEventListener('click', function(e) {
+        if (e.target === popup) dismissPopup('outside-click');
     });
+});
 
-    // --- BUCATA NOUĂ ÎNCEPE AICI ---
-    const newsletterForm = document.getElementById('newsletter-form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Oprim browserul să schimbe pagina/tabul
-            
-            const submitBtn = newsletterForm.querySelector('.glass-btn');
-            const originalBtnText = submitBtn.innerText;
-            submitBtn.innerText = "Se trimite...";
-            submitBtn.disabled = true;
-
-            // Luăm adresa de email din formular
-            const formData = new FormData(newsletterForm);
-
-            // O trimitem către Brevo în fundal, absolut invizibil
-            fetch(newsletterForm.action, {
-                method: 'POST',
-                body: formData,
-                mode: 'no-cors' // Secretul care face trimiterea silențioasă
-            }).then(() => {
-                // Afișăm succesul
-                const content = popup.querySelector('.newsletter-content');
-                content.innerHTML = `
-                    <button class="close-btn" aria-label="Close">&times;</button>
-                    <div style="padding: 1rem 0;">
-                        <h3 class="glass-headline" style="color: #0f172a !important;">Ești în echipă! 🎓</h3>
-                        <p class="glass-body">Verifică inbox-ul pentru primul email.</p>
-                    </div>
-                `;
-
-                const newCloseBtn = content.querySelector('.close-btn');
-                if (newCloseBtn) {
-                    newCloseBtn.addEventListener('click', () => dismissPopup('Success State'));
-                }
-                
-                setTimeout(() => {
-                    dismissPopup('Auto Success');
-                }, 4000);
-
-            }).catch(error => {
-                console.error('Eroare:', error);
-                submitBtn.innerText = "Eroare. Mai încearcă.";
-                submitBtn.disabled = false;
-            });
-        });
-    }
-
-    // Countdown logic
-// Set your target date here!
-const targetDate = new Date("Mar 21, 2026 15:10:00").getTime();
+// ── Countdown timer (pagina simulări) ────────────────────────────────────────
+const targetDate = new Date("Mar 26, 2026 13:10:00").getTime();
 const btn = document.getElementById("glass-countdown-btn");
 const timerText = document.getElementById("countdown-timer");
 
-const updateCountdown = setInterval(() => {
-  const now = new Date().getTime();
-  const distance = targetDate - now;
+if (btn && timerText) {
+    const updateCountdown = setInterval(() => {
+        const distance = targetDate - Date.now();
 
-  // If the countdown is finished
-  if (distance <= 0) {
-    clearInterval(updateCountdown);
-    
-    // Swap the classes to unlock the button
-    btn.classList.remove("locked");
-    btn.classList.add("active");
-    
-  } else {
-    // Math to calculate time remaining
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // Formats numbers to always have two digits (e.g., "09" instead of "9")
-    const d = String(days).padStart(2, '0');
-    const h = String(hours).padStart(2, '0');
-    const m = String(minutes).padStart(2, '0');
-    const s = String(seconds).padStart(2, '0');
-
-    // Display the result
-    timerText.innerText = `${d}z ${h}h ${m}m ${s}s`;
-  }
-}, 1000);
-
-}); // Ultima linie din fișier (închiderea de la DOMContentLoaded)
+        if (distance <= 0) {
+            clearInterval(updateCountdown);
+            btn.classList.remove("locked");
+            btn.classList.add("active");
+        } else {
+            const d = String(Math.floor(distance / 86400000)).padStart(2, '0');
+            const h = String(Math.floor((distance % 86400000) / 3600000)).padStart(2, '0');
+            const m = String(Math.floor((distance % 3600000) / 60000)).padStart(2, '0');
+            const s = String(Math.floor((distance % 60000) / 1000)).padStart(2, '0');
+            timerText.innerText = `${d}z ${h}h ${m}m ${s}s`;
+        }
+    }, 1000);
+}

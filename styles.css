@@ -863,6 +863,17 @@ img, button { max-width: 100%; }
 .pag-intro h2.indented { font-weight: 400; line-height: 1.7; margin-bottom: 15px; color: var(--muted); }
 .pag-intro h2.indented b { font-weight: 600; color: var(--text); }
 
+/* Text elegant – aceeași stilare ca secțiunea "Povestea noastră" de pe index.html */
+.text-elegant {
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.8;
+  color: var(--text);
+  max-width: 800px;
+  margin-bottom: 0.9rem;
+  text-indent: 0;
+}
+
 /* MISC LAYOUT */
 
 .ad-left  {
@@ -1139,6 +1150,16 @@ img, button { max-width: 100%; }
   .resurse-title { font-size: 1.4rem; }
 }
 
+/* PDF viewer — prevent canvas overflow on mobile */
+#pdfViewer {
+  width: 100%;
+  overflow-x: hidden;
+}
+#pdfViewer canvas {
+  max-width: 100%;
+  height: auto;
+}
+
 /* INFORMATII PAGE */
 
 .titluinfo {
@@ -1308,7 +1329,7 @@ img, button { max-width: 100%; }
 }
 .link-comparatie:hover { color: #fff !important; }
 
-/* Newsletter Popup */
+/* Newsletter / WhatsApp Popup */
 
 #newsletter-popup {
     display: none;
@@ -1317,7 +1338,7 @@ img, button { max-width: 100%; }
     inset: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.55);
     justify-content: center;
     align-items: center;
     opacity: 0;
@@ -1335,137 +1356,115 @@ img, button { max-width: 100%; }
 
 #newsletter-popup .newsletter-content {
     background: #ffffff;
-    padding: 3rem 2rem;
+    padding: 2.75rem 2rem 2rem;
     border-radius: 16px;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
     width: 100%;
-    max-width: 440px;
+    max-width: 400px;
     margin: auto;
     position: relative;
     text-align: center;
     transform: scale(0.95);
-    transition: transform 250ms ease-out, opacity 250ms ease-out;
+    transition: transform 250ms ease-out;
     color: #1e293b;
     box-sizing: border-box;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 #newsletter-popup.active .newsletter-content {
     transform: scale(1);
 }
 
-#newsletter-popup form.newsletter-form {
-    background-color: transparent;
-    padding: 0;
-    margin: 0;
-    box-shadow: none;
-    max-width: 100%;
-}
-
-#newsletter-popup form.newsletter-form button.glass-btn {
-    margin-top: 0;
-    height: auto;
-    font-family: inherit;
-}
-
-#newsletter-popup .glass-headline {
-    font-size: 1.75rem;
-    margin-bottom: 0.75rem;
-    color: #0f172a;
-    font-weight: 800;
-}
-
-#newsletter-popup .glass-body {
-    font-size: 1.05rem;
-    color: #475569;
-    margin-bottom: 2rem;
-}
-
 #newsletter-popup .close-btn {
     position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 32px;
-    height: 32px;
-    background:transparent;
+    top: 14px;
+    right: 14px;
+    width: 30px;
+    height: 30px;
+    background: transparent;
     border: none;
-    font-size: 24px;
+    font-size: 22px;
+    color: #94a3b8;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     padding: 0;
-  }
-
-#newsletter-popup .newsletter-form {
-    display: flex;
-    flex-direction:
-    column; gap: 12px;
+    line-height: 1;
 }
 
-#newsletter-popup input[type="email"] {
-    width: 100%;
-    padding: 14px 18px;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
+#newsletter-popup .close-btn:hover { color: #1e293b; }
+
+#newsletter-popup .glass-headline {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 1.3rem;
+    line-height: 1.25;
+}
+
+#newsletter-popup .glass-body {
     font-size: 1rem;
-    outline: none;
+    color: #475569;
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
 }
 
-#newsletter-popup .glass-btn {
-    background: #0f172a;
-    color: #ffffff;
-    border: none;
-    padding: 16px;
-    border-radius: 10px;
-    cursor: pointer;
-    width: 100%;
-    font-weight: 600;
+#newsletter-popup .popup-benefits {
+    margin-bottom: 1.75rem;
 }
 
-#newsletter-popup .dismiss-link {
-    display: inline-block;
-    margin-top: 1.25rem;
-    color: #64748b;
-    font-weight: 500;
+#newsletter-popup .popup-benefits p {
+    font-size: 0.95rem;
+    color: #334155;
+    margin-bottom: 0.5rem;
+    line-height: 1.45;
 }
 
-#newsletter-popup .trust-microcopy {
-    margin-top: 1.25rem;
-    font-size: 0.875rem;
-    color: #94a3b8;
+#newsletter-popup .popup-benefits strong {
+  color: #000000;
 }
 
-/* --- WhatsApp Integration for Newsletter Popup --- */
-#newsletter-popup .separator-text {
-    margin: 1rem 0 0.5rem 0;
-    color: #64748b;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
+/* WhatsApp button */
 #newsletter-popup .whatsapp-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: #25D366;
-    color: #ffffff;
-    padding: 14px 16px;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 1rem;
-    text-decoration: none;
+    display: block;
     width: 100%;
     box-sizing: border-box;
-    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    padding: 14px 16px;
+    border-radius: 50px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    background: #25D366;
+    color: #ffffff;
+    transition: filter 0.2s ease, transform 0.15s ease;
 }
 
 #newsletter-popup .whatsapp-btn:hover {
-    background: #128C7E;
+    filter: brightness(0.92);
+    transform: translateY(-1px);
     color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+#newsletter-popup .popup-microcopy {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    color: #000000;
+    line-height: 1.4;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+#newsletter-popup .popup-microcopy:hover {
+    color: #94a3b8;
 }
 
 /* CTI vs IS PAGE */
@@ -1584,7 +1583,6 @@ img, button { max-width: 100%; }
 .contact {
   display: flex;
   justify-content: center;
-  align-items: center;
   min-height: 100vh;
 }
 
@@ -3180,6 +3178,11 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
 
 /* 4th Column Support */
 .comparison-table th:nth-child(4) { color: var(--accent3); }
+
+/* ETTI page: correct per-column header colors (overrides CTI-IS defaults) */
+.table-etti.comparison-table th:nth-child(2) { color: var(--accent);  }
+.table-etti.comparison-table th:nth-child(3) { color: var(--accent2); }
+.table-etti.comparison-table th:nth-child(4) { color: var(--accent3); }
 
 
 /* RESPONSIVE BREAKPOINTS */

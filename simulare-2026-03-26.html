@@ -203,7 +203,7 @@ int f(int n) {
         correct: "b"
     },
     {
-        text: `Fie o matrice pătratică M cu 50 linii și 50 coloane, numerotate de la 0 la 49. Elementele sunt inițializate cu <code>M[i][j] = i + j</code>. Cât este suma elementelor aflate strict deasupra diagonalei secundare?`,
+        text: `Fie o matrice pătratică M cu 50 linii și 50 coloane, numerotate de la 0 la 49. Elementele sunt inițializate cu <code>M[i][j] = i + j</code>. Cât este suma elementelor aflate strict deasupra diagonalei prinpiale?`,
         answers: ["a) 61250", "b) 59800", "c) 60025", "d) 58800", "e) 57600", "f) 62500"],
         correct: "c"
     },
@@ -279,47 +279,26 @@ void f(int k, int n, int x[20]) {
     },
     {
         text: `Urmăriți codul C++ de mai jos care simulează o cursă pe o pistă circulară de lungime <code>n</code>:
-    <pre><code class="cpp">bool este_pp(int vit) {
-    int radacina = sqrt(vit);
-    return radacina * radacina == vit;
-}
-
-int cursa(int poz_t, int poz_i,
-    int vit, int ture_i, int n) {
-
-    bool win = (poz_t % n == poz_i % n);
-    if (poz_t > 0 && win) {
-        return ture_i;
+    <pre><code class="cpp">int cursa(int poz_t, int poz_i, int pasi, int n) {
+    if (pasi > 0 && poz_t == poz_i) {
+        return pasi;
     }
-
-    if (este_pp(vit)) {
-        return cursa(poz_t + 1, poz_i,
-                  vit + 1, ture_i, n);
-    }
-
-    int dist = pow(2, vit), next_vit;
-    if (dist &gt;= n) {
-        next_vit = 1;
-    } else {
-        next_vit = 0;
-    }
-
-    int next_ture, iep_next;
-    next_ture = ture_i + (dist / n);
-    iep_next = poz_i + dist;
-    return cursa(poz_t + 1, iep_next,
-            next_vit, next_ture, n);
+    
+    int next_t = (poz_t + 1) % n;
+    int next_i = (poz_i + 3) % n;
+    
+    return cursa(next_t, next_i, pasi + 1, n);
 }</code></pre>
-    Dacă funcția de mai sus este apelată inițial cu <code>cursa(0, 0, 1, 0, n)</code>, care dintre următoarele expresii descrie corect valoarea returnată de funcție, strict în funcție de <code>n</code> (unde \\( n \\ge 2 \\) număr par)?`,
+    Dacă funcția de mai sus este apelată inițial cu <code>cursa(0, 0, 0, n)</code>, care dintre următoarele expresii descrie corect valoarea returnată de funcție, strict în funcție de <code>n</code> (unde \\( n \\ge 2 \\) este un număr natural par)?`,
         answers: [
-            "a) \\( \\frac{n}{2} + 1 \\)",
-            "b) \\( n - 1 \\)",
-            "c) \\( [\\log_2(n)] + 1 \\)",
-            "d) \\( \\frac{n^2}{4} - 1 \\)",
-            "e) \\( 2^{-n-3} \\)",
-            "f) Comportamentul nu poate fi generalizat, deoarece pentru anumite valori funcția va intra într-o buclă infinită."
+            "a) \\( \\frac{n}{2} \\)",
+            "b) \\( n \\)",
+            "c) \\( 2n \\)",
+            "d) \\( n - 1 \\)",
+            "e) \\( \\frac{n}{3} \\)",
+            "f) \\( \\frac{n}{2} + 1 \\)"
         ],
-        correct: "f"
+        correct: "a"
     }
 ];
     const problemsMate = [
@@ -348,7 +327,7 @@ int cursa(int poz_t, int poz_i,
       correct: "b"
   },
   {
-      text: `Se consideră sistemul de ecuații: \\( \\begin{cases} x+my+z=1 \\\\ 2x+y+mz=2 \\\\ mx+y+z=-1 \\end{cases} \\) unde \\( m \\in \\mathbb{R} \\). Mulțimea valorilor lui \\( m \\) pentru care sistemul este incompatibil este:` /* [cite: 32, 38, 39] */,
+      text: `Se consideră sistemul de ecuații: \\( \\begin{cases} x+my+z=1 \\\\ x+y+mz=2 \\\\ mx+y+z=-1 \\end{cases} \\) unde \\( m \\in \\mathbb{R} \\). Mulțimea valorilor lui \\( m \\) pentru care sistemul este incompatibil este:` /* [cite: 32, 38, 39] */,
       img: "",
       answers: ["a) {-1,2}", "b) {1,-2}", "c) {1}", "d) {-2}", "e) {0,1}", "f) {-1,1}"] /* [cite: 43, 44, 45, 46, 47] */,
       correct: "b"

@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Simulare Preadmitere 1 | AdmiterePoli</title>
+    <title>Simulare Preadmitere 2 | AdmiterePoli</title>
     <meta name="description" content="Testeaza-ti cunostintele la Matematica si Informatica pentru admiterea la Politehnica.">
 
     <link rel="icon" type="image/png" href="logosquared.png">
@@ -128,7 +128,7 @@
         </div>
     </main>
 
-    <footer>   
+    <footer>
         <a href="https://chat.whatsapp.com/Fc7xjNckFGYBE9E16xsZ1D" target="_blank">
             <img src="./images/whatsapp.svg" style="width: 24px; height: 24px; filter: brightness(0) invert(1);">
         </a>
@@ -147,228 +147,240 @@
     // ===== PROBLEMS DATA =====
     const problemsInfo = [
     {
-        text: `Ce va afisa urmatoarea secventa de cod C la finalizarea executiei, stiind ca bucla se opreste imediat ce unul dintre vectori a fost parcurs complet?
-    <pre><code class="c">int a[] = {2, 4, 6, 8};
-    int b[] = {1, 3, 5};
-    int c[10];
-    int i=0, j=0, k=0;
-
-    while(i < 4 && j < 3) {
-    if(a[i] < b[j])
-        c[k++] = a[i++];
-    else
-        c[k++] = b[j++];
-    }
-    printf("%d", a[i]);</code></pre>`,
-        answers: ["a) 8","b) 4","c) 5","d) 6","e) 2","f) 0"],
+        text: `Se consideră următorul cod C++:
+<pre><code class="cpp">int g(int n) {
+    if (n <= 0) return 0;
+    return n + f(n - 1);
+}
+int f(int n) {
+    if (n <= 0) return 1;
+    return n * g(n - 1);
+}</code></pre>
+    Cât este <code>f(3)</code>?`,
+        answers: ["a) 9", "b) 12", "c) 15", "d) 6", "e) 3", "f) 18"],
         correct: "d"
     },
     {
-        text: `Recursivitate - Numararea apelurilor (Arbore de executie). Cate apeluri ale functiei <code>g</code> se executa <b>in total</b> (incluzand apelul initial) pentru evaluarea expresiei <code>g(5)</code>?
-    <pre><code class="cpp">int g(int n) {
-    if (n <= 1) return 1;
-    return g(n-1) + g(n-2) + g(n-3);
-    }</code></pre>`,
-        answers: ["a) 13","b) 15","c) 9","d) 25","e) 11","f) 7"],
+        text: `Care dintre următoarele expresii C/C++ este echivalentă cu afirmația: „Anul <code>an</code> (număr natural) este bisect” (un an este bisect dacă este divizibil cu 400, SAU este divizibil cu 4 dar nu și cu 100)?`,
+        answers: [
+            "a) (an % 4 == 0) && (an % 100 != 0 || an % 400 == 0)",
+            "b) an % 4 == 0 && an % 100 != 0 && an % 400 == 0",
+            "c) (an % 4 == 0 || an % 100 != 0) && an % 400 == 0",
+            "d) an % 400 == 0 || (an % 4 == 0 && an % 100 != 0)",
+            "e) an % 4 == 0 || an % 400 == 0",
+            "f) (an % 4 == 0 && an % 100 == 0) || an % 400 == 0"
+        ],
         correct: "d"
     },
     {
-        text: `Dinamica pe siruri binare. Cate siruri binare de lungime <code>n = 8</code> pot fi construite, stiind ca este strict interzis ca sirul sa contina trei cifre de '1' pe pozitii consecutive (secventa "111" nu are voie sa apara)?`,
-        answers: ["a) 256","b) 149","c) 128","d) 81","e) 164","f) 144"],
-        correct: "b"
+        text: `Se consideră o matrice cu 4 linii și 4 coloane. În câte moduri putem plasa 4 ture de șah astfel încât să nu se atace reciproc (niciuna să nu fie pe aceeași linie sau coloană cu alta)?`,
+        answers: ["a) 256", "b) 64", "c) 16", "d) 24", "e) 12", "f) 4"],
+        correct: "d"
     },
     {
-        text: `Teoria numerelor - Divizori. Ce afiseaza urmatoarea secventa pentru <code>n = 16</code>?
-    <pre><code class="c">int n = 16, nr = 0;
-    for(int i = 1; i*i <= n; i++){
-    if(n % i == 0) {
-        nr++;
-        if(i * i != n) nr++;
-    }
-    }
-    printf("%d", nr);</code></pre>`,
-        answers: ["a) 3","b) 4","c) 5","d) 6","e) 2","f) 8"],
+        text: `Într-un graf neorientat bipartit complet cu partițiile de dimensiuni \\( x \\) și \\( y \\), numărul de muchii este 24. Știind că \\( x \\neq y \\), care este numărul maxim de noduri pe care îl poate avea graful?`,
+        answers: ["a) 10", "b) 11", "c) 25", "d) 14", "e) 24", "f) 12"],
         correct: "c"
     },
     {
-        text: `Indexare succesiva in vectori. Fie vectorul \\( v = \\{4, 7, 1, 5, 8, 9, 4, 2, 1, 1\\} \\). Primul element este pe pozitia 0. Care este valoarea expresiei \\( v[v[v[0]]] + v[v[0]] + v[0] \\)?`,
-        answers: ["a) 20","b) 13","c) 14","d) 6","e) 11","f) 17"],
+        text: `Determinați complexitatea timp pentru următoarea funcție, în funcție de <code>n</code> (număr natural strict pozitiv):
+    <pre><code class="cpp">void mister(int n) {
+    int k = 0, i, j;
+    for (i = n;i > 0;i = i / 2) {
+        for (j = 1; j <= i; j++) {
+            k++;
+        }
+    }
+}</code></pre>`,
+        answers: [
+            "a) \\( \\mathcal{O}(n \\log n) \\)",
+            "b) \\( \\mathcal{O}(n) \\)",
+            "c) \\( \\mathcal{O}(n^2) \\)",
+            "d) \\( \\mathcal{O}(\\log n) \\)",
+            "e) \\( \\mathcal{O}(n\\sqrt{n}) \\)",
+            "f) \\( \\mathcal{O}(1) \\)"
+        ],
         correct: "b"
     },
     {
-        text: `Tren: O garnitura de tren este formata din N vagoane. Mecanicul primeste ordin sa inverseze complet ordinea vagoanelor.
-    <pre><code class="c">struct Vagon {
-    int id;
-    struct Vagon* next;
-    };</code></pre>
+        text: `Fie o matrice pătratică M cu 50 linii și 50 coloane, numerotate de la 0 la 49. Elementele sunt inițializate cu <code>M[i][j] = i + j</code>. Cât este suma elementelor aflate strict deasupra diagonalei secundare?`,
+        answers: ["a) 61250", "b) 59800", "c) 60025", "d) 58800", "e) 57600", "f) 62500"],
+        correct: "c"
+    },
+    {
+        text: `O dronă autonomă trebuie să urce un puț de ventilație cu o înălțime de exact 10 metri, pornind de la sol (metrul 0). Drona are 3 trepte de viteză care îi permit să urce brusc fie 1, 2 sau 3 metri dintr-o singură mișcare. <br><br>
+        Pentru a preveni supraîncălzirea motorului, softul dronei are o regulă strictă: drona <b>nu</b> are voie să folosească aceeași distanță de urcare de două ori la rând (exemplu: dacă a urcat 2 metri, următoarea urcare trebuie să fie obligatoriu de 1 metru sau de 3 metri).<br><br>
+        În câte moduri distincte (ca secvență de mișcări) poate ajunge drona exact la metrul 10?`,
+        answers: ["a) 34", "b) 27", "c) 41", "d) 24", "e) 55", "f) 38"],
+        correct: "b"
+    },
+    {
+        text: `Analizați următorul program C++:
+    <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;string.h&gt;
+using namespace std;
 
-    <pre><code class="c">struct Vagon* Inverseaza(
-        struct Vagon* prim) {
-    struct Vagon* cur = prim;
-    struct Vagon* ant = NULL;
-    struct Vagon* vit = NULL;
-    while (cur != NULL) {
-        vit = (*cur).next;
-        // [ ... LINIE LIPSA ... ]
-        ant = cur;
-        cur = vit;
-    }
-    return ant;
-    }</code></pre>
-    Care este instructiunea corecta care trebuie plasata pe linia lipsa si care este complexitatea de timp?`,
+int main() {
+    char dest[20] = "Automatica";
+    char sursa[] = "CTI";
+
+    strncpy(dest + 4, sursa, 5);
+
+    cout &lt;&lt; dest; 
+    cout &lt;&lt; " "; 
+    cout &lt;&lt; dest + 9;
+    return 0;
+}</code></pre>
+    Ce va afișa programul pe ecran?`,
         answers: [
-        "a) (*ant).next = cur; \\( \\mathcal{O}(N) \\)",
-        "b) (*cur).next = ant; \\( \\mathcal{O}(N^2) \\)",
-        "c) (*vit).next = ant; \\( \\mathcal{O}(\\log N) \\)",
-        "d) (*cur).next = ant; \\( \\mathcal{O}(N) \\)",
-        "e) (*cur).next = vit; \\( \\mathcal{O}(1) \\)",
-        "f) Niciuna din cele de mai sus"
+            "a) AutoCTIica ca",
+            "b) AutoCTI ca",
+            "c) AutoCTI ica",
+            "d) AutoCTI a",
+            "e) Eroare de compilare",
+            "f) Comportament nedefinit"
         ],
         correct: "d"
     },
     {
-        text: `Un set de 10 popice de bowling, numerotate de la 1 la 10, trebuie aranjate în formația standard triunghiulară: un popic pe rândul 1, două pe rândul 2, trei pe rândul 3 și patru pe rândul 4, așezate ca în imaginea alăturată. Pentru un joc special, organizatorii impun următoarele două reguli stricte de așezare:
-        <div style="text-align: center; margin: 1.5rem 0;">
-            <img src="./images/triunghi.png" style="width: 35%; max-width: 250px;" alt="Diagramă popice">
-        </div>
-        1. Popicele cu numerele 1, 3, 5 și 7 <b>nu</b> au voie să fie adiacente (nu se pot atinge direct între ele).<br><br>
-        2. Dacă adunăm numerele de pe toate <b>popicele pare care sunt vecine direct</b> cu popicul 10, suma lor trebuie să fie exact 10. (Popicele impare vecine cu 10 sunt ignorate la acest calcul).<br><br>
-        În câte moduri distincte pot fi aranjate cele 10 popice astfel încât să respecte ambele reguli simultan?`,
-            answers: [
-                "a) \\(4! \\times 6!\\)",
-                "b) 0",
-                "c) 3456",
-                "d) 1152",
-                "e) \\(4! \\times 2 \\times C_6^2\\)",
-                "f) Niciuna din variantele de mai sus"
-            ],
-            correct: "c"
-    },
-    {
-        text: `Considerati urmatoarea functie recursiva in C++:
-    <pre><code class="cpp">int procesare(char* sir,
-                bool primul) {
-    char* token;
-    if (primul)
-        token = strtok(sir, "-");
-    else
-        token = strtok(NULL, "-");
-    if (token == NULL) return 0;
-    if (strcmp(token, "BACK") == 0)
-        return procesare(sir, true);
-    return 1 + procesare(sir, false);
-    }</code></pre>
-    Sirul initial este <code>"A-B-BACK-C"</code>, apelul initial este <code>procesare(sir, true)</code>. Cate apeluri au loc si ce valoare returneaza?`,
-        answers: [
-        "a) Bucleaza la infinit",
-        "b) 5 apeluri, rezultatul va fi 3",
-        "c) 4 apeluri, rezultatul va fi 2",
-        "d) 6 apeluri, rezultatul va fi 4",
-        "e) 2 apeluri, rezultatul va fi 0",
-        "f) 3 apeluri, rezultatul va fi 1"
-        ],
-        correct: "b"
-    },
-    {
-        text: `Fie doi vectori \\( v_1 \\) si \\( v_2 \\) cu <code>n</code> si <code>m</code> elemente. \\( v_1 \\) sortat descrescator, \\( v_2 \\) crescator. Matricea \\( A[i][j] = v_1[i] + v_2[j] \\). Care este complexitatea optima de cautare a unei valori X in aceasta matrice?`,
-        answers: [
-        "a) \\( \\mathcal{O}(\\log(nm)) \\)",
-        "b) \\( \\mathcal{O}(n \\log(m)) \\)",
-        "c) \\( \\mathcal{O}(nm) \\)",
-        "d) \\( \\mathcal{O}(1) \\)",
-        "e) \\( \\mathcal{O}(n + m) \\)",
-        "f) \\( \\mathcal{O}(m^2 \\cdot \\log(n)) \\)"
-        ],
-        correct: "e"
-    },
-    {
-        text: `Graf neorientat cu \\( n = 8 \\) noduri si muchiile:
-    <code>M = {(1,2), (1,5), (2,3), (2,5), (3,4), (4,5), (5,6), (6,7), (7,8), (6,8)}</code>.
-    Numarul de noduri care au gradul un numar par este:`,
-        answers: ["a) 2","b) 4","c) 7","d) 6","e) 5","f) 1"],
-        correct: "d"
+        text: `Analizați următorul fragment de cod C++. Știind că apelul inițial este <code>f(1, n, x)</code>, unde <code>n</code> este un număr natural nenul inițializat anterior, ce algoritm clasic implementează acest cod?
+    <pre><code class="cpp">bool valid(int k, int x[20]) {
+    int i = 1;
+    while (i &lt; k) {
+        if (x[i] == x[k]) 
+            return false;
+        i++;
     }
-    ];
-  const problemsMate = [
+    return true;
+}
+
+void f(int k, int n, int x[20]) {
+    for (int i = 1;i &lt;n;i++) {
+        x[k] = i;
+        if (valid(k, x) && k == n) {
+            int j;
+            for (j = 1;j &lt;= n;j++)
+                cout &lt;&lt; x[j];
+            cout &lt;&lt; "\\n";
+        } else if (valid(k, x)) {
+            f(k + 1, n, x);
+        }
+    }
+}</code></pre>`,
+        answers: [
+            "a) Generarea aranjamentelor",
+            "b) Produsul cartezian",
+            "c) Generarea combinărilor",
+            "d) Generarea permutărilor",
+            "e) Generarea submulțimilor",
+            "f) Generarea partițiilor unei mulțimi"
+        ],
+        correct: "d"
+    },
+    {
+        text: `Urmăriți codul C++ de mai jos care simulează o cursă pe o pistă circulară de lungime <code>n</code>:
+    <pre><code class="cpp">bool este_pp(int vit) {
+    int radacina = sqrt(vit);
+    return radacina * radacina == vit;
+}
+
+int cursa(int poz_t, int poz_i,
+    int vit, int ture_i, int n) {
+
+    bool win = (poz_t % n == poz_i % n);
+    if (poz_t > 0 && win) {
+        return ture_i;
+    }
+
+    if (este_pp(vit)) {
+        return cursa(poz_t + 1, poz_i,
+                  vit + 1, ture_i, n);
+    }
+
+    int dist = pow(2, vit), next_vit;
+    if (dist &gt;= n) {
+        next_vit = 1;
+    } else {
+        next_vit = 0;
+    }
+
+    int next_ture, iep_next;
+    next_ture = ture_i + (dist / n);
+    iep_next = poz_i + dist;
+    return cursa(poz_t + 1, iep_next,
+            next_vit, next_ture, n);
+}</code></pre>
+    Dacă funcția de mai sus este apelată inițial cu <code>cursa(0, 0, 1, 0, n)</code>, care dintre următoarele expresii descrie corect valoarea returnată de funcție, strict în funcție de <code>n</code> (unde \\( n \\ge 2 \\) număr par)?`,
+        answers: [
+            "a) \\( \\frac{n}{2} + 1 \\)",
+            "b) \\( n - 1 \\)",
+            "c) \\( [\\log_2(n)] + 1 \\)",
+            "d) \\( \\frac{n^2}{4} - 1 \\)",
+            "e) \\( 2^{-n-3} \\)",
+            "f) Comportamentul nu poate fi generalizat, deoarece pentru anumite valori funcția va intra într-o buclă infinită."
+        ],
+        correct: "f"
+    }
+];
+    const problemsMate = [
   {
-      text: `1. Cât este \\( C_m^{m-4} \\) știind că \\( A_m^4 = 120 \\)?`,
+      text: `Suma valorilor reale ale lui a pentru care numerele \\( x-1 \\), \\( x+1 \\) și \\( 2x+5 \\) sunt termeni consecutivi ai unei progresii geometrice este:` /* [cite: 9] */,
       img: "",
-      answers: ["a) 1", "b) 5", "c) 120", "d) 24", "e) 10", "f) 4"],
+      answers: ["a) 1", "b) -1", "c) 2", "d) -3", "e) 0", "f) -6"] /* [cite: 10, 11, 14] */,
       correct: "b"
   },
   {
-    text: "2. Fie \\( S \\) mulțimea soluțiilor reale ale ecuației: \\( \\log_{x+1}(2x^2-3x+1)=1 \\). Să se calculeze produsul elementelor mulțimii \\( S \\). (Dacă mulțimea are un singur element, produsul este considerat egal cu acel element).",
-    img: "",
-    answers: [
-        "a) \\( 0 \\)", 
-        "b) \\( 2 \\)", 
-        "c) \\( \\frac{1}{2} \\)", 
-        "d) \\( -2 \\)", 
-        "e) \\( 1 \\)", 
-        "f) \\( S = \\emptyset \\)"
-    ],
-    correct: "b"
+      text: `Fie numărul complex \\( z \\in \\mathbb{C} \\) care verifică relația: \\( z+\\frac{1}{z}=\\sqrt{3} \\). Să se calculeze valoarea expresiei: \\( E=\\left(z^{2026}+\\frac{1}{z^{2026}}\\right)^{2}+\\left(z^{2027}+\\frac{1}{z^{2027}}\\right)^{2} \\)` /* [cite: 12, 13, 15, 16] */,
+      img: "",
+      answers: ["a) 0", "b) 1", "c) 2", "d) 3", "e) 4", "f) -1"] /* [cite: 17, 18, 19, 20, 33, 34] */,
+      correct: "e"
   },
   {
-      text: `3. Să se determine restul împărțirii polinomului \\( P(X)=(X+1)^{2026}+X^{2026}+1 \\) la polinomul \\( Q(X)=X^2+X+1 \\).`,
+      text: `Minimul funcției \\( f(x)=x^{x} \\), definită pentru \\( x \\in (0,\\infty) \\) este:` /* [cite: 21] */,
       img: "",
-      answers: ["a) \\( X+1 \\)", "b) \\( 2X+1 \\)", "c) 0", "d) 2", "e) \\( X+2 \\)", "f) 1"],
+      answers: ["a) e", "b) \\( \\frac{1}{e} \\)", "c) \\( e^{-1/e} \\)", "d) 1", "e) 0", "f) \\( -\\frac{1}{e} \\)"] /* [cite: 22, 23, 24, 35] */,
       correct: "c"
   },
   {
-      text: `4. Fie \\( f: \\mathbb{R} \\to \\mathbb{R} \\) o funcție care satisface relația \\( f(x)+2f(1-x)=3x \\) pentru orice \\( x \\in \\mathbb{R} \\). Calculați \\( f(2) \\).`,
+      text: `Considerăm următoarele două funcții definite pe domeniul \\( x>0 \\): \\( f(x)=\\frac{e^{x}}{x^{e}} \\) și \\( g(x)=\\frac{e^{-x^{2}+4x-2}}{x^{e}} \\). Pe care dintre următoarele intervale este \\( g(x)>f(x) \\)?` /* [cite: 25, 26, 27, 28] */,
       img: "",
-      answers: ["a) -2", "b) 4", "c) 2", "d) -4", "e) 0", "f) -6"],
-      correct: "d"
-  },
-  {
-      text: `5. Fie matricea \\( A = \\begin{pmatrix} 11 & 10 \\\\ -12 & -11 \\end{pmatrix} \\in \\mathcal{M}_2(\\mathbb{R}) \\). Care este valoarea determinantului matricei \\( A^{2026} \\)?`,
-      img: "",
-      answers: ["a) -1", "b) 0", "c) 1", "d) 2", "e) 2026", "f) -2026"],
-      correct: "c"
-  },
-  {
-      text: `6. Fie numărul complex \\( z = a + bi \\), unde \\( a, b \\in \\mathbb{R} \\), astfel încât \\( z^2 = z \\). Câte perechi de soluții \\( (a, b) \\) are această problemă?`,
-      img: "",
-      answers: ["a) 0", "b) 1", "c) 2", "d) 3", "e) 4", "f) O infinitate"],
-      correct: "c"
-  },
-  {
-      text: `7. Fie funcția \\( f : \\mathbb{R} \\to \\mathbb{R} \\) derivabilă de cel puțin două ori pe \\( \\mathbb{R} \\). Aflați limita: \\( L = \\lim_{x \\to 0} \\frac{\\int_0^x f(t) dt}{\\int_0^{x^2+2x} f(t) dt} \\) știind că \\( f'(0) = 0 \\) și \\( f''(0) \\neq 0 \\).`,
-      img: "",
-      answers: ["a. \\( L \\in \\{\\frac{1}{4}, \\frac{1}{2}\\} \\)", "b. \\( L \\in \\{\\frac{1}{8}, \\frac{1}{4}\\} \\)", "c. \\( L \\in \\{\\frac{1}{8}, \\frac{1}{2}\\} \\)", "d. \\( L = \\frac{1}{8} \\)", "e. \\( L = \\frac{1}{2} \\)", "f. Limita nu există"],
-      correct: "c"
-  },
-  {
-      text: `8. Calculați limita la dreapta: \\( L = \\lim_{x \\to 3, x > 3} \\left[ \\ln\\left(1 + \\frac{1}{e^{\\frac{1}{x-3}}}\\right) \\cdot e^{\\frac{1}{x-3}} \\right] \\).`,
-      img: "",
-      answers: ["a) 0", "b) 1", "c) e", "d) \\( \\infty \\)", "e) \\( \\frac{1}{e} \\)", "f) Nu există"],
+      answers: ["a) (0,1)", "b) (1,2)", "c) (2, e)", "d) \\( (0,1) \\cup (2,\\infty) \\)", "e) Nu există un astfel de interval.", "f) (1,e)"] /* [cite: 29, 30, 31, 36, 37] */,
       correct: "b"
   },
   {
-    text: "9. Câte soluții reale \\( (x, y) \\) are sistemul următor și în ce interval se află valoarea lui \\( x \\)?\n\\[ \\begin{cases} \\ln^3(x) + (y + 1)^2 = 0 \\\\ x - y = 1 \\end{cases} \\]",
-    img: "",
-    answers: [
-        "a) O singură soluție, cu \\( x \\in (0, 1) \\).",
-        "b) Două soluții, ambele având \\( x \\in (0, 1) \\).",
-        "c) Două soluții, una cu \\( x < 0 \\) și alta cu \\( x > 0 \\).",
-        "d) O singură soluție, cu \\( x > 1 \\).",
-        "e) Nicio soluție.",
-        "f) Două soluții, ambele având \\( x > 1 \\)."
-    ],
-    correct: "a"
+      text: `Se consideră sistemul de ecuații: \\( \\begin{cases} x+my+z=1 \\\\ 2x+y+mz=2 \\\\ mx+y+z=-1 \\end{cases} \\) unde \\( m \\in \\mathbb{R} \\). Mulțimea valorilor lui \\( m \\) pentru care sistemul este incompatibil este:` /* [cite: 32, 38, 39] */,
+      img: "",
+      answers: ["a) {-1,2}", "b) {1,-2}", "c) {1}", "d) {-2}", "e) {0,1}", "f) {-1,1}"] /* [cite: 43, 44, 45, 46, 47] */,
+      correct: "b"
   },
   {
-      text: `10. Să se calculeze valoarea produsului: \\( P = \\left(1 - \\frac{1}{2^2}\\right) \\left(1 - \\frac{1}{3^2}\\right) \\dots \\left(1 - \\frac{1}{2026^2}\\right) \\)`,
+      text: `Valoarea integralei \\( \\int_{0}^{\\frac{\\pi}{2}}\\frac{\\sin x}{\\sin x+\\cos x}dx \\) este:` /* [cite: 48, 49, 50] */,
       img: "",
-      answers: [
-      "a) \\( \\frac{2027}{4052} \\)", 
-      "b) \\( \\frac{1}{2} \\)", 
-      "c) \\( \\frac{2025}{4052} \\)", 
-      "d) 0", 
-      "e) 1", 
-      "f) \\( \\frac{1013}{2026} \\)"
-      ],
+      answers: ["a) \\( \\frac{\\pi}{2} \\)", "b) \\( \\frac{\\pi}{4} \\)", "c) \\( \\pi \\)", "d) 0", "e) 1", "f) \\( \\frac{\\pi}{3} \\)"] /* [cite: 51, 52, 53, 54, 55, 56, 57] */,
+      correct: "b"
+  },
+  {
+      text: `Soluția ecuației \\( \\log_{2}(x-1)=\\log_{4}(x+1) \\) este:` /* [cite: 58] */,
+      img: "",
+      answers: ["a) 0 și 3", "b) 3", "c) 0", "d) 4", "e) 2", "f) nu are soluții"] /* [cite: 59, 60, 61, 62, 63, 64] */,
+      correct: "b"
+  },
+  {
+      text: `Se consideră un număr natural \\( n \\ge 2 \\). Să se calculeze valoarea următoarei sume: \\( S_{n}=\\sum_{k=1}^{n}(-1)^{k-1}\\cdot k\\cdot C_{n}^{k} \\)` /* [cite: 65, 67] */,
+      img: "",
+      answers: ["a) n", "b) \\( 2^{n-1} \\)", "c) 0", "d) \\( (-1)^{n} \\)", "e) n!", "f) 1"] /* [cite: 66, 68, 69, 70] */,
+      correct: "c"
+  },
+  {
+      text: `Fie o funcție derivabilă astfel încât \\( f(2^{x}+3^{x})=x^{2}+x+1 \\) pentru orice \\( x \\in \\mathbb{R} \\). Valoarea derivatei \\( f^{\\prime}(2) \\) este:` /* [cite: 71, 72] */,
+      img: "",
+      answers: ["a) \\( \\frac{1}{\\ln 6} \\)", "b) \\( \\ln 6 \\)", "c) 1", "d) 0", "e) \\( \\frac{1}{\\ln 5} \\)", "f) e"] /* [cite: 73, 74, 75, 76, 77, 85] */,
+      correct: "a"
+  },
+  {
+      text: `Să se calculeze limita șirului: \\( \\lim_{n \\rightarrow \\infty}n(\\sqrt{n^{2}+2}-n) \\)` /* [cite: 78, 79] */,
+      img: "",
+      answers: ["a) 1", "b) 0", "c) \\( \\frac{1}{2} \\)", "d) 2", "e) \\( \\infty \\)", "f) nu există"] /* [cite: 80, 81, 82, 83, 86, 87] */,
       correct: "a"
   }
 ];
@@ -583,10 +595,10 @@
         document.getElementById('submit-count-total').textContent = infoCount + mateCount;
     }
 
-    
+
     // ===== SUBMIT ALL =====
     function finalizeExam(timeUp, elapsed, scoreTotal, scoreInfo, scoreMate, infoResults, mateResults, infoPct, matePct, badgeClass, badgeText) {
-        
+
         // Dacă a fost apăsat butonul din alertă, curățăm overlay-ul
         const existingOverlay = document.querySelector('.sim-super-overlay');
         if (existingOverlay) {
@@ -610,7 +622,7 @@
             detalii_mate: mateResults
         };
 
-        const scriptURL = "https://script.google.com/macros/s/AKfycbzQy9zBQVR_ryP5zfpAhY0fGjyf2oP_OstLfztdhTmpTSY47FuQgGhDy17NL_E-CfP3fQ/exec";
+        const scriptURL = "https://script.google.com/macros/s/AKfycbzOIZUrZfX7-21hGQjsmJV9rAvfNhAb3C-iofycgmRtjAjO7NCZ5CZ5MTW4VXTkND0K/exec";
 
         fetch(scriptURL, {
             method: "POST",
@@ -714,7 +726,7 @@
                 .sim-super-icon { font-size: 3.5rem !important; margin-bottom: 1rem !important; filter: drop-shadow(0 0 12px rgba(255, 202, 75, 0.3)) !important; }
                 .sim-super-title { font-size: 1.5rem !important; margin-bottom: 0.5rem !important; color: white !important; font-weight: bold !important; }
                 .sim-super-desc { color: #94a3b8 !important; margin-bottom: 2rem !important; line-height: 1.5 !important; }
-                
+
                 .sim-alert-buttons { display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
                 .sim-super-btn { background: var(--accent, #38bdf8) !important; color: #000 !important; border: none !important; padding: 12px 24px !important; border-radius: 10px !important; font-size: 1rem !important; font-weight: 600 !important; cursor: pointer !important; transition: transform 0.2s !important; }
                 .sim-super-btn:hover { transform: scale(1.05) !important; }

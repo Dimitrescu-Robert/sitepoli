@@ -145,17 +145,17 @@
 
     <script>
     // ===== PROBLEMS DATA =====
-    const problemsInfo = [
+   const problemsInfo = [
     {
         text: `Se consideră următorul cod C++:
-<pre><code class="cpp">int g(int n) {
-    if (n <= 0) return 0;
-    return n + f(n - 1);
-}
-int f(int n) {
-    if (n <= 0) return 1;
-    return n * g(n - 1);
-}</code></pre>
+    <pre><code class="cpp">int g(int n) {
+      if (n <= 0) return 0;
+      return n + f(n - 1);
+    }
+    int f(int n) {
+      if (n <= 0) return 1;
+      return n * g(n - 1);
+    }</code></pre>
     Cât este <code>f(3)</code>?`,
         answers: ["a) 9", "b) 12", "c) 15", "d) 6", "e) 3", "f) 18"],
         correct: "d"
@@ -185,13 +185,13 @@ int f(int n) {
     {
         text: `Determinați complexitatea timp pentru următoarea funcție, în funcție de <code>n</code> (număr natural strict pozitiv):
     <pre><code class="cpp">void mister(int n) {
-    int k = 0, i, j;
-    for (i = n;i > 0;i = i / 2) {
+      int k = 0, i, j;
+      for (i = n; i > 0; i = i / 2) {
         for (j = 1; j <= i; j++) {
-            k++;
+          k++;
         }
-    }
-}</code></pre>`,
+      }
+    }</code></pre>`,
         answers: [
             "a) \\( \\mathcal{O}(n \\log n) \\)",
             "b) \\( \\mathcal{O}(n) \\)",
@@ -221,15 +221,14 @@ int f(int n) {
 using namespace std;
 
 int main() {
-    char dest[20] = "Automatica";
-    char sursa[] = "CTI";
+  char dest[20] = "Automatica";
+  char sursa[] = "CTI";
 
-    strncpy(dest + 4, sursa, 5);
+  strncpy(dest + 4, sursa, 5);
 
-    cout &lt;&lt; dest; 
-    cout &lt;&lt; " "; 
-    cout &lt;&lt; dest + 9;
-    return 0;
+  cout &lt;&lt; dest &lt;&lt; " "; 
+  cout &lt;&lt; dest + 9;
+  return 0;
 }</code></pre>
     Ce va afișa programul pe ecran?`,
         answers: [
@@ -245,27 +244,27 @@ int main() {
     {
         text: `Analizați următorul fragment de cod C++. Știind că apelul inițial este <code>f(1, n, x)</code>, unde <code>n</code> este un număr natural nenul inițializat anterior, ce algoritm clasic implementează acest cod?
     <pre><code class="cpp">bool valid(int k, int x[20]) {
-    int i = 1;
-    while (i &lt; k) {
-        if (x[i] == x[k]) 
-            return false;
+      int i = 1;
+      while (i &lt; k) {
+        if (x[i] == x[k]) return false;
         i++;
+      }
+      return true;
     }
-    return true;
-}
 
-void f(int k, int n, int x[20]) {
-    for (int i = 1;i &lt;n;i++) {
-        x[k] = i;
-        if (valid(k, x) && k == n) {
-            int j;
-            for (j = 1;j &lt;= n;j++)
-                cout &lt;&lt; x[j];
-            cout &lt;&lt; "\\n";
-        } else if (valid(k, x)) {
-            f(k + 1, n, x);
-        }
+void f(int k, int n, 
+       int x[20]) {
+  for (int i = 1; i &lt; n; i++) {
+    x[k] = i;
+    if (valid(k, x) && k == n) {
+      int j;
+      for (j = 1; j &lt;= n; j++)
+        cout &lt;&lt; x[j];
+      cout &lt;&lt; "\\n";
+    } else if (valid(k, x)) {
+      f(k + 1, n, x);
     }
+  }
 }</code></pre>`,
         answers: [
             "a) Generarea aranjamentelor",
@@ -279,15 +278,17 @@ void f(int k, int n, int x[20]) {
     },
     {
         text: `Urmăriți codul C++ de mai jos care simulează o cursă pe o pistă circulară de lungime <code>n</code>:
-    <pre><code class="cpp">int cursa(int poz_t, int poz_i, int pasi, int n) {
-    if (pasi > 0 && poz_t == poz_i) {
-        return pasi;
-    }
+    <pre><code class="cpp">int cursa(int poz_t, int poz_i, 
+          int pasi, int n) {
+  if (pasi > 0 && poz_t == poz_i) {
+    return pasi;
+  }
     
-    int next_t = (poz_t + 1) % n;
-    int next_i = (poz_i + 3) % n;
+  int next_t = (poz_t + 1) % n;
+  int next_i = (poz_i + 3) % n;
     
-    return cursa(next_t, next_i, pasi + 1, n);
+  return cursa(next_t, next_i, 
+               pasi + 1, n);
 }</code></pre>
     Dacă funcția de mai sus este apelată inițial cu <code>cursa(0, 0, 0, n)</code>, care dintre următoarele expresii descrie corect valoarea returnată de funcție, strict în funcție de <code>n</code> (unde \\( n \\ge 2 \\) este un număr natural par)?`,
         answers: [
@@ -299,7 +300,7 @@ void f(int k, int n, int x[20]) {
             "f) \\( \\frac{n}{2} + 1 \\)"
         ],
         correct: "a"
-    }
+    } 
 ];
     const problemsMate = [
   {

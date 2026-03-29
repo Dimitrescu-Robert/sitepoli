@@ -2847,6 +2847,63 @@ code {
   line-height: 1.5;
 }
 
+/* BAREM COD */
+.barem-table-wrapper {
+  overflow-x: auto;
+  margin: 2rem auto;
+  max-width: 600px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 var(--glass-shine);
+  backdrop-filter: blur(16px) saturate(1.5);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+}
+
+.barem-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  color: var(--text-heading);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.barem-table th, .barem-table td {
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.barem-table th {
+  background: rgba(123, 160, 217, 0.1);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.barem-table th:nth-child(2) {
+  color: var(--accent2);
+}
+
+.barem-table tr:last-child td {
+  border-bottom: none;
+}
+
+.barem-table tr:hover td {
+  background: rgba(123, 160, 217, 0.05);
+}
+
+.barem-table td {
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.barem-table td:first-child {
+  text-align: left;
+  padding-left: 25px;
+  color: var(--muted);
+}
+
+
 
 /* IMPREUNA / MISC */
 

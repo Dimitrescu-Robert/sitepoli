@@ -4,9 +4,12 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  sendEmailVerification,
   signOut
 } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
 
@@ -23,6 +26,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+
+function isMobile() {
+  return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
 
 /* ── HTML injectat în DOM ─────────────────────────────────────── */
 
@@ -101,18 +108,52 @@ function injectNavButton() {
   }
 }
 
+function injectMobileAuthItem() {
+  const navElements = document.querySelector('.nav-elements');
+  if (!navElements) return;
+  const li = document.createElement('li');
+  li.id = 'nav-auth-mobile-li';
+  li.innerHTML = `
+    <button class="nav-auth-mobile-btn" id="nav-auth-mobile-btn">Contul meu</button>
+    <div class="nav-auth-mobile-user" id="nav-auth-mobile-user">
+      <span class="nav-auth-mobile-email" id="nav-auth-mobile-email"></span>
+      <button class="nav-auth-mobile-logout" id="btn-logout-mobile">Deconectare</button>
+    </div>
+  `;
+  navElements.appendChild(li);
+}
+
+function closeHamburger() {
+  document.querySelector('.hamburger')?.classList.remove('active');
+  document.querySelector('.nav-elements')?.classList.remove('active');
+}
+
 /* ── Helpers UI ──────────────────────────────────────────────── */
 
 function showError(panelId, message) {
   const el = document.getElementById(`auth-error-${panelId}`);
   if (!el) return;
   el.textContent = message;
+  el.style.color = '';
+  el.style.borderColor = '';
+  el.classList.add('visible');
+}
+
+function showSuccess(panelId, message) {
+  const el = document.getElementById(`auth-error-${panelId}`);
+  if (!el) return;
+  el.textContent = message;
+  el.style.color = 'var(--accent3, #4db6ac)';
+  el.style.borderColor = 'var(--accent3, #4db6ac)';
   el.classList.add('visible');
 }
 
 function clearError(panelId) {
   const el = document.getElementById(`auth-error-${panelId}`);
-  if (el) el.classList.remove('visible');
+  if (!el) return;
+  el.classList.remove('visible');
+  el.style.color = '';
+  el.style.borderColor = '';
 }
 
 function openModal() {
@@ -127,45 +168,67 @@ function closeModal() {
 
 function friendlyError(code) {
   const map = {
-    'auth/invalid-email': 'Adresă de email invalidă.',
-    'auth/user-not-found': 'Nu există cont cu acest email.',
-    'auth/wrong-password': 'Parolă incorectă.',
+    'auth/invalid-email':        'Adresă de email invalidă.',
+    'auth/invalid-credential':   'Email sau parolă incorectă.',
     'auth/email-already-in-use': 'Există deja un cont cu acest email.',
-    'auth/weak-password': 'Parola trebuie să aibă minim 6 caractere.',
+    'auth/weak-password':        'Parola trebuie să aibă minim 6 caractere.',
     'auth/popup-closed-by-user': 'Fereastra Google a fost închisă.',
-    'auth/invalid-credential': 'Email sau parolă incorectă.',
-    'auth/too-many-requests': 'Prea multe încercări. Încearcă mai târziu.',
+    'auth/popup-blocked':        'Popup-ul a fost blocat de browser. Activează popup-urile pentru acest site.',
+    'auth/too-many-requests':    'Prea multe încercări. Încearcă mai târziu.',
+    'auth/network-request-failed': 'Eroare de rețea. Verifică conexiunea la internet.',
   };
   return map[code] || 'A apărut o eroare. Încearcă din nou.';
+}
+
+/* ── Google Sign-In (popup pe desktop, redirect pe mobile) ───── */
+
+async function googleSignIn(panel) {
+  if (isMobile()) {
+    await signInWithRedirect(auth, googleProvider);
+    // pagina se redirecționează — nimic de executat după
+    return;
+  }
+  await signInWithPopup(auth, googleProvider);
+  closeModal();
 }
 
 /* ── Actualizează navbar după schimbarea stării auth ─────────── */
 
 function updateNavButton(user) {
+  // Desktop pill
   const trigger = document.getElementById('nav-auth-trigger');
   const dropdown = document.getElementById('auth-user-dropdown');
   const emailEl = document.getElementById('auth-user-email');
-  if (!trigger) return;
-
-  if (user) {
-    const displayName = (user.displayName || '').trim();
-    const initials = displayName
-      ? displayName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
-      : (user.email || '?')[0].toUpperCase();
-    trigger.textContent = initials;
-    trigger.classList.add('auth-logged-in');
-    if (emailEl) emailEl.textContent = user.email;
-  } else {
-    trigger.textContent = 'Contul meu';
-    trigger.classList.remove('auth-logged-in');
-    if (dropdown) dropdown.classList.remove('open');
+  if (trigger) {
+    if (user) {
+      const displayName = (user.displayName || '').trim();
+      const initials = displayName
+        ? displayName.split(' ').filter(Boolean).map(n => n[0]).join('').toUpperCase().slice(0, 2)
+        : (user.email || '?')[0].toUpperCase();
+      trigger.textContent = initials;
+      trigger.classList.add('auth-logged-in');
+      if (emailEl) emailEl.textContent = user.email;
+    } else {
+      trigger.textContent = 'Contul meu';
+      trigger.classList.remove('auth-logged-in');
+      if (dropdown) dropdown.classList.remove('open');
+    }
   }
+
+  // Mobile menu item
+  const mobileBtn = document.getElementById('nav-auth-mobile-btn');
+  const mobileUser = document.getElementById('nav-auth-mobile-user');
+  const mobileEmail = document.getElementById('nav-auth-mobile-email');
+  if (mobileBtn) mobileBtn.style.display = user ? 'none' : '';
+  if (mobileUser) mobileUser.style.display = user ? 'flex' : 'none';
+  if (mobileEmail) mobileEmail.textContent = user ? (user.displayName || user.email) : '';
 }
 
 /* ── Inițializare ────────────────────────────────────────────── */
 
 document.addEventListener('DOMContentLoaded', () => {
   injectNavButton();
+  injectMobileAuthItem();
   injectModal();
 
   const overlay = document.getElementById('auth-modal-overlay');
@@ -174,6 +237,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const wrapper = document.getElementById('nav-auth-wrapper');
 
   if (!trigger || !overlay) return;
+
+  // Tratează rezultatul redirect-ului Google după revenirea pe pagină (mobile)
+  getRedirectResult(auth).then(result => {
+    // onAuthStateChanged gestionează UI-ul — nimic de făcut explicit
+  }).catch(e => {
+    if (e.code && e.code !== 'auth/popup-closed-by-user') {
+      openModal();
+      showError('login', friendlyError(e.code));
+    }
+  });
 
   // Deschide modal sau dropdown
   trigger.addEventListener('click', () => {
@@ -200,10 +273,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
   });
 
-  // Tab-uri
+  // Tab-uri — curăță erorile la schimbarea tab-ului
   document.querySelectorAll('.auth-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       if (tab.classList.contains('active')) return;
+      clearError('login');
+      clearError('register');
       document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
       tab.classList.add('active');
@@ -235,8 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = document.getElementById('btn-login-google');
     btn.disabled = true;
     try {
-      await signInWithPopup(auth, googleProvider);
-      closeModal();
+      await googleSignIn('login');
     } catch (e) {
       if (e.code !== 'auth/popup-closed-by-user') {
         showError('login', friendlyError(e.code));
@@ -255,8 +329,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = document.getElementById('btn-register-email');
     btn.disabled = true;
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      closeModal();
+      const { user } = await createUserWithEmailAndPassword(auth, email, password);
+      await sendEmailVerification(user);
+      showSuccess('register', 'Cont creat! Ai intrat in echipa!');
     } catch (e) {
       showError('register', friendlyError(e.code));
     } finally {
@@ -264,14 +339,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Register Google (același popup)
+  // Register Google (același flux ca login)
   document.getElementById('btn-register-google').addEventListener('click', async () => {
     clearError('register');
     const btn = document.getElementById('btn-register-google');
     btn.disabled = true;
     try {
-      await signInWithPopup(auth, googleProvider);
-      closeModal();
+      await googleSignIn('register');
     } catch (e) {
       if (e.code !== 'auth/popup-closed-by-user') {
         showError('register', friendlyError(e.code));
@@ -289,6 +363,22 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('[Auth] signOut error:', e);
     } finally {
       dropdown.classList.remove('open');
+    }
+  });
+
+  // Mobile menu — Contul meu
+  document.getElementById('nav-auth-mobile-btn')?.addEventListener('click', () => {
+    closeHamburger();
+    openModal();
+  });
+
+  // Mobile menu — Deconectare
+  document.getElementById('btn-logout-mobile')?.addEventListener('click', async () => {
+    closeHamburger();
+    try {
+      await signOut(auth);
+    } catch (e) {
+      console.error('[Auth] signOut error:', e);
     }
   });
 

@@ -3559,6 +3559,7 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
   
   .hamburger {
     display: block;
+    position: relative;
     z-index: 9999;
   }
   
@@ -3587,21 +3588,61 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(34, 40, 49, 0.97);
-    backdrop-filter: blur(20px);
+    height: 100vh;
+    height: 100dvh;
+    background: rgba(22, 27, 34, 0.97);
+    backdrop-filter: blur(28px) saturate(1.5);
+    -webkit-backdrop-filter: blur(28px) saturate(1.5);
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    z-index: -1;
-    transform: translateY(-100%);
-    transition: transform 0.4s ease-in-out;
+    z-index: 99;
+    gap: 0.3rem;
+    padding-bottom: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
   }
-  
-  nav li a {
-    margin: 16px 0;
-  }
-  
+
   .nav-elements.active {
-    transform: translateY(91px);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  nav li a {
+    font-size: 1.55rem;
+    font-weight: 600;
+    padding: 0.55rem 2rem;
+    margin: 0;
+    letter-spacing: 0.2px;
+    color: rgba(255, 255, 255, 0.85);
+    display: inline-block;
+    transition: color 0.2s ease;
+  }
+
+  nav li a:hover {
+    color: var(--accent);
+  }
+
+  nav li a::after {
+    display: none;
+  }
+
+  .nav-elements .nav-sim-btn {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: var(--accent) !important;
+    font-size: 1.55rem !important;
+    font-weight: 700 !important;
+    padding: 0.55rem 2rem !important;
+  }
+
+  .nav-elements .nav-sim-btn:hover {
+    background: none !important;
+    color: var(--accent2) !important;
+    transform: none !important;
   }
   
   header {
@@ -3620,8 +3661,8 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
     z-index: 1;
   }
   
-  nav > a, 
-  .hamburger {
+  nav > a,
+  #nav-auth-wrapper {
     position: relative;
     z-index: 2;
   }
@@ -3724,7 +3765,6 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
     }
 
   .nav-sim-btn {
-    margin: 4px auto 1rem !important;
     padding: 0.5rem 2rem !important;
   }
 
@@ -3845,6 +3885,8 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
 #nav-auth-wrapper {
   position: relative;
   margin-right: 1.5rem;
+  display: flex;
+  align-items: center;
 }
 
 /* Dropdown utilizator logat */
@@ -4061,13 +4103,74 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
   border-color: rgba(255,255,255,0.2);
 }
 
+/* Item auth în hamburger menu — ascuns pe desktop */
+#nav-auth-mobile-li {
+  display: none;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .auth-modal-card {
     margin: 1rem;
     max-width: calc(100% - 2rem);
   }
+
+  /* Ascunde pill-ul din nav pe mobile */
   #nav-auth-wrapper {
-    margin-right: 0.8rem;
+    display: none;
+  }
+
+  /* Afișează item-ul din hamburger menu */
+  #nav-auth-mobile-li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-auth-mobile-btn {
+    background: none;
+    border: none;
+    color: var(--accent2);
+    font-family: inherit;
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: inherit;
+    padding: 0.55rem 2rem;
+    cursor: pointer;
+    letter-spacing: 0.2px;
+    transition: color 0.2s ease;
+  }
+  .nav-auth-mobile-btn:hover {
+    color: #a5aef9;
+  }
+
+  .nav-auth-mobile-user {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .nav-auth-mobile-email {
+    font-size: 0.82rem;
+    color: var(--muted);
+    word-break: break-all;
+    text-align: center;
+  }
+
+  .nav-auth-mobile-logout {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.9rem;
+    padding: 0.4rem 1.4rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .nav-auth-mobile-logout:hover {
+    background: rgba(255, 255, 255, 0.08);
   }
 }

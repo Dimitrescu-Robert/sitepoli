@@ -134,6 +134,7 @@ function friendlyError(code) {
     'auth/weak-password': 'Parola trebuie să aibă minim 6 caractere.',
     'auth/popup-closed-by-user': 'Fereastra Google a fost închisă.',
     'auth/invalid-credential': 'Email sau parolă incorectă.',
+    'auth/too-many-requests': 'Prea multe încercări. Încearcă mai târziu.',
   };
   return map[code] || 'A apărut o eroare. Încearcă din nou.';
 }
@@ -147,9 +148,10 @@ function updateNavButton(user) {
   if (!trigger) return;
 
   if (user) {
-    const initials = user.displayName
-      ? user.displayName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
-      : user.email[0].toUpperCase();
+    const displayName = (user.displayName || '').trim();
+    const initials = displayName
+      ? displayName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
+      : (user.email || '?')[0].toUpperCase();
     trigger.textContent = initials;
     trigger.classList.add('auth-logged-in');
     if (emailEl) emailEl.textContent = user.email;
@@ -169,6 +171,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const overlay = document.getElementById('auth-modal-overlay');
   const trigger = document.getElementById('nav-auth-trigger');
   const dropdown = document.getElementById('auth-user-dropdown');
+  const wrapper = document.getElementById('nav-auth-wrapper');
+
+  if (!trigger || !overlay) return;
 
   // Deschide modal sau dropdown
   trigger.addEventListener('click', () => {
@@ -181,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Închide dropdown la click în afară
   document.addEventListener('click', (e) => {
-    if (dropdown && !document.getElementById('nav-auth-wrapper').contains(e.target)) {
+    if (dropdown && wrapper && !wrapper.contains(e.target)) {
       dropdown.classList.remove('open');
     }
   });
@@ -192,12 +197,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === overlay) closeModal();
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
   });
 
   // Tab-uri
   document.querySelectorAll('.auth-tab').forEach(tab => {
     tab.addEventListener('click', () => {
+      if (tab.classList.contains('active')) return;
       document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
       tab.classList.add('active');
@@ -226,6 +232,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Login Google
   document.getElementById('btn-login-google').addEventListener('click', async () => {
     clearError('login');
+    const btn = document.getElementById('btn-login-google');
+    btn.disabled = true;
     try {
       await signInWithPopup(auth, googleProvider);
       closeModal();
@@ -233,6 +241,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.code !== 'auth/popup-closed-by-user') {
         showError('login', friendlyError(e.code));
       }
+    } finally {
+      btn.disabled = false;
     }
   });
 
@@ -257,6 +267,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Register Google (același popup)
   document.getElementById('btn-register-google').addEventListener('click', async () => {
     clearError('register');
+    const btn = document.getElementById('btn-register-google');
+    btn.disabled = true;
     try {
       await signInWithPopup(auth, googleProvider);
       closeModal();
@@ -264,13 +276,20 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.code !== 'auth/popup-closed-by-user') {
         showError('register', friendlyError(e.code));
       }
+    } finally {
+      btn.disabled = false;
     }
   });
 
   // Logout
   document.getElementById('btn-logout').addEventListener('click', async () => {
-    await signOut(auth);
-    dropdown.classList.remove('open');
+    try {
+      await signOut(auth);
+    } catch (e) {
+      console.error('[Auth] signOut error:', e);
+    } finally {
+      dropdown.classList.remove('open');
+    }
   });
 
   // Listener stare auth

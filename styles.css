@@ -3931,165 +3931,219 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
 }
 
 /* Overlay modal */
+
 #auth-modal-overlay {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 1000;
   align-items: center;
   justify-content: center;
 }
 #auth-modal-overlay.open {
   display: flex;
+  animation: authFadeIn 0.25s ease;
+}
+@keyframes authFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Cardul modal */
+/* Card modal */
 .auth-modal-card {
-  background: rgba(34, 40, 49, 0.97);
-  border: 1px solid rgba(130, 141, 248, 0.2);
-  border-radius: 16px;
-  padding: 2rem 2.2rem 2.2rem;
+  background: var(--bg-panel);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 2rem 2rem 1.8rem;
   width: 100%;
   max-width: 400px;
   position: relative;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05),
+    0 20px 60px rgba(0,0,0,0.5);
+  animation: authCardIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
+@keyframes authCardIn {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Close button */
 .auth-modal-close {
   position: absolute;
   top: 1rem;
-  right: 1.1rem;
+  right: 1rem;
   background: none;
   border: none;
   color: var(--muted);
-  font-size: 1.4rem;
   cursor: pointer;
-  line-height: 1;
-  transition: color 0.2s;
-}
-.auth-modal-close:hover { color: var(--text); }
-
-/* Tab-uri */
-.auth-tabs {
+  padding: 4px;
+  border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
   display: flex;
-  gap: 0;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  align-items: center;
+  justify-content: center;
 }
-.auth-tab {
+.auth-modal-close:hover {
+  color: var(--text);
+  background: rgba(255,255,255,0.06);
+}
+
+/* Steps */
+.auth-step { display: none; }
+.auth-step.active { display: block; animation: authStepIn 0.3s ease; }
+@keyframes authStepIn {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Toggle pill (Login / Register & Lunar / 3 Luni) ────────── */
+.auth-toggle-wrap,
+.plan-toggle-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.auth-toggle,
+.plan-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  background: rgba(255,255,255,0.06);
+  border-radius: 100px;
+  padding: 4px;
+  width: 100%;
+  max-width: 280px;
+}
+.auth-toggle-btn,
+.plan-toggle-btn {
+  position: relative;
+  z-index: 1;
   background: none;
   border: none;
   color: var(--muted);
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  padding: 0.5rem 0;
-  margin-right: 1.5rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
-  position: relative;
-  transition: color 0.2s;
+  border-radius: 100px;
+  transition: color 0.3s;
 }
-.auth-tab.active { color: var(--text); }
-.auth-tab.active::after {
-  content: '';
+.auth-toggle-btn.active,
+.plan-toggle-btn.active {
+  color: var(--text-bright);
+}
+.auth-toggle-slider,
+.plan-toggle-slider {
   position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #828df8, #7BA0D9);
-  border-radius: 2px;
+  top: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  height: calc(100% - 8px);
+  background: rgba(255,255,255,0.12);
+  border-radius: 100px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
 }
 
-/* Panouri tab */
+/* ── Panels ──────────────────────────────────────────────────── */
 .auth-panel { display: none; }
 .auth-panel.active { display: block; }
 
-/* Câmpuri formular */
+/* ── Form fields ─────────────────────────────────────────────── */
 .auth-field {
   margin-bottom: 1rem;
 }
 .auth-field label {
   display: block;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--muted);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.35rem;
   font-weight: 600;
+  letter-spacing: 0.02em;
 }
 .auth-field input {
   width: 100%;
-  padding: 0.6rem 0.9rem;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  background: rgba(255,255,255,0.04);
+  border: 2px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
   color: var(--text);
   font-family: inherit;
-  font-size: 0.97rem;
-  transition: border-color 0.2s;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, background 0.2s;
 }
 .auth-field input:focus {
   outline: none;
   border-color: rgba(130, 141, 248, 0.5);
+  background: rgba(255,255,255,0.06);
+}
+.auth-field input::placeholder {
+  color: rgba(255,255,255,0.2);
 }
 
-/* Mesaj eroare */
+/* ── Error message ───────────────────────────────────────────── */
 .auth-error {
   display: none;
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  border-radius: 8px;
-  padding: 0.5rem 0.8rem;
-  font-size: 0.85rem;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 12px;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.84rem;
   color: #fca5a5;
   margin-bottom: 1rem;
 }
 .auth-error.visible { display: block; }
 
-/* Buton principal submit */
+/* ── Primary button (pill, black fill style) ─────────────────── */
 .auth-btn-primary {
   width: 100%;
-  padding: 0.65rem;
-  background: linear-gradient(135deg, #828df8, #7BA0D9);
+  padding: 0.75rem;
+  background: var(--text-bright);
   border: none;
-  border-radius: 8px;
-  color: #fff;
+  border-radius: 100px;
+  color: var(--bg-deep);
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
-  transition: opacity 0.2s, transform 0.2s;
-  margin-top: 0.3rem;
+  transition: transform 0.3s, opacity 0.2s;
+  margin-top: 0.5rem;
 }
-.auth-btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
-.auth-btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.auth-btn-primary:hover { opacity: 0.92; }
+.auth-btn-primary:active { transform: scale(0.97); }
+.auth-btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
-/* Separator */
+/* ── Divider ─────────────────────────────────────────────────── */
 .auth-divider {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  margin: 1rem 0;
+  margin: 1.1rem 0;
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
 }
 .auth-divider::before, .auth-divider::after {
   content: '';
   flex: 1;
   height: 1px;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.07);
 }
 
-/* Buton Google */
+/* ── Google button ───────────────────────────────────────────── */
 .auth-btn-google {
   width: 100%;
-  padding: 0.6rem;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 8px;
+  padding: 0.7rem;
+  background: rgba(255,255,255,0.04);
+  border: 2px solid rgba(255,255,255,0.08);
+  border-radius: 100px;
   color: var(--text);
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 600;
   cursor: pointer;
   display: flex;
@@ -4099,28 +4153,172 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
   transition: background 0.2s, border-color 0.2s;
 }
 .auth-btn-google:hover {
-  background: rgba(255,255,255,0.09);
-  border-color: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.18);
 }
 
-/* Item auth în hamburger menu — ascuns pe desktop */
+/* ═══════════════════════════════════════════════════════════════
+   PLAN PICKER — 21st.dev pricing-interaction style
+   ═══════════════════════════════════════════════════════════════ */
+
+.plan-title {
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin: 0 0 0.25rem;
+}
+.plan-subtitle {
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0 0 1.3rem;
+}
+
+/* Plan cards container */
+.plan-cards {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 1.2rem;
+}
+
+/* Sliding highlight behind selected card */
+.plan-highlight-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border: 3px solid var(--text-bright);
+  border-radius: 20px;
+  pointer-events: none;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+/* Individual plan card */
+.plan-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.2rem;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+  position: relative;
+}
+.plan-card:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+.plan-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+/* Radio circle */
+.plan-radio {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.3s;
+}
+.plan-card.selected .plan-radio {
+  border-color: var(--text-bright);
+}
+.plan-radio-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text-bright);
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.3s, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.plan-card.selected .plan-radio-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.plan-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.plan-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-bright);
+}
+.plan-desc {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* Badge "Popular" */
+.plan-badge {
+  display: inline-block;
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: 100px;
+  letter-spacing: 0.03em;
+  width: fit-content;
+}
+
+/* Price display */
+.plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+  flex-shrink: 0;
+}
+.plan-amount {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-bright);
+  font-variant-numeric: tabular-nums;
+  min-width: 2ch;
+  text-align: right;
+}
+.plan-currency {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.plan-period {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ── Mobile auth (hamburger) ─────────────────────────────────── */
 #nav-auth-mobile-li {
   display: none;
 }
 
-/* Responsive */
+/* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .auth-modal-card {
     margin: 1rem;
     max-width: calc(100% - 2rem);
+    padding: 1.5rem 1.3rem 1.5rem;
   }
 
-  /* Ascunde pill-ul din nav pe mobile */
   #nav-auth-wrapper {
     display: none;
   }
 
-  /* Afișează item-ul din hamburger menu */
   #nav-auth-mobile-li {
     display: flex;
     flex-direction: column;
@@ -4173,4 +4371,12 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
   .nav-auth-mobile-logout:hover {
     background: rgba(255, 255, 255, 0.08);
   }
+
+  .plan-card {
+    padding: 0.9rem 1rem;
+  }
+  .plan-amount {
+    font-size: 1.3rem;
+  }
 }
+

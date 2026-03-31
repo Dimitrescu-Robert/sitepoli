@@ -38,48 +38,108 @@ function injectModal() {
   overlay.id = 'auth-modal-overlay';
   overlay.innerHTML = `
     <div class="auth-modal-card">
-      <button class="auth-modal-close" id="auth-close-btn" aria-label="Închide">&times;</button>
-      <div class="auth-tabs">
-        <button class="auth-tab active" data-tab="login">Autentificare</button>
-        <button class="auth-tab" data-tab="register">Înregistrare</button>
+      <button class="auth-modal-close" id="auth-close-btn" aria-label="Închide">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <!-- Step 1: Auth (Login / Register) -->
+      <div class="auth-step active" id="auth-step-auth">
+        <div class="auth-toggle-wrap">
+          <div class="auth-toggle" id="auth-toggle">
+            <button class="auth-toggle-btn active" data-tab="login">Autentificare</button>
+            <button class="auth-toggle-btn" data-tab="register">Înregistrare</button>
+            <div class="auth-toggle-slider"></div>
+          </div>
+        </div>
+
+        <!-- Tab Login -->
+        <div class="auth-panel active" id="auth-panel-login">
+          <div class="auth-error" id="auth-error-login"></div>
+          <div class="auth-field">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" placeholder="email@exemplu.com" autocomplete="email">
+          </div>
+          <div class="auth-field">
+            <label for="login-password">Parolă</label>
+            <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password">
+          </div>
+          <button class="auth-btn-primary" id="btn-login-email">Autentifică-te</button>
+          <div class="auth-divider"><span>sau</span></div>
+          <button class="auth-btn-google" id="btn-login-google">
+            <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+            Continuă cu Google
+          </button>
+        </div>
+
+        <!-- Tab Register -->
+        <div class="auth-panel" id="auth-panel-register">
+          <div class="auth-error" id="auth-error-register"></div>
+          <div class="auth-field">
+            <label for="register-email">Email</label>
+            <input type="email" id="register-email" placeholder="email@exemplu.com" autocomplete="email">
+          </div>
+          <div class="auth-field">
+            <label for="register-password">Parolă</label>
+            <input type="password" id="register-password" placeholder="Minim 6 caractere" autocomplete="new-password">
+          </div>
+          <button class="auth-btn-primary" id="btn-register-email">Creează cont</button>
+          <div class="auth-divider"><span>sau</span></div>
+          <button class="auth-btn-google" id="btn-register-google">
+            <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+            Continuă cu Google
+          </button>
+        </div>
       </div>
 
-      <!-- Tab Login -->
-      <div class="auth-panel active" id="auth-panel-login">
-        <div class="auth-error" id="auth-error-login"></div>
-        <div class="auth-field">
-          <label for="login-email">Email</label>
-          <input type="email" id="login-email" placeholder="email@exemplu.com" autocomplete="email">
-        </div>
-        <div class="auth-field">
-          <label for="login-password">Parolă</label>
-          <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password">
-        </div>
-        <button class="auth-btn-primary" id="btn-login-email">Autentifică-te</button>
-        <div class="auth-divider">sau</div>
-        <button class="auth-btn-google" id="btn-login-google">
-          <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
-          Continuă cu Google
-        </button>
-      </div>
+      <!-- Step 2: Plan Selection -->
+      <div class="auth-step" id="auth-step-plan">
+        <h2 class="plan-title">Alege planul tău</h2>
+        <p class="plan-subtitle">Selectează planul care ți se potrivește</p>
 
-      <!-- Tab Register -->
-      <div class="auth-panel" id="auth-panel-register">
-        <div class="auth-error" id="auth-error-register"></div>
-        <div class="auth-field">
-          <label for="register-email">Email</label>
-          <input type="email" id="register-email" placeholder="email@exemplu.com" autocomplete="email">
+        <div class="plan-toggle-wrap">
+          <div class="plan-toggle" id="plan-toggle">
+            <button class="plan-toggle-btn active" data-billing="monthly">Lunar</button>
+            <button class="plan-toggle-btn" data-billing="quarterly">3 Luni</button>
+            <div class="plan-toggle-slider"></div>
+          </div>
         </div>
-        <div class="auth-field">
-          <label for="register-password">Parolă</label>
-          <input type="password" id="register-password" placeholder="Minim 6 caractere" autocomplete="new-password">
+
+        <div class="plan-cards" id="plan-cards">
+          <div class="plan-highlight-box" id="plan-highlight-box"></div>
+
+          <div class="plan-card selected" data-plan="standard">
+            <div class="plan-card-header">
+              <div class="plan-radio"><div class="plan-radio-dot"></div></div>
+              <div class="plan-card-info">
+                <span class="plan-name">Standard</span>
+                <span class="plan-desc">Acces la resursele de bază</span>
+              </div>
+            </div>
+            <div class="plan-price">
+              <span class="plan-amount" data-monthly="0" data-quarterly="0">0</span>
+              <span class="plan-currency">RON</span>
+              <span class="plan-period" data-monthly="/lună" data-quarterly="/3 luni">/lună</span>
+            </div>
+          </div>
+
+          <div class="plan-card" data-plan="student-plus">
+            <div class="plan-card-header">
+              <div class="plan-radio"><div class="plan-radio-dot"></div></div>
+              <div class="plan-card-info">
+                <span class="plan-name">Student Plus</span>
+                <span class="plan-badge">Popular</span>
+                <span class="plan-desc">Acces complet la toate resursele</span>
+              </div>
+            </div>
+            <div class="plan-price">
+              <span class="plan-amount" data-monthly="75" data-quarterly="180">75</span>
+              <span class="plan-currency">RON</span>
+              <span class="plan-period" data-monthly="/lună" data-quarterly="/3 luni">/lună</span>
+            </div>
+          </div>
         </div>
-        <button class="auth-btn-primary" id="btn-register-email">Creează cont</button>
-        <div class="auth-divider">sau</div>
-        <button class="auth-btn-google" id="btn-register-google">
-          <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
-          Continuă cu Google
-        </button>
+
+        <button class="auth-btn-primary" id="btn-select-plan">Începe acum</button>
       </div>
     </div>
   `;
@@ -93,7 +153,7 @@ function injectNavButton() {
   const wrapper = document.createElement('div');
   wrapper.id = 'nav-auth-wrapper';
   wrapper.innerHTML = `
-    <button class="nav-auth-pill" id="nav-auth-trigger">Contul meu</button>
+    <button class="nav-auth-pill" id="nav-auth-trigger">Înregistrează-te</button>
     <div class="auth-user-dropdown" id="auth-user-dropdown">
       <div class="auth-email" id="auth-user-email"></div>
       <button id="btn-logout">Deconectare</button>
@@ -114,7 +174,7 @@ function injectMobileAuthItem() {
   const li = document.createElement('li');
   li.id = 'nav-auth-mobile-li';
   li.innerHTML = `
-    <button class="nav-auth-mobile-btn" id="nav-auth-mobile-btn">Contul meu</button>
+    <button class="nav-auth-mobile-btn" id="nav-auth-mobile-btn">Înregistrează-te</button>
     <div class="nav-auth-mobile-user" id="nav-auth-mobile-user">
       <span class="nav-auth-mobile-email" id="nav-auth-mobile-email"></span>
       <button class="nav-auth-mobile-logout" id="btn-logout-mobile">Deconectare</button>
@@ -157,6 +217,7 @@ function clearError(panelId) {
 }
 
 function openModal() {
+  showStep('auth');
   document.getElementById('auth-modal-overlay').classList.add('open');
 }
 
@@ -164,6 +225,14 @@ function closeModal() {
   document.getElementById('auth-modal-overlay').classList.remove('open');
   clearError('login');
   clearError('register');
+}
+
+function showStep(step) {
+  document.querySelectorAll('.auth-step').forEach(s => s.classList.remove('active'));
+  document.getElementById(`auth-step-${step}`).classList.add('active');
+  if (step === 'plan') {
+    requestAnimationFrame(() => requestAnimationFrame(updatePlanHighlight));
+  }
 }
 
 function friendlyError(code) {
@@ -185,17 +254,54 @@ function friendlyError(code) {
 async function googleSignIn(panel) {
   if (isMobile()) {
     await signInWithRedirect(auth, googleProvider);
-    // pagina se redirecționează — nimic de executat după
     return;
   }
   await signInWithPopup(auth, googleProvider);
-  closeModal();
+  showStep('plan');
+}
+
+/* ── Plan picker helpers ────────────────────────────────────── */
+
+let currentBilling = 'monthly';
+
+function updatePlanHighlight() {
+  const cards = document.getElementById('plan-cards');
+  const selected = cards?.querySelector('.plan-card.selected');
+  const box = document.getElementById('plan-highlight-box');
+  if (!selected || !box || !cards) return;
+
+  const cardsRect = cards.getBoundingClientRect();
+  const cardRect = selected.getBoundingClientRect();
+  box.style.transform = `translateY(${cardRect.top - cardsRect.top}px)`;
+  box.style.height = `${cardRect.height}px`;
+}
+
+function updatePlanPrices() {
+  document.querySelectorAll('.plan-amount').forEach(el => {
+    const value = el.getAttribute(`data-${currentBilling}`);
+    animateNumber(el, parseInt(el.textContent), parseInt(value));
+  });
+  document.querySelectorAll('.plan-period').forEach(el => {
+    el.textContent = el.getAttribute(`data-${currentBilling}`);
+  });
+}
+
+function animateNumber(el, from, to) {
+  if (from === to) return;
+  const duration = 400;
+  const start = performance.now();
+  function tick(now) {
+    const t = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3);
+    el.textContent = Math.round(from + (to - from) * eased);
+    if (t < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
 }
 
 /* ── Actualizează navbar după schimbarea stării auth ─────────── */
 
 function updateNavButton(user) {
-  // Desktop pill
   const trigger = document.getElementById('nav-auth-trigger');
   const dropdown = document.getElementById('auth-user-dropdown');
   const emailEl = document.getElementById('auth-user-email');
@@ -209,13 +315,12 @@ function updateNavButton(user) {
       trigger.classList.add('auth-logged-in');
       if (emailEl) emailEl.textContent = user.email;
     } else {
-      trigger.textContent = 'Contul meu';
+      trigger.textContent = 'Înregistrează-te';
       trigger.classList.remove('auth-logged-in');
       if (dropdown) dropdown.classList.remove('open');
     }
   }
 
-  // Mobile menu item
   const mobileBtn = document.getElementById('nav-auth-mobile-btn');
   const mobileUser = document.getElementById('nav-auth-mobile-user');
   const mobileEmail = document.getElementById('nav-auth-mobile-email');
@@ -238,9 +343,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!trigger || !overlay) return;
 
-  // Tratează rezultatul redirect-ului Google după revenirea pe pagină (mobile)
+  // Redirect result (mobile Google sign-in)
   getRedirectResult(auth).then(result => {
-    // onAuthStateChanged gestionează UI-ul — nimic de făcut explicit
+    if (result && result.user) {
+      openModal();
+      showStep('plan');
+    }
   }).catch(e => {
     if (e.code && e.code !== 'auth/popup-closed-by-user') {
       openModal();
@@ -273,16 +381,47 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
   });
 
-  // Tab-uri — curăță erorile la schimbarea tab-ului
-  document.querySelectorAll('.auth-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      if (tab.classList.contains('active')) return;
+  /* ── Auth toggle (Login / Register) cu slider animat ────────── */
+  document.querySelectorAll('.auth-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.classList.contains('active')) return;
       clearError('login');
       clearError('register');
-      document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.auth-toggle-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById(`auth-panel-${tab.dataset.tab}`).classList.add('active');
+      btn.classList.add('active');
+      document.getElementById(`auth-panel-${btn.dataset.tab}`).classList.add('active');
+
+      const toggle = document.getElementById('auth-toggle');
+      const slider = toggle.querySelector('.auth-toggle-slider');
+      const idx = btn.dataset.tab === 'register' ? 1 : 0;
+      slider.style.transform = `translateX(${idx * 100}%)`;
+    });
+  });
+
+  /* ── Plan billing toggle (Lunar / 3 Luni) ──────────────────── */
+  document.querySelectorAll('.plan-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.classList.contains('active')) return;
+      document.querySelectorAll('.plan-toggle-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentBilling = btn.dataset.billing;
+
+      const toggle = document.getElementById('plan-toggle');
+      const slider = toggle.querySelector('.plan-toggle-slider');
+      const idx = btn.dataset.billing === 'quarterly' ? 1 : 0;
+      slider.style.transform = `translateX(${idx * 100}%)`;
+
+      updatePlanPrices();
+    });
+  });
+
+  /* ── Plan card selection ───────────────────────────────────── */
+  document.querySelectorAll('.plan-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      updatePlanHighlight();
     });
   });
 
@@ -296,7 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = true;
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      closeModal();
+      showStep('plan');
     } catch (e) {
       showError('login', friendlyError(e.code));
     } finally {
@@ -331,7 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const { user } = await createUserWithEmailAndPassword(auth, email, password);
       await sendEmailVerification(user);
-      showSuccess('register', 'Cont creat! Ai intrat in echipa!');
+      showStep('plan');
     } catch (e) {
       showError('register', friendlyError(e.code));
     } finally {
@@ -353,6 +492,15 @@ document.addEventListener('DOMContentLoaded', () => {
     } finally {
       btn.disabled = false;
     }
+  });
+
+  /* ── Plan selection confirm ────────────────────────────────── */
+  document.getElementById('btn-select-plan').addEventListener('click', () => {
+    const selected = document.querySelector('.plan-card.selected');
+    const plan = selected ? selected.dataset.plan : 'standard';
+    const billing = currentBilling;
+    console.log(`[Auth] Plan selectat: ${plan}, billing: ${billing}`);
+    closeModal();
   });
 
   // Logout

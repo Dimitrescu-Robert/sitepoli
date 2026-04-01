@@ -14,7 +14,7 @@ exports.gumroadWebhook = functions.https.onRequest(async (req, res) => {
   // Verificare token secret
   const expectedToken = functions.config().webhook?.token;
   if (!expectedToken || req.query.token !== expectedToken) {
-    console.error("Token invalid sau lipsă");
+    console.warn("Token invalid sau lipsă");
     return res.status(401).send("Unauthorized");
   }
 
@@ -33,7 +33,7 @@ exports.gumroadWebhook = functions.https.onRequest(async (req, res) => {
 
     if (refunded === "true" || refunded === true) {
       await db.collection("users").doc(uid).set(
-        { status: "free", refundedAt: new Date() },
+        { status: "free", refundedAt: admin.firestore.FieldValue.serverTimestamp() },
         { merge: true }
       );
       console.log(`Status revenit la 'free' pentru ${normalizedEmail} (uid: ${uid})`);
@@ -45,7 +45,7 @@ exports.gumroadWebhook = functions.https.onRequest(async (req, res) => {
         status: "paid",
         gumroadSaleId: sale_id || null,
         gumroadProduct: product_permalink || null,
-        paidAt: new Date(),
+        paidAt: admin.firestore.FieldValue.serverTimestamp(),
       },
       { merge: true }
     );

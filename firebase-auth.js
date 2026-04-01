@@ -291,7 +291,7 @@ async function syncUserToFirestore(user, plan, billing) {
     if (!snap.exists()) {
       await setDoc(userRef, {
         email: user.email,
-        status: plan === 'student-plus' ? 'paid' : 'free',
+        status: 'free',
         selectedPlan: plan || 'standard',
         selectedBilling: billing || 'monthly',
         createdAt: new Date()

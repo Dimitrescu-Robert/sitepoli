@@ -6,3 +6,6 @@ update_newsletter.py
 CLAUDE.md
 .superpowers/
 docs/
+.agents/
+.claude/
+skills-lock.json

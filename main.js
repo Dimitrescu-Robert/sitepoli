@@ -216,6 +216,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (cooldownExpired) {
             setTimeout(function() {
+                const authModal = document.getElementById('auth-modal-overlay');
+                if (authModal && authModal.classList.contains('open')) return;
                 popup.style.display = 'flex';
                 // Micro-delay pentru a declanșa tranziția CSS
                 setTimeout(() => popup.classList.add('active'), 10);

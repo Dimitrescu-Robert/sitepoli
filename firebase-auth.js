@@ -6,12 +6,15 @@ import {
   signInWithPopup,
   signInWithRedirect,
   getRedirectResult,
+  getAdditionalUserInfo,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendEmailVerification,
   signOut
 } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAml8nJ8UOh9wrIhI6f-3K6-tOaPYLz_c4",
@@ -26,6 +29,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+const db = getFirestore(app, 'admiterepoli');
 
 function isMobile() {
   return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -183,6 +187,22 @@ function injectMobileAuthItem() {
   navElements.appendChild(li);
 }
 
+function injectGumroadScript() {
+  if (document.querySelector('script[src="https://gumroad.com/js/gumroad.js"]')) return;
+  const script = document.createElement('script');
+  script.src = 'https://gumroad.com/js/gumroad.js';
+  document.head.appendChild(script);
+}
+
+function openGumroadOverlay(url) {
+  const a = document.createElement('a');
+  a.href = url;
+  a.classList.add('gumroad-overlay-checkout');
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
 function closeHamburger() {
   document.querySelector('.hamburger')?.classList.remove('active');
   document.querySelector('.nav-elements')?.classList.remove('active');
@@ -217,6 +237,11 @@ function clearError(panelId) {
 }
 
 function openModal() {
+  const newsletterPopup = document.getElementById('newsletter-popup');
+  if (newsletterPopup && newsletterPopup.classList.contains('active')) {
+    newsletterPopup.classList.remove('active');
+    setTimeout(() => { newsletterPopup.style.display = 'none'; }, 300);
+  }
   showStep('auth');
   document.getElementById('auth-modal-overlay').classList.add('open');
 }
@@ -237,27 +262,64 @@ function showStep(step) {
 
 function friendlyError(code) {
   const map = {
-    'auth/invalid-email':        'Adresă de email invalidă.',
-    'auth/invalid-credential':   'Email sau parolă incorectă.',
-    'auth/email-already-in-use': 'Există deja un cont cu acest email.',
-    'auth/weak-password':        'Parola trebuie să aibă minim 6 caractere.',
-    'auth/popup-closed-by-user': 'Fereastra Google a fost închisă.',
-    'auth/popup-blocked':        'Popup-ul a fost blocat de browser. Activează popup-urile pentru acest site.',
-    'auth/too-many-requests':    'Prea multe încercări. Încearcă mai târziu.',
-    'auth/network-request-failed': 'Eroare de rețea. Verifică conexiunea la internet.',
+    'auth/invalid-email':           'Adresă de email invalidă.',
+    'auth/invalid-credential':      'Email sau parolă incorectă.',
+    'auth/email-already-in-use':    'Există deja un cont cu acest email.',
+    'auth/weak-password':           'Parola trebuie să aibă minim 6 caractere.',
+    'auth/popup-closed-by-user':    'Fereastra Google a fost închisă.',
+    'auth/popup-blocked':           'Popup-ul a fost blocat de browser. Activează popup-urile pentru acest site.',
+    'auth/too-many-requests':       'Prea multe încercări. Încearcă mai târziu.',
+    'auth/network-request-failed':  'Eroare de rețea. Verifică conexiunea la internet.',
+    'auth/unauthorized-domain':     'Domeniul curent nu este autorizat. Adaugă-l în Firebase Console → Authentication → Settings → Authorized domains.',
+    'auth/operation-not-allowed':   'Autentificarea cu Google nu este activată. Activează-o în Firebase Console → Authentication → Sign-in method.',
+    'auth/cancelled-popup-request': 'Cerere anulată. Încearcă din nou.',
+    'auth/account-exists-with-different-credential': 'Există deja un cont cu acest email, conectat printr-o altă metodă.',
+    'auth/user-disabled':           'Acest cont a fost dezactivat.',
+    'auth/user-not-found':          'Nu există niciun cont cu acest email.',
+    'auth/wrong-password':          'Parolă incorectă.',
+    'auth/internal-error':          'Eroare internă Firebase. Încearcă din nou.',
   };
-  return map[code] || 'A apărut o eroare. Încearcă din nou.';
+  return map[code] || `A apărut o eroare (${code || 'necunoscută'}). Încearcă din nou.`;
+}
+
+/* ── Sincronizare utilizator cu Firestore ───────────────────── */
+
+async function syncUserToFirestore(user, plan, billing) {
+  try {
+    const userRef = doc(db, "users", user.uid);
+    const snap = await getDoc(userRef);
+    if (!snap.exists()) {
+      await setDoc(userRef, {
+        email: user.email,
+        status: plan === 'student-plus' ? 'paid' : 'free',
+        selectedPlan: plan || 'standard',
+        selectedBilling: billing || 'monthly',
+        createdAt: new Date()
+      });
+      console.log('[Auth] Firestore: document creat pentru', user.uid);
+    } else {
+      console.log('[Auth] Firestore: document deja existent pentru', user.uid);
+    }
+  } catch (e) {
+    console.error('[Auth] Firestore sync error:', e.code, e.message, e);
+    throw e;
+  }
 }
 
 /* ── Google Sign-In (popup pe desktop, redirect pe mobile) ───── */
 
-async function googleSignIn(panel) {
+async function googleSignIn() {
   if (isMobile()) {
     await signInWithRedirect(auth, googleProvider);
     return;
   }
-  await signInWithPopup(auth, googleProvider);
-  showStep('plan');
+  const result = await signInWithPopup(auth, googleProvider);
+  const isNewUser = getAdditionalUserInfo(result)?.isNewUser ?? true;
+  if (isNewUser) {
+    showStep('plan');
+  } else {
+    closeModal();
+  }
 }
 
 /* ── Plan picker helpers ────────────────────────────────────── */
@@ -335,6 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectNavButton();
   injectMobileAuthItem();
   injectModal();
+  injectGumroadScript();
 
   const overlay = document.getElementById('auth-modal-overlay');
   const trigger = document.getElementById('nav-auth-trigger');
@@ -346,8 +409,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Redirect result (mobile Google sign-in)
   getRedirectResult(auth).then(result => {
     if (result && result.user) {
-      openModal();
-      showStep('plan');
+      const isNewUser = getAdditionalUserInfo(result)?.isNewUser ?? true;
+      if (isNewUser) {
+        openModal();
+        showStep('plan');
+      }
     }
   }).catch(e => {
     if (e.code && e.code !== 'auth/popup-closed-by-user') {
@@ -425,6 +491,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Enter pe câmpurile de login/register
+  ['login-email', 'login-password'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('btn-login-email').click();
+    });
+  });
+  ['register-email', 'register-password'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('btn-register-email').click();
+    });
+  });
+
   // Login email/parolă
   document.getElementById('btn-login-email').addEventListener('click', async () => {
     clearError('login');
@@ -435,7 +513,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = true;
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      showStep('plan');
+      closeModal();
     } catch (e) {
       showError('login', friendlyError(e.code));
     } finally {
@@ -449,8 +527,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = document.getElementById('btn-login-google');
     btn.disabled = true;
     try {
-      await googleSignIn('login');
+      await googleSignIn();
     } catch (e) {
+      console.error('[Auth] Google login error:', e.code, e.message);
       if (e.code !== 'auth/popup-closed-by-user') {
         showError('login', friendlyError(e.code));
       }
@@ -484,8 +563,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = document.getElementById('btn-register-google');
     btn.disabled = true;
     try {
-      await googleSignIn('register');
+      await googleSignIn();
     } catch (e) {
+      console.error('[Auth] Google register error:', e.code, e.message);
       if (e.code !== 'auth/popup-closed-by-user') {
         showError('register', friendlyError(e.code));
       }
@@ -495,12 +575,34 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ── Plan selection confirm ────────────────────────────────── */
-  document.getElementById('btn-select-plan').addEventListener('click', () => {
+  document.getElementById('btn-select-plan').addEventListener('click', async () => {
     const selected = document.querySelector('.plan-card.selected');
     const plan = selected ? selected.dataset.plan : 'standard';
     const billing = currentBilling;
-    console.log(`[Auth] Plan selectat: ${plan}, billing: ${billing}`);
+    const btn = document.getElementById('btn-select-plan');
+    btn.disabled = true;
+
+    const user = auth.currentUser;
+    if (user) {
+      try {
+        await syncUserToFirestore(user, plan, billing);
+      } catch (e) {
+        console.error('[Auth] Nu s-a putut salva în Firestore:', e.code, e.message);
+      }
+    } else {
+      console.warn('[Auth] auth.currentUser este null la selectarea planului');
+    }
+
+    btn.disabled = false;
     closeModal();
+
+    if (plan === 'student-plus' && user) {
+      const gumroadUrls = {
+        monthly:   `https://admiterepoli.gumroad.com/l/student-plus?email=${encodeURIComponent(user.email)}`,
+        quarterly: `https://admiterepoli.gumroad.com/l/student-plus?email=${encodeURIComponent(user.email)}`
+      };
+      openGumroadOverlay(gumroadUrls[billing] || gumroadUrls.monthly);
+    }
   });
 
   // Logout

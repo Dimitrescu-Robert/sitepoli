@@ -4379,3 +4379,54 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
     font-size: 1.3rem;
   }
 }
+
+/* ── Gumroad iframe modal ─────────────────────────────────────── */
+#gumroad-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+#gumroad-modal.open {
+  display: flex;
+}
+.gumroad-modal-inner {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  height: min(700px, 90vh);
+  background: var(--bg-panel);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+}
+#gumroad-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.gumroad-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  background: var(--bg-deep);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.gumroad-modal-close:hover {
+  opacity: 1;
+}

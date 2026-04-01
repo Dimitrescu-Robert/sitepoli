@@ -187,11 +187,36 @@ function injectMobileAuthItem() {
   navElements.appendChild(li);
 }
 
+function injectGumroadModal() {
+  const modal = document.createElement('div');
+  modal.id = 'gumroad-modal';
+  modal.innerHTML = `
+    <div class="gumroad-modal-inner">
+      <button class="gumroad-modal-close" id="gumroad-modal-close" aria-label="Închide">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <iframe id="gumroad-iframe" src="" frameborder="0" allow="payment"
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-popups-to-escape-sandbox"></iframe>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  document.getElementById('gumroad-modal-close').addEventListener('click', closeGumroadModal);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeGumroadModal(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeGumroadModal();
+  });
+}
+
 function openGumroadModal(url) {
-  const w = 760, h = 700;
-  const left = Math.round((screen.width - w) / 2);
-  const top = Math.round((screen.height - h) / 2);
-  window.open(url, 'gumroad_checkout', `width=${w},height=${h},left=${left},top=${top},resizable=yes,scrollbars=yes`);
+  document.getElementById('gumroad-iframe').src = url;
+  document.getElementById('gumroad-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGumroadModal() {
+  document.getElementById('gumroad-modal').classList.remove('open');
+  document.getElementById('gumroad-iframe').src = '';
+  document.body.style.overflow = '';
 }
 
 function closeHamburger() {
@@ -388,6 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectNavButton();
   injectMobileAuthItem();
   injectModal();
+  injectGumroadModal();
 
   const overlay = document.getElementById('auth-modal-overlay');
   const trigger = document.getElementById('nav-auth-trigger');

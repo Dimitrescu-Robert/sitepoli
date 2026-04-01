@@ -146,6 +146,7 @@ function injectModal() {
         <button class="auth-btn-primary" id="btn-select-plan">Începe acum</button>
       </div>
     </div>
+    <a id="gumroad-overlay-link" class="gumroad-overlay-checkout" href="#" style="display:none"></a>
   `;
   document.body.appendChild(overlay);
 }
@@ -195,12 +196,10 @@ function injectGumroadScript() {
 }
 
 function openGumroadOverlay(url) {
-  const a = document.createElement('a');
+  const a = document.getElementById('gumroad-overlay-link');
+  if (!a) return;
   a.href = url;
-  a.classList.add('gumroad-overlay-checkout');
-  document.body.appendChild(a);
   a.click();
-  document.body.removeChild(a);
 }
 
 function closeHamburger() {

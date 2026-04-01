@@ -12,7 +12,7 @@ exports.gumroadWebhook = functions.https.onRequest(async (req, res) => {
   }
 
   // Verificare token secret
-  const expectedToken = functions.config().webhook?.token;
+  const expectedToken = process.env.WEBHOOK_TOKEN;
   if (!expectedToken || req.query.token !== expectedToken) {
     console.warn("Token invalid sau lipsă");
     return res.status(401).send("Unauthorized");

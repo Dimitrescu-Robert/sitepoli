@@ -14,7 +14,7 @@ import {
   signOut
 } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
 
-import { getFirestore, doc, getDoc, setDoc, collection } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAml8nJ8UOh9wrIhI6f-3K6-tOaPYLz_c4",
@@ -308,7 +308,7 @@ async function saveSimulationResult(simulationId, data) {
       scoreTotal: data.scoreTotal,
       scoreInfo: data.scoreInfo,
       scoreMate: data.scoreMate,
-      completedAt: new Date(),
+      completedAt: serverTimestamp(),
       timeElapsed: data.timeElapsed
     }, { merge: true });
     console.log('[Profile] Rezultat salvat pentru', simulationId);

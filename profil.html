@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PC1VMXYCRN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PC1VMXYCRN');
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profilul meu | AdmiterePoli</title>
+    <meta name="robots" content="noindex">
+    <link rel="icon" type="image/png" href="logosquared.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="./">
+                <img src="images/logonoutrans.png" alt="logo" class="logonav">
+            </a>
+            <ul class="nav-elements">
+                <li><a href="./informatii">Informații generale</a></li>
+                <li><a href="./subiecte">Subiecte/Rezolvări</a></li>
+                <li><a href="./resurse">Resurse</a></li>
+                <li><a href="./simulari" class="nav-sim-btn">Simulări</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="grid-main-content">
+            <section class="container profile-page">
+
+                <div class="profile-header">
+                    <h1 class="profile-title">Profilul meu</h1>
+                    <p class="profile-subtitle" id="profile-email-header"></p>
+                </div>
+
+                <!-- Secțiunea 1: Informații cont -->
+                <div class="profile-card" id="profile-account-card">
+                    <h2 class="profile-card-title">Informații cont</h2>
+                    <div class="profile-field">
+                        <label class="profile-label">Email</label>
+                        <p class="profile-value" id="profile-email-display"></p>
+                    </div>
+                    <div class="profile-field">
+                        <label class="profile-label" for="profile-name-input">Nume afișat</label>
+                        <div class="profile-input-row">
+                            <input type="text" id="profile-name-input" class="profile-input" placeholder="Introdu numele tău">
+                            <button class="profile-btn-primary" id="btn-save-name">Salvează</button>
+                        </div>
+                        <p class="profile-feedback" id="name-feedback"></p>
+                    </div>
+                    <div class="profile-field" id="profile-password-section">
+                        <!-- Populat dinamic de profile.js -->
+                    </div>
+                </div>
+
+                <!-- Secțiunea 2: Planul tău -->
+                <div class="profile-card" id="profile-plan-card">
+                    <h2 class="profile-card-title">Planul tău</h2>
+                    <div id="profile-plan-content">
+                        <!-- Populat dinamic de profile.js -->
+                    </div>
+                </div>
+
+                <!-- Secțiunea 3: Rezultatele mele -->
+                <div class="profile-card" id="profile-results-card">
+                    <h2 class="profile-card-title">Rezultatele mele</h2>
+                    <div id="profile-results-content">
+                        <p class="profile-loading">Se încarcă...</p>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <script type="module" src="./firebase-auth.js"></script>
+    <script type="module" src="./profile.js"></script>
+</body>
+</html>

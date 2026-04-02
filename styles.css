@@ -4391,13 +4391,12 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
   transition: background 0.2s;
 }
 .auth-dropdown-link:hover {
-  background: var(--bg-surface);
-  color: var(--accent);
+  background: rgba(130, 141, 248, 0.12);
 }
 
 .nav-auth-mobile-profile {
   display: block;
-  padding: 0.5rem 0;
+  padding: 0.4rem 1.4rem;
   color: var(--text);
   text-decoration: none;
   font-size: 0.95rem;

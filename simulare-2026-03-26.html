@@ -658,6 +658,15 @@ void f(int k, int n,
             info: infoResults,
             mate: mateResults
         });
+
+        // Salvare rezultat în profilul utilizatorului (dacă e autentificat)
+        window.saveSimulationResult?.('simulare-2026-03-26', {
+            title: 'Simulare 26 Martie 2026',
+            scoreTotal: scoreTotal,
+            scoreInfo: scoreInfo,
+            scoreMate: scoreMate,
+            timeElapsed: (3 * 60 * 60) - secondsLeft
+        });
     }
 
     function submitAll(timeUp, forceSubmit = false) {

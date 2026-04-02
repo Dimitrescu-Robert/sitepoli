@@ -4380,3 +4380,28 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
   }
 }
 
+/* ── Profile dropdown link ───────────────────────────── */
+.auth-dropdown-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+.auth-dropdown-link:hover {
+  background: var(--bg-surface);
+  color: var(--accent);
+}
+
+.nav-auth-mobile-profile {
+  display: block;
+  padding: 0.5rem 0;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.nav-auth-mobile-profile:hover {
+  color: var(--accent);
+}

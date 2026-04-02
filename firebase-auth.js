@@ -160,6 +160,7 @@ function injectNavButton() {
     <button class="nav-auth-pill" id="nav-auth-trigger">Înregistrează-te</button>
     <div class="auth-user-dropdown" id="auth-user-dropdown">
       <div class="auth-email" id="auth-user-email"></div>
+      <a href="./profil" class="auth-dropdown-link" id="btn-profile">Profilul meu</a>
       <button id="btn-logout">Deconectare</button>
     </div>
   `;
@@ -181,6 +182,7 @@ function injectMobileAuthItem() {
     <button class="nav-auth-mobile-btn" id="nav-auth-mobile-btn">Înregistrează-te</button>
     <div class="nav-auth-mobile-user" id="nav-auth-mobile-user">
       <span class="nav-auth-mobile-email" id="nav-auth-mobile-email"></span>
+      <a href="./profil" class="nav-auth-mobile-profile">Profilul meu</a>
       <button class="nav-auth-mobile-logout" id="btn-logout-mobile">Deconectare</button>
     </div>
   `;

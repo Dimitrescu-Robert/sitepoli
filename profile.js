@@ -40,18 +40,18 @@ onAuthStateChanged(auth, (user) => {
 });
 
 async function initProfilePage(user) {
-  // Header email
   const emailHeader = document.getElementById('profile-email-header');
   if (emailHeader) emailHeader.textContent = user.email;
-
-  // Încarcă documentul user din Firestore
-  const userRef = doc(db, 'users', user.uid);
-  const snap = await getDoc(userRef);
-  const userData = snap.exists() ? snap.data() : {};
-
-  renderAccountSection(user, userData);
-  renderPlanSection(user, userData);
-  await renderResultsSection(user);
+  try {
+    const userRef = doc(db, 'users', user.uid);
+    const snap = await getDoc(userRef);
+    const userData = snap.exists() ? snap.data() : {};
+    renderAccountSection(user, userData);
+    renderPlanSection(user, userData);
+    await renderResultsSection(user);
+  } catch (e) {
+    console.error('[Profile] Eroare inițializare profil:', e);
+  }
 }
 
 function renderAccountSection(user, userData) {
@@ -68,6 +68,7 @@ function renderAccountSection(user, userData) {
   const nameFeedback = document.getElementById('name-feedback');
   if (btnSaveName) {
     btnSaveName.addEventListener('click', async () => {
+      if (!nameInput || !nameFeedback) return;
       const name = nameInput.value.trim();
       if (!name) {
         nameFeedback.textContent = 'Introdu un nume valid.';
@@ -172,7 +173,7 @@ function renderPlanSection(user, userData) {
   if (!isPaid) {
     document.getElementById('btn-upgrade-plan').addEventListener('click', () => {
       const url = `https://admiterepoli.gumroad.com/l/student-plus-lunar?wanted=true&email=${encodeURIComponent(user.email)}`;
-      window.open(url, '_blank', 'noopener');
+      window.open(url, '_blank', 'noopener,noreferrer');
     });
   }
 }

@@ -4404,3 +4404,327 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
 .nav-auth-mobile-profile:hover {
   color: var(--accent);
 }
+
+/* ═══════════════════════════════════════════════════
+   PAGINA DE PROFIL
+   ═══════════════════════════════════════════════════ */
+
+.profile-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+.profile-header {
+  margin-bottom: 2rem;
+}
+
+.profile-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-bottom: 0.25rem;
+}
+
+.profile-subtitle {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Card */
+.profile-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.profile-card-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-heading);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Fields */
+.profile-field {
+  margin-bottom: 1.25rem;
+}
+
+.profile-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.profile-value {
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.profile-muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.profile-input-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.profile-input {
+  flex: 1;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.profile-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.profile-btn-primary {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  font-family: inherit;
+}
+
+.profile-btn-primary:hover { opacity: 0.85; }
+.profile-btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.profile-btn-secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+}
+
+.profile-btn-secondary:hover { background: rgba(123, 160, 217, 0.1); }
+.profile-btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.profile-btn-inline {
+  display: inline-block;
+  margin-top: 1rem;
+  text-decoration: none;
+}
+
+.profile-feedback {
+  font-size: 0.85rem;
+  margin-top: 0.4rem;
+  min-height: 1.2em;
+}
+.profile-feedback.success { color: var(--accent3); }
+.profile-feedback.error   { color: #fc8181; }
+
+/* Loading / empty */
+.profile-loading,
+.profile-empty {
+  color: var(--muted);
+  font-size: 0.95rem;
+  padding: 0.5rem 0;
+}
+
+/* ── Secțiunea plan ─────────────────────────────── */
+
+.profile-plan-current {
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+}
+
+.profile-plan-badge {
+  display: inline-block;
+  background: var(--accent3);
+  color: #000;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 99px;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.profile-plan-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 520px) {
+  .profile-plan-compare { grid-template-columns: 1fr; }
+}
+
+.profile-plan-col {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.profile-plan-col.plan-col-active {
+  border-color: var(--accent);
+  background: rgba(123, 160, 217, 0.07);
+}
+
+.profile-plan-col-name {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.profile-plan-col-price {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.profile-plan-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-plan-benefits li {
+  font-size: 0.88rem;
+  color: var(--text);
+  padding: 0.25rem 0;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.profile-plan-benefits li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--accent3);
+  font-weight: 700;
+}
+
+.profile-btn-upgrade {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  font-family: inherit;
+}
+
+.profile-btn-upgrade:hover { opacity: 0.88; }
+
+/* ── Carduri rezultate simulări ─────────────────── */
+
+.profile-result-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s;
+}
+
+.profile-result-card:hover {
+  border-color: var(--border-hover);
+}
+
+.profile-result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.profile-result-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-heading);
+}
+
+.profile-result-date {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 0.15rem;
+}
+
+.profile-result-score {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.profile-result-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.profile-result-section-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+.profile-result-bar {
+  height: 6px;
+  background: var(--bg-deep);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.profile-result-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.6s ease;
+}
+
+.bar-info { background: var(--accent); }
+.bar-mate { background: var(--accent2); }
+
+/* Badge-uri rezultat */
+.profile-result-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.7rem;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+
+.badge-excellent { background: rgba(52, 211, 153, 0.15); color: #34d399; }
+.badge-good      { background: rgba(123, 160, 217, 0.15); color: var(--accent); }
+.badge-ok        { background: rgba(251, 191, 36, 0.15); color: var(--gold); }
+.badge-fail      { background: rgba(252, 129, 129, 0.15); color: #fc8181; }

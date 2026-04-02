@@ -11,9 +11,7 @@ import {
   getDoc,
   updateDoc,
   collection,
-  getDocs,
-  orderBy,
-  query
+  getDocs
 } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -36,7 +34,14 @@ onAuthStateChanged(auth, (user) => {
     window.location.href = './';
     return;
   }
-  initProfilePage(user);
+  // Dacă userul vine înapoi de pe Gumroad, așteptăm 3s să proceseze webhookul, apoi reîncărcăm
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('upgraded')) {
+    history.replaceState(null, '', window.location.pathname);
+    setTimeout(() => initProfilePage(user), 3000);
+  } else {
+    initProfilePage(user);
+  }
 });
 
 async function initProfilePage(user) {
@@ -172,7 +177,8 @@ function renderPlanSection(user, userData) {
 
   if (!isPaid) {
     document.getElementById('btn-upgrade-plan').addEventListener('click', () => {
-      const url = `https://admiterepoli.gumroad.com/l/student-plus-lunar?wanted=true&email=${encodeURIComponent(user.email)}`;
+      const returnUrl = encodeURIComponent(`${window.location.origin}/profil?upgraded=1`);
+      const url = `https://admiterepoli.gumroad.com/l/student-plus-lunar?wanted=true&email=${encodeURIComponent(user.email)}&redirect_url=${returnUrl}`;
       window.open(url, '_blank', 'noopener,noreferrer');
     });
   }
@@ -184,7 +190,7 @@ async function renderResultsSection(user) {
 
   try {
     const resultsRef = collection(db, 'users', user.uid, 'simulationResults');
-    const snap = await getDocs(query(resultsRef, orderBy('completedAt', 'desc')));
+    const snap = await getDocs(resultsRef);
 
     if (snap.empty) {
       container.innerHTML = `
@@ -194,7 +200,15 @@ async function renderResultsSection(user) {
       return;
     }
 
-    const cards = snap.docs.map(d => {
+    // Sortăm descrescător după completedAt client-side (evităm nevoia de index Firestore)
+    const sortedDocs = snap.docs.slice().sort((a, b) => {
+      const ta = a.data().completedAt?.toMillis?.() ?? 0;
+      const tb = b.data().completedAt?.toMillis?.() ?? 0;
+      return tb - ta;
+    });
+
+    const PAGE_SIZE = 5;
+    const allCards = sortedDocs.map(d => {
       const r = d.data();
       const date = r.completedAt?.toDate
         ? r.completedAt.toDate().toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' })
@@ -233,9 +247,23 @@ async function renderResultsSection(user) {
           </div>
         </div>
       `;
-    }).join('');
+    });
 
-    container.innerHTML = cards;
+    const renderCards = (count) => {
+      const visible = allCards.slice(0, count).join('');
+      const remaining = allCards.length - count;
+      const showMoreBtn = remaining > 0
+        ? `<button class="profile-btn-secondary profile-show-more" id="btn-show-more">Arată mai multe (${remaining})</button>`
+        : '';
+      container.innerHTML = visible + showMoreBtn;
+      if (remaining > 0) {
+        document.getElementById('btn-show-more').addEventListener('click', () => {
+          renderCards(count + PAGE_SIZE);
+        });
+      }
+    };
+
+    renderCards(PAGE_SIZE);
   } catch (e) {
     console.error('[Profile] Eroare încărcare rezultate:', e);
     container.innerHTML = `<p class="profile-empty">Eroare la încărcarea rezultatelor.</p>`;

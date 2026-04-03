@@ -26,6 +26,18 @@ exports.gumroadWebhook = onRequest(async (req, res) => {
     return res.status(400).send("Missing email");
   }
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    console.warn("Email invalid în webhook:", email);
+    return res.status(400).send("Invalid email");
+  }
+
+  const allowedProducts = ["student-plus-lunar", "student-plus"];
+  if (product_permalink && !allowedProducts.includes(product_permalink)) {
+    console.warn("Produs necunoscut în webhook:", product_permalink);
+    return res.status(400).send("Unknown product");
+  }
+
   const normalizedEmail = email.toLowerCase();
 
   try {

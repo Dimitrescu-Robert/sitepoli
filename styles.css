@@ -4856,19 +4856,13 @@ header.scrolled { background: transparent; }
   opacity: 1;
   filter: saturate(1) brightness(1);
   box-shadow: 0 4px 24px rgba(130, 141, 248, 0.5);
-  animation: upgradePulse 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+
 
 .profile-btn-upgrade.plan-ready:hover {
   opacity: 0.88;
   box-shadow: 0 6px 30px rgba(130, 141, 248, 0.6);
   transform: translateY(-2px);
-}
-
-@keyframes upgradePulse {
-  0%   { transform: scale(0.96); box-shadow: 0 0 0 rgba(130, 141, 248, 0); }
-  60%  { transform: scale(1.04); box-shadow: 0 4px 28px rgba(130, 141, 248, 0.6); }
-  100% { transform: scale(1);    box-shadow: 0 4px 24px rgba(130, 141, 248, 0.5); }
 }
 
 .profile-cancel-section {

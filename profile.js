@@ -11,6 +11,7 @@ import {
   doc,
   getDoc,
   setDoc,
+  updateDoc,
   collection,
   getDocs
 } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
@@ -250,11 +251,9 @@ function renderPlanSection(user, userData) {
       cols[1].classList.toggle('plan-col-active', plan === 'plus');
 
       if (plan === 'plus') {
-        upgradeBtn.classList.remove('plan-ready');
-        void upgradeBtn.offsetWidth; // force reflow to restart animation
         upgradeBtn.classList.add('plan-ready');
       } else {
-        upgradeBtn.classList.remove('plan-ready');
+        upgradeBtn.classList.remove('plan-ready', 'plan-animate');
       }
     }
 

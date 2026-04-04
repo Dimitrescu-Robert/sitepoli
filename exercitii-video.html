@@ -1002,8 +1002,12 @@
                         if (_userLevel === 'none') {
                             openAuthModal();
                         } else {
-                            const raw = upBtn.getAttribute('data-upgrade-url');
-                            if (raw) try { window.open(decodeURIComponent(raw), '_blank', 'noopener,noreferrer'); } catch(_) {}
+                            if (typeof window.openUpgradeModal === 'function') {
+                                window.openUpgradeModal();
+                            } else {
+                                const raw = upBtn.getAttribute('data-upgrade-url');
+                                if (raw) try { window.open(decodeURIComponent(raw), '_blank', 'noopener,noreferrer'); } catch(_) {}
+                            }
                         }
                         return;
                     }

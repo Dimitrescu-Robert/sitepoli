@@ -286,7 +286,7 @@ async function syncUserToFirestore(user, plan, billing) {
         status: 'free',
         selectedPlan: plan || 'standard',
         selectedBilling: billing || 'monthly',
-        createdAt: new Date()
+        createdAt: serverTimestamp()
       });
       console.log('[Auth] Firestore: document creat pentru', user.uid);
     } else {
@@ -492,10 +492,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ── Plan billing toggle (Lunar / 3 Luni) ──────────────────── */
-  document.querySelectorAll('.plan-toggle-btn').forEach(btn => {
+  const planToggleBtns = document.querySelectorAll('.plan-toggle-btn');
+  planToggleBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       if (btn.classList.contains('active')) return;
-      document.querySelectorAll('.plan-toggle-btn').forEach(b => b.classList.remove('active'));
+      planToggleBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentBilling = btn.dataset.billing;
 
@@ -509,9 +510,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ── Plan card selection ───────────────────────────────────── */
-  document.querySelectorAll('.plan-card').forEach(card => {
+  const planCards = document.querySelectorAll('.plan-card');
+  planCards.forEach(card => {
     card.addEventListener('click', () => {
-      document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
+      planCards.forEach(c => c.classList.remove('selected'));
       card.classList.add('selected');
       updatePlanHighlight();
     });
@@ -665,4 +667,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Dacă utilizatorul e logat dar documentul Firestore a fost șters, îl recreăm
     if (user) syncUserToFirestore(user, 'standard', 'monthly');
   });
+
+  // Expune openUpgradeModal global pentru alte pagini (ex: exercitii-video)
+  window.openUpgradeModal = () => {
+    // Resetează la monthly și pre-selectează Student Plus
+    currentBilling = 'monthly';
+    document.querySelectorAll('.plan-toggle-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.billing === 'monthly');
+    });
+    const slider = document.querySelector('#plan-toggle .plan-toggle-slider');
+    if (slider) slider.style.transform = 'translateX(0)';
+    document.querySelectorAll('.plan-card').forEach(c => {
+      c.classList.toggle('selected', c.dataset.plan === 'student-plus');
+    });
+    updatePlanPrices();
+    showStep('plan');
+    document.getElementById('auth-modal-overlay').classList.add('open');
+  };
 });

@@ -20,7 +20,7 @@ class SimpleDropdown {
 
       // Închide dropdown când faci click în afara lui
       document.addEventListener('click', (e) => {
-          if (!e.target.closest('.set-container') && !e.target.classList.contains('subiecte-box, .subiecte-box-info')){
+          if (!e.target.closest('.set-container') && !e.target.closest('.subiecte-box, .subiecte-box-info')){
               this.closeAllDropdowns();
           }
       });

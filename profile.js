@@ -4,7 +4,6 @@ import {
   getAuth,
   onAuthStateChanged,
   sendPasswordResetEmail,
-  sendEmailVerification,
   updateProfile
 } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
 import {
@@ -50,11 +49,6 @@ async function initProfilePage(user) {
   const emailHeader = document.getElementById('profile-email-header');
   if (emailHeader) emailHeader.textContent = user.email;
 
-  const isEmailProvider = user.providerData.some(p => p.providerId === 'password');
-  if (isEmailProvider && !user.emailVerified) {
-    renderVerifyBanner(user);
-  }
-
   try {
     const userRef = doc(db, 'users', user.uid);
     const snap = await getDoc(userRef);
@@ -65,32 +59,6 @@ async function initProfilePage(user) {
   } catch (e) {
     console.error('[Profile] Eroare inițializare profil:', e);
   }
-}
-
-function renderVerifyBanner(user) {
-  const card = document.getElementById('profile-account-card');
-  if (!card) return;
-
-  const banner = document.createElement('div');
-  banner.className = 'profile-verify-banner';
-  banner.innerHTML = `
-    <p>Emailul tău nu a fost verificat. Verifică inbox-ul sau spam-ul.</p>
-    <button class="profile-verify-resend" id="btn-resend-verify">Retrimite emailul</button>
-  `;
-  card.insertBefore(banner, card.firstChild);
-
-  document.getElementById('btn-resend-verify').addEventListener('click', async function () {
-    const btn = this;
-    btn.disabled = true;
-    btn.textContent = 'Se trimite...';
-    try {
-      await sendEmailVerification(user);
-      btn.textContent = 'Trimis!';
-    } catch (e) {
-      btn.textContent = 'Eroare — încearcă din nou';
-      btn.disabled = false;
-    }
-  });
 }
 
 function renderAccountSection(user, userData) {
@@ -117,14 +85,10 @@ function renderAccountSection(user, userData) {
       btnSaveName.disabled = true;
       try {
         const userRef = doc(db, 'users', user.uid);
-<<<<<<< HEAD
-        await setDoc(userRef, { displayName: name }, { merge: true });
-=======
         await Promise.all([
           updateDoc(userRef, { displayName: name }),
           updateProfile(user, { displayName: name })
         ]);
->>>>>>> cface739bbd249c8d7c936b5afda9492d10a79ad
         nameFeedback.textContent = 'Nume salvat cu succes!';
         nameFeedback.className = 'profile-feedback success';
 
@@ -179,8 +143,11 @@ function renderPlanSection(user, userData) {
   const container = document.getElementById('profile-plan-content');
   if (!container) return;
 
-  const isPaid = userData.status === 'paid';
-  const planName = isPaid ? 'Student Plus' : 'Standard';
+  const isPaid = userData.status === 'paid' || userData.status === 'pending_cancellation';
+  const isPendingCancellation = userData.status === 'pending_cancellation';
+  const isQuarterly = isPaid && userData.gumroadProduct && userData.gumroadProduct.includes('student-plus') && !userData.gumroadProduct.includes('lunar');
+  const planName = isPaid ? (isQuarterly ? 'Student Plus · 3 luni' : 'Student Plus · Lunar') : 'Standard';
+  const planPrice = isQuarterly ? '180 RON / 3 luni' : '75 RON / lună';
 
   const standardBenefits = [
     'Acces la toate subiectele și rezolvările',
@@ -193,13 +160,26 @@ function renderPlanSection(user, userData) {
     'Suport prioritar'
   ];
 
+  const manageUrl = userData.gumroadSubscriptionId
+    ? `https://gumroad.com/subscriptions/${encodeURIComponent(userData.gumroadSubscriptionId)}/manage`
+    : null;
+
+  const isSubscription = !!userData.gumroadSubscriptionId;
+
   const cancelSection = isPaid ? `
     <div class="profile-cancel-section">
-      <p class="profile-label">Anulare abonament</p>
-      <p class="profile-muted">
-        Folosește linkul <strong style="color:var(--text)">"Manage subscription"</strong> din emailul de confirmare primit la cumpărare.
-        Pentru refund în primele 14 zile, scrie-ne la <a class="profile-cancel-link" href="mailto:admiterepoli@gmail.com">admiterepoli@gmail.com</a>.
-      </p>
+      ${isSubscription ? `
+        <p class="profile-label">Gestionare abonament</p>
+        ${isPendingCancellation
+          ? `<p class="profile-muted" style="color:var(--gold)">Abonamentul tău va expira pe <strong>${userData.pendingCancellationAt ? new Date(userData.pendingCancellationAt).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) : 'data din emailul Gumroad'}</strong>. Accesul rămâne activ până atunci.</p>`
+          : `<a class="profile-btn-secondary" href="${manageUrl}" target="_blank" rel="noopener noreferrer">Gestionează abonamentul</a>`
+        }
+        <p class="profile-muted" style="margin-top:0.5rem">Pentru refund în primele 14 zile, scrie-ne la <a class="profile-cancel-link" href="mailto:admiterepoli@gmail.com">admiterepoli@gmail.com</a>.</p>
+      ` : `
+        <p class="profile-label">Acces pe 3 luni</p>
+        <p class="profile-muted">Planul tău oferă acces complet timp de 3 luni de la cumpărare. Nu se reînnoiește automat.</p>
+        <p class="profile-muted" style="margin-top:0.5rem">Dacă dorești un refund în primele 14 zile, scrie-ne la <a class="profile-cancel-link" href="mailto:admiterepoli@gmail.com">admiterepoli@gmail.com</a>.</p>
+      `}
     </div>
   ` : '';
 
@@ -217,7 +197,12 @@ function renderPlanSection(user, userData) {
   container.innerHTML = `
     <div class="profile-plan-current">
       Planul tău actual: <strong>${planName}</strong>
-      ${isPaid ? '<span class="profile-plan-badge">Activ</span>' : ''}
+      ${isPendingCancellation
+        ? '<span class="profile-plan-badge" style="background:var(--gold);color:#222">Expiră curând</span>'
+        : isPaid
+          ? '<span class="profile-plan-badge">Activ</span>'
+          : ''
+      }
     </div>
     <div class="profile-plan-compare">
       <div class="profile-plan-col ${!isPaid ? 'plan-col-active' : ''}">
@@ -229,7 +214,7 @@ function renderPlanSection(user, userData) {
       </div>
       <div class="profile-plan-col ${isPaid ? 'plan-col-active' : ''}">
         <div class="profile-plan-col-name">Student Plus</div>
-        <div class="profile-plan-col-price" id="profile-plus-price">75 RON / lună</div>
+        <div class="profile-plan-col-price" id="profile-plus-price">${isPaid ? planPrice : '75 RON / lună'}</div>
         <ul class="profile-plan-benefits">
           ${plusBenefits.map(b => `<li>${b}</li>`).join('')}
         </ul>
@@ -289,22 +274,15 @@ async function renderResultsSection(user) {
       return;
     }
 
-<<<<<<< HEAD
-=======
     // Sortăm descrescător după completedAt client-side (evităm nevoia de index Firestore)
->>>>>>> cface739bbd249c8d7c936b5afda9492d10a79ad
     const sortedDocs = snap.docs.slice().sort((a, b) => {
       const ta = a.data().completedAt?.toMillis?.() ?? 0;
       const tb = b.data().completedAt?.toMillis?.() ?? 0;
       return tb - ta;
     });
 
-<<<<<<< HEAD
-    const cards = sortedDocs.map(d => {
-=======
     const PAGE_SIZE = 5;
     const allCards = sortedDocs.map(d => {
->>>>>>> cface739bbd249c8d7c936b5afda9492d10a79ad
       const r = d.data();
       const date = r.completedAt?.toDate
         ? r.completedAt.toDate().toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' })
@@ -317,27 +295,27 @@ async function renderResultsSection(user) {
         <div class="profile-result-card">
           <div class="profile-result-header">
             <div>
-              <div class="profile-result-title">${r.title || r.simulationId}</div>
-              <div class="profile-result-date">${date}</div>
+              <div class="profile-result-title">${escHtml(r.title || r.simulationId)}</div>
+              <div class="profile-result-date">${escHtml(date)}</div>
             </div>
             <span class="profile-result-badge ${badge.cls}">${badge.text}</span>
           </div>
-          <div class="profile-result-score">${r.scoreTotal} / 20</div>
+          <div class="profile-result-score">${escHtml(r.scoreTotal)} / 20</div>
           <div class="profile-result-sections">
             <div class="profile-result-section">
               <div class="profile-result-section-label">
-                <span>Informatică</span><span>${r.scoreInfo} / 10</span>
+                <span>Informatică</span><span>${escHtml(r.scoreInfo)} / 10</span>
               </div>
               <div class="profile-result-bar">
-                <div class="profile-result-bar-fill bar-info" style="width:${infoPct}%"></div>
+                <div class="profile-result-bar-fill bar-info" style="width:${escHtml(infoPct)}%"></div>
               </div>
             </div>
             <div class="profile-result-section">
               <div class="profile-result-section-label">
-                <span>Matematică</span><span>${r.scoreMate} / 10</span>
+                <span>Matematică</span><span>${escHtml(r.scoreMate)} / 10</span>
               </div>
               <div class="profile-result-bar">
-                <div class="profile-result-bar-fill bar-mate" style="width:${matePct}%"></div>
+                <div class="profile-result-bar-fill bar-mate" style="width:${escHtml(matePct)}%"></div>
               </div>
             </div>
           </div>
@@ -364,6 +342,15 @@ async function renderResultsSection(user) {
     console.error('[Profile] Eroare încărcare rezultate:', e);
     container.innerHTML = `<p class="profile-empty">Eroare la încărcarea rezultatelor.</p>`;
   }
+}
+
+function escHtml(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 function getBadge(score) {

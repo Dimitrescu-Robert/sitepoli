@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!popup) return; // Pagina nu are popup, ieșim
 
     const STORAGE_KEY  = 'newsletter_last_shown';
-    const COOLDOWN_MS  = 0; 
+    const COOLDOWN_MS  = 86400000; // 24 ore
     const SHOW_DELAY   = 12000; 
 
     // ── Ascunde popup-ul și salvează timestamp-ul curent în localStorage.

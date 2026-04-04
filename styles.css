@@ -5093,48 +5093,100 @@ header.scrolled { background: transparent; }
 
 /* ── Pagini legale ───────────────────────────────── */
 
-.legal-section {
-  margin-bottom: 2rem;
-}
-
-.legal-section h2 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--text-heading);
-  margin-bottom: 0.75rem;
-  padding-bottom: 0.5rem;
+.legal-page-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
   border-bottom: 1px solid var(--border);
 }
 
+.legal-page-header h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-bottom: 0.4rem;
+}
+
+.legal-page-header .legal-date {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.legal-section {
+  margin-bottom: 0;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.legal-section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.legal-section h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.legal-section h2::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 1.1em;
+  background: var(--accent);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
 .legal-section h3 {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  color: var(--text);
-  margin: 1rem 0 0.4rem;
+  color: var(--text-heading);
+  margin: 1.1rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.8;
 }
 
 .legal-section p {
   color: var(--text);
-  font-size: 0.95rem;
-  line-height: 1.7;
+  font-size: 0.93rem;
+  line-height: 1.75;
   margin-bottom: 0.6rem;
 }
 
 .legal-section ul {
-  padding-left: 1.4rem;
+  padding-left: 0;
   margin-bottom: 0.75rem;
+  list-style: none;
 }
 
 .legal-section ul li {
   color: var(--text);
-  font-size: 0.95rem;
-  line-height: 1.7;
-  margin-bottom: 0.25rem;
+  font-size: 0.93rem;
+  line-height: 1.75;
+  margin-bottom: 0.35rem;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.legal-section ul li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
 }
 
 .legal-section a {
   color: var(--accent);
   text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 /* ── Email verification warning ─────────────────── */

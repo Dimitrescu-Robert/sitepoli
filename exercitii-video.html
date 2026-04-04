@@ -16,7 +16,7 @@
         <link rel="icon" type="image/png" href="logosquared.png">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
         <style>
         /* ── Keyframes ── */
         @keyframes ev-fadeUp  { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
@@ -30,8 +30,8 @@
             position: relative;
             padding: 3.75rem 3rem 3.25rem;
             border-radius: 28px;
-            background: linear-gradient(140deg, rgba(14,18,32,0.98) 0%, rgba(8,11,22,0.96) 100%);
-            border: 1px solid rgba(255,255,255,0.07);
+            background: linear-gradient(140deg, rgba(57,62,70,0.9) 0%, rgba(34,40,49,0.97) 100%);
+            border: 1px solid rgba(255,255,255,0.08);
             overflow: hidden;
             animation: ev-fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) both;
         }
@@ -40,7 +40,7 @@
             position: absolute;
             top: -80px; right: -100px;
             width: 520px; height: 520px;
-            background: radial-gradient(circle, rgba(96,165,250,0.13) 0%, transparent 60%);
+            background: radial-gradient(circle, rgba(123,160,217,0.12) 0%, transparent 60%);
             pointer-events: none;
             animation: ev-float 8s ease-in-out infinite;
         }
@@ -49,7 +49,7 @@
             position: absolute;
             bottom: -60px; left: -60px;
             width: 340px; height: 340px;
-            background: radial-gradient(circle, rgba(245,158,11,0.09) 0%, transparent 60%);
+            background: radial-gradient(circle, rgba(130,141,248,0.08) 0%, transparent 60%);
             pointer-events: none;
         }
         /* subtle noise grain */
@@ -92,20 +92,23 @@
             animation: ev-pulse 2.4s ease-in-out infinite;
         }
         .ev-hero h1 {
-            font-family: "Fraunces", "Instrument Serif", Georgia, serif;
-            font-size: clamp(2.5rem, 5.5vw, 3.75rem);
-            font-weight: 600;
-            font-style: italic;
-            line-height: 1.04;
-            letter-spacing: -0.035em;
-            color: #f3ede3;
+            font-family: 'DM Sans', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            font-style: normal;
+            line-height: 1.08;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, #ffffff 0%, #c3d5f0 55%, #7BA0D9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin: 0 0 1.1rem;
         }
         .ev-hero h1 em {
             font-style: normal;
-            background: linear-gradient(125deg, #60a5fa 0%, #818cf8 55%, #a78bfa 100%);
-            -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background: linear-gradient(125deg, #828df8 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
             background-clip: text;
         }
         .ev-hero-sub {
@@ -135,9 +138,9 @@
         }
         .ev-stat:last-child { padding-right: 0; margin-right: 0; border-right: none; }
         .ev-stat-num {
-            font-family: "Fraunces", serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 2rem;
-            font-weight: 600;
+            font-weight: 800;
             color: #f3ede3;
             line-height: 1;
             letter-spacing: -0.045em;
@@ -155,55 +158,196 @@
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
-            gap: 0.875rem;
-            min-width: 230px;
+            gap: 0;
+            min-width: 240px;
+            background: rgba(34,40,49,0.7);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.07);
         }
         .ev-access-card {
             display: flex;
             align-items: center;
             gap: 1rem;
-            padding: 1.125rem 1.25rem;
-            border-radius: 16px;
-            border: 1px solid;
-            transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s ease;
+            padding: 1.2rem 1.4rem;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            transition: background 0.2s ease;
+            position: relative;
         }
-        .ev-access-card:hover { transform: translateX(5px); }
-        .ev-access-card.is-free {
-            background: rgba(96,165,250,0.06);
-            border-color: rgba(96,165,250,0.18);
+        .ev-access-card:last-child { border-bottom: none; }
+        .ev-access-card:hover { background: rgba(255,255,255,0.03); }
+        .ev-access-card.is-free::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: #60a5fa;
+            border-radius: 0 2px 2px 0;
         }
-        .ev-access-card.is-free:hover { box-shadow: 0 0 20px rgba(96,165,250,0.1); }
-        .ev-access-card.is-plus {
-            background: rgba(245,158,11,0.06);
-            border-color: rgba(245,158,11,0.2);
+        .ev-access-card.is-plus::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #828df8, #a78bfa);
+            border-radius: 0 2px 2px 0;
         }
-        .ev-access-card.is-plus:hover { box-shadow: 0 0 20px rgba(245,158,11,0.1); }
         .ev-access-icon {
-            width: 38px; height: 38px;
-            border-radius: 12px;
+            width: 36px; height: 36px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
         }
-        .ev-access-card.is-free .ev-access-icon { background: rgba(96,165,250,0.14); color: #60a5fa; }
-        .ev-access-card.is-plus .ev-access-icon { background: rgba(245,158,11,0.14); color: #f59e0b; }
+        .ev-access-card.is-free .ev-access-icon { background: rgba(96,165,250,0.12); color: #60a5fa; }
+        .ev-access-card.is-plus .ev-access-icon { background: rgba(130,141,248,0.12); color: #828df8; }
         .ev-access-info { flex: 1; min-width: 0; }
         .ev-access-tier {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             font-weight: 700;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.06em;
             text-transform: uppercase;
-            margin: 0 0 0.2rem;
+            margin: 0 0 0.18rem;
         }
         .ev-access-card.is-free .ev-access-tier { color: #60a5fa; }
-        .ev-access-card.is-plus .ev-access-tier { color: #f59e0b; }
+        .ev-access-card.is-plus .ev-access-tier { color: #828df8; }
         .ev-access-desc {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.38);
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.4);
             margin: 0;
+        }
+
+        /* ── Video Modal ── */
+        .ev-modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0,0,0,0.82);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .ev-modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .ev-modal {
+            background: linear-gradient(160deg, #0e1528 0%, #080c18 100%);
+            border: 1px solid rgba(96,165,250,0.14);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 880px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(96,165,250,0.06) inset;
+            transform: scale(0.93) translateY(24px);
+            transition: transform 0.38s cubic-bezier(0.16,1,0.3,1);
+        }
+        .ev-modal-overlay.open .ev-modal {
+            transform: scale(1) translateY(0);
+        }
+        .ev-modal-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 1.5rem 1.75rem 1.1rem;
+            gap: 1rem;
+        }
+        .ev-modal-num {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.63rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #60a5fa;
+            opacity: 0.7;
+            margin-bottom: 0.3rem;
+        }
+        .ev-modal-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #f3ede3;
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
+        .ev-modal-close {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: background 0.2s, color 0.2s;
+        }
+        .ev-modal-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .ev-modal-video-wrap {
+            position: relative;
+            aspect-ratio: 16/9;
+            background: #000;
+            overflow: hidden;
+            margin: 0 1.75rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+        }
+        .ev-modal-video-wrap iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .ev-modal-body {
+            padding: 1.5rem 1.75rem 2rem;
+        }
+        .ev-modal-section-label {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.63rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.22);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .ev-modal-section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255,255,255,0.06);
+        }
+        .ev-modal-statement {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.72);
+            line-height: 1.78;
+            padding: 1.25rem 1.5rem;
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-left: 3px solid #60a5fa;
+            border-radius: 12px;
+        }
+        @media (max-width: 600px) {
+            .ev-modal-video-wrap, .ev-modal-header, .ev-modal-body { margin-left: 1rem; margin-right: 1rem; }
+            .ev-modal-header { padding: 1.25rem 1rem 0.8rem; }
+            .ev-modal-body { padding: 1.25rem 1rem 1.5rem; }
         }
 
         /* ── Catalog wrapper ── */
@@ -280,7 +424,7 @@
         .ev-group-name-wrap { display: flex; align-items: center; gap: 0.875rem; }
         .ev-group-bar { width: 3px; height: 1.2rem; border-radius: 2px; flex-shrink: 0; }
         .ev-group.is-free .ev-group-bar { background: #60a5fa; box-shadow: 0 0 10px rgba(96,165,250,0.55); }
-        .ev-group.is-plus .ev-group-bar { background: #f59e0b; box-shadow: 0 0 10px rgba(245,158,11,0.45); }
+        .ev-group.is-plus .ev-group-bar { background: #828df8; box-shadow: 0 0 10px rgba(130,141,248,0.45); }
         .ev-group-name {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 0.72rem;
@@ -409,7 +553,7 @@
         }
         .ev-lock-ico { width: 28px; height: 28px; flex-shrink: 0; }
         .ev-lock.is-account .ev-lock-ico { color: #60a5fa; }
-        .ev-lock.is-plus    .ev-lock-ico { color: #f59e0b; }
+        .ev-lock.is-plus    .ev-lock-ico { color: #828df8; }
         .ev-lock-text {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 0.8rem;
@@ -433,7 +577,7 @@
         .ev-lock-btn:focus { outline: none; }
         .ev-lock-btn:focus-visible { outline: 2px solid rgba(255,255,255,0.5); outline-offset: 2px; }
         .ev-lock.is-account .ev-lock-btn { background: #60a5fa; color: #060c1c; border-color: rgba(255,255,255,0.15); }
-        .ev-lock.is-plus    .ev-lock-btn { background: rgba(245,158,11,0.12); color: #f59e0b; border-color: rgba(245,158,11,0.3); }
+        .ev-lock.is-plus    .ev-lock-btn { background: rgba(130,141,248,0.12); color: #828df8; border-color: rgba(130,141,248,0.3); }
 
         /* Plus badge */
         .ev-plus-badge {
@@ -448,9 +592,9 @@
             letter-spacing: 0.15em;
             text-transform: uppercase;
             pointer-events: none;
-            color: #f59e0b;
+            color: #828df8;
             background: rgba(4,6,14,0.75);
-            border: 1px solid rgba(245,158,11,0.3);
+            border: 1px solid rgba(130,141,248,0.3);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
@@ -618,6 +762,26 @@
             <div>&copy; 2026 AdmiterePoli. Toate drepturile rezervate. Creat de studenți, pentru viitori studenți.</div>
         </footer>
 
+        <!-- Video Modal -->
+        <div class="ev-modal-overlay" id="ev-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="ev-modal-title">
+            <div class="ev-modal">
+                <div class="ev-modal-header">
+                    <div>
+                        <p class="ev-modal-num" id="ev-modal-num"></p>
+                        <h2 class="ev-modal-title" id="ev-modal-title"></h2>
+                    </div>
+                    <button class="ev-modal-close" id="ev-modal-close" aria-label="Închide">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                </div>
+                <div class="ev-modal-video-wrap" id="ev-modal-video"></div>
+                <div class="ev-modal-body">
+                    <p class="ev-modal-section-label">Cerința problemei</p>
+                    <p class="ev-modal-statement" id="ev-modal-statement"></p>
+                </div>
+            </div>
+        </div>
+
         <script src="main.js"></script>
         <script type="module" src="./firebase-auth.js"></script>
         <script type="module">
@@ -629,20 +793,32 @@
             const SVG_STAR = `<svg class="ev-lock-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
 
             const exercitiiMate = [
-                { id: 1, title: "Sume Riemann — Introducere", videoId: "bLz5N_6fkZ8", access: "account" },
-                { id: 2, title: "Sume Riemann — Aplicații",   videoId: "S5ck15BZ2Qs", access: "account" },
-                { id: 3, title: "Sume Riemann — Aprofundare", videoId: "owqpnn4bmKs", access: "plus" },
-                { id: 4, title: "Kings Rule — Partea 1",       videoId: "-x4OFdaLSdA", access: "plus" },
-                { id: 5, title: "Kings Rule — Partea 2",       videoId: "R6giSk0X3ow", access: "plus" },
-                { id: 6, title: "Trigonometrie — Cerc unitar", videoId: "ERh6xveZpsw", access: "plus" },
+                { id: 1, title: "Sume Riemann — Introducere", videoId: "bLz5N_6fkZ8", access: "account",
+                  statement: "Se dă funcția f:[0,1]→ℝ, f(x)=x². Împărțiți intervalul [0,1] în n subintervale egale și scrieți suma Riemann inferioară și superioară. Calculați limita acestor sume când n→∞ și interpretați geometric rezultatul obținut." },
+                { id: 2, title: "Sume Riemann — Aplicații",   videoId: "S5ck15BZ2Qs", access: "account",
+                  statement: "Folosind definiția cu sume Riemann, calculați ∫₀² x³ dx. Scrieți suma Riemann pentru partiția uniformă cu n puncte, simplificați expresia folosind formula sumei cuburilor și treceți la limită." },
+                { id: 3, title: "Sume Riemann — Aprofundare", videoId: "owqpnn4bmKs", access: "plus",
+                  statement: "Demonstrați că ∫₀¹ xⁿ dx = 1/(n+1) folosind suma Riemann. Deduceți din această formulă suma seriei 1 + 1/2 + 1/3 + ... interpretând-o ca o integrală și aproximând prin sume." },
+                { id: 4, title: "Kings Rule — Partea 1",       videoId: "-x4OFdaLSdA", access: "plus",
+                  statement: "Enunțați și demonstrați Kings Rule: dacă ∫ₐᵇ f(x)dx = I, atunci ∫ₐᵇ f(a+b−x)dx = I. Folosiți această proprietate pentru a calcula ∫₀^(π/2) sin(x)/(sin(x)+cos(x)) dx." },
+                { id: 5, title: "Kings Rule — Partea 2",       videoId: "R6giSk0X3ow", access: "plus",
+                  statement: "Calculați integrala ∫₀^π x·sin(x)/(1+cos²(x)) dx aplicând Kings Rule. Scrieți pașii detaliați: substituția x→π−x, adunarea celor două integrale și calculul integralei rămase." },
+                { id: 6, title: "Trigonometrie — Cerc unitar", videoId: "ERh6xveZpsw", access: "plus",
+                  statement: "Pe cercul unitar, identificați coordonatele punctului P(cos θ, sin θ) și demonstrați identitatea fundamentală sin²θ + cos²θ = 1. Deduceți din diagrama cercului unitar formulele pentru sin(α+β) și cos(α+β)." },
             ];
             const exercitiiInfo = [
-                { id: 1, title: "Baze de numerație — Teorie",  videoId: "c9DvvKyos98", access: "account" },
-                { id: 2, title: "Numere Catalane",              videoId: "TAuJV5eNKLM", access: "account" },
-                { id: 3, title: "Triunghiul lui Pascal",        videoId: "LurI8AYY18E", access: "plus" },
-                { id: 4, title: "Deranjamente — Partea 1",      videoId: "pbXg5EI5t4c", access: "plus" },
-                { id: 5, title: "Deranjamente — Partea 2",      videoId: "qYAWjIVY7Zw", access: "plus" },
-                { id: 6, title: "DFS vs BFS — Grafuri",         videoId: "cS-198wtfj0", access: "plus" },
+                { id: 1, title: "Baze de numerație — Teorie",  videoId: "c9DvvKyos98", access: "account",
+                  statement: "Convertiți numărul (1101101)₂ în baza 10, baza 8 și baza 16. Descrieți algoritmul general de conversie dintr-o bază oarecare în baza 10 și invers. Convertiți și (347)₁₀ în baza 2." },
+                { id: 2, title: "Numere Catalane",              videoId: "TAuJV5eNKLM", access: "account",
+                  statement: "Câte moduri distincte există de a aranja n perechi de paranteze rotunde astfel încât șirul să fie valid (corect închis)? Găsiți relația de recurență Cₙ₊₁ = ΣCₖ·Cₙ₋ₖ și calculați C₀,...,C₅." },
+                { id: 3, title: "Triunghiul lui Pascal",        videoId: "LurI8AYY18E", access: "plus",
+                  statement: "Demonstrați că suma elementelor de pe linia n din triunghiul lui Pascal este 2ⁿ. Folosiți această proprietate împreună cu identitatea C(n,k)+C(n,k+1)=C(n+1,k+1) pentru a calcula C(10,3) și C(12,5)." },
+                { id: 4, title: "Deranjamente — Partea 1",      videoId: "pbXg5EI5t4c", access: "plus",
+                  statement: "Câte permutări ale mulțimii {1,2,...,n} au proprietatea că nici un element nu se află pe poziția sa inițială (deranjamente)? Deduceți formula Dₙ = (n−1)(Dₙ₋₁+Dₙ₋₂) cu D₁=0, D₂=1. Calculați D₅." },
+                { id: 5, title: "Deranjamente — Partea 2",      videoId: "qYAWjIVY7Zw", access: "plus",
+                  statement: "Un poștaș trebuie să livreze 6 scrisori la 6 adrese diferite. În câte moduri le poate distribui astfel încât nicio scrisoare să nu ajungă la adresa corectă? Folosiți formula deranjamentelor și verificați cu principiul includerii-excluderii." },
+                { id: 6, title: "DFS vs BFS — Grafuri",         videoId: "cS-198wtfj0", access: "plus",
+                  statement: "Pe un graf neorientat cu 7 noduri și muchiile {1-2, 1-3, 2-4, 2-5, 3-6, 3-7}, aplicați DFS și BFS plecând din nodul 1. Scrieți ordinea completă de vizitare, identificați muchiile de arbore și muchiile de întoarcere." },
             ];
 
             function buildCard(ex, userLevel, idx) {
@@ -650,9 +826,7 @@
                     (ex.access === 'account' && (userLevel === 'account' || userLevel === 'plus')) ||
                     (ex.access === 'plus'    &&  userLevel === 'plus');
 
-                const media = canWatch
-                    ? `<iframe src="https://www.youtube.com/embed/${ex.videoId}" allowfullscreen loading="lazy" title="${ex.title}"></iframe>`
-                    : `<img src="https://img.youtube.com/vi/${ex.videoId}/hqdefault.jpg" alt="" loading="lazy">`;
+                const media = `<img src="https://img.youtube.com/vi/${ex.videoId}/hqdefault.jpg" alt="${ex.title}" loading="lazy">`;
 
                 let lockHtml = '';
                 if (!canWatch) {
@@ -676,12 +850,16 @@
                     }
                 }
 
-                const plusCorner = (ex.access === 'plus' && canWatch) ? '<div class="ev-plus-badge">Plus</div>' : '';
+                const plusCorner = ex.access === 'plus' ? '<div class="ev-plus-badge">Plus</div>' : '';
                 const numLabel   = String(ex.id).padStart(2, '0');
                 const playBtn    = canWatch ? `<div class="ev-play-btn" aria-hidden="true"><div class="ev-play-circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>` : '';
 
+                const openAttrs = canWatch
+                    ? `data-ev-open data-ev-video="${ex.videoId}" data-ev-num="${numLabel}" data-ev-title="${ex.title.replace(/"/g,'&quot;')}" data-ev-statement="${(ex.statement||'').replace(/"/g,'&quot;')}"`
+                    : '';
+
                 return `
-                    <article class="ev-card" style="--i:${idx}">
+                    <article class="ev-card" style="--i:${idx}" ${openAttrs}>
                         <div class="ev-thumb">
                             ${media}
                             ${lockHtml}
@@ -782,6 +960,33 @@
                 });
             }
 
+            // ── Modal logic ──
+            const modalOverlay = document.getElementById('ev-modal-overlay');
+            const modalVideo   = document.getElementById('ev-modal-video');
+            const modalNum     = document.getElementById('ev-modal-num');
+            const modalTitle   = document.getElementById('ev-modal-title');
+            const modalStmt    = document.getElementById('ev-modal-statement');
+
+            function openVideoModal(videoId, num, title, statement) {
+                modalNum.textContent   = `Lecția ${num}`;
+                modalTitle.textContent = title;
+                modalStmt.textContent  = statement || '—';
+                modalVideo.innerHTML   = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" allowfullscreen allow="autoplay; encrypted-media" title="${title}"></iframe>`;
+                modalOverlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeVideoModal() {
+                modalOverlay.classList.remove('open');
+                document.body.style.overflow = '';
+                // stop video
+                modalVideo.innerHTML = '';
+            }
+
+            document.getElementById('ev-modal-close').addEventListener('click', closeVideoModal);
+            modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeVideoModal(); });
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideoModal(); });
+
             function setupClicks() {
                 document.querySelector('.ev-catalog').addEventListener('click', e => {
                     // "Creează cont" — deschide modal auth
@@ -795,13 +1000,22 @@
                     if (upBtn) {
                         e.preventDefault();
                         if (_userLevel === 'none') {
-                            // neautentificat → login mai întâi
                             openAuthModal();
                         } else {
-                            // autentificat fără plus → Gumroad cu email
                             const raw = upBtn.getAttribute('data-upgrade-url');
                             if (raw) try { window.open(decodeURIComponent(raw), '_blank', 'noopener,noreferrer'); } catch(_) {}
                         }
+                        return;
+                    }
+                    // Click pe card deblcat → deschide modal video
+                    const card = e.target.closest('[data-ev-open]');
+                    if (card) {
+                        openVideoModal(
+                            card.dataset.evVideo,
+                            card.dataset.evNum,
+                            card.dataset.evTitle,
+                            card.dataset.evStatement
+                        );
                     }
                 });
             }

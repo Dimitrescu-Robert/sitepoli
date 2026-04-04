@@ -227,6 +227,7 @@ function renderPlanSection(user, userData) {
 
   if (!isPaid) {
     let billing = 'monthly';
+    let selectedPlan = 'standard'; // 'standard' | 'plus'
 
     const gumroadUrls = {
       monthly:   `https://admiterepoli.gumroad.com/l/student-plus-lunar?wanted=true&email=${encodeURIComponent(user.email)}`,
@@ -237,6 +238,28 @@ function renderPlanSection(user, userData) {
       monthly:   '75 RON / lună',
       quarterly: '180 RON / 3 luni'
     };
+
+    const cols = document.querySelectorAll('.profile-plan-col');
+    const upgradeBtn = document.getElementById('btn-upgrade-plan');
+
+    function selectPlan(plan) {
+      if (plan === selectedPlan) return;
+      selectedPlan = plan;
+
+      cols[0].classList.toggle('plan-col-active', plan === 'standard');
+      cols[1].classList.toggle('plan-col-active', plan === 'plus');
+
+      if (plan === 'plus') {
+        upgradeBtn.classList.remove('plan-ready');
+        void upgradeBtn.offsetWidth; // force reflow to restart animation
+        upgradeBtn.classList.add('plan-ready');
+      } else {
+        upgradeBtn.classList.remove('plan-ready');
+      }
+    }
+
+    cols[0].addEventListener('click', () => selectPlan('standard'));
+    cols[1].addEventListener('click', () => selectPlan('plus'));
 
     document.querySelectorAll('#profile-billing-toggle .plan-toggle-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -252,7 +275,8 @@ function renderPlanSection(user, userData) {
       });
     });
 
-    document.getElementById('btn-upgrade-plan').addEventListener('click', () => {
+    upgradeBtn.addEventListener('click', () => {
+      if (selectedPlan !== 'plus') return;
       window.open(gumroadUrls[billing], '_blank', 'noopener,noreferrer');
     });
   }

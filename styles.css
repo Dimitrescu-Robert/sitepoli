@@ -2166,7 +2166,7 @@ img, button { max-width: 100%; }
 
 .lp-deco-code1 {
   background: #ede9fe;
-  color: #6d28d9;
+  color: var(--lp-deco-code1-color, #6d28d9);
   top: 15%;
   left: 52%;
   transform: rotate(-1deg);
@@ -2183,7 +2183,7 @@ img, button { max-width: 100%; }
 
 .lp-deco-code2 {
   background: #dbeafe;
-  color: #1e40af;
+  color: var(--lp-deco-code2-color, #1e40af);
   bottom: 5%;
   left: 35%;
   transform: rotate(1deg);
@@ -2199,7 +2199,7 @@ img, button { max-width: 100%; }
 
 .lp-deco-code3 {
   background: #fef3c7;
-  color: #92400e;
+  color: var(--lp-deco-code3-color, #92400e);
   top: 55%;
   left: -8%;
   transform: rotate(-3deg);
@@ -2210,7 +2210,7 @@ img, button { max-width: 100%; }
 
 .lp-deco-matrix {
   background: #fce7f3;
-  color: #9d174d;
+  color: var(--lp-deco-matrix-color, #9d174d);
   top: -5%;
   right: 8%;
   transform: rotate(2deg);
@@ -8140,7 +8140,6 @@ html[data-theme="dark"] body.lp-body {
   --lp-badge-fail-fg: #f87171;
   --lp-badge-fail-border: rgba(248, 113, 113, 0.25);
 
-  background: var(--lp-bg-page) !important;
   color: var(--lp-color-body) !important;
   background: #111218 !important;
 }
@@ -8156,6 +8155,10 @@ html[data-theme="dark"] body.lp-body .lp-deco-code3,
 html[data-theme="dark"] body.lp-body .lp-deco-matrix {
   background: var(--lp-deco-pill-bg);
   border-color: var(--lp-deco-pill-border);
+  --lp-deco-code1-color: rgba(147, 197, 253, 0.85);
+  --lp-deco-code2-color: rgba(110, 231, 183, 0.85);
+  --lp-deco-code3-color: rgba(253, 230, 138, 0.85);
+  --lp-deco-matrix-color: rgba(196, 181, 253, 0.85);
 }
 
 .lp-body #newsletter-popup .newsletter-content {

@@ -623,9 +623,10 @@ document.addEventListener('DOMContentLoaded', () => {
     closeModal();
 
     if (plan === 'student-plus' && user) {
+      const returnUrl = encodeURIComponent(`${window.location.origin}/profil?upgraded=1`);
       const gumroadUrls = {
-        monthly:   `https://admiterepoli.gumroad.com/l/student-plus-lunar?wanted=true&email=${encodeURIComponent(user.email)}`,
-        quarterly: `https://admiterepoli.gumroad.com/l/student-plus?wanted=true&email=${encodeURIComponent(user.email)}`
+        monthly:   `https://admiterepoli.gumroad.com/l/student-plus-lunar?wanted=true&email=${encodeURIComponent(user.email)}&redirect_url=${returnUrl}`,
+        quarterly: `https://admiterepoli.gumroad.com/l/student-plus?wanted=true&email=${encodeURIComponent(user.email)}&redirect_url=${returnUrl}`
       };
       openGumroadCheckout(gumroadUrls[billing] || gumroadUrls.monthly);
     }
@@ -659,5 +660,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Listener stare auth
-  onAuthStateChanged(auth, updateNavButton);
+  onAuthStateChanged(auth, (user) => {
+    updateNavButton(user);
+    // Dacă utilizatorul e logat dar documentul Firestore a fost șters, îl recreăm
+    if (user) syncUserToFirestore(user, 'standard', 'monthly');
+  });
 });

@@ -9,5 +9,9 @@ docs/
 .agents/
 .claude/
 skills-lock.json
+<<<<<<< HEAD
 .cursor/
 design-system/
+=======
+*.py
+>>>>>>> cface739bbd249c8d7c936b5afda9492d10a79ad

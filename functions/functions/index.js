@@ -1,32 +1,76 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * const {onCall} = require("firebase-functions/v2/https");
- * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+const { setGlobalOptions } = require("firebase-functions");
+const { onRequest } = require("firebase-functions/https");
+const admin = require("firebase-admin");
 
-const {setGlobalOptions} = require("firebase-functions");
-const {onRequest} = require("firebase-functions/https");
-const logger = require("firebase-functions/logger");
+admin.initializeApp();
+const db = admin.firestore();
+db.settings({ databaseId: "admiterepoli" });
 
-// For cost control, you can set the maximum number of containers that can be
-// running at the same time. This helps mitigate the impact of unexpected
-// traffic spikes by instead downgrading performance. This limit is a
-// per-function limit. You can override the limit for each function using the
-// `maxInstances` option in the function's options, e.g.
-// `onRequest({ maxInstances: 5 }, (req, res) => { ... })`.
-// NOTE: setGlobalOptions does not apply to functions using the v1 API. V1
-// functions should each use functions.runWith({ maxInstances: 10 }) instead.
-// In the v1 API, each function can only serve one request per container, so
-// this will be the maximum concurrent request count.
 setGlobalOptions({ maxInstances: 10 });
 
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
+exports.gumroadWebhook = onRequest(async (req, res) => {
+  if (req.method !== "POST") {
+    return res.status(405).send("Method Not Allowed");
+  }
 
-// exports.helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+  const expectedToken = process.env.WEBHOOK_TOKEN;
+  if (!expectedToken || req.query.token !== expectedToken) {
+    console.warn("Token invalid sau lipsă");
+    return res.status(401).send("Unauthorized");
+  }
+
+  const { email, product_permalink, sale_id, refunded } = req.body;
+
+  if (!email) {
+    console.error("Webhook primit fără email");
+    return res.status(400).send("Missing email");
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    console.warn("Email invalid în webhook:", email);
+    return res.status(400).send("Invalid email");
+  }
+
+  const allowedProducts = ["student-plus-lunar", "student-plus"];
+  if (product_permalink && !allowedProducts.includes(product_permalink)) {
+    console.warn("Produs necunoscut în webhook:", product_permalink);
+    return res.status(400).send("Unknown product");
+  }
+
+  const normalizedEmail = email.toLowerCase();
+
+  try {
+    const userRecord = await admin.auth().getUserByEmail(normalizedEmail);
+    const uid = userRecord.uid;
+
+    if (refunded === "true" || refunded === true) {
+      await db.collection("users").doc(uid).set(
+        { status: "free", refundedAt: admin.firestore.FieldValue.serverTimestamp() },
+        { merge: true }
+      );
+      console.log(`Status revenit la 'free' pentru ${normalizedEmail} (uid: ${uid})`);
+      return res.status(200).send("Refund processed");
+    }
+
+    await db.collection("users").doc(uid).set(
+      {
+        status: "paid",
+        gumroadSaleId: sale_id || null,
+        gumroadProduct: product_permalink || null,
+        paidAt: admin.firestore.FieldValue.serverTimestamp(),
+      },
+      { merge: true }
+    );
+
+    console.log(`Status actualizat la 'paid' pentru ${normalizedEmail} (uid: ${uid})`);
+    return res.status(200).send("OK");
+  } catch (e) {
+    if (e.code === "auth/user-not-found") {
+      console.error(`Niciun user Firebase cu emailul: ${normalizedEmail}`);
+      return res.status(404).send("User not found");
+    }
+    console.error("Eroare webhook:", e);
+    return res.status(500).send("Internal error");
+  }
+});

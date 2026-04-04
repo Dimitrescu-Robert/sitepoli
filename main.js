@@ -76,6 +76,62 @@ class SimpleDropdown {
   }
 }
 
+/* ── Typewriter hero ── */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const h1 = document.querySelector('[data-typewriter]');
+  if (!h1) return;
+
+  const fullText = h1.getAttribute('data-typewriter');
+  const cursor  = h1.querySelector('.tw-cursor');
+
+  // Scoate cursorul temporar ca să tipărim înaintea lui
+  if (cursor) h1.insertBefore(document.createTextNode(''), cursor);
+
+  let textNode = h1.childNodes[0];
+  if (!textNode || textNode.nodeType !== Node.TEXT_NODE) {
+    textNode = document.createTextNode('');
+    h1.insertBefore(textNode, cursor || null);
+  }
+
+  let i = 0;
+
+  // Viteze variabile: mai rapid pe litere comune, pauze la spații/punctuație
+  function nextDelay(ch) {
+    if (ch === ' ')  return 80  + Math.random() * 60;
+    if (ch === '-')  return 150 + Math.random() * 80;
+    if (/[A-Z]/.test(ch)) return 90 + Math.random() * 50; // majuscule — mic efort
+    return 55 + Math.random() * 45;
+  }
+
+  function type() {
+    if (i >= fullText.length) return;
+    textNode.textContent += fullText[i];
+    i++;
+    if (i < fullText.length) setTimeout(type, nextDelay(fullText[i]));
+  }
+
+  // Pornește după 350ms
+  setTimeout(type, 350);
+})();
+
+/* ── Scroll shrink pentru nav island ── */
+(function() {
+    const header = document.querySelector('header');
+    if (!header) return;
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(function() {
+                header.classList.toggle('scrolled', window.scrollY > 40);
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+})();
+
 // Inițializează când se încarcă pagina
 document.addEventListener('DOMContentLoaded', function() {
     new SimpleDropdown();

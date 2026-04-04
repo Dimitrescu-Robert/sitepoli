@@ -9,11 +9,9 @@ import {
   getFirestore,
   doc,
   getDoc,
-  updateDoc,
+  setDoc,
   collection,
-  getDocs,
-  orderBy,
-  query
+  getDocs
 } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -78,7 +76,7 @@ function renderAccountSection(user, userData) {
       btnSaveName.disabled = true;
       try {
         const userRef = doc(db, 'users', user.uid);
-        await updateDoc(userRef, { displayName: name });
+        await setDoc(userRef, { displayName: name }, { merge: true });
         nameFeedback.textContent = 'Nume salvat cu succes!';
         nameFeedback.className = 'profile-feedback success';
       } catch (e) {
@@ -184,7 +182,7 @@ async function renderResultsSection(user) {
 
   try {
     const resultsRef = collection(db, 'users', user.uid, 'simulationResults');
-    const snap = await getDocs(query(resultsRef, orderBy('completedAt', 'desc')));
+    const snap = await getDocs(resultsRef);
 
     if (snap.empty) {
       container.innerHTML = `
@@ -194,7 +192,13 @@ async function renderResultsSection(user) {
       return;
     }
 
-    const cards = snap.docs.map(d => {
+    const sortedDocs = snap.docs.slice().sort((a, b) => {
+      const ta = a.data().completedAt?.toMillis?.() ?? 0;
+      const tb = b.data().completedAt?.toMillis?.() ?? 0;
+      return tb - ta;
+    });
+
+    const cards = sortedDocs.map(d => {
       const r = d.data();
       const date = r.completedAt?.toDate
         ? r.completedAt.toDate().toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' })

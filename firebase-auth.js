@@ -157,6 +157,7 @@ function injectNavButton() {
   const wrapper = document.createElement('div');
   wrapper.id = 'nav-auth-wrapper';
   wrapper.innerHTML = `
+    <button class="nav-btn-ghost" id="nav-auth-signin">Autentificare</button>
     <button class="nav-auth-pill" id="nav-auth-trigger">Înregistrează-te</button>
     <div class="auth-user-dropdown" id="auth-user-dropdown">
       <div class="auth-email" id="auth-user-email"></div>
@@ -380,6 +381,7 @@ function animateNumber(el, from, to) {
 
 function updateNavButton(user) {
   const trigger = document.getElementById('nav-auth-trigger');
+  const signinBtn = document.getElementById('nav-auth-signin');
   const dropdown = document.getElementById('auth-user-dropdown');
   const emailEl = document.getElementById('auth-user-email');
   if (trigger) {
@@ -390,10 +392,12 @@ function updateNavButton(user) {
         : (user.email || '?')[0].toUpperCase();
       trigger.textContent = initials;
       trigger.classList.add('auth-logged-in');
+      if (signinBtn) signinBtn.style.display = 'none';
       if (emailEl) emailEl.textContent = user.email;
     } else {
       trigger.textContent = 'Înregistrează-te';
       trigger.classList.remove('auth-logged-in');
+      if (signinBtn) signinBtn.style.display = '';
       if (dropdown) dropdown.classList.remove('open');
     }
   }
@@ -436,12 +440,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Deschide modal sau dropdown
+  // Ghost "Autentificare" → deschide modal pe tab-ul Login
+  document.getElementById('nav-auth-signin')?.addEventListener('click', () => {
+    openModal();
+  });
+
+  // CTA "Înregistrează-te" → deschide modal pe tab-ul Register; avatar → dropdown
   trigger.addEventListener('click', () => {
     if (auth.currentUser) {
       dropdown.classList.toggle('open');
     } else {
       openModal();
+      requestAnimationFrame(() => {
+        document.querySelector('.auth-toggle-btn[data-tab="register"]')?.click();
+      });
     }
   });
 

@@ -100,31 +100,53 @@ body::before {
 header {
   grid-area: header;
   color: var(--text-heading);
-  background: rgba(34, 40, 49, 0.75);
-  backdrop-filter: blur(24px) saturate(1.6);
-  -webkit-backdrop-filter: blur(24px) saturate(1.6);
-  padding: 0.85rem 0;
-  box-shadow: 0 1px 0 rgba(255,255,255,0.07), 0 4px 30px rgba(0,0,0,0.45);
-  border-bottom: 1px solid var(--glass-border);
+  background: transparent;
   position: sticky;
   overflow: visible;
   top: 0;
   z-index: 100;
-  transition: background 0.3s ease;
+  padding: 0.75rem 1.25rem;
+  pointer-events: none;
 }
 
-header.scrolled {
-  background: rgba(34, 40, 49, 0.95);
-}
-
+/* Insula flotantă — glassmorphism */
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 3rem;
-  max-width: 1400px;
+  padding: 0.55rem 1.2rem 0.55rem 1rem;
+  max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  background: rgba(14, 20, 32, 0.48);
+  backdrop-filter: blur(28px) saturate(1.8);
+  -webkit-backdrop-filter: blur(28px) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 16px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.2);
+  pointer-events: all;
+  transform-origin: top center;
+  will-change: transform, opacity;
+  transition:
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+header.scrolled nav {
+  transform: scale(0.95);
+  background: rgba(12, 17, 28, 0.72);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+    0 16px 48px rgba(0, 0, 0, 0.5),
+    0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 nav ul {
@@ -138,12 +160,12 @@ nav li a {
   display: block;
   padding: 0.25rem 0;
   color: var(--text-heading);
-  font-size: 1.05rem;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 500;
   transition: color 0.3s ease;
-  margin-right: 3rem;
+  margin-right: 2.2rem;
   position: relative;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
 }
 
 nav li a::after {
@@ -163,8 +185,8 @@ nav li a:hover { color: var(--accent); }
 
 .logonav {
   margin-top: 3px;
-  margin-left: 2.5rem;
-  width: 5rem;
+  margin-left: 0.5rem;
+  width: 4.2rem;
   height: auto;
   filter: drop-shadow(0 0 8px rgba(123,160,217,0.22));
   transition: filter 0.3s;
@@ -428,6 +450,24 @@ img, button { max-width: 100%; }
 @keyframes heroGlow {
   from { opacity: 0.6; transform: translateX(-50%) scale(1); }
   to   { opacity: 1;   transform: translateX(-50%) scale(1.1); }
+}
+
+@keyframes tw-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.tw-cursor {
+  display: inline;
+  margin-left: 2px;
+  -webkit-text-fill-color: #7BA0D9;
+  color: #7BA0D9;
+  font-weight: 300;
+  animation: tw-blink 0.65s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tw-cursor { display: none; }
 }
 
 .hero h1 {
@@ -2709,31 +2749,44 @@ form .input-box {
 }
 
 .nav-sim-btn {
-  display: inline-flex !important;
-  align-items: center;
-  padding: 0.4rem 1.1rem !important;
-  background: rgba(123, 160, 217, 0.12);
-  border: 1.5px solid rgba(123, 160, 217, 0.35);
-  border-radius: 50px;
-  color: #c3d5f0 !important;
-  font-weight: 700 !important;
+  display: inline !important;
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: var(--text-heading) !important;
+  font-weight: 600 !important;
+  padding: 0.25rem 0 !important;
   letter-spacing: 0.3px;
-  transition: all 0.25s ease !important;
-  backdrop-filter: blur(8px);
-  margin-right: 0 !important;
+  transition: color 0.3s ease !important;
+  margin-right: 3rem !important;
   white-space: nowrap;
+  position: relative !important;
 }
 
 .nav-sim-btn:hover {
-  background: rgba(123, 160, 217, 0.25) !important;
-  border-color: rgba(123, 160, 217, 0.65) !important;
-  box-shadow: 0 4px 18px rgba(123, 160, 217, 0.2);
-  transform: translateY(-1px);
-  color: #fff !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  color: var(--accent) !important;
 }
 
 .nav-sim-btn::after {
-  display: none !important;
+  content: '' !important;
+  display: block !important;
+  position: absolute !important;
+  bottom: -3px !important;
+  left: 0 !important;
+  width: 0 !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, var(--accent), var(--accent2)) !important;
+  border-radius: 2px !important;
+  transition: width 0.3s ease !important;
+}
+
+.nav-sim-btn:hover::after {
+  width: 100% !important;
 }
 
 /* Submit button */
@@ -3006,7 +3059,7 @@ code {
 footer a { transition: color 0.25s ease; opacity: 0.8; }
 footer a:hover { color: var(--accent) !important; opacity: 1; }
 
-header.scrolled { background: rgba(34, 40, 49, 0.97); }
+header.scrolled { background: transparent; }
 
 .hero-comparatie {
     padding: 3.5rem 2.5rem 4rem;
@@ -3633,38 +3686,26 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
     background: none !important;
     border: none !important;
     box-shadow: none !important;
-    color: var(--accent) !important;
+    color: rgba(255, 255, 255, 0.85) !important;
     font-size: 1.55rem !important;
-    font-weight: 700 !important;
+    font-weight: 600 !important;
     padding: 0.55rem 2rem !important;
+    margin-right: 0 !important;
   }
 
   .nav-elements .nav-sim-btn:hover {
     background: none !important;
-    color: var(--accent2) !important;
+    color: var(--accent) !important;
     transform: none !important;
   }
   
   header {
-    backdrop-filter: blur(24px) !important;
+    padding: 0.6rem 0.75rem;
   }
-  
-  header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(34, 40, 49, 0.97);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
-    z-index: 1;
-  }
-  
-  nav > a,
-  #nav-auth-wrapper {
-    position: relative;
-    z-index: 2;
+
+  nav {
+    border-radius: 14px;
+    padding: 0.5rem 1rem;
   }
   
   .image-grid {
@@ -3840,30 +3881,53 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
 /* ── Firebase Auth ────────────────────────────────────────────────── */
 
 /* Buton navbar – stare neautentificat */
+/* Header-2 style: ghost Sign In button */
+.nav-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.42rem 1rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  color: rgba(200, 212, 228, 0.82);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #fff;
+}
+
+/* Header-2 style: filled CTA "Get Started" / "Înregistrează-te" */
 .nav-auth-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.4rem 1.1rem;
-  background: rgba(130, 141, 248, 0.12);
-  border: 1.5px solid rgba(130, 141, 248, 0.35);
-  border-radius: 50px;
-  color: #c3c9fa;
-  font-family: inherit;
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: 0.3px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  backdrop-filter: blur(8px);
-  white-space: nowrap;
-}
-.nav-auth-pill:hover {
-  background: rgba(130, 141, 248, 0.25);
-  border-color: rgba(130, 141, 248, 0.65);
-  box-shadow: 0 4px 18px rgba(130, 141, 248, 0.2);
-  transform: translateY(-1px);
+  padding: 0.42rem 1.1rem;
+  background: var(--accent, #7BA0D9);
+  border: none;
+  border-radius: 8px;
   color: #fff;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 2px 12px rgba(123, 160, 217, 0.3);
+  transition: box-shadow 0.2s ease, transform 0.15s ease, opacity 0.2s ease;
+}
+.nav-auth-pill:not(.auth-logged-in):hover {
+  box-shadow: 0 4px 20px rgba(123, 160, 217, 0.48);
+  transform: translateY(-1px);
+  opacity: 0.92;
 }
 
 /* Buton navbar – stare autentificat (avatar cu inițiale) */
@@ -3887,6 +3951,7 @@ header.scrolled { background: rgba(34, 40, 49, 0.97); }
   margin-right: 1.5rem;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
 /* Dropdown utilizator logat */

@@ -9,3 +9,5 @@ docs/
 .agents/
 .claude/
 skills-lock.json
+.cursor/
+design-system/

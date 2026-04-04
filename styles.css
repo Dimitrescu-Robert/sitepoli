@@ -1937,7 +1937,7 @@ img, button { max-width: 100%; }
 .lp-btn {
   display: inline-block;
   padding: 1rem 2.4rem;
-  border-radius: 999px;
+  border-radius: 16px;
   font-size: 1rem;
   font-weight: 700;
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -1957,41 +1957,41 @@ img, button { max-width: 100%; }
 }
 
 .lp-btn-fill {
-  background: var(--lp-accent, #7BA0D9);
-  color: var(--lp-btn-solid-fg, #fff);
-  box-shadow: 0 5px 0 var(--lp-accent-shadow, #5a82ba), 0 7px 12px var(--lp-btn-fill-shadow-glow, rgba(90, 130, 186, 0.25));
+  background: var(--lp-accent, #5b9cf6);
+  color: var(--lp-on-accent, #fff);
+  box-shadow: 0 4px 0 var(--lp-accent-shadow, #2563eb);
 }
 
 .lp-btn-fill:hover {
-  transform: translateY(-2px) scale(1.04);
-  background: var(--lp-btn-fill-hover-bg, #8db3e6);
-  box-shadow: 0 7px 0 var(--lp-accent-shadow, #5a82ba), 0 12px 24px var(--lp-btn-fill-shadow-glow-hover, rgba(90, 130, 186, 0.35));
-  filter: brightness(1.08);
+  transform: translateY(-3px);
+  background: var(--lp-btn-fill-hover-bg, #7baef8);
+  box-shadow: 0 7px 0 var(--lp-accent-shadow, #2563eb);
+  filter: brightness(1.05);
 }
 
 .lp-btn-fill:active {
-  transform: translateY(3px) scale(0.98);
-  box-shadow: 0 2px 0 var(--lp-accent-shadow, #5a82ba), 0 3px 6px var(--lp-btn-fill-shadow-glow-active, rgba(90, 130, 186, 0.2));
+  transform: translateY(4px);
+  box-shadow: 0 0px 0 var(--lp-accent-shadow, #2563eb);
   filter: brightness(0.95);
 }
 
 .lp-btn-outline-blue {
-  background: var(--lp-btn-outline-surface, #fff);
-  color: var(--lp-btn-outline-fg, var(--lp-text, #3a4a5c));
-  border: 3px solid var(--lp-btn-outline-border, #d5dde8);
-  box-shadow: 0 5px 0 var(--lp-btn-outline-shadow-y, #c0cad8), 0 7px 12px rgba(0, 0, 0, 0.06);
+  background: var(--lp-btn-outline-surface, transparent);
+  color: var(--lp-btn-outline-fg, #5b9cf6);
+  border: 2px solid var(--lp-btn-outline-border, rgba(91,156,246,0.4));
+  box-shadow: 0 4px 0 var(--lp-btn-outline-shadow-y, rgba(17,18,24,0.9));
 }
 
 .lp-btn-outline-blue:hover {
-  transform: translateY(-2px) scale(1.04);
-  border-color: var(--lp-btn-outline-hover-border, #b0bdd0);
-  background: var(--lp-btn-outline-hover-bg, #f8faff);
-  box-shadow: 0 7px 0 var(--lp-btn-outline-shadow-y, #c0cad8), 0 12px 24px var(--lp-btn-outline-hover-glow, rgba(0, 0, 0, 0.1));
+  transform: translateY(-3px);
+  border-color: var(--lp-btn-outline-hover-border, rgba(91,156,246,0.65));
+  background: var(--lp-btn-outline-hover-bg, rgba(91,156,246,0.1));
+  box-shadow: 0 7px 0 var(--lp-btn-outline-shadow-y, rgba(17,18,24,0.9));
 }
 
 .lp-btn-outline-blue:active {
-  transform: translateY(3px) scale(0.98);
-  box-shadow: 0 2px 0 var(--lp-btn-outline-shadow-y, #c0cad8), 0 3px 6px var(--lp-btn-outline-active-glow, rgba(0, 0, 0, 0.05));
+  transform: translateY(4px);
+  box-shadow: 0 0px 0 var(--lp-btn-outline-shadow-y, rgba(17,18,24,0.9));
 }
 
 .lp-btn-lg {
@@ -2006,19 +2006,80 @@ img, button { max-width: 100%; }
   padding: 4rem 2rem 3rem !important;
   justify-content: center;
   position: relative;
+  overflow: hidden;
+}
+
+.lp-hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -15%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(91, 156, 246, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.lp-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .lp-hero-badge {
-  background: linear-gradient(135deg, rgba(123,160,217,0.12), rgba(123,160,217,0.06)) !important;
-  border: 1px solid var(--lp-hero-badge-border, rgba(123,160,217,0.2)) !important;
-  color: var(--lp-accent, #7BA0D9) !important;
+  background: rgba(91, 156, 246, 0.1) !important;
+  border: 1px solid rgba(91, 156, 246, 0.3) !important;
+  color: #5b9cf6 !important;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.3px;
-  animation: none !important;
   box-shadow: none !important;
   margin-bottom: 2rem !important;
+}
+
+/* ── Hero staggered load animation ── */
+@keyframes lp-fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.lp-hero-badge {
+  animation: lp-fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+  animation-delay: 0ms !important;
+}
+
+.lp-title-wrap {
+  animation: lp-fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 80ms;
+}
+
+.lp-hero h2 {
+  animation: lp-fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 160ms;
+}
+
+.lp-hero-desc {
+  animation: lp-fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 240ms;
+}
+
+.lp-hero .hero-btn {
+  animation: lp-fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 320ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-hero-badge, .lp-title-wrap, .lp-hero h2, .lp-hero-desc, .lp-hero .hero-btn {
+    animation: none !important;
+  }
 }
 
 /* ── Big title wrapper with decorations ── */

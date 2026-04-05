@@ -132,9 +132,24 @@ class SimpleDropdown {
     }, { passive: true });
 })();
 
+// Info card accordion (informatii.html)
+function initInfoCards() {
+    document.querySelectorAll('.info-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+            // Don't toggle if clicking a link inside
+            if (e.target.closest('a')) return;
+            const isActive = card.classList.contains('active');
+            // Close all others
+            document.querySelectorAll('.info-card.active').forEach(c => c.classList.remove('active'));
+            if (!isActive) card.classList.add('active');
+        });
+    });
+}
+
 // Inițializează când se încarcă pagina
 document.addEventListener('DOMContentLoaded', function() {
     new SimpleDropdown();
+    initInfoCards();
 
     // Smooth scroll pentru butonul "Povestea noastră"
     const poetveaBtn = document.querySelector('a[href="#despre-noi"]');

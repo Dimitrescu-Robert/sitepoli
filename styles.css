@@ -8879,6 +8879,13 @@ body.theme-transitions-on .input-box .field {
 .subiecte-section-title-icon {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 9px;
+  flex-shrink: 0;
 }
 
 .year-cards-list {
@@ -8892,7 +8899,7 @@ body.theme-transitions-on .input-box .field {
   --card-shadow: #1a7a56;
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 1rem;
   border: 2px solid var(--card-accent);
   border-radius: 20px;
   box-shadow: 0 3px 0 var(--card-shadow);
@@ -8908,6 +8915,8 @@ body.theme-transitions-on .input-box .field {
 
 .lp-body .subiecte-box.year-card:hover {
   background: rgba(255,255,255,0.05);
+  border-color: var(--card-accent) !important;
+  transform: none;
   box-shadow: 0 3px 0 var(--card-shadow),
               0 0 0 3px color-mix(in srgb, var(--card-accent) 30%, transparent);
 }
@@ -8915,6 +8924,30 @@ body.theme-transitions-on .input-box .field {
 .lp-body .subiecte-box.year-card:active {
   transform: translateY(2px);
   box-shadow: 0 0px 0 var(--card-shadow);
+}
+
+/* Override the global .active state which hijacks colors for year-cards */
+.lp-body .subiecte-box.year-card.active {
+  background: rgba(255,255,255,0.04) !important;
+  border-color: var(--card-accent) !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  color: var(--text-heading) !important;
+  box-shadow: 0 0 0 0 transparent !important;
+}
+
+.lp-body .subiecte-box.year-card.active:hover {
+  background: rgba(255,255,255,0.06) !important;
+  border-color: var(--card-accent) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--card-accent) 20%, transparent) !important;
+}
+
+.lp-body .subiecte-box.year-card.active .year-card-year {
+  color: var(--card-accent) !important;
+}
+
+.lp-body .subiecte-box.year-card.active .info-card-chevron {
+  color: var(--muted) !important;
 }
 
 .year-card-year {
@@ -8929,7 +8962,6 @@ body.theme-transitions-on .input-box .field {
   flex: 1;
   font-size: 0.88rem;
   color: var(--muted);
-  padding-left: 1.2rem;
   line-height: 1.4;
 }
 
@@ -8954,7 +8986,7 @@ body.theme-transitions-on .input-box .field {
   transform: rotate(180deg);
 }
 
-.lp-body .year-card + .dropdown-section {
+.lp-body .year-card + .dropdown-section.show {
   border: 2px solid var(--card-accent, #34d399);
   border-top: none;
   border-radius: 0 0 20px 20px;

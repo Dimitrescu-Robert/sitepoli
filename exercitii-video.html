@@ -495,6 +495,15 @@
             transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
         }
         .ev-card:hover .ev-thumb img { transform: scale(1.05); }
+        .ev-thumb-placeholder {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(57,62,70,0.9) 0%, rgba(34,40,49,0.95) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .ev-thumb-placeholder svg { opacity: 0.18; }
         .ev-thumb::after {
             content: '';
             pointer-events: none;
@@ -792,41 +801,60 @@
             const SVG_LOCK = `<svg class="ev-lock-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;
             const SVG_STAR = `<svg class="ev-lock-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
 
+            // videoId-urile sunt stocate în Firestore, nu în sursă
             const exercitiiMate = [
-                { id: 1, title: "Sume Riemann — Introducere", videoId: "bLz5N_6fkZ8", access: "account",
+                { id: 1, docId: "mate-1", title: "Sume Riemann — Introducere", access: "account",
                   statement: "Se dă funcția f:[0,1]→ℝ, f(x)=x². Împărțiți intervalul [0,1] în n subintervale egale și scrieți suma Riemann inferioară și superioară. Calculați limita acestor sume când n→∞ și interpretați geometric rezultatul obținut." },
-                { id: 2, title: "Sume Riemann — Aplicații",   videoId: "S5ck15BZ2Qs", access: "account",
+                { id: 2, docId: "mate-2", title: "Sume Riemann — Aplicații",   access: "account",
                   statement: "Folosind definiția cu sume Riemann, calculați ∫₀² x³ dx. Scrieți suma Riemann pentru partiția uniformă cu n puncte, simplificați expresia folosind formula sumei cuburilor și treceți la limită." },
-                { id: 3, title: "Sume Riemann — Aprofundare", videoId: "owqpnn4bmKs", access: "plus",
+                { id: 3, docId: "mate-3", title: "Sume Riemann — Aprofundare", access: "plus",
                   statement: "Demonstrați că ∫₀¹ xⁿ dx = 1/(n+1) folosind suma Riemann. Deduceți din această formulă suma seriei 1 + 1/2 + 1/3 + ... interpretând-o ca o integrală și aproximând prin sume." },
-                { id: 4, title: "Kings Rule — Partea 1",       videoId: "-x4OFdaLSdA", access: "plus",
+                { id: 4, docId: "mate-4", title: "Kings Rule — Partea 1",       access: "plus",
                   statement: "Enunțați și demonstrați Kings Rule: dacă ∫ₐᵇ f(x)dx = I, atunci ∫ₐᵇ f(a+b−x)dx = I. Folosiți această proprietate pentru a calcula ∫₀^(π/2) sin(x)/(sin(x)+cos(x)) dx." },
-                { id: 5, title: "Kings Rule — Partea 2",       videoId: "R6giSk0X3ow", access: "plus",
+                { id: 5, docId: "mate-5", title: "Kings Rule — Partea 2",       access: "plus",
                   statement: "Calculați integrala ∫₀^π x·sin(x)/(1+cos²(x)) dx aplicând Kings Rule. Scrieți pașii detaliați: substituția x→π−x, adunarea celor două integrale și calculul integralei rămase." },
-                { id: 6, title: "Trigonometrie — Cerc unitar", videoId: "ERh6xveZpsw", access: "plus",
+                { id: 6,  docId: "mate-6",  title: "Trigonometrie — Cerc unitar", access: "plus",
                   statement: "Pe cercul unitar, identificați coordonatele punctului P(cos θ, sin θ) și demonstrați identitatea fundamentală sin²θ + cos²θ = 1. Deduceți din diagrama cercului unitar formulele pentru sin(α+β) și cos(α+β)." },
+                { id: 7,  docId: "mate-7",  title: "În curând", access: "plus", statement: "" },
+                { id: 8,  docId: "mate-8",  title: "În curând", access: "plus", statement: "" },
+                { id: 9,  docId: "mate-9",  title: "În curând", access: "plus", statement: "" },
+                { id: 10, docId: "mate-10", title: "În curând", access: "plus", statement: "" },
+                { id: 11, docId: "mate-11", title: "În curând", access: "plus", statement: "" },
+                { id: 12, docId: "mate-12", title: "În curând", access: "plus", statement: "" },
             ];
             const exercitiiInfo = [
-                { id: 1, title: "Baze de numerație — Teorie",  videoId: "c9DvvKyos98", access: "account",
+                { id: 1, docId: "info-1", title: "Baze de numerație — Teorie",  access: "account",
                   statement: "Convertiți numărul (1101101)₂ în baza 10, baza 8 și baza 16. Descrieți algoritmul general de conversie dintr-o bază oarecare în baza 10 și invers. Convertiți și (347)₁₀ în baza 2." },
-                { id: 2, title: "Numere Catalane",              videoId: "TAuJV5eNKLM", access: "account",
+                { id: 2, docId: "info-2", title: "Numere Catalane",              access: "account",
                   statement: "Câte moduri distincte există de a aranja n perechi de paranteze rotunde astfel încât șirul să fie valid (corect închis)? Găsiți relația de recurență Cₙ₊₁ = ΣCₖ·Cₙ₋ₖ și calculați C₀,...,C₅." },
-                { id: 3, title: "Triunghiul lui Pascal",        videoId: "LurI8AYY18E", access: "plus",
+                { id: 3, docId: "info-3", title: "Triunghiul lui Pascal",        access: "plus",
                   statement: "Demonstrați că suma elementelor de pe linia n din triunghiul lui Pascal este 2ⁿ. Folosiți această proprietate împreună cu identitatea C(n,k)+C(n,k+1)=C(n+1,k+1) pentru a calcula C(10,3) și C(12,5)." },
-                { id: 4, title: "Deranjamente — Partea 1",      videoId: "pbXg5EI5t4c", access: "plus",
+                { id: 4, docId: "info-4", title: "Deranjamente — Partea 1",      access: "plus",
                   statement: "Câte permutări ale mulțimii {1,2,...,n} au proprietatea că nici un element nu se află pe poziția sa inițială (deranjamente)? Deduceți formula Dₙ = (n−1)(Dₙ₋₁+Dₙ₋₂) cu D₁=0, D₂=1. Calculați D₅." },
-                { id: 5, title: "Deranjamente — Partea 2",      videoId: "qYAWjIVY7Zw", access: "plus",
+                { id: 5, docId: "info-5", title: "Deranjamente — Partea 2",      access: "plus",
                   statement: "Un poștaș trebuie să livreze 6 scrisori la 6 adrese diferite. În câte moduri le poate distribui astfel încât nicio scrisoare să nu ajungă la adresa corectă? Folosiți formula deranjamentelor și verificați cu principiul includerii-excluderii." },
-                { id: 6, title: "DFS vs BFS — Grafuri",         videoId: "cS-198wtfj0", access: "plus",
+                { id: 6,  docId: "info-6",  title: "DFS vs BFS — Grafuri",         access: "plus",
                   statement: "Pe un graf neorientat cu 7 noduri și muchiile {1-2, 1-3, 2-4, 2-5, 3-6, 3-7}, aplicați DFS și BFS plecând din nodul 1. Scrieți ordinea completă de vizitare, identificați muchiile de arbore și muchiile de întoarcere." },
+                { id: 7,  docId: "info-7",  title: "În curând", access: "plus", statement: "" },
+                { id: 8,  docId: "info-8",  title: "În curând", access: "plus", statement: "" },
+                { id: 9,  docId: "info-9",  title: "În curând", access: "plus", statement: "" },
+                { id: 10, docId: "info-10", title: "În curând", access: "plus", statement: "" },
+                { id: 11, docId: "info-11", title: "În curând", access: "plus", statement: "" },
+                { id: 12, docId: "info-12", title: "În curând", access: "plus", statement: "" },
             ];
+
+            // Map docId -> videoId, populat din Firestore după auth check
+            let videoIdMap = {};
 
             function buildCard(ex, userLevel, idx) {
                 const canWatch =
                     (ex.access === 'account' && (userLevel === 'account' || userLevel === 'plus')) ||
                     (ex.access === 'plus'    &&  userLevel === 'plus');
 
-                const media = `<img src="https://img.youtube.com/vi/${ex.videoId}/hqdefault.jpg" alt="${ex.title}" loading="lazy">`;
+                const videoId = videoIdMap[ex.docId] || null;
+                const media = videoId
+                    ? `<img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" alt="${ex.title}" loading="lazy">`
+                    : `<div class="ev-thumb-placeholder"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>`;
 
                 let lockHtml = '';
                 if (!canWatch) {
@@ -854,8 +882,9 @@
                 const numLabel   = String(ex.id).padStart(2, '0');
                 const playBtn    = canWatch ? `<div class="ev-play-btn" aria-hidden="true"><div class="ev-play-circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>` : '';
 
-                const openAttrs = canWatch
-                    ? `data-ev-open data-ev-video="${ex.videoId}" data-ev-num="${numLabel}" data-ev-title="${ex.title.replace(/"/g,'&quot;')}" data-ev-statement="${(ex.statement||'').replace(/"/g,'&quot;')}"`
+                // docId în loc de videoId — video ID-ul nu ajunge în DOM
+                const openAttrs = (canWatch && videoId)
+                    ? `data-ev-open data-ev-docid="${ex.docId}" data-ev-num="${numLabel}" data-ev-title="${ex.title.replace(/"/g,'&quot;')}" data-ev-statement="${(ex.statement||'').replace(/"/g,'&quot;')}"`
                     : '';
 
                 return `
@@ -1011,15 +1040,18 @@
                         }
                         return;
                     }
-                    // Click pe card deblcat → deschide modal video
+                    // Click pe card deblocat → deschide modal video
                     const card = e.target.closest('[data-ev-open]');
                     if (card) {
-                        openVideoModal(
-                            card.dataset.evVideo,
-                            card.dataset.evNum,
-                            card.dataset.evTitle,
-                            card.dataset.evStatement
-                        );
+                        const videoId = videoIdMap[card.dataset.evDocid];
+                        if (videoId) {
+                            openVideoModal(
+                                videoId,
+                                card.dataset.evNum,
+                                card.dataset.evTitle,
+                                card.dataset.evStatement
+                            );
+                        }
                     }
                 });
             }
@@ -1028,17 +1060,38 @@
             setupClicks();
             renderGrids('none');
 
+            async function fetchVideoIds(db, docIds) {
+                try {
+                    const snaps = await Promise.all(docIds.map(id => getDoc(doc(db, 'videos', id))));
+                    snaps.forEach((snap, i) => {
+                        if (snap.exists()) videoIdMap[docIds[i]] = snap.data().videoId;
+                    });
+                } catch(e) {
+                    console.warn('[exercitii-video] fetchVideoIds error:', e);
+                }
+            }
+
             try {
                 const app  = getApp();
                 const auth = getAuth(app);
                 const db   = getFirestore(app, 'admiterepoli');
                 onAuthStateChanged(auth, async user => {
-                    if (!user) { renderGrids('none'); return; }
+                    if (!user) { videoIdMap = {}; renderGrids('none'); return; }
                     window._evEmail = user.email;
                     try {
                         const snap = await getDoc(doc(db, 'users', user.uid));
                         const st = snap.exists() ? snap.data().status : null;
-                        renderGrids((st === 'paid' || st === 'pending_cancellation') ? 'plus' : 'account');
+                        const isPaid = st === 'paid' || st === 'pending_cancellation';
+                        const level = isPaid ? 'plus' : 'account';
+
+                        // Fetch video IDs doar pentru nivelul de acces al userului
+                        const allVideos = [...exercitiiMate, ...exercitiiInfo];
+                        const accessibleDocIds = allVideos
+                            .filter(v => v.access === 'account' || (v.access === 'plus' && isPaid))
+                            .map(v => v.docId);
+                        await fetchVideoIds(db, accessibleDocIds);
+
+                        renderGrids(level);
                     } catch { renderGrids('account'); }
                 });
             } catch(e) {

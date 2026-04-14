@@ -233,7 +233,7 @@ nav ul li:last-child a { margin-right: 0; }
 .nav-links { display: flex; gap: 8px; flex-wrap: wrap; }
 .nav-links a:hover { opacity: 0.8; }
 
-.hamburger { display: none; cursor: pointer; z-index: 101; }
+.hamburger { display: none; cursor: pointer; z-index: 101; pointer-events: all; }
 
 .bar {
   display: block;
@@ -3162,14 +3162,6 @@ img, button { max-width: 100%; }
     font-size: 1.6rem;
   }
 
-  .lp-body .nav-elements.active {
-    background: var(--lp-mobile-nav-bg, #fff) !important;
-  }
-
-  .lp-body .nav-elements.active li a {
-    color: var(--lp-mobile-nav-link, #1a2744) !important;
-  }
-
   .lp-body .nav-auth-mobile-btn {
     background: var(--lp-mobile-auth-bg, #7BA0D9) !important;
     color: var(--lp-mobile-auth-fg, #fff) !important;
@@ -3230,7 +3222,6 @@ img, button { max-width: 100%; }
 /* Subiecte-Box */
 
 .subiecte-box {
-  margin: 0.5rem 0;
   padding: 0.85rem 1.4rem;
   display: flex;
   align-items: center;
@@ -6271,8 +6262,22 @@ header.scrolled { background: transparent; }
     padding: 2.5rem 1rem 2rem !important;
   }
 
+  .lp-title-wrap {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
   .lp-big-title {
-    font-size: 3rem !important;
+    /* 9vw keeps "AdmiterePoli." under ~340px text-width on any ≤414px phone */
+    font-size: clamp(1.8rem, 9vw, 3rem) !important;
+    white-space: nowrap;
+  }
+
+  .lp-hero-badge {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .lp-hero h2 {
@@ -6452,19 +6457,30 @@ header.scrolled { background: transparent; }
     width: 100%;
     height: 100vh;
     height: 100dvh;
-    background: rgba(22, 27, 34, 0.97);
-    backdrop-filter: blur(28px) saturate(1.5);
-    -webkit-backdrop-filter: blur(28px) saturate(1.5);
+    background: linear-gradient(160deg, rgba(24, 28, 36, 0.82) 0%, rgba(30, 34, 48, 0.85) 55%, rgba(28, 32, 53, 0.82) 100%);
+    backdrop-filter: blur(32px) saturate(1.8);
+    -webkit-backdrop-filter: blur(32px) saturate(1.8);
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    z-index: 99;
-    gap: 0.3rem;
-    padding-bottom: 2rem;
+    z-index: 9990;
+    gap: 0;
+    padding-bottom: 3rem;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.32s ease, visibility 0.32s ease;
+  }
+
+  /* Linie accent în partea de sus a meniului */
+  .nav-elements::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent2, #828df8), var(--accent, #7BA0D9));
   }
 
   .nav-elements.active {
@@ -6472,19 +6488,32 @@ header.scrolled { background: transparent; }
     visibility: visible;
   }
 
-  nav li a {
-    font-size: 1.55rem;
-    font-weight: 600;
-    padding: 0.55rem 2rem;
-    margin: 0;
-    letter-spacing: 0.2px;
-    color: rgba(255, 255, 255, 0.85);
-    display: inline-block;
-    transition: color 0.2s ease;
+  /* Separatori subtili între linkuri */
+  .nav-elements li {
+    width: 100%;
+    border-bottom: 1px solid rgba(123, 160, 217, 0.1);
   }
 
-  nav li a:hover {
-    color: var(--accent);
+  .nav-elements li:first-child {
+    border-top: 1px solid rgba(123, 160, 217, 0.1);
+  }
+
+  nav li a {
+    font-size: 1.45rem;
+    font-weight: 600;
+    padding: 1.05rem 2.5rem;
+    margin: 0;
+    letter-spacing: 0.3px;
+    color: rgba(230, 235, 245, 0.85);
+    display: block;
+    width: 100%;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+
+  nav li a:hover,
+  nav li a:active {
+    color: var(--accent, #7BA0D9);
+    background: rgba(123, 160, 217, 0.07);
   }
 
   nav li a::after {
@@ -6495,21 +6524,26 @@ header.scrolled { background: transparent; }
     background: none !important;
     border: none !important;
     box-shadow: none !important;
-    color: rgba(255, 255, 255, 0.85) !important;
-    font-size: 1.55rem !important;
+    color: rgba(230, 235, 245, 0.85) !important;
+    font-size: 1.45rem !important;
     font-weight: 600 !important;
-    padding: 0.55rem 2rem !important;
+    padding: 1.05rem 2.5rem !important;
     margin-right: 0 !important;
+    width: 100%;
+    display: block;
   }
 
   .nav-elements .nav-sim-btn:hover {
-    background: none !important;
-    color: var(--accent) !important;
+    background: rgba(123, 160, 217, 0.07) !important;
+    color: var(--accent, #7BA0D9) !important;
     transform: none !important;
   }
-  
+
+  /* Header mobil: fundal subtil, fara floating pill */
+  /* IMPORTANT: fara backdrop-filter — creaza containing block pentru position:fixed */
   header {
-    padding: 0.6rem 0.75rem;
+    padding: 0.7rem 1rem;
+    background: rgba(24, 28, 36, 0.92);
   }
 
   nav {
@@ -6660,13 +6694,14 @@ header.scrolled { background: transparent; }
     }
   
     .liquid-glass-btn {
-      padding: 0.7rem 1rem;     
-      width: 100%;           
-      max-width: 280px;        
-      font-size: 0.75rem;         
-      letter-spacing: 0;          
+      padding: 0.7rem 1rem;
+      width: 100%;
+      min-width: 0;
+      max-width: 280px;
+      font-size: 0.75rem;
+      letter-spacing: 0;
       white-space: nowrap;
-      display: flex; 
+      display: flex;
       margin: 0 auto;
     }
 
@@ -9112,6 +9147,9 @@ body.theme-transitions-on .input-box .field {
 .lp-fold .lp-hero {
   flex: 1;
   min-height: 0 !important;
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
 }
 
 .lp-category-dock {
@@ -9120,11 +9158,8 @@ body.theme-transitions-on .input-box .field {
   align-items: stretch;
   gap: 0;
   background: transparent;
-  /* Full-bleed */
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  /* Full-bleed without triggering horizontal overflow */
+  width: 100%;
   flex-shrink: 0;
   border-top: 1px solid rgba(255,255,255,0.12);
 }
@@ -9282,6 +9317,7 @@ body.theme-transitions-on .input-box .field {
   transform: none;
   padding: 0;
   margin-left: 0;
+  margin-top: 0.4rem;
   width: auto;
   transition: none;
 }
@@ -9364,7 +9400,8 @@ body.theme-transitions-on .input-box .field {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   font-size: 1.2rem;
   font-weight: 800;
   color: var(--text-heading);
@@ -9498,7 +9535,7 @@ body.theme-transitions-on .input-box .field {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2.5rem;
 }
 
 .nav-logo-link {
@@ -9586,12 +9623,20 @@ body.theme-transitions-on .input-box .field {
 }
 
 @media (max-width: 768px) {
+  /* Container-ul lp-body e transparent — elimină padding-ul lateral pe mobile
+     ca să nu strângă conținutul inutil (fiecare secțiune are propriul padding) */
+  .lp-body .container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
   /* Header: logo stânga, hamburger dreapta — nav pill ascuns */
   .lp-body header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     grid-template-columns: none;
+    background: #1a1e26 !important;
   }
 
   .nav-logo-link {
@@ -9599,8 +9644,24 @@ body.theme-transitions-on .input-box .field {
   }
 
   /* Ascunde nav pill pe mobile — links sunt în fullscreen overlay */
+  /* Nu folosim display:none — ar ascunde și ul.nav-elements (position:fixed) din interior */
   .lp-body nav {
-    display: none;
+    width: 0;
+    min-width: 0;
+    padding: 0;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    overflow: visible;
+    flex: 0 0 0;
+    /* will-change:transform creates a containing block for position:fixed children.
+       On mobile the nav collapses to width:0, which makes .nav-elements inherit
+       that 0-width and lose its background. Reset it so the overlay uses the viewport. */
+    will-change: auto;
+    transform: none !important;
+    transition: none !important;
   }
 
   /* Ascunde sign up */

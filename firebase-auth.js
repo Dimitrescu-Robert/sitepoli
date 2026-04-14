@@ -42,8 +42,12 @@ async function updatePricingButtons(user) {
   const btnPlus     = document.getElementById('oferim-btn-plus');
   if (!btnStandard || !btnPlus) return; // nu suntem pe index.html
 
+  const heroBtn = document.getElementById('hero-register-btn');
+
   if (!user) {
     // Deconectat — stare implicită
+    if (heroBtn) heroBtn.textContent = 'Începe Acum';
+
     btnStandard.textContent = 'Creează cont';
     btnStandard.disabled    = false;
     btnStandard.classList.remove('lp-btn-current');
@@ -53,6 +57,8 @@ async function updatePricingButtons(user) {
     btnPlus.classList.remove('lp-btn-current');
     return;
   }
+
+  if (heroBtn) heroBtn.textContent = 'Intră în contul meu';
 
   let plan = 'standard';
   try {
@@ -701,8 +707,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Hero "Începe Acum" button — opens register tab
+  // Hero "Începe Acum" / "Intră în contul meu" button
   document.getElementById('hero-register-btn')?.addEventListener('click', () => {
+    if (auth.currentUser) {
+      window.location.href = './profil';
+      return;
+    }
     openModal();
     requestAnimationFrame(() => {
       document.querySelector('.auth-toggle-btn[data-tab="register"]')?.click();

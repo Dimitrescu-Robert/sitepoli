@@ -22,23 +22,27 @@
     </head>
     <body class="lp-body lp-dark">
         <header>
+            <a href="./" class="nav-logo-link">
+                <img src="images/logonoutrans.png" alt="logo" class="logonav">
+            </a>
             <nav>
-                <a href="./">
-                    <img src="images/logonoutrans.png" alt="logo" class="logonav">
-                </a>            
+                <div id="nav-cursor" class="nav-cursor" aria-hidden="true"></div>
                 <ul class="nav-elements">
                     <li><a href="./informatii">Informații generale</a></li>
                     <li><a href="./subiecte">Subiecte/Rezolvări</a></li>
                     <li><a href="./resurse">Resurse</a></li>
-                    <li><a href="./simulari" class="nav-sim-btn">Simulări</a></li>
+                    <li><a href="./simulari">Simulări</a></li>
                     <li><a href="./exercitii-video">Exerciții video</a></li>
                 </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
             </nav>
+            <div class="nav-header-actions">
+                <button class="nav-header-signup" id="header-signup-btn">Sign Up</button>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </header>
         <main>
             <div class="grid-main-content">
@@ -54,7 +58,7 @@
                         <div class="info-card" style="--card-accent: #a78bfa; --card-shadow: #5b21b6;" data-set="CTIvsIS">
                             <div class="info-card-header">
                                 <div class="info-card-icon">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="7" height="18" rx="2"/><rect x="15" y="3" width="7" height="18" rx="2"/></svg>
+                                    <img src="images/logoautomatica.png" alt="ACS logo" style="width:24px;height:24px;object-fit:contain;">
                                 </div>
                                 <div class="info-card-body">
                                     <div class="info-card-title">ACS: CTI vs IS</div>
@@ -87,7 +91,7 @@
                         <div class="info-card" style="--card-accent: #5b9cf6; --card-shadow: #1e4d8c;" data-set="IEETIvsCTI">
                             <div class="info-card-header">
                                 <div class="info-card-icon">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                                    <img src="images/ETTI-LOGO-1211079136.png" alt="ETTI logo" style="width:24px;height:24px;object-fit:contain;">
                                 </div>
                                 <div class="info-card-body">
                                     <div class="info-card-title">ETTI: ETTI vs CTI vs ETTI Engleză</div>
@@ -120,7 +124,7 @@
                         <div class="info-card" style="--card-accent: #FFCA4B; --card-shadow: #a07a00;" data-set="CalculNota">
                             <div class="info-card-header">
                                 <div class="info-card-icon">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
                                 </div>
                                 <div class="info-card-body">
                                     <div class="info-card-title">Calculul Notei Politehnică</div>
@@ -158,7 +162,7 @@
                         <div class="info-card" style="--card-accent: #4db6ac; --card-shadow: #1a6b64;" data-set="GLISARE">
                             <div class="info-card-header">
                                 <div class="info-card-icon">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/><line x1="2" y1="12" x2="22" y2="12"/><polyline points="15 19 12 22 9 19"/><polyline points="19 9 22 12 19 15"/></svg>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/><path d="M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
                                 </div>
                                 <div class="info-card-body">
                                     <div class="info-card-title">Glisarea din Preadmitere</div>
@@ -188,7 +192,7 @@
                         <div class="info-card" style="--card-accent: #34d399; --card-shadow: #1a7a56;" data-set="PregatirePoli">
                             <div class="info-card-header">
                                 <div class="info-card-icon">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                                 </div>
                                 <div class="info-card-body">
                                     <div class="info-card-title">Pregătirea pentru examenul Politehnică</div>
@@ -218,7 +222,7 @@
                         <div class="info-card" style="--card-accent: #fb923c; --card-shadow: #9a4a10;" data-set="Cesalucrez">
                             <div class="info-card-header">
                                 <div class="info-card-icon">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                                 </div>
                                 <div class="info-card-body">
                                     <div class="info-card-title">În timpul examenului</div>
@@ -249,7 +253,7 @@
                         <div class="info-card" style="--card-accent: #f472b6; --card-shadow: #9a1a5c;" data-set="Culegeri">
                             <div class="info-card-header">
                                 <div class="info-card-icon">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
                                 </div>
                                 <div class="info-card-body">
                                     <div class="info-card-title">Culegerile de la Poli</div>

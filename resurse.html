@@ -13,154 +13,233 @@
         <link rel="stylesheet" href="styles.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Resurse</title>
+        <title>Resurse — AdmiterePoli</title>
         <meta name="description" content="Materialele care ne-au ajutat cel mai mult în pregătirea pentru admitere.">
         <link rel="icon" type="image/png" href="logosquared.png">
         <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-</head>
-    <body>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    </head>
+    <body class="lp-body lp-dark">
         <header>
+            <a href="./" class="nav-logo-link">
+                <img src="images/logonoutrans.png" alt="logo" class="logonav">
+            </a>
             <nav>
-                <a href="./">
-                    <img src="images/logonoutrans.png" alt="logo" class="logonav">
-                </a>            
+                <div id="nav-cursor" class="nav-cursor" aria-hidden="true"></div>
                 <ul class="nav-elements">
                     <li><a href="./informatii">Informații generale</a></li>
                     <li><a href="./subiecte">Subiecte/Rezolvări</a></li>
                     <li><a href="./resurse">Resurse</a></li>
-                    <li><a href="./simulari" class="nav-sim-btn">Simulări</a></li>
+                    <li><a href="./simulari">Simulări</a></li>
                     <li><a href="./exercitii-video">Exerciții video</a></li>
                 </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
             </nav>
+            <div class="nav-header-actions">
+                <button class="nav-header-signup" id="header-signup-btn">Sign Up</button>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </header>
         <main>
             <div class="grid-main-content">
-                <section class="container">
-                    <div class="pag-intro">
-                        <h1 style="text-align: center;">Pagina de Resurse</h1>
-                        <h2 class="indented scurtat2">🔑 <b> În continuare găsești materialele care ne-au ajutat cel mai mult în pregătirea pentru admitere, selectate pentru claritate și eficiență.</b></h2>
-                        <h2 class="indented scurtat2">📘 Multe dintre aceste resurse acoperă capitole ce nu sunt predate la liceu, dar le considerăm esențiale pentru a vă forma o bază solidă înainte de examen.</h2>
+                <div class="container">
+                    <div class="info-page-header">
+                        <h1>Resurse pentru admitere</h1>
+                        <p class="info-page-subtitle">Materialele care ne-au ajutat cel mai mult în pregătire — selectate pentru claritate și eficiență. Multe acoperă capitole ce nu sunt predate la liceu, dar esențiale pentru examen.</p>
                     </div>
-                </section>
-                <section class="container">
-                    <div class="image-grid">
-                        <div class="left-grid">
-                            <h1>Resurse Matematică</h1>
-                            <h3>Sume Riemann</h3>
-                            <ul class="ul-resurse">
+
+                    <!-- MATEMATICĂ -->
+                    <div class="resurse-header">
+                        <div class="resurse-header-icon resurse-icon-mate">∫</div>
+                        <div>
+                            <h2 class="resurse-title resurse-title-mate">Resurse Matematică</h2>
+                            <p class="resurse-subtitle">Videoclipuri și culegeri pentru capitolele care apar frecvent la admitere.</p>
+                        </div>
+                    </div>
+
+                    <div class="resurse-grid">
+                        <div class="resurse-card" style="--card-accent: #828df8; --card-shadow: #3730a3;">
+                            <div class="resurse-card-header">
+                                <span class="resurse-card-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                                </span>
+                                <span class="resurse-card-title resurse-card-title-mate">Sume Riemann</span>
+                            </div>
+                            <ul class="ul-resurse resurse-mate">
                                 <li><a href="https://www.youtube.com/watch?v=bLz5N_6fkZ8&t=1015s&ab_channel=PrimeNewtons" target="_blank">Partea 1</a></li>
                                 <li><a href="https://www.youtube.com/watch?v=S5ck15BZ2Qs&ab_channel=PrimeNewtons" target="_blank">Partea 2</a></li>
                                 <li><a href="https://www.youtube.com/watch?v=owqpnn4bmKs&t=692s&ab_channel=PrimeNewtons" target="_blank">Aprofundare</a></li>
                             </ul>
-                            <h3>Kings rule</h3>
-                            <ul class="ul-resurse">
+                        </div>
+
+                        <div class="resurse-card" style="--card-accent: #a78bfa; --card-shadow: #5b21b6;">
+                            <div class="resurse-card-header">
+                                <span class="resurse-card-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                                </span>
+                                <span class="resurse-card-title resurse-card-title-mate">King's Rule</span>
+                            </div>
+                            <ul class="ul-resurse resurse-mate">
                                 <li><a href="https://www.youtube.com/watch?v=-x4OFdaLSdA&ab_channel=BlackTshirtMathProfessor" target="_blank">Partea 1</a></li>
                                 <li><a href="https://www.youtube.com/watch?v=R6giSk0X3ow&t=949s&ab_channel=BlackTshirtMathProfessor" target="_blank">Partea 2</a></li>
                                 <li><a href="https://www.youtube.com/watch?v=ERh6xveZpsw&t=4s&ab_channel=BlackTshirt" target="_blank">Partea 3</a></li>
                             </ul>
-                            <h3>Trigonometrie</h3>
-                            <ul class="ul-resurse">
+                        </div>
+
+                        <div class="resurse-card" style="--card-accent: #c4b5fd; --card-shadow: #4c1d95;">
+                            <div class="resurse-card-header">
+                                <span class="resurse-card-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                                </span>
+                                <span class="resurse-card-title resurse-card-title-mate">Trigonometrie</span>
+                            </div>
+                            <ul class="ul-resurse resurse-mate">
                                 <li><a href="https://www.youtube.com/watch?v=mFa_SiRNQi0" target="_blank">Cercul Trigonometric</a></li>
                                 <li><a href="https://www.youtube.com/watch?v=bFUHOJqZ7Tg" target="_blank">Forma Trigonometrică</a></li>
-                                <li><a href="https://www.math.md/school/formule/trigonom/trigonom.pdf" target="_blank">Formule</a></li>
-                            </ul>
-                            <h3>Altele</h3>
-                            <ul class="ul-resurse">
-                                <li><a href="https://www.youtube.com/watch?v=J9E-KZdPUMc&list=PLn9oGSe656KTrTYpH8Yjg9rh7j20YmSPj&ab_channel=UniversitateaPOLITEHNICAdinBucure%C8%99ti" target="_blank">Playlist-ul oficial UPB cu probleme rezolvate </a></li>
-                                <li><a href="https://matefizica.wordpress.com/wp-content/uploads/2015/03/culegere-matematica_mecanica-iasi.pdf" target="_blank">Culegerea cu probleme rezolvate de la Iași</a></li>
-                                <li><a href="https://www.youtube.com/@atelieruldematematica2934" target="_blank">Probleme rezolvate de olimpiadă bune pentru admitere</a></li>
+                                <li><a href="https://www.math.md/school/formule/trigonom/trigonom.pdf" target="_blank">Formule esențiale</a></li>
                             </ul>
                         </div>
-                        <div class="right-grid">
-                            <img src="images/poza-mate.jpg" alt="pozamate">
+
+                        <div class="resurse-card resurse-card-wide" style="--card-accent: #818cf8; --card-shadow: #312e81;">
+                            <div class="resurse-card-header">
+                                <span class="resurse-card-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                </span>
+                                <span class="resurse-card-title resurse-card-title-mate">Altele — Matematică</span>
+                            </div>
+                            <ul class="ul-resurse resurse-mate">
+                                <li><a href="https://www.youtube.com/watch?v=J9E-KZdPUMc&list=PLn9oGSe656KTrTYpH8Yjg9rh7j20YmSPj&ab_channel=UniversitateaPOLITEHNICAdinBucure%C8%99ti" target="_blank">Playlist oficial UPB cu probleme rezolvate</a></li>
+                                <li><a href="https://matefizica.wordpress.com/wp-content/uploads/2015/03/culegere-matematica_mecanica-iasi.pdf" target="_blank">Culegerea cu probleme rezolvate de la Iași</a></li>
+                                <li><a href="https://www.youtube.com/@atelieruldematematica2934" target="_blank">Probleme de olimpiadă relevante pentru admitere</a></li>
+                            </ul>
                         </div>
                     </div>
-                </section>
-                <section class="container">
-                    <div class="image-grid">
-                        <div class="left-grid">
-                            <h1>Resurse Informatică</h1>
-                            <h3>Algoritmi</h3>
-                            <ul class="ul-resurse">
-                                <li><a href="https://infogenius.ro/algoritmul-lui-euclid/" target="_blank">Algoritmul lui Euclid prin scăderi repetate</a></li>
+
+                    <!-- INFORMATICĂ -->
+                    <div class="resurse-header" style="margin-top: 3rem;">
+                        <div class="resurse-header-icon resurse-icon-info">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </div>
+                        <div>
+                            <h2 class="resurse-title resurse-title-info">Resurse Informatică</h2>
+                            <p class="resurse-subtitle">Algoritmi, combinatorică, programare dinamică și grafuri — tot ce apare la examen.</p>
+                        </div>
+                    </div>
+
+                    <div class="resurse-grid">
+                        <div class="resurse-card" style="--card-accent: #4db6ac; --card-shadow: #1a6b64;">
+                            <div class="resurse-card-header">
+                                <span class="resurse-card-icon resurse-card-icon-info">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                </span>
+                                <span class="resurse-card-title resurse-card-title-info">Algoritmi</span>
+                            </div>
+                            <ul class="ul-resurse resurse-info">
+                                <li><a href="https://infogenius.ro/algoritmul-lui-euclid/" target="_blank">Algoritmul lui Euclid</a></li>
                                 <li><a href="https://infogenius.ro/ciurul-lui-eratostene/" target="_blank">Ciurul lui Eratostene</a></li>
                                 <li><a href="https://www.youtube.com/watch?v=c9DvvKyos98&ab_channel=BucharestCramSchool" target="_blank">Baze de Numerație</a></li>
-                                <li><a href="" target="_blank">Algortmi de Sortare</a></li>
+                                <li><a href="" target="_blank">Algoritmi de Sortare</a></li>
                             </ul>
-                            <h3>Combinatorică</h3>
-                            <ul class="ul-resurse">
+                        </div>
+
+                        <div class="resurse-card" style="--card-accent: #34d399; --card-shadow: #1a7a56;">
+                            <div class="resurse-card-header">
+                                <span class="resurse-card-icon resurse-card-icon-info">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                                </span>
+                                <span class="resurse-card-title resurse-card-title-info">Combinatorică</span>
+                            </div>
+                            <ul class="ul-resurse resurse-info">
                                 <li><a href="https://pdfcoffee.com/timc-pdf-free.html" target="_blank">Culegerea lui Iulian Stoleriu</a></li>
-                                <li><a href="https://www.youtube.com/watch?v=TAuJV5eNKLM&ab_channel=SackVideo " target="_blank">Numere Catalane</a></li>
+                                <li><a href="https://www.youtube.com/watch?v=TAuJV5eNKLM&ab_channel=SackVideo" target="_blank">Numere Catalane</a></li>
                                 <li><a href="https://www.youtube.com/watch?v=LurI8AYY18E&ab_channel=InfinityLearnNEET" target="_blank">Triunghiul lui Pascal</a></li>
-                                <li><a href="https://www.youtube.com/watch?v=pbXg5EI5t4c&ab_channel=Numberphile " target="_blank">Deranjamente 1</a></li>
-                                <li><a href="https://www.youtube.com/watch?v=qYAWjIVY7Zw&ab_channel=Numberphile2  " target="_blank">Deranjamente 2</a></li>
+                                <li><a href="https://www.youtube.com/watch?v=pbXg5EI5t4c&ab_channel=Numberphile" target="_blank">Deranjamente 1</a></li>
+                                <li><a href="https://www.youtube.com/watch?v=qYAWjIVY7Zw&ab_channel=Numberphile2" target="_blank">Deranjamente 2</a></li>
                                 <li><a href="https://www.youtube.com/watch?v=UTCScjoPymA&t=837s&ab_channel=Numberphile" target="_blank">Stars and Bars</a></li>
                             </ul>
-                            <h3>Programare dinamică</h3>
-                            <ul class="ul-resurse">
+                        </div>
+
+                        <div class="resurse-card" style="--card-accent: #5b9cf6; --card-shadow: #1e4d8c;">
+                            <div class="resurse-card-header">
+                                <span class="resurse-card-icon resurse-card-icon-info">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="7" height="7"/><rect x="15" y="3" width="7" height="7"/><rect x="9" y="14" width="7" height="7"/><line x1="5.5" y1="10" x2="9" y2="14"/><line x1="18.5" y1="10" x2="15" y2="14"/></svg>
+                                </span>
+                                <span class="resurse-card-title resurse-card-title-info">Programare dinamică</span>
+                            </div>
+                            <ul class="ul-resurse resurse-info">
                                 <li><a href="https://www.youtube.com/watch?v=xCbYmUPvc2Q&t=27s&ab_channel=BackToBackSWE" target="_blank">Problema Rucsacului</a></li>
                                 <li><a href="https://www.youtube.com/watch?v=DJ4a7cmjZY0&ab_channel=BackToBackSWE" target="_blank">Total ways to make change</a></li>
                             </ul>
-                            <h3>Grafuri</h3>
-                            <ul class="ul-resurse">
-                                <li><a href="https://www.youtube.com/watch?v=cS-198wtfj0&t=25s&ab_channel=AlgoMonster" target="_blank">Parcurgerea grafurilor: DFS vs BFS</a></li>
+                        </div>
+
+                        <div class="resurse-card" style="--card-accent: #fb923c; --card-shadow: #9a4a10;">
+                            <div class="resurse-card-header">
+                                <span class="resurse-card-icon resurse-card-icon-info">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                                </span>
+                                <span class="resurse-card-title resurse-card-title-info">Grafuri</span>
+                            </div>
+                            <ul class="ul-resurse resurse-info">
+                                <li><a href="https://www.youtube.com/watch?v=cS-198wtfj0&t=25s&ab_channel=AlgoMonster" target="_blank">DFS vs BFS — parcurgeri</a></li>
                                 <li><a href="https://en.wikipedia.org/wiki/Four_color_theorem" target="_blank">Teoria celor 4 culori</a></li>
                             </ul>
-                            <h3>Altele</h3>
-                            <ul class="ul-resurse">
-                                <li><a href="https://mihai-nan.bitbucket.io/admitere-info/" target="_blank">Cursurile de pregatire de admitere ale lui Mihai Nan</a></li>
+                        </div>
+
+                        <div class="resurse-card resurse-card-wide" style="--card-accent: #f472b6; --card-shadow: #9a1a5c;">
+                            <div class="resurse-card-header">
+                                <span class="resurse-card-icon resurse-card-icon-info">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                </span>
+                                <span class="resurse-card-title resurse-card-title-info">Altele — Informatică</span>
+                            </div>
+                            <ul class="ul-resurse resurse-info">
+                                <li><a href="https://mihai-nan.bitbucket.io/admitere-info/" target="_blank">Cursurile de pregătire ale lui Mihai Nan</a></li>
                                 <li><a href="https://www.youtube.com/@BucharestCramSchool" target="_blank">Lecțiile video de la Bucharest Cram School</a></li>
                             </ul>
                         </div>
-                        <div class="right-grid">
-                            <img src="images/pozainfo.png" alt="pozainfo">
-                        </div>
                     </div>
-                </section>
+
+                </div>
             </div>
         </main>
-        <footer>   
-        <a href="https://chat.whatsapp.com/Fc7xjNckFGYBE9E16xsZ1D" target="_blank">
-            <img src="./images/whatsapp.svg" style="width: 24px; height: 24px; filter: brightness(0) invert(1);">
-        </a>
-        <a href="https://www.instagram.com/admitere.poli?igsh=MTMzNjNjMHoyZDIyZQ%3D%3D&utm_source=qr" target="_blank">
-            <img src="./images/instagram.svg" style="width: 24px; height: 24px; filter: brightness(0) invert(1);">
-        </a>
-        <a href="./contact" style="color: white; text-decoration: none;"> Contact</a>
-        <a href="./termeni-si-conditii" style="color: white; text-decoration: none;"> Termeni si conditii</a>
-        <a href="./politica-confidentialitate" style="color: white; text-decoration: none;">Politica de Confidentialitate</a>
-        <div>&copy; 2026 AdmiterePoli. Toate drepturile rezervate. Creat de studenți, pentru viitori studenți.</div>
-    </footer>
+        <footer>
+            <a href="https://chat.whatsapp.com/Fc7xjNckFGYBE9E16xsZ1D" target="_blank">
+                <img src="./images/whatsapp.svg" style="width: 24px; height: 24px; filter: brightness(0) invert(1);">
+            </a>
+            <a href="https://www.instagram.com/admitere.poli?igsh=MTMzNjNjMHoyZDIyZQ%3D%3D&utm_source=qr" target="_blank">
+                <img src="./images/instagram.svg" style="width: 24px; height: 24px; filter: brightness(0) invert(1);">
+            </a>
+            <a href="./contact" style="color: white; text-decoration: none;"> Contact</a>
+            <a href="./termeni-si-conditii" style="color: white; text-decoration: none;"> Termeni si conditii</a>
+            <a href="./politica-confidentialitate" style="color: white; text-decoration: none;">Politica de Confidentialitate</a>
+            <div>&copy; 2026 AdmiterePoli. Toate drepturile rezervate. Creat de studenți, pentru viitori studenți.</div>
+        </footer>
         <script src="main.js"></script>
-    
-        <!-- Newsletter Popup Liquid Glass -->
-     <div id="newsletter-popup">
-                <div class="newsletter-content">
-            <button class="close-btn" aria-label="Close">&times;</button>
-            <h3 class="glass-headline">Antrenament zilnic pentru Politehnică</h3>
-            <div class="popup-benefits">
-                <p>Un <strong>set de probleme „teaser"</strong> în fiecare seară</p>
-                <p>Sesiuni LIVE de simulări pe Google Meet</p>
+
+        <!-- Newsletter Popup -->
+        <div id="newsletter-popup">
+            <div class="newsletter-content">
+                <button class="close-btn" aria-label="Close">&times;</button>
+                <h3 class="glass-headline">Antrenament zilnic pentru Politehnică</h3>
+                <div class="popup-benefits">
+                    <p>Un <strong>set de probleme „teaser"</strong> în fiecare seară</p>
+                    <p>Sesiuni LIVE de simulări pe Google Meet</p>
+                </div>
+                <a href="https://chat.whatsapp.com/Fc7xjNckFGYBE9E16xsZ1D" target="_blank" class="whatsapp-btn" id="whatsapp-link">Intră în grupul de WhatsApp</a>
+                <a href="#" class="dismiss-link popup-microcopy">Nu acum &middot; Fără spam</a>
             </div>
-            <a href="https://chat.whatsapp.com/Fc7xjNckFGYBE9E16xsZ1D" target="_blank" class="whatsapp-btn" id="whatsapp-link">Intră în grupul de WhatsApp</a>
-            <a href="#" class="dismiss-link popup-microcopy">Nu acum &middot; Fără spam</a>
         </div>
-    </div>
-    <noscript>
-        <div style="padding: 20px; background: #f8f9fa; border: 1px solid #ddd; text-align: center; color: #333;">
-            <h3>Rămâi la curent cu AdmiterePoli</h3>
-            <p>Abonează-te la newsletter-ul nostru pentru a primi săptămânal noutăți despre admitere, subiecte rezolvate și resurse utile.</p>
-        </div>
-    </noscript>
-    </div>
+        <noscript>
+            <div style="padding: 20px; background: #f8f9fa; border: 1px solid #ddd; text-align: center; color: #333;">
+                <h3>Rămâi la curent cu AdmiterePoli</h3>
+                <p>Abonează-te la newsletter-ul nostru pentru a primi săptămânal noutăți despre admitere, subiecte rezolvate și resurse utile.</p>
+            </div>
+        </noscript>
 
         <script type="module" src="./firebase-auth.js"></script>
-</body>
+    </body>
 </html>

@@ -971,6 +971,10 @@ img, button { max-width: 100%; }
   filter: brightness(0) saturate(100%);
 }
 
+.lp-body.lp-dark .logonav {
+  filter: brightness(0) invert(1);
+}
+
 .lp-body .hamburger .bar {
   background: var(--lp-hamburger) !important;
 }
@@ -1146,26 +1150,22 @@ img, button { max-width: 100%; }
 .lp-body .links a {
   color: var(--lp-accent) !important;
   font-weight: 600;
-  background: var(--lp-links-pill-bg);
-  padding: 0.3rem 0.8rem;
-  border-radius: 999px;
-  border: 1.5px solid var(--lp-links-pill-border);
-  box-shadow: 0 2px 0 var(--lp-links-pill-shadow);
-  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease, background 0.2s !important;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
   text-decoration: none !important;
+  transition: color 0.15s ease !important;
 }
 
 .lp-body .links a:hover {
-  color: var(--lp-on-accent) !important;
-  background: var(--lp-accent) !important;
-  border-color: var(--lp-accent-border);
-  transform: translateY(-1px);
-  box-shadow: 0 3px 0 var(--lp-accent-shadow), 0 4px 8px var(--lp-shadow-accent-20);
+  color: var(--lp-accent2, #828df8) !important;
+  background: none !important;
 }
 
 .lp-body .links a:active {
-  transform: translateY(1px);
-  box-shadow: 0 1px 0 var(--lp-accent-shadow);
+  opacity: 0.7;
 }
 
 .lp-body .separator {
@@ -1272,7 +1272,12 @@ img, button { max-width: 100%; }
   border-radius: 20px;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-  box-shadow: 0 4px 0 var(--lp-shadow-3d) !important;
+  box-shadow: 0 6px 0 var(--lp-shadow-3d) !important;
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease;
+}
+.lp-body .section-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 0 var(--lp-shadow-3d), 0 12px 24px rgba(0,0,0,0.18) !important;
 }
 
 .lp-body .section-card::before {
@@ -1286,6 +1291,18 @@ img, button { max-width: 100%; }
 .lp-body .section-card p,
 .lp-body .section-card li {
   color: var(--lp-text-muted) !important;
+}
+
+.lp-body .hero-comparatie {
+  background: none !important;
+  border: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+.lp-body .hero-comparatie::before,
+.lp-body .hero-comparatie::after {
+  display: none !important;
 }
 
 .lp-body .hero-comparatie h1 {
@@ -1346,13 +1363,13 @@ img, button { max-width: 100%; }
   background: var(--lp-surface) !important;
   border: 2px solid var(--lp-border) !important;
   border-radius: 16px;
-  box-shadow: 0 4px 0 var(--lp-shadow-3d);
+  box-shadow: 0 5px 0 var(--lp-shadow-3d);
   transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease;
 }
 
 .lp-body .triple-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 0 var(--lp-shadow-3d), 0 8px 20px var(--lp-card-shadow);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 var(--lp-shadow-3d), 0 10px 24px var(--lp-card-shadow);
 }
 
 .lp-body .triple-card h3 {
@@ -1383,10 +1400,98 @@ img, button { max-width: 100%; }
   border-color: var(--lp-border) !important;
 }
 
+/* Colored cartoonish cards — CTI / IS / Myth */
+.lp-body .card-cti {
+  border: 2px solid rgba(130, 141, 248, 0.6) !important;
+  box-shadow: 0 5px 0 rgba(67, 56, 202, 0.55) !important;
+}
+.lp-body .card-cti:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 rgba(67, 56, 202, 0.55), 0 10px 24px rgba(130, 141, 248, 0.18) !important;
+}
+.lp-body .card-cti h3 { color: var(--accent2) !important; }
+
+.lp-body .card-is {
+  border: 2px solid rgba(77, 182, 172, 0.6) !important;
+  box-shadow: 0 5px 0 rgba(26, 107, 100, 0.55) !important;
+}
+.lp-body .card-is:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 rgba(26, 107, 100, 0.55), 0 10px 24px rgba(77, 182, 172, 0.18) !important;
+}
+.lp-body .card-is h3 { color: var(--accent3) !important; }
+
+.lp-body .card-myth {
+  border: 2px solid rgba(255, 202, 75, 0.5) !important;
+  box-shadow: 0 5px 0 rgba(160, 122, 0, 0.5) !important;
+}
+.lp-body .card-myth:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 rgba(160, 122, 0, 0.5), 0 10px 24px rgba(255, 202, 75, 0.15) !important;
+}
+.lp-body .card-myth h3 { color: var(--gold) !important; }
+
+/* ETTI / IETTIE colored cards */
+.lp-body .card-etti {
+  border: 2px solid rgba(123, 160, 217, 0.6) !important;
+  box-shadow: 0 5px 0 rgba(30, 77, 140, 0.5) !important;
+}
+.lp-body .card-etti:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 rgba(30, 77, 140, 0.5), 0 10px 24px rgba(123, 160, 217, 0.15) !important;
+}
+.lp-body .card-etti h3 { color: var(--accent) !important; }
+
+.lp-body .card-en {
+  border: 2px solid rgba(77, 182, 172, 0.6) !important;
+  box-shadow: 0 5px 0 rgba(26, 107, 100, 0.5) !important;
+}
+.lp-body .card-en:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 rgba(26, 107, 100, 0.5), 0 10px 24px rgba(77, 182, 172, 0.15) !important;
+}
+.lp-body .card-en h3 { color: var(--accent3) !important; }
+
+/* Contact form 3D shadow */
+.lp-body form {
+  box-shadow: 0 6px 0 var(--lp-shadow-3d) !important;
+}
+
+/* Materii box CTI/IS color accents */
+.lp-body .materii-box:first-child h3 { color: var(--accent2) !important; }
+.lp-body .materii-box:last-child h3  { color: var(--accent3) !important; }
+
+/* Comparison table column accents */
+.lp-body .comparison-table th:nth-child(2) { color: var(--accent2) !important; }
+.lp-body .comparison-table th:nth-child(3) { color: var(--accent3) !important; }
+
 .lp-body .cta-back {
-  background: rgba(123, 160, 217, 0.05);
+  background: rgba(123, 160, 217, 0.06);
   border: 2px solid var(--lp-sfat-border);
   border-radius: 16px;
+  box-shadow: 0 5px 0 var(--lp-shadow-3d);
+}
+.lp-body .cta-back .lp-btn-fill {
+  display: inline-flex;
+  background: var(--lp-accent, #5b9cf6) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 999px !important;
+  box-shadow: 0 4px 0 var(--lp-accent-shadow, #2563eb) !important;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.18s ease,
+              filter 0.15s ease !important;
+}
+.lp-body .cta-back .lp-btn-fill:hover {
+  transform: translateY(-3px) !important;
+  background: var(--lp-btn-fill-hover-bg, #7baef8) !important;
+  box-shadow: 0 7px 0 var(--lp-accent-shadow, #2563eb) !important;
+  filter: brightness(1.08) !important;
+}
+.lp-body .cta-back .lp-btn-fill:active {
+  transform: translateY(4px) !important;
+  box-shadow: 0 0px 0 var(--lp-accent-shadow, #2563eb) !important;
+  filter: brightness(0.95) !important;
 }
 
 
@@ -1651,36 +1756,71 @@ img, button { max-width: 100%; }
   color: var(--lp-text-soft);
 }
 
-.lp-body .resurse-header-icon {
-  border-radius: 14px;
-  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.06);
+/* Section header — remove old border, add spacing */
+.lp-body .resurse-header {
+  border-bottom: none !important;
+  padding-bottom: 1rem;
+  gap: 1rem;
 }
 
+/* Section icon — cartoonish colored box */
+.lp-body .resurse-icon-mate {
+  background: rgba(130, 141, 248, 0.12) !important;
+  border: 2px solid rgba(130, 141, 248, 0.5) !important;
+  box-shadow: 0 4px 0 rgba(67, 56, 202, 0.45) !important;
+  color: var(--accent2) !important;
+}
+
+.lp-body .resurse-icon-info {
+  background: rgba(77, 182, 172, 0.12) !important;
+  border: 2px solid rgba(77, 182, 172, 0.5) !important;
+  box-shadow: 0 4px 0 rgba(26, 107, 100, 0.45) !important;
+  color: var(--accent3) !important;
+}
+
+/* Cards — use per-card --card-accent / --card-shadow */
 .lp-body .resurse-card {
   background: var(--lp-surface);
-  border: 2px solid var(--lp-border);
+  border: 2px solid color-mix(in srgb, var(--card-accent) 55%, transparent);
   border-radius: 16px;
-  box-shadow: 0 4px 0 var(--lp-shadow-3d);
-  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease, border-color 0.2s;
+  box-shadow: 0 5px 0 var(--card-shadow);
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.15s ease, border-color 0.2s;
 }
 
 .lp-body .resurse-card:hover {
-  border-color: var(--lp-border-accent-soft);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 0 var(--lp-shadow-3d), 0 8px 20px var(--lp-card-shadow);
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--card-accent) 75%, transparent);
+  box-shadow: 0 8px 0 var(--card-shadow), 0 10px 24px rgba(0,0,0,0.18);
 }
 
-.lp-body .resurse-card-icon {
-  color: var(--lp-text-faint);
+/* Icon + title use per-card accent */
+.lp-body .resurse-card-icon,
+.lp-body .resurse-card-icon-info {
+  color: var(--card-accent) !important;
+  opacity: 1;
 }
 
+.lp-body .resurse-card-title-mate,
+.lp-body .resurse-card-title-info {
+  color: var(--card-accent) !important;
+}
+
+/* Link rows */
 .lp-body .ul-resurse li {
   color: var(--lp-text);
 }
 
 .lp-body .ul-resurse a {
-  color: var(--lp-accent);
+  color: var(--lp-text-muted);
   font-weight: 600;
+  border-left-color: color-mix(in srgb, var(--card-accent) 45%, transparent) !important;
+}
+
+.lp-body .ul-resurse a:hover {
+  color: var(--card-accent) !important;
+  background: color-mix(in srgb, var(--card-accent) 10%, transparent) !important;
+  border-left-color: var(--card-accent) !important;
 }
 
 /* Simulari page */
@@ -1997,6 +2137,19 @@ img, button { max-width: 100%; }
 .lp-btn-lg {
   padding: 1.15rem 3.2rem;
   font-size: 1.1rem;
+}
+
+.lp-btn-current,
+.lp-btn-current:hover,
+.lp-btn-current:active {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.45);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+  transform: none;
+  filter: none;
+  cursor: default;
+  pointer-events: none;
 }
 
 /* ── Hero ── */
@@ -6329,7 +6482,6 @@ header.scrolled { background: transparent; }
 
 #nav-auth-wrapper {
   position: relative;
-  margin-right: 1.5rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -8591,10 +8743,49 @@ body.theme-transitions-on footer {
 }
 
 .lp-body .pag-intro {
-  border: 2px solid var(--lp-titlu-border) !important;
-  background: var(--lp-titlu-bg) !important;
-  border-radius: 20px !important;
-  box-shadow: 0 4px 0 var(--lp-shadow-3d) !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* Linkuri utile — cartoonish card */
+.pag-links-box {
+  margin-top: 1.5rem;
+  background: var(--lp-surface, rgba(57,62,70,0.55));
+  border: 2px solid var(--lp-border, rgba(255,255,255,0.1));
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 5px 0 var(--lp-shadow-3d, rgba(0,0,0,0.4));
+}
+
+.pag-links-box h3 {
+  color: var(--lp-heading, #e2e8f0) !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.pag-links-box ul {
+  list-style-type: disc;
+  margin-left: 1.25rem;
+  font-size: 1rem;
+}
+
+.pag-links-box li {
+  margin-bottom: 0.4rem;
+  color: var(--lp-text-muted, #94a3b8) !important;
+}
+
+.pag-links-box a {
+  color: var(--lp-accent, #5b9cf6) !important;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+
+.pag-links-box a:hover {
+  color: var(--lp-accent-border, #7baef8) !important;
 }
 
 /* Smooth transitions for inner page elements on theme toggle */
@@ -8631,31 +8822,31 @@ body.theme-transitions-on .input-box .field {
 
 .lp-category-dock {
   display: flex;
-  justify-content: stretch;
+  justify-content: center;
   align-items: stretch;
+  gap: 0;
   background: transparent;
-  border-top: 1px solid rgba(255,255,255,0.12);
-  width: 100%;
+  /* Full-bleed */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
   flex-shrink: 0;
+  border-top: 1px solid rgba(255,255,255,0.12);
 }
 
 .lp-cat-item {
-  flex: 1;
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 18px 28px;
+  padding: 18px 48px;
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--card-accent, #a78bfa);
   cursor: pointer;
   transition: background 0.18s ease;
   text-decoration: none;
-  border-right: 1px solid rgba(255,255,255,0.08);
-}
-
-.lp-cat-item:last-child {
-  border-right: none;
 }
 
 .lp-cat-item:hover {
@@ -8790,6 +8981,13 @@ body.theme-transitions-on .input-box .field {
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 1rem;
+  /* Reset animația SimpleDropdown — sub-links global are opacity:0 */
+  opacity: 1;
+  transform: none;
+  padding: 0;
+  margin-left: 0;
+  width: auto;
+  transition: none;
 }
 
 .info-card-content .sub-links span {
@@ -8993,4 +9191,147 @@ body.theme-transitions-on .input-box .field {
   margin-top: -8px;
   padding: 1rem 1.4rem 1.2rem;
   background: rgba(255,255,255,0.02);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   NAV HEADER LAYOUT — logo | nav pill | actions
+   ═════════════════════════════════════════════════════════════════ */
+
+/* 3-column grid: logo (spre dreapta) | nav centrat | sign up (spre stânga) */
+.lp-body header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-logo-link {
+  grid-column: 1;
+  justify-self: end; /* logo lipit de nav, nu de marginea stângă */
+  display: flex;
+  align-items: center;
+  pointer-events: all;
+  text-decoration: none;
+}
+
+/* Nav pill — coloana din mijloc, centrat exact */
+.lp-body nav {
+  grid-column: 2;
+  position: relative;
+  width: auto !important;
+  max-width: none;
+  margin: 0 !important;
+}
+
+.nav-header-actions {
+  grid-column: 3;
+  justify-self: start; /* sign up lipit de nav, nu de marginea dreaptă */
+  display: flex;
+  align-items: center;
+  pointer-events: all;
+}
+
+/* Hamburger — coloana 3 pe mobile */
+.lp-body header .hamburger {
+  grid-column: 3;
+  justify-self: end;
+  pointer-events: all;
+}
+
+/* Sliding cursor pill — se mișcă prin JS la hover pe link-uri */
+.nav-cursor {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 30px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  transition:
+    left   0.22s cubic-bezier(0.4, 0, 0.2, 1),
+    width  0.22s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.18s ease;
+  pointer-events: none;
+  opacity: 0;
+  width: 0;
+}
+
+/* Sign Up actions container */
+.nav-header-actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  pointer-events: all;
+}
+
+.nav-header-signup {
+  padding: 0.42rem 1.1rem;
+  background: var(--lp-accent, #5b9cf6);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.2px;
+  box-shadow: 0 3px 0 var(--lp-accent-border, #3b7de8);
+  transition: filter 0.18s ease, transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease;
+  font-family: inherit;
+}
+
+.nav-header-signup:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 var(--lp-accent-border, #3b7de8), 0 6px 16px rgba(91, 156, 246, 0.25);
+}
+
+.nav-header-signup:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 var(--lp-accent-border, #3b7de8);
+}
+
+@media (max-width: 768px) {
+  /* Header: logo stânga, hamburger dreapta — nav pill ascuns */
+  .lp-body header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-template-columns: none;
+  }
+
+  .nav-logo-link {
+    justify-self: unset;
+  }
+
+  /* Ascunde nav pill pe mobile — links sunt în fullscreen overlay */
+  .lp-body nav {
+    display: none;
+  }
+
+  /* Ascunde sign up */
+  .nav-header-actions {
+    display: none;
+  }
+
+  /* Hamburger vizibil și la dreapta */
+  .lp-body header .hamburger {
+    display: block;
+    grid-column: unset;
+    justify-self: unset;
+    margin-left: auto;
+  }
+
+  /* Dock pe mobile: items se reduc */
+  .lp-category-dock {
+    width: 100%;
+    left: 0;
+    transform: none;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+
+  .lp-cat-item {
+    padding: 14px 20px;
+    font-size: 0.8rem;
+    flex: 0 0 auto;
+  }
 }

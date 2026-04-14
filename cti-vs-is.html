@@ -18,27 +18,31 @@
         <link rel="icon" type="image/png" href="logosquared.png">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     </head>
-    <body>
+    <body class="lp-body lp-dark">
         <header>
+            <a href="./" class="nav-logo-link">
+                <img src="images/logonoutrans.png" alt="logo" class="logonav">
+            </a>
             <nav>
-                <a href="./">
-                    <img src="images/logonoutrans.png" alt="Logo AdmiterePoli" class="logonav">
-                </a>
+                <div id="nav-cursor" class="nav-cursor" aria-hidden="true"></div>
                 <ul class="nav-elements">
                     <li><a href="./informatii">Informații generale</a></li>
                     <li><a href="./subiecte">Subiecte/Rezolvări</a></li>
                     <li><a href="./resurse">Resurse</a></li>
-                    <li><a href="./simulari" class="nav-sim-btn">Simulări</a></li>
+                    <li><a href="./simulari">Simulări</a></li>
                     <li><a href="./exercitii-video">Exerciții video</a></li>
                 </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
             </nav>
+            <div class="nav-header-actions">
+                <button class="nav-header-signup" id="header-signup-btn">Sign Up</button>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </header>
 
         <main>
@@ -47,14 +51,14 @@
                 <!-- HERO -->
                 <div class="hero-comparatie">
                     <a href="./informatii" class="hero-back-btn">← Înapoi la Informații</a>
-                    <span class="badge">💻 Ghid complet ACS</span>
+                    <span class="badge">Ghid complet ACS</span>
                     <h1>CTI vs IS</h1>
                     <p>Alegerea specializării la Facultatea de Automatică și Calculatoare (ACS) este una dintre cele mai importante decizii. Ambele sunt de top, dar te pregătesc pentru cariere ușor diferite. Iată ce trebuie să știi.</p>
                 </div>
 
                 <!-- TABEL COMPARATIV -->
                 <div class="section-card" style="animation-delay:0.1s">
-                    <h2>📊 Tabel Comparativ Rapid</h2>
+                    <h2>Tabel Comparativ Rapid</h2>
                     <div class="comparison-table-wrapper">
                         <table class="comparison-table">
                             <thead>
@@ -92,10 +96,10 @@
 
                 <!-- CE VREI SA STUDIEZI -->
                 <div class="section-card" style="animation-delay:0.15s">
-                    <h2>📚 Ce vei studia efectiv?</h2>
+                    <h2>Ce vei studia efectiv?</h2>
                     <div class="materii-grid">
                         <div class="materii-box">
-                            <h3 style="color:var(--accent2)">🖥️ Materiile de la CTI</h3>
+                            <h3 style="color:var(--accent2)">Materiile de la CTI</h3>
                             <p>Vei aprofunda modul în care funcționează software-ul și cum comunică cu componentele fizice ale unui calculator.</p>
                             <ul>
                                 <li>Programare (C, C++, Java, Python)</li>
@@ -106,7 +110,7 @@
                             </ul>
                         </div>
                         <div class="materii-box">
-                            <h3 style="color:var(--accent3)">⚙️ Materiile de la IS</h3>
+                            <h3 style="color:var(--accent3)">Materiile de la IS</h3>
                             <p>Focusul pică pe interacțiunea dintre programe și lumea fizică (procese industriale, roboți, semafoare inteligente).</p>
                             <ul>
                                 <li>Teoria Sistemelor (matematică avansată aplicată)</li>
@@ -121,14 +125,14 @@
 
                 <!-- MITURI SI REALITATE -->
                 <div class="section-card" style="animation-delay:0.2s">
-                    <h2>🧠 Mituri și Realitate</h2>
+                    <h2>Mituri și Realitate</h2>
                     <div class="myth-grid">
                         <div class="triple-card card-myth">
-                            <h3>❌ Mit: „Dacă termin IS, nu pot să mă angajez ca programator web/software."</h3>
+                            <h3>Mit: „Dacă termin IS, nu pot să mă angajez ca programator web/software."</h3>
                             <p><strong style="color:var(--accent3)">Realitate:</strong> Nu este imposibil, dar nici garantat. La IS, facultatea te pregătește în principal pentru hardware, automatizări și programare low-level (C/C++). Dacă vrei să te angajezi ca Web Developer sau Software Engineer pe tehnologii moderne (Java, Python, Web), va trebui să înveți destul de mult singur. E un mic „trap": vei avea multă matematică și fizică pentru facultate, în timp ce va trebui să îți găsești timp și pentru proiecte personale de programare.</p>
                         </div>
                         <div class="triple-card card-myth">
-                            <h3>❌ Mit: „La CTI e doar programare și zero fizică."</h3>
+                            <h3>Mit: „La CTI e doar programare și zero fizică."</h3>
                             <p><strong style="color:var(--accent3)">Realitate:</strong> Fiind o facultate de inginerie (UPB), vei face fizică și electronică și la CTI (mai ales în primii doi ani), dar ponderea acestor materii este mult mai mică în comparație cu IS.</p>
                         </div>
                     </div>
@@ -136,10 +140,10 @@
 
                 <!-- VERDICT / PENTRU CINE -->
                 <div class="section-card" style="animation-delay:0.25s">
-                    <h2>✅ Pentru cine este fiecare secție?</h2>
+                    <h2>Pentru cine este fiecare secție?</h2>
                     <div class="triple-grid">
                         <div class="triple-card card-cti">
-                            <h3>🖥️ Alege CTI dacă…</h3>
+                            <h3>Alege CTI dacă…</h3>
                             <ul>
                                 <li>Ți-a plăcut foarte mult informatica în liceu și vrei să scrii cod</li>
                                 <li>Te pasionează crearea de aplicații complexe, AI și rețelele de calculatoare</li>
@@ -148,7 +152,7 @@
                             </ul>
                         </div>
                         <div class="triple-card card-is">
-                            <h3>⚙️ Alege IS dacă…</h3>
+                            <h3>Alege IS dacă…</h3>
                             <ul>
                                 <li>Ești pasionat de cum interacționează tehnologia cu lumea reală (hardware, senzori, roboți)</li>
                                 <li>Te atrag drone, mașini autonome și sisteme de automatizare</li>
@@ -161,7 +165,7 @@
 
                 <!-- PROGRAME OFICIALE -->
                 <div class="section-card" style="animation-delay:0.3s">
-                    <h2>⭐ Programe oficiale & resurse</h2>
+                    <h2>Programe oficiale & resurse</h2>
                     <div class="sfat-info" style="margin:0 0 1rem 0">
                         <p>Consultă programa detaliată : <em>Programa Oficială UPB ACS –</em>
                             <span class="links">
@@ -172,8 +176,8 @@
                         </p>
                     </div>
                     <div class="cta-back">
-                        <p>Vrei să explorezi și alte informații despre admitere? →</p>
-                        <a href="./informatii">Vezi toate informațiile</a>
+                        <p>Vrei să explorezi și alte informații despre admitere?</p>
+                        <a href="./informatii" class="lp-btn lp-btn-fill">Vezi toate informațiile</a>
                     </div>
                 </div>
 

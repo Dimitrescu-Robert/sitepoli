@@ -22,24 +22,27 @@
     </head>
     <body class="lp-body lp-dark">
         <header>
+            <a href="./" class="nav-logo-link">
+                <img src="images/logonoutrans.png" alt="logo" class="logonav">
+            </a>
             <nav>
-                <a href="./">
-                    <img src="images/logonoutrans.png" alt="logo" class="logonav">
-                </a>            
+                <div id="nav-cursor" class="nav-cursor" aria-hidden="true"></div>
                 <ul class="nav-elements">
                     <li><a href="./informatii">Informații generale</a></li>
                     <li><a href="./subiecte">Subiecte/Rezolvări</a></li>
                     <li><a href="./resurse">Resurse</a></li>
-                    <li><a href="./simulari" class="nav-sim-btn">Simulări</a></li>
+                    <li><a href="./simulari">Simulări</a></li>
                     <li><a href="./exercitii-video">Exerciții video</a></li>
                 </ul>
-
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
             </nav>
+            <div class="nav-header-actions">
+                <button class="nav-header-signup" id="header-signup-btn">Sign Up</button>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </header>
         <main>
             <div class="grid-main-content">
@@ -94,36 +97,36 @@
                     <h2 class="centrat scurtat">Creat de studenți, pentru viitori studenți.</h2>
                     <p class="centrat lp-hero-desc">Subiecte rezolvate pas cu pas, simulări cu autocorectare și resurse verificate — direct de la studenți care au trecut prin admitere.</p>
                     <section class="hero-btn">
-                        <button class="lp-btn lp-btn-fill" id="hero-register-btn">Înregistrează-te gratuit</button>
+                        <button class="lp-btn lp-btn-fill" id="hero-register-btn">Începe Acum</button>
                         <a href="#ce-oferim" class="lp-btn lp-btn-outline-blue" id="hero-oferim-btn">Ce oferim</a>
                     </section>
                 </section>
 
                 <div class="lp-category-dock">
-                    <a href="./subiecte" class="lp-cat-item" style="--card-accent: #a78bfa;">
+                    <div class="lp-cat-item" style="--card-accent: #a78bfa; cursor: default;">
                         <span class="lp-cat-icon" style="color: #a78bfa;">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                         </span>
                         <span class="lp-cat-label">Matematică</span>
-                    </a>
-                    <a href="./subiecte" class="lp-cat-item" style="--card-accent: #5b9cf6;">
+                    </div>
+                    <div class="lp-cat-item" style="--card-accent: #5b9cf6; cursor: default;">
                         <span class="lp-cat-icon" style="color: #5b9cf6;">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
                         </span>
                         <span class="lp-cat-label">Informatică</span>
-                    </a>
-                    <a href="./simulari" class="lp-cat-item" style="--card-accent: #34d399;">
+                    </div>
+                    <div class="lp-cat-item" style="--card-accent: #34d399; cursor: default;">
                         <span class="lp-cat-icon" style="color: #34d399;">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         </span>
                         <span class="lp-cat-label">Simulări</span>
-                    </a>
-                    <a href="./exercitii-video" class="lp-cat-item" style="--card-accent: #fb923c;">
+                    </div>
+                    <div class="lp-cat-item" style="--card-accent: #fb923c; cursor: default;">
                         <span class="lp-cat-icon" style="color: #fb923c;">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
                         </span>
                         <span class="lp-cat-label">Exerciții antrenament</span>
-                    </a>
+                    </div>
                 </div>
                 </div>
 

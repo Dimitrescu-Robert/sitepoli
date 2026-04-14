@@ -349,3 +349,34 @@ if (btn && timerText) {
         }
     }, 1000);
 }
+
+// ── Nav pill sliding cursor ───────────────────────────────────────────────────
+(function () {
+  function initNavCursor() {
+    const cursor = document.getElementById('nav-cursor');
+    const nav = document.querySelector('.lp-body nav');
+    if (!cursor || !nav) return;
+
+    const links = nav.querySelectorAll('ul a');
+
+    links.forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        const navRect = nav.getBoundingClientRect();
+        const linkRect = link.getBoundingClientRect();
+        cursor.style.left = (linkRect.left - navRect.left - 5) + 'px';
+        cursor.style.width = linkRect.width + 'px';
+        cursor.style.opacity = '1';
+      });
+    });
+
+    nav.addEventListener('mouseleave', () => {
+      cursor.style.opacity = '0';
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNavCursor);
+  } else {
+    initNavCursor();
+  }
+})();

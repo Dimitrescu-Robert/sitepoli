@@ -56,7 +56,7 @@ class SimpleDropdown {
   }
 
   closeDropdown(dropdown) {
-      const text = document.querySelector(`[data-set="${dropdown.id.split('-')[1]}"]`);
+      const text = document.querySelector(`[data-set="${dropdown.id.replace('dropdown-', '')}"]`);
       
       dropdown.classList.remove('show');
       if (text) {
@@ -333,11 +333,10 @@ const btn = document.getElementById("glass-countdown-btn");
 const timerText = document.getElementById("countdown-timer");
 
 if (btn && timerText) {
-    const updateCountdown = setInterval(() => {
+    function tickCountdown() {
         const distance = targetDate - Date.now();
 
         if (distance <= 0) {
-            clearInterval(updateCountdown);
             btn.classList.remove("locked");
             btn.classList.add("active");
         } else {
@@ -346,8 +345,10 @@ if (btn && timerText) {
             const m = String(Math.floor((distance % 3600000) / 60000)).padStart(2, '0');
             const s = String(Math.floor((distance % 60000) / 1000)).padStart(2, '0');
             timerText.innerText = `${d}z ${h}h ${m}m ${s}s`;
+            setTimeout(tickCountdown, 1000);
         }
-    }, 1000);
+    }
+    tickCountdown(); // Run immediately — no 1-second locked flash on page load
 }
 
 // ── Nav pill sliding cursor ───────────────────────────────────────────────────

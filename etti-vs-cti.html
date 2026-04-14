@@ -18,27 +18,31 @@
         <link rel="icon" type="image/png" href="logosquared.png">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     </head>
-    <body>
+    <body class="lp-body lp-dark">
         <header>
+            <a href="./" class="nav-logo-link">
+                <img src="images/logonoutrans.png" alt="logo" class="logonav">
+            </a>
             <nav>
-                <a href="./">
-                    <img src="images/logonoutrans.png" alt="logo" class="logonav">
-                </a>
+                <div id="nav-cursor" class="nav-cursor" aria-hidden="true"></div>
                 <ul class="nav-elements">
                     <li><a href="./informatii">Informații generale</a></li>
                     <li><a href="./subiecte">Subiecte/Rezolvări</a></li>
                     <li><a href="./resurse">Resurse</a></li>
-                    <li><a href="./simulari" class="nav-sim-btn">Simulări</a></li>
+                    <li><a href="./simulari">Simulări</a></li>
                     <li><a href="./exercitii-video">Exerciții video</a></li>
                 </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
             </nav>
+            <div class="nav-header-actions">
+                <button class="nav-header-signup" id="header-signup-btn">Sign Up</button>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </header>
 
         <main>
@@ -47,14 +51,14 @@
                 <!-- HERO -->
                 <div class="hero-comparatie">
                     <a href="./informatii" class="hero-back-btn">← Înapoi la Informații</a>
-                    <span class="badge">📡 Ghid complet ETTI</span>
+                    <span class="badge">Ghid complet ETTI</span>
                     <h1>ETTI vs CTI vs ETTI Engleză</h1>
                     <p>Comparație detaliată între cele trei secții: materii, joburi, concurență la admitere și mituri. Tot ce ai nevoie pentru a lua o decizie informată.</p>
                 </div>
 
                 <!-- TABEL COMPARATIV -->
                 <div class="section-card" style="animation-delay:0.1s">
-                    <h2>📊 Tabel Comparativ Rapid</h2>
+                    <h2>Tabel Comparativ Rapid</h2>
                     <div class="comparison-table-wrapper">
                         <table class="comparison-table table-etti">
                             <thead>
@@ -109,11 +113,11 @@
 
                 <!-- CE VREI SA STUDIEZI -->
                 <div class="section-card" style="animation-delay:0.15s">
-                    <h2>📚 Ce vei studia efectiv?</h2>
+                    <h2>Ce vei studia efectiv?</h2>
 
                     <div class="materii-grid">
                         <div class="materii-box">
-                            <h3 style="color:var(--accent2)">🖥️ Materiile de la CTI</h3>
+                            <h3 style="color:var(--accent2)">Materiile de la CTI</h3>
                             <p style="color:var(--muted); font-size:0.9rem; margin-bottom:0.75rem">Focus pe modul în care funcționează software-ul, algoritmi eficienți și comunicarea programelor cu hardware-ul.</p>
                             <ul>
                                 <li>Programare (C, C++, Java, Python, C#)</li>
@@ -124,7 +128,7 @@
                             </ul>
                         </div>
                         <div class="materii-box">
-                            <h3 style="color:var(--accent)">📡 Materiile de la ETTI</h3>
+                            <h3 style="color:var(--accent)">Materiile de la ETTI</h3>
                             <p style="color:var(--muted); font-size:0.9rem; margin-bottom:0.75rem">Focus pe fizica din spatele electronicii, transmiterea datelor și hardware-ul la nivel de circuit.</p>
                             <ul>
                                 <li>Analiza și prelucrarea semnalelor (matematică avansată)</li>
@@ -138,7 +142,7 @@
 
                     <hr class="section-hr">
 
-                    <h2 style="margin-top:0.5rem">🇬🇧 ETTI Română vs IETTIE (Engleză)</h2>
+                    <h2 style="margin-top:0.5rem">ETTI Română vs IETTIE (Engleză)</h2>
                     <p style="color:var(--text); margin-bottom:1rem">La nivel de materii, <strong>ETTI și IETTIE sunt absolut identice</strong>. Vei face exact aceleași cursuri de Electronică, Prelucrare de Semnale, Microcontrolere și Rețele Telecom.</p>
 
                     <div class="triple-grid" style="grid-template-columns:1fr 1fr">
@@ -163,26 +167,26 @@
 
                 <!-- MITURI SI REALITATE -->
                 <div class="section-card" style="animation-delay:0.2s">
-                    <h2>🧠 Mituri și Realitate</h2>
+                    <h2>Mituri și Realitate</h2>
                     <div class="myth-grid">
 
                         <div class="triple-card card-myth">
-                            <h3>❌ Mit: „Dacă termin ETTI, ajung să repar televizoare."</h3>
+                            <h3>Mit: „Dacă termin ETTI, ajung să repar televizoare."</h3>
                             <p><strong style="color:var(--accent3)">Realitate:</strong> Fals. Foarte mulți absolvenți ETTI ajung Software Developers (în special Embedded, Automotive, IoT sau Networking). Totuși, facultatea îți oferă <em>baza</em> de programare (C/C++) — dacă vrei Web/Mobile/Cloud, va trebui să înveți acele tehnologii autodidact.</p>
                         </div>
 
                         <div class="triple-card card-myth">
-                            <h3>❌ Mit: „La CTI faci doar programare, zero hardware."</h3>
+                            <h3>Mit: „La CTI faci doar programare, zero hardware."</h3>
                             <p><strong style="color:var(--accent3)">Realitate:</strong> Fiind o facultate de inginerie, vei face fizică, electrotehnică și electronică și la CTI (în primii doi ani), plus arhitectura calculatoarelor. Ponderea acestor materii este însă mult mai mică față de ETTI.</p>
                         </div>
 
                         <div class="triple-card card-myth">
-                            <h3>❌ Mit: „La IETTIE profesorii sunt mai indulgenți."</h3>
+                            <h3>Mit: „La IETTIE profesorii sunt mai indulgenți."</h3>
                             <p><strong style="color:var(--accent3)">Realitate:</strong> Nivelul de exigență este, în mare parte, același. Unii studenți consideră IETTIE mai „ușor" pentru că toată documentația tehnică online este oricum în engleză — legătura dintre curs și studiul individual devine mai naturală.</p>
                         </div>
 
                         <div class="triple-card card-myth">
-                            <h3>❌ Mit: „Dacă fac ETTI în română, voi fi dezavantajat la multinaționale."</h3>
+                            <h3>Mit: „Dacă fac ETTI în română, voi fi dezavantajat la multinaționale."</h3>
                             <p><strong style="color:var(--accent3)">Realitate:</strong> Nu te va încurca deloc. Limbajul tehnic IT/telecom este o „romgleză" plină de termeni tehnici (board, debugging, routing, trigger). IETTIE oferă un avantaj la prezentări de business, dar ca pregătire tehnică, angajatorii nu fac nicio diferență.</p>
                         </div>
 
@@ -191,10 +195,10 @@
 
                 <!-- VERDICT / PENTRU CINE -->
                 <div class="section-card" style="animation-delay:0.25s">
-                    <h2>✅ Pentru cine este fiecare secție?</h2>
+                    <h2>Pentru cine este fiecare secție?</h2>
                     <div class="triple-grid">
                         <div class="triple-card card-etti">
-                            <h3>📡 Alege ETTI dacă…</h3>
+                            <h3>Alege ETTI dacă…</h3>
                             <ul>
                                 <li>Te fascinează hardware-ul, circuitele și fizica din spatele electronicii</li>
                                 <li>Vrei să lucrezi în telecomunicații, automotive, IoT sau sisteme embedded</li>
@@ -203,7 +207,7 @@
                             </ul>
                         </div>
                         <div class="triple-card card-cti">
-                            <h3>🖥️ Alege CTI dacă…</h3>
+                            <h3>Alege CTI dacă…</h3>
                             <ul>
                                 <li>Pasiunea ta principală este programarea și algoritmii</li>
                                 <li>Vrei să lucrezi în software, web, AI/ML, cloud sau cybersecurity</li>
@@ -216,7 +220,7 @@
 
                 <!-- PROGRAME OFICIALE -->
                 <div class="section-card" style="animation-delay:0.3s">
-                    <h2>⭐ Programe oficiale & resurse</h2>
+                    <h2>Programe oficiale & resurse</h2>
                     <div class="sfat-info" style="margin:0 0 1rem 0">
                         <p>Consultă programa detaliată : <em>Programa Oficială UPB ETTI –</em>
                             <span class="links">
@@ -233,8 +237,8 @@
                         </p>
                     </div>
                     <div class="cta-back">
-                        <p>Vrei să explorezi și alte informații despre admitere? →</p>
-                        <a href="./informatii">Vezi toate informațiile</a>
+                        <p>Vrei să explorezi și alte informații despre admitere?</p>
+                        <a href="./informatii" class="lp-btn lp-btn-fill">Vezi toate informațiile</a>
                     </div>
                 </div>
 

@@ -20,247 +20,299 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     </head>
-    <body>
+    <body class="lp-body lp-dark">
         <header>
+            <a href="./" class="nav-logo-link">
+                <img src="images/logonoutrans.png" alt="logo" class="logonav">
+            </a>
             <nav>
-                <a href="./">
-                    <img src="images/logonoutrans.png" alt="logo" class="logonav">
-                </a>            
+                <div id="nav-cursor" class="nav-cursor" aria-hidden="true"></div>
                 <ul class="nav-elements">
                     <li><a href="./informatii">Informații generale</a></li>
                     <li><a href="./subiecte">Subiecte/Rezolvări</a></li>
                     <li><a href="./resurse">Resurse</a></li>
-                    <li><a href="./simulari" class="nav-sim-btn">Simulări</a></li>
+                    <li><a href="./simulari">Simulări</a></li>
                     <li><a href="./exercitii-video">Exerciții video</a></li>
                 </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
             </nav>
+            <div class="nav-header-actions">
+                <button class="nav-header-signup" id="header-signup-btn">Sign Up</button>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </header>
         <main>
-            <section class="grid-main-content">
-                <section class="container">
-                    <div class="titlu-info">
-                        <h1>💡 Informații importante pentru admitere 💡</h1>
-                        <div class="titlu-info-box">
-                            <h2 class="indented scurtat2"> Aici aveți prezente informații importante despre admiterea la Politehnică pe care noi ne-am străduit să le obținem și de care simțim că este important să vă informăm. </h2>
-                        </div>
-                    </div>
-                </section>
+            <div class="grid-main-content">
                 <div class="container">
-                    <div class="subiecte-box-info" data-set="CTIvsIS">
-                        <div class="section-icon"><img class="logo-acs" src="images/logoautomatica.png" alt="logoacs"></div>
-                        <div class="section-titlu">
-                            <p data-set="CTIvsIS"><strong>  >> ACS: CTI vs IS </strong></p>
-                            <p data-set="CTIvsIS">Informații despre diferențele subtile, dar importante, dintre cele două secții. Datele de care ai nevoie pentru a lua o decizie informată.</p>
-                        </div> 
+                    <div class="info-page-header">
+                        <h1>Informații importante pentru admitere</h1>
+                        <p class="info-page-subtitle">Informații esențiale despre admiterea la Politehnică — colectate și explicate de studenți, pentru viitorii studenți.</p>
                     </div>
-                    <div class="dropdown-section" id="dropdown-CTIvsIS">
-                        <div class="sub-links sub-info">
-                            <span>
-                                <p>• <strong>CTI se concentrează pe </strong>programare, algoritmi, structuri de date și dezvoltarea de software</p>
-                                <p>• Presupune mai multă matematică aplicată în informatică, limbaje de programare, baze de date</p>
-                            </span>
-                            <span>
-                                <p>• <strong>IS vizează automatizarea</strong> sistemelor, controlul proceselor industriale și integrarea tehnologiilor</p>
-                                <p>• Presupune mai multă fizică, electronică, sisteme de control (semafoare, procese industriale) </p>
-                            </span>
+
+                    <div class="info-cards-list">
+
+                        <!-- CTI vs IS -->
+                        <div class="info-card" style="--card-accent: #a78bfa; --card-shadow: #5b21b6;" data-set="CTIvsIS">
+                            <div class="info-card-header">
+                                <div class="info-card-icon">
+                                    <img src="images/logoautomatica.png" alt="ACS logo" style="width:24px;height:24px;object-fit:contain;">
+                                </div>
+                                <div class="info-card-body">
+                                    <div class="info-card-title">ACS: CTI vs IS</div>
+                                    <div class="info-card-desc">Diferențele subtile, dar importante, dintre cele două secții. Date pentru o decizie informată.</div>
+                                </div>
+                                <div class="info-card-chevron">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                </div>
+                            </div>
+                            <div class="info-card-content">
+                                <div class="sub-links">
+                                    <span>
+                                        <p>• <strong>CTI se concentrează pe</strong> programare, algoritmi, structuri de date și dezvoltarea de software</p>
+                                        <p>• Presupune mai multă matematică aplicată în informatică, limbaje de programare, baze de date</p>
+                                    </span>
+                                    <span>
+                                        <p>• <strong>IS vizează automatizarea</strong> sistemelor, controlul proceselor industriale și integrarea tehnologiilor</p>
+                                        <p>• Presupune mai multă fizică, electronică, sisteme de control (semafoare, procese industriale)</p>
+                                    </span>
+                                </div>
+                                <div class="info-card-tip">
+                                    <p>Consultă programa detaliată: <em>Programa Oficială UPB ACS —</em> <a href="https://acs.pub.ro/public/2025_29_PLi_L_03_FAC_CTI_Calculatoare_f.pdf" target="_blank">CTI</a> | <a href="https://acs.pub.ro/public/2025_29_PLi_L_03_FAC_AIASI_Automatica-si-informatica-aplicata_f.pdf" target="_blank">AIASI</a></p>
+                                    <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 10px 0;">
+                                    <p><a href="./cti-vs-is" class="link-comparatie">Vezi comparația detaliată CTI vs IS</a></p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="sfat-info indented">
-                        <p>⭐ Consultă programa detaliată : <em> Programa Oficială UPB ACS-</em> <span class="links"><a href="https://acs.pub.ro/public/2025_29_PLi_L_03_FAC_CTI_Calculatoare_f.pdf" target="_blank">CTI</a> <span class="separator">|</span> <a href="https://acs.pub.ro/public/2025_29_PLi_L_03_FAC_AIASI_Automatica-si-informatica-aplicata_f.pdf" target="_blank">AIASI</a></span></p>
-                        
-                        <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 12px 0;">
-                        <p style="text-indent: 10px;">
-                            <a href="./cti-vs-is" style="color: #fdd835" class="link-comparatie">
-                                ➡️ Vrei să știi mai multe? Vezi comparația detaliată CTI vs IS
-                            </a>
-                        </p>
-                    </div>
-                    </div>
-                    <div class="subiecte-box-info" data-set="IEETIvsCTI">
-                        <div class="section-icon"><img class="logo-etti" src="images/ETTI-LOGO-1211079136.png" alt="logoetti"></div>
-                        <div class="section-titlu">
-                            <p data-set="IEETIvsCTI"><strong>  >> ETTI: ETTI vs CTI  vs  ETTI Engleză </strong></p>
-                            <p data-set="IEETIvsCTI">Informații despre diferențele subtile, dar importante, dintre cele trei secții. Datele de care ai nevoie pentru a lua o decizie informată.</p>
-                        </div> 
-                    </div>
-                    <div class="dropdown-section" id="dropdown-IEETIvsCTI">
-                        <div class="sub-links sub-info">
-                            <span>
-                                <p>• <strong>ETTI se concentrează pe</strong> hardware, circuite, semnale și telecomunicații</p>
-                                <p>• Presupune multă fizică, matematică aplicată, electronică și sisteme embedded (C/C++)</p>
-                            </span>
-                            <span>
-                                <p>• <strong>CTI se concentrează pe</strong> programare, algoritmi, structuri de date și dezvoltarea de software</p>
-                                <p>• <strong>ETTI Engleză (IETTIE)</strong> are aceeași curriculă ca ETTI română – singura diferență este limba de predare</p>
-                            </span>
+
+                        <!-- ETTI vs CTI -->
+                        <div class="info-card" style="--card-accent: #5b9cf6; --card-shadow: #1e4d8c;" data-set="IEETIvsCTI">
+                            <div class="info-card-header">
+                                <div class="info-card-icon">
+                                    <img src="images/ETTI-LOGO-1211079136.png" alt="ETTI logo" style="width:24px;height:24px;object-fit:contain;">
+                                </div>
+                                <div class="info-card-body">
+                                    <div class="info-card-title">ETTI: ETTI vs CTI vs ETTI Engleză</div>
+                                    <div class="info-card-desc">Diferențele dintre cele trei secții și datele de care ai nevoie pentru o decizie informată.</div>
+                                </div>
+                                <div class="info-card-chevron">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                </div>
+                            </div>
+                            <div class="info-card-content">
+                                <div class="sub-links">
+                                    <span>
+                                        <p>• <strong>ETTI se concentrează pe</strong> hardware, circuite, semnale și telecomunicații</p>
+                                        <p>• Presupune multă fizică, matematică aplicată, electronică și sisteme embedded (C/C++)</p>
+                                    </span>
+                                    <span>
+                                        <p>• <strong>CTI se concentrează pe</strong> programare, algoritmi, structuri de date și dezvoltarea de software</p>
+                                        <p>• <strong>ETTI Engleză (IETTIE)</strong> are aceeași curriculă ca ETTI română — singura diferență este limba de predare</p>
+                                    </span>
+                                </div>
+                                <div class="info-card-tip">
+                                    <p>Consultă programa detaliată: <em>Programa Oficială UPB ETTI —</em> <a href="https://etti.upb.ro/wp-content/uploads/2021/12/04_ETTI_ELA.pdf" target="_blank">ELA</a> | <a href="https://etti.upb.ro/wp-content/uploads/2021/12/04_ETTI_TST.pdf" target="_blank">TST</a> | <a href="https://etti.upb.ro/wp-content/uploads/2021/12/04_ETTI_RST.pdf" target="_blank">RST</a> | <a href="https://etti.upb.ro/wp-content/uploads/2021/12/04_ETTI_MON.pdf" target="_blank">MON</a> | <a href="https://etti.upb.ro/wp-content/uploads/2021/12/04_ETTI_INF.pdf" target="_blank">INF</a></p>
+                                    <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 10px 0;">
+                                    <p><a href="./etti-vs-cti" class="link-comparatie">Vezi comparația detaliată ETTI vs CTI vs ETTI Engleză</a></p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="sfat-info indented">
-                                <p>⭐ Consultă programa detaliată : <em> Programa Oficială UPB ETTI -</em> <span class="links">
-                                    <a href="https://etti.upb.ro/wp-content/uploads/2021/12/04_ETTI_ELA.pdf" target="_blank">IEETI-ELA</a> <span class="separator">|</span> 
-                                    <a href="https://etti.upb.ro/wp-content/uploads/2021/12/04_ETTI_TST.pdf" target="_blank">IEETI-TST</a> <span class="separator">|</span> 
-                                    <a href="https://etti.upb.ro/wp-content/uploads/2021/12/04_ETTI_RST.pdf" target="_blank">IEETI-RST</a> <span class="separator">|</span> 
-                                    <a href="https://etti.upb.ro/wp-content/uploads/2021/12/04_ETTI_MON.pdf" target="_blank">IEETI-MON</a> <span class="separator">|</span> 
-                                    <a href="https://etti.upb.ro/wp-content/uploads/2021/12/04_ETTI_INF.pdf" target="_blank">CTI-INF</a></span>
-                                </p>
-                                <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 12px 0;">
-                                <p style="text-indent: 10px;">
-                                    <a href="./etti-vs-cti" style="color: #fdd835" class="link-comparatie">
-                                        ➡️ Vrei să știi mai multe? Vezi comparația detaliată ETTI vs CTI vs ETTI Engleză
-                                    </a>
-                                </p>
+
+                        <!-- Calculul Notei -->
+                        <div class="info-card" style="--card-accent: #FFCA4B; --card-shadow: #a07a00;" data-set="CalculNota">
+                            <div class="info-card-header">
+                                <div class="info-card-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+                                </div>
+                                <div class="info-card-body">
+                                    <div class="info-card-title">Calculul Notei Politehnică</div>
+                                    <div class="info-card-desc">Cum se calculează nota la admitere și preadmitere — cu exemple concrete.</div>
+                                </div>
+                                <div class="info-card-chevron">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                </div>
+                            </div>
+                            <div class="info-card-content">
+                                <div class="sub-links">
+                                    <span>
+                                        <p><strong>Cum se calculează nota la Preadmitere?</strong></p>
+                                        <p>• <strong>80%</strong>: note la matematică și informatică/fizică din examenul de Preadmitere</p>
+                                        <p>• <strong>10%</strong>: media aritmetică dintre mediile generale obținute în clasele IX–XI</p>
+                                        <p>• <strong>10%</strong>: nota obținută la concursuri/olimpiade (dacă nu ai rezultate, vei avea 0)</p>
+                                        <p>• Examen = [1 + 0.45 × (nr. total exerciții corecte)] × 0.8</p>
+                                    </span>
+                                    <span>
+                                        <p><strong>Cum se calculează nota la Admitere?</strong></p>
+                                        <p>• <strong>80%</strong>: note la matematică și informatică/fizică din examenul de Admitere</p>
+                                        <p>• <strong>20%</strong>: nota finală la Bac</p>
+                                        <p><strong>Exemplu Preadmitere:</strong> 10 Mate, 9 Info, medie IX-XI = 9,67, olimpiade = 0</p>
+                                        <p>• (1 + 0.45 × 19) × 0.8 + 9,67 × 0.1 + 0 × 0.1 = <strong>8,6</strong></p>
+                                    </span>
+                                </div>
+                                <div class="info-card-tip">
+                                    <p>Olimpiadele și concursurile punctate la preadmitere: <a href="https://acs.pub.ro/public/Lista_concursuri_admitere_licenta_2025_vf.pdf" target="_blank">Vezi lista</a></p>
+                                    <p>Olimpiade cu opțiunea admiterii fără concurs: <a href="https://admitere.pub.ro/docs/Anexa_VI_Regulament_2025.pdf" target="_blank">Verifică lista</a></p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="subiecte-box-info" data-set="CalculNota">
-                        <div class="section-icon">💯</div>
-                        <div class="section-titlu">
-                            <p data-set="CalculNota"><strong> >> Calculul Notei Politehnică</strong></p>
-                            <p data-set="CalculNota">Aici vei găsi explicații clare despre modul în care se calculează nota la examenul de admitere și preadmitere.</p>
-                        </div> 
-                    </div>
-                    <div class="dropdown-section" id="dropdown-CalculNota">
-                        <div class="sub-links sub-info">
-                            <span>
-                                <p><strong>Cum se calculează nota la Preadmitere? </strong></p>
-                                <p>• <strong> 80% </strong>: note la matematică și informatică/fizică din examenul de Preadmitere</p>
-                                <p>• <strong> 10%</strong>: media aritmetica dintre mediile generale obtinute în clasele IX–XI</p>
-                                <p>• <strong> 10%</strong>: nota obținută la concursuri/olimpiade (dacă nu ai rezultate, vei avea 0 și nota finală va începe de la 9)</p>
-                                <p><strong>Calculul celor 80% </strong>:</p>
-                                <p>• Examen = [1 + 0.45 × (număr total exerciții corecte)] × 0.8</p>
-                            </span>
-                            <span>
-                                <p><strong>Cum se calculează nota la Admitere? </strong></p>
-                                <p>• <strong> 80% </strong>: note la matematică și informatică/fizică din examenul de Admitere (calcul identic ca la Preadmitere)</p>
-                                <p>• <strong> 20%</strong>: nota finală la Bac</p>
-                                <p style="color: lightblue;"><strong>Exemplu calcul notă Preadmitere: </strong></p>
-                                <p>• <strong> Examen</strong>: 10 Mate, 9 Info</p>
-                                <p>• <strong> Medie Mate și Info în clasele IX-XI</strong>: 9,67</p>
-                                <p>• <strong> Nota din Concursuri/Olimpiade</strong>: 0</p>
-                                <p><strong>Notă finală:</strong></p>
-                                <p>• (1 + 0.45 × 19) × 0.8 + 9,67 × 0.1 + 0 × 0.1 = 8,6</p>
-                            </span>
+
+                        <!-- Glisarea -->
+                        <div class="info-card" style="--card-accent: #4db6ac; --card-shadow: #1a6b64;" data-set="GLISARE">
+                            <div class="info-card-header">
+                                <div class="info-card-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/><path d="M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                                </div>
+                                <div class="info-card-body">
+                                    <div class="info-card-title">Glisarea din Preadmitere</div>
+                                    <div class="info-card-desc">Procedura prin care poți schimba specializarea după înmatriculare, la începutul lunii iulie.</div>
+                                </div>
+                                <div class="info-card-chevron">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                </div>
+                            </div>
+                            <div class="info-card-content">
+                                <div class="sub-links">
+                                    <span>
+                                        <p>• <strong>Glisarea</strong> din preadmitere este de tip intern — poți glisa în sus doar dacă te înmatriculezi la o altă secție din cadrul facultății.</p>
+                                        <p>• Vei fi în "bătălie" doar cu cei care s-au înmatriculat la IS și au bifat opțiunea de glisare. Reușesc <strong>~20</strong> să gliseze.</p>
+                                    </span>
+                                    <span>
+                                        <p>• <strong>Condiții:</strong> Poți glisa doar către CTI de la IS, dacă ai intrat la IS din Preadmitere, ai bifat și CTI și IS la înscriere și ai bifat opțiunea de glisare la înmatricularea de la începutul lunii iulie.</p>
+                                    </span>
+                                </div>
+                                <div class="info-card-warn">
+                                    <p>Glisarea se poate face doar intern — trebuie să intri la o secție din cadrul facultății, să te înmatriculezi, și abia apoi ai posibilitatea de glisare.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="sfat-info indented">
-                            <span>
-                                <p>🏆 Aici se află olimpiadele și concursurile punctate la preadmitere: <a href="https://acs.pub.ro/public/Lista_concursuri_admitere_licenta_2025_vf.pdf" target="_blank"> Vezi aici </a></p>
-                            </span>
-                            <span>
-                                <p class="indented">🏅 Cu aceste olimpiade există opțiunea admiterii fără concurs: <a href="https://admitere.pub.ro/docs/Anexa_VI_Regulament_2025.pdf" target="_blank"> Verifică lista </a></p>
-                            </span>
+
+                        <!-- Pregătire -->
+                        <div class="info-card" style="--card-accent: #34d399; --card-shadow: #1a7a56;" data-set="PregatirePoli">
+                            <div class="info-card-header">
+                                <div class="info-card-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                                </div>
+                                <div class="info-card-body">
+                                    <div class="info-card-title">Pregătirea pentru examenul Politehnică</div>
+                                    <div class="info-card-desc">Strategii și metode pentru o pregătire structurată și eficientă în vederea admiterii la UPB.</div>
+                                </div>
+                                <div class="info-card-chevron">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                </div>
+                            </div>
+                            <div class="info-card-content">
+                                <div class="sub-links">
+                                    <span>
+                                        <p>• <strong>Planificarea timpului:</strong> Recomandăm să începi pregătirea cu un an înainte pentru a crea o bază solidă a fundamentalelor și apoi să te îndrepți către exerciții mai avansate.</p>
+                                    </span>
+                                    <span>
+                                        <p>• <strong>Testare și simulări:</strong> Participă regulat la simulări pentru a te obișnui cu presiunea timpului și formatul examenului.</p>
+                                        <p>• <strong>Recomandăm: <a href="https://www.simularepoli.ro/" target="_blank">Simulare by probleme.poli</a></strong></p>
+                                    </span>
+                                </div>
+                                <div class="info-card-warn">
+                                    <p>Nu te baza pe "învățatul" de formule fără înțelegere. La Poli se pune accent pe logică și aplicarea creativă a conceptelor, nu pe reproducerea mecanică.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="subiecte-box-info" data-set="GLISARE">
-                        <div class="section-icon">➡️</div>
-                        <div class="section-titlu">
-                            <p data-set="GLISARE"><strong>  >> Glisarea din Preadmitere </strong></p>
-                            <p data-set="GLISARE">Procedura prin care poți schimba specializarea după înmatriculare are loc la începutul lunii iulie.</p>
-                        </div> 
-                    </div>
-                    <div class="dropdown-section" id="dropdown-GLISARE">
-                        <div class="sub-links sub-info">
-                            <span>
-                                <p>• <strong>Glisarea </strong>din preadmitere este de tip intern, însemnând că poți glisa în sus doar dacă te înmatriculezi la o altă secție din cadrul facultății.</p>
-                                <p>• Vei fi în <strong>"bătălie"</strong> doar cu cei care s-au înmatriculat la IS și au bifat opțiunea de glisare. Reușesc <strong>≈ 20</strong> să gliseze</p>
-                            </span>
-                            <span>
-                                <p>• <strong>Condiții și limitări:</strong> Poți glisa doar către CTI de la IS, dacă ai intrat la IS din Preadmitere, ai bifat și CTI și IS la înscrierea pentru examen și dacă ai bifat opțiunea de glisare la înmatricularea de la începutul lunii iulie.</p>
-                            </span>
+
+                        <!-- În timpul examenului -->
+                        <div class="info-card" style="--card-accent: #fb923c; --card-shadow: #9a4a10;" data-set="Cesalucrez">
+                            <div class="info-card-header">
+                                <div class="info-card-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                </div>
+                                <div class="info-card-body">
+                                    <div class="info-card-title">În timpul examenului</div>
+                                    <div class="info-card-desc">Strategii tactice pentru maximizarea punctajului în examenul de admitere.</div>
+                                </div>
+                                <div class="info-card-chevron">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                </div>
+                            </div>
+                            <div class="info-card-content">
+                                <div class="sub-links">
+                                    <span>
+                                        <p><strong>Abordare strategică:</strong> abordează fiecare exercițiu pe rând, nu sări să citești toată lucrarea — te poate speria dificultatea următoarelor exerciții.</p>
+                                        <p><strong>Păstrarea calmului</strong> este unul dintre cei mai importanți factori. Exersează acasă o simulare de examen pentru a te obișnui cu emoțiile.</p>
+                                    </span>
+                                    <span>
+                                        <p><strong>Folosește ciornele</strong> foarte organizat. O ciornă haotică te va încurca și vei pierde timp prețios.</p>
+                                        <p>— Împarte pagina în secțiuni pentru fiecare exercițiu și păstrează spațiu pentru calcule suplimentare.</p>
+                                    </span>
+                                </div>
+                                <div class="info-card-tip">
+                                    <p>Dacă rămâi blocat la un exercițiu, treci la următorul și revino la final. Mintea se "resetează" și adesea găsești soluția când revii cu cap limpede.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="warning-info indented">
-                                <p>⚠️ Glisarea se poate face doar intern -> trebuie să intri la o secție din cadrul facultății -> înmatriculare -> posibilitate de glisare.</p>
+
+                        <!-- Culegeri -->
+                        <div class="info-card" style="--card-accent: #f472b6; --card-shadow: #9a1a5c;" data-set="Culegeri">
+                            <div class="info-card-header">
+                                <div class="info-card-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                                </div>
+                                <div class="info-card-body">
+                                    <div class="info-card-title">Culegerile de la Poli</div>
+                                    <div class="info-card-desc">Materiale educaționale esențiale pentru o pregătire completă la matematică și informatică.</div>
+                                </div>
+                                <div class="info-card-chevron">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                </div>
+                            </div>
+                            <div class="info-card-content">
+                                <div class="sub-links">
+                                    <span>
+                                        <p>• <strong>Culegerea de Matematică</strong> este foarte bună, cu exerciții de nivel mediu și înalt. Ajută la colectarea metodelor de rezolvare utile la preadmitere/admitere.</p>
+                                        <p>• <strong>Politehnica organizează</strong> cursuri gratuite sâmbăta, deseori predate de Prof. Alexandru Negrescu, cu cursuri online pe canalul său.</p>
+                                    </span>
+                                    <span>
+                                        <p>• <strong>Culegerea de Informatică</strong> este bună la început. Pe parcurs devine mai important lucratul subiectelor din anii trecuți și exercițiile de tip Programare Dinamică și Combinatorică.</p>
+                                        <p>• <strong>Cursul de la Politehnică</strong>, deseori predat de Prof. Mihai Nan, parcurge întreaga programă și propune soluții strălucite.</p>
+                                    </span>
+                                </div>
+                                <div class="info-card-tip">
+                                    <p>Vezi programa pentru admitere, începând cu pag. 111: <a href="https://admitere.pub.ro/docs/Regulament_admitere_licenta_2025.pdf" target="_blank">Regulament admitere 2025</a></p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="subiecte-box-info" data-set="PregatirePoli">
-                        <div class="section-icon">💭</div>
-                        <div class="section-titlu">
-                            <p data-set="PregatirePoli"><strong>  >> Pregătirea pentru examenul Politehnică </strong></p>
-                            <p data-set="PregatirePoli">Strategii și metode pentru o pregătire structurată și eficientă în vederea admiterii la UPB.</p>
-                        </div> 
-                    </div>
-                    <div class="dropdown-section" id="dropdown-PregatirePoli">
-                        <div class="sub-links sub-info">
-                            <span>
-                                <p>• <strong>Planificarea timpului: </strong> Recomandarea noastră este să începi pregătirea cu un an înainte pentru a avea timp să creezi o bază solidă a fundamentalelor și apoi să te îndrepți către exerciții mai avansate și complexe</p>
-                            </span>
-                            <span>
-                                <p>• <strong> Testare și simulări: </strong>Participă regulat la simulări pentru a te obișnui cu presiunea timpului și formatul examenului. Formează grupuri de studiu cu alți candidați serioși pentru a discuta problemele dificile și a te motiva reciproc.</p>
-                                <p> • <strong>Recomandăm :<a href="https://www.simularepoli.ro/" target="_blank" class="sub-link-info"> Simulare by probleme.poli</a></strong></p>
-                            </span>
+
+                        <!-- Cum să te pregătești -->
+                        <div class="info-card" style="--card-accent: #818cf8; --card-shadow: #3730a3;" data-set="CumPreg">
+                            <div class="info-card-header">
+                                <div class="info-card-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                </div>
+                                <div class="info-card-body">
+                                    <div class="info-card-title">Cum să te pregătești</div>
+                                    <div class="info-card-desc">Un plan structurat pe etape pentru optimizarea procesului de învățare pe parcursul unui an întreg.</div>
+                                </div>
+                                <div class="info-card-chevron">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                </div>
+                            </div>
+                            <div class="info-card-content">
+                                <div class="sub-links">
+                                    <span>
+                                        <p>• <strong>Primele 6 luni</strong> dedică-le recapitulării complete a teoriei din liceu și exercițiilor de bază. <strong>Lunile 7-9</strong> treci la culegeri specializate cu dificultate medie și avansată. <strong>Ultimele 3 luni</strong> concentrează-te pe subiecte din anii anteriori și simulări săptămânale.</p>
+                                    </span>
+                                    <span>
+                                        <p>• <strong>Recomandăm începerea</strong> cu un an înainte, minim 9 luni, pentru o fundamentare solidă.</p>
+                                        <p>• <strong>La începutul drumului</strong> 1-3 ore pe zi sunt suficiente. În ultimele luni cruciale, menține un balans între lucrat intens și pauze optime.</p>
+                                    </span>
+                                </div>
+                                <div class="info-card-tip">
+                                    <p>În ultimele 2 săptămâni, simulează condițiile reale de examen — de la timer de 3 ore până la folosirea aceluiași pix ca în examen.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="warning-info indented">
-                                <p>⚠️ ATENȚIE: Nu te baza pe "învățatul" de formule fără înțelegere. La Poli se pune accent pe logică și aplicarea creativă a conceptelor, nu pe reproducerea mecanică.</p>
-                        </div>
-                    </div>
-                    <div class="subiecte-box-info" data-set="Cesalucrez">
-                        <div class="section-icon">📝</div>
-                        <div class="section-titlu">
-                            <p data-set="Cesalucrez"><strong>  >> În timpul examenului </strong></p>
-                            <p data-set="Cesalucrez">Strategii tactice eficiente și bine orientate pentru maximizarea punctajului în examenul de admitere.</p>
-                        </div> 
-                    </div>
-                    <div class="dropdown-section" id="dropdown-Cesalucrez">
-                        <div class="sub-links sub-info">
-                            <span>
-                                <p><strong>Abordare strategică: </strong>abordează fiecare exercițiu pe rând, nu sări să citești toată lucrarea, te poate speria dificultatea următoarelor exerciții.</p>
-                                <p><strong>Păstrarea calmului </strong>este unul dintre cei mai importanți factori. Exersează acasă o simulare de examen pentru a te obișnui cu emoțiile. </p>
-                            </span>
-                            <span>
-                                <p><strong>Folosește ciornele</strong> foarte organizat. O ciornă haotică te va încurca și vei pierde timp prețios. </p>
-                                <p><strong>-</strong> împarte pagina în secțiuni pentru fiecare exercițiu și păstrează spațiu pentru calcule suplimentare </p>
-                                <p><strong>-</strong> vei reveni constant la exerciții pentru verificări sau pentru a completa soluții parțiale </p>
-                            </span>
-                        </div>
-                        <div class="sfat-info indented">
-                                <p>💡 SFAT: Dacă rămâi blocat la un exercițiu, treci la următorul și revino la final. Mintea se "resetează" și adesea găsești soluția când revii cu cap limpede.</p>
-                        </div>
-                    </div>
-                    <div class="subiecte-box-info" data-set="Culegeri">
-                        <div class="section-icon">📚</div>
-                        <div class="section-titlu">
-                            <p data-set="Culegeri"><strong>  >> Culegerile de la Poli </strong></p>
-                            <p data-set="Culegeri">Materiale educaționale esențiale pentru o pregătire completă și eficientă la matematică și informatică.</p>
-                        </div> 
-                    </div>
-                    <div class="dropdown-section" id="dropdown-Culegeri">
-                        <div class="sub-links sub-info">
-                            <span>
-                                <p>• <strong>Culegerea de Matematică</strong> este foarte bună, cu exerciții de nivel mediu și înalt. Aceasta ajută elevul să colecteze o sumedenie de metode de rezolvare, utile la preadmitere/admitere.</p>
-                                <p>• <strong>Politehnica organizează</strong> cursuri gratuite sâmbăta, deseori predate de Prof. Alexandru Negrescu, având și cursuri online, pe canalul său. Împreună cu o explicație foarte bună, oferă metode de rezolvare excepționale și o înțelegere superioară a exercițiilor.</p>
-                            </span>
-                            <span>
-                                <p>• <strong>Cea de Informatică</strong> este bună la început pentru atenția la detalii și capcane și rezolvarea rapidă a exercițiilor, dar, pe parcurs, devine mai important lucratul subiectelor din anii trecuți și învățatul de pe internet al exercițiilor de tip Programare Dinamică și Combinatorică.</p>
-                                <p>• <strong>Cursul de la Politehnică</strong>, deseori predat de Prof. Mihai Nan, oferă o înțelegere aprofundată a materiei și propune soluții strălucite, fiind esențial pentru pregătirea admiterii, parcurgând întreaga programă</p>
-                            </span>
-                        </div>
-                        <div class="sfat-info indented">
-                                <p>⭐ Vezi programa pentru admitere : <em> Începând cu pag. 111 -</em> <span class="links"><a href="https://admitere.pub.ro/docs/Regulament_admitere_licenta_2025.pdf" target="_blank">AICI</a></span></p></div>
-                    </div>
-                    <div class="subiecte-box-info" data-set="CumPreg">
-                        <div class="section-icon">📈</div>
-                        <div class="section-titlu">
-                            <p data-set="CumPreg"><strong>  >> Cum să te pregătești </strong></p>
-                            <p data-set="CumPreg"> Un plan structurat pe etape pentru optimizarea procesului de învățare pe parcursul unui an întreg.</p>
-                        </div> 
-                    </div>
-                    <div class="dropdown-section" id="dropdown-CumPreg">
-                        <div class="sub-links sub-info">
-                            <span>
-                                <p>•  <strong>Primele 6 luni </strong> dedică-le recapitulării complete a teoriei din liceu și exercițiilor de bază - nu te grăbi cu probleme complexe. <strong>Lunile 7-9 </strong>treci la culegeri specializate cu dificultate medie și avansată. <strong>Ultimele 3 luni </strong>concentrează-te pe subiecte din anii anteriori, simulări săptămânale și identificarea punctelor slabe.</p>
-                            </span>
-                            <span>
-                                <p>• <strong>Recomandăm începerea</strong> cu un an înainte, minim 9 luni, pentru o fundamentare solidă și fără grabă.</p>
-                                <p>• <strong>La începutul drumului</strong> nu trebuie să te supra-soliciti, e ok lucratul între 1-3 ore, dar în ultimele luni, cele cruciale, trebuie păstrat un balans între lucrat intens și pauze optime. </p>
-                            </span>
-                        </div>
-                        <div class="sfat-info indented">
-                                <p>🔥 Sfat: În ultimele 2 săptămâni, simulează condițiile reale de examen, de la timer de 3 ore până la folosirea aceluiași pix ca în examen.</p>
-                        </div>
+
                     </div>
                 </div>
-            </section>
+            </div>
         </main>
         <footer>   
         <a href="https://chat.whatsapp.com/Fc7xjNckFGYBE9E16xsZ1D" target="_blank">

@@ -35,6 +35,53 @@ function isMobile() {
   return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 }
 
+/* ── Butoane pricing index.html ───────────────────────────────── */
+
+async function updatePricingButtons(user) {
+  const btnStandard = document.getElementById('oferim-btn-standard');
+  const btnPlus     = document.getElementById('oferim-btn-plus');
+  if (!btnStandard || !btnPlus) return; // nu suntem pe index.html
+
+  if (!user) {
+    // Deconectat — stare implicită
+    btnStandard.textContent = 'Creează cont';
+    btnStandard.disabled    = false;
+    btnStandard.classList.remove('lp-btn-current');
+
+    btnPlus.textContent = 'Începe cu Student Plus';
+    btnPlus.disabled    = false;
+    btnPlus.classList.remove('lp-btn-current');
+    return;
+  }
+
+  let plan = 'standard';
+  try {
+    const snap = await getDoc(doc(db, 'users', user.uid));
+    if (snap.exists()) plan = snap.data().selectedPlan || 'standard';
+  } catch (e) {
+    console.warn('[Auth] Nu s-a putut citi planul din Firestore:', e.message);
+  }
+
+  if (plan === 'student-plus') {
+    btnStandard.textContent = 'Creează cont';
+    btnStandard.disabled    = false;
+    btnStandard.classList.remove('lp-btn-current');
+
+    btnPlus.textContent = 'Planul tău actual';
+    btnPlus.disabled    = true;
+    btnPlus.classList.add('lp-btn-current');
+  } else {
+    // standard (gratuit)
+    btnStandard.textContent = 'Planul tău actual';
+    btnStandard.disabled    = true;
+    btnStandard.classList.add('lp-btn-current');
+
+    btnPlus.textContent = 'Începe cu Student Plus';
+    btnPlus.disabled    = false;
+    btnPlus.classList.remove('lp-btn-current');
+  }
+}
+
 /* ── HTML injectat în DOM ─────────────────────────────────────── */
 
 function injectModal() {
@@ -50,8 +97,8 @@ function injectModal() {
       <div class="auth-step active" id="auth-step-auth">
         <div class="auth-toggle-wrap">
           <div class="auth-toggle" id="auth-toggle">
-            <button class="auth-toggle-btn active" data-tab="login">Autentificare</button>
-            <button class="auth-toggle-btn" data-tab="register">Înregistrare</button>
+            <button class="auth-toggle-btn active" data-tab="login">Log In</button>
+            <button class="auth-toggle-btn" data-tab="register">Sign Up</button>
             <div class="auth-toggle-slider"></div>
           </div>
         </div>
@@ -151,14 +198,17 @@ function injectModal() {
 }
 
 function injectNavButton() {
-  const nav = document.querySelector('nav');
-  if (!nav) return;
+  // Inject avatar into .nav-header-actions so it inherits the correct grid column
+  const actions = document.querySelector('.nav-header-actions');
+  const header  = document.querySelector('header');
+  const anchor  = actions || header;
+  if (!anchor) return;
 
   const wrapper = document.createElement('div');
   wrapper.id = 'nav-auth-wrapper';
+  wrapper.style.display = 'none'; // Hidden until user is logged in
   wrapper.innerHTML = `
-    <button class="nav-btn-ghost" id="nav-auth-signin">Autentificare</button>
-    <button class="nav-auth-pill" id="nav-auth-trigger">Înregistrează-te</button>
+    <button class="nav-auth-pill" id="nav-auth-trigger"></button>
     <div class="auth-user-dropdown" id="auth-user-dropdown">
       <div class="auth-email" id="auth-user-email"></div>
       <a href="./profil" class="auth-dropdown-link" id="btn-profile">Profilul meu</a>
@@ -166,12 +216,7 @@ function injectNavButton() {
     </div>
   `;
 
-  const hamburger = nav.querySelector('.hamburger');
-  if (hamburger) {
-    nav.insertBefore(wrapper, hamburger);
-  } else {
-    nav.appendChild(wrapper);
-  }
+  anchor.appendChild(wrapper);
 }
 
 function injectMobileAuthItem() {
@@ -384,6 +429,12 @@ function updateNavButton(user) {
   const signinBtn = document.getElementById('nav-auth-signin');
   const dropdown = document.getElementById('auth-user-dropdown');
   const emailEl = document.getElementById('auth-user-email');
+  const wrapper = document.getElementById('nav-auth-wrapper');
+  if (wrapper) wrapper.style.display = user ? 'flex' : 'none';
+
+  const headerSignup = document.getElementById('header-signup-btn');
+  if (headerSignup) headerSignup.style.display = user ? 'none' : '';
+
   if (trigger) {
     if (user) {
       const displayName = (user.displayName || '').trim();
@@ -392,12 +443,9 @@ function updateNavButton(user) {
         : (user.email || '?')[0].toUpperCase();
       trigger.textContent = initials;
       trigger.classList.add('auth-logged-in');
-      if (signinBtn) signinBtn.style.display = 'none';
       if (emailEl) emailEl.textContent = user.email;
     } else {
-      trigger.textContent = 'Înregistrează-te';
       trigger.classList.remove('auth-logged-in');
-      if (signinBtn) signinBtn.style.display = '';
       if (dropdown) dropdown.classList.remove('open');
     }
   }
@@ -645,6 +693,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Header Sign Up button (outside nav pill)
+  document.getElementById('header-signup-btn')?.addEventListener('click', () => {
+    openModal();
+    requestAnimationFrame(() => {
+      document.querySelector('.auth-toggle-btn[data-tab="register"]')?.click();
+    });
+  });
+
+  // Hero "Începe Acum" button — opens register tab
+  document.getElementById('hero-register-btn')?.addEventListener('click', () => {
+    openModal();
+    requestAnimationFrame(() => {
+      document.querySelector('.auth-toggle-btn[data-tab="register"]')?.click();
+    });
+  });
+
+  // Pricing — "Creează cont" (Standard plan)
+  document.getElementById('oferim-btn-standard')?.addEventListener('click', () => {
+    openModal();
+    requestAnimationFrame(() => {
+      document.querySelector('.auth-toggle-btn[data-tab="register"]')?.click();
+    });
+  });
+
+  // Pricing — "Începe cu Student Plus"
+  document.getElementById('oferim-btn-plus')?.addEventListener('click', () => {
+    if (auth.currentUser) {
+      // Already logged in → go straight to plan selection
+      openModal();
+      requestAnimationFrame(() => showStep('plan'));
+    } else {
+      // Not logged in → register first, plan step shows automatically after register
+      openModal();
+      requestAnimationFrame(() => {
+        document.querySelector('.auth-toggle-btn[data-tab="register"]')?.click();
+      });
+    }
+  });
+
   // Mobile menu — Contul meu
   document.getElementById('nav-auth-mobile-btn')?.addEventListener('click', () => {
     closeHamburger();
@@ -662,10 +749,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Listener stare auth
-  onAuthStateChanged(auth, (user) => {
+  onAuthStateChanged(auth, async (user) => {
     updateNavButton(user);
     // Dacă utilizatorul e logat dar documentul Firestore a fost șters, îl recreăm
     if (user) syncUserToFirestore(user, 'standard', 'monthly');
+    await updatePricingButtons(user);
   });
 
   // Expune openUpgradeModal global pentru alte pagini (ex: exercitii-video)

@@ -20,28 +20,32 @@
     <link rel="icon" type="image/png" href="logosquared.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <nav>
-            <a href="./">
+<body class="lp-body lp-dark">
+        <header>
+            <a href="./" class="nav-logo-link">
                 <img src="images/logonoutrans.png" alt="logo" class="logonav">
-            </a>            
-            <ul class="nav-elements">
-                <li><a href="./informatii">Informații generale</a></li>
-                <li><a href="./subiecte">Subiecte/Rezolvări</a></li>
-                <li><a href="./resurse">Resurse</a></li>
-                <li><a href="./simulari" class="nav-sim-btn">Simulări</a></li>
+            </a>
+            <nav>
+                <div id="nav-cursor" class="nav-cursor" aria-hidden="true"></div>
+                <ul class="nav-elements">
+                    <li><a href="./informatii">Informații generale</a></li>
+                    <li><a href="./subiecte">Subiecte/Rezolvări</a></li>
+                    <li><a href="./resurse">Resurse</a></li>
+                    <li><a href="./simulari">Simulări</a></li>
                     <li><a href="./exercitii-video">Exerciții video</a></li>
-            </ul>
+                </ul>
+            </nav>
+            <div class="nav-header-actions">
+                <button class="nav-header-signup" id="header-signup-btn">Sign Up</button>
+            </div>
             <div class="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
-        </nav>
-    </header>
+        </header>
     <main>
         <section class="grid-main-content">
             <div class="container" style="margin-bottom: 2rem;">
@@ -52,12 +56,12 @@
 						Aceasta este rezolvarea completă pentru subiectul de informatică din cadrul examenului final de admitere la Politehnica București, 2025. Fiecare grilă și algoritm sunt explicate detaliat de studenți pentru a te ajuta să înțelegi raționamentul din spatele răspunsurilor corecte.
 					</h3>
 
-					<div style="margin-top: 1.5rem; background: rgba(225, 225, 225, 0.1); padding: 1.5rem; border-radius: 1rem;">
-						<h3 style="margin-bottom: 0.8rem; color: #C3D5F0; font-size: 1.3rem;">🔗 Linkuri utile:</h3>
+					<div class="pag-links-box">
+						<h3>Linkuri utile:</h3>
 						<ul style="list-style-type: disc; margin-left: 1.5rem; font-size: 1.3rem;">
-							<li style="margin-bottom: 0.5rem;"><a href="http://www.physics.pub.ro/Admitere/2025/Informatica_I_(Varianta_S).pdf" target="_blank" style="color: lightblue;">Vezi subiectul original (PDF)</a></li>
-							<li style="margin-bottom: 0.5rem;"><a href="./admitere-2025-informatica-barem" style="color: lightblue;">Vezi baremul oficial</a></li>
-							<li><a href="https://www.youtube.com/watch?v=IvdfNGfQIf0" target="_blank" style="color: lightblue;">Vezi rezolvarea video la Matematică</a></li>
+							<li style="margin-bottom: 0.5rem;"><a href="http://www.physics.pub.ro/Admitere/2025/Informatica_I_(Varianta_S).pdf" target="_blank">Vezi subiectul original (PDF)</a></li>
+							<li style="margin-bottom: 0.5rem;"><a href="./admitere-2025-informatica-barem">Vezi baremul oficial</a></li>
+							<li><a href="https://www.youtube.com/watch?v=IvdfNGfQIf0" target="_blank">Vezi rezolvarea video la Matematică</a></li>
 						</ul>
 					</div>
 				</div>
@@ -66,10 +70,10 @@
 			<div id="pdfViewer"></div>
 
 			<div class="container" style="margin-top: 2rem;">
-				<h3 style="margin-bottom: 0.8rem; color: #C3D5F0; font-size: 1.3rem;">Subiecte similare care te-ar putea ajuta:</h3>
+				<h3>Subiecte similare care te-ar putea ajuta:</h3>
 				<ul style="list-style-type: disc; margin-left: 1.5rem; font-size: 1.3rem;">
-					<li style="margin-bottom: 0.5rem;"><a href="./admitere-2025-matematica-barem" style="color: lightblue;">Barem Admitere 2025 Matematică</a></li>
-					<li style="margin-bottom: 0.5rem;"><a href="./preadmitere-2025-informatica-barem" style="color: lightblue;">Barem Preadmitere 2025 Informatică</a></li>
+					<li style="margin-bottom: 0.5rem;"><a href="./admitere-2025-matematica-barem">Barem Admitere 2025 Matematică</a></li>
+					<li style="margin-bottom: 0.5rem;"><a href="./preadmitere-2025-informatica-barem">Barem Preadmitere 2025 Informatică</a></li>
 				</ul>
 			</div>
         </section>

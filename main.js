@@ -56,7 +56,7 @@ class SimpleDropdown {
   }
 
   closeDropdown(dropdown) {
-      const text = document.querySelector(`[data-set="${dropdown.id.split('-')[1]}"]`);
+      const text = document.querySelector(`[data-set="${dropdown.id.replace('dropdown-', '')}"]`);
       
       dropdown.classList.remove('show');
       if (text) {
@@ -132,9 +132,24 @@ class SimpleDropdown {
     }, { passive: true });
 })();
 
+// Info card accordion (informatii.html)
+function initInfoCards() {
+    document.querySelectorAll('.info-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+            // Don't toggle if clicking a link inside
+            if (e.target.closest('a')) return;
+            const isActive = card.classList.contains('active');
+            // Close all others
+            document.querySelectorAll('.info-card.active').forEach(c => c.classList.remove('active'));
+            if (!isActive) card.classList.add('active');
+        });
+    });
+}
+
 // Inițializează când se încarcă pagina
 document.addEventListener('DOMContentLoaded', function() {
     new SimpleDropdown();
+    initInfoCards();
 
     // Smooth scroll pentru butonul "Povestea noastră"
     const poetveaBtn = document.querySelector('a[href="#despre-noi"]');
@@ -318,11 +333,10 @@ const btn = document.getElementById("glass-countdown-btn");
 const timerText = document.getElementById("countdown-timer");
 
 if (btn && timerText) {
-    const updateCountdown = setInterval(() => {
+    function tickCountdown() {
         const distance = targetDate - Date.now();
 
         if (distance <= 0) {
-            clearInterval(updateCountdown);
             btn.classList.remove("locked");
             btn.classList.add("active");
         } else {
@@ -331,6 +345,39 @@ if (btn && timerText) {
             const m = String(Math.floor((distance % 3600000) / 60000)).padStart(2, '0');
             const s = String(Math.floor((distance % 60000) / 1000)).padStart(2, '0');
             timerText.innerText = `${d}z ${h}h ${m}m ${s}s`;
+            setTimeout(tickCountdown, 1000);
         }
-    }, 1000);
+    }
+    tickCountdown(); // Run immediately — no 1-second locked flash on page load
 }
+
+// ── Nav pill sliding cursor ───────────────────────────────────────────────────
+(function () {
+  function initNavCursor() {
+    const cursor = document.getElementById('nav-cursor');
+    const nav = document.querySelector('.lp-body nav');
+    if (!cursor || !nav) return;
+
+    const links = nav.querySelectorAll('ul a');
+
+    links.forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        const navRect = nav.getBoundingClientRect();
+        const linkRect = link.getBoundingClientRect();
+        cursor.style.left = (linkRect.left - navRect.left - 5) + 'px';
+        cursor.style.width = linkRect.width + 'px';
+        cursor.style.opacity = '1';
+      });
+    });
+
+    nav.addEventListener('mouseleave', () => {
+      cursor.style.opacity = '0';
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNavCursor);
+  } else {
+    initNavCursor();
+  }
+})();

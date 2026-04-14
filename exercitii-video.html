@@ -24,6 +24,8 @@
         @keyframes ev-pulse   { 0%,100%{opacity:0.55} 50%{opacity:1} }
         @keyframes ev-float   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
         @keyframes ev-play-pulse { 0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,255,255,0.4)} 50%{transform:scale(1.06);box-shadow:0 0 0 10px rgba(255,255,255,0)} }
+        @keyframes ev-cs-shimmer { 0%{background-position:200% center} 100%{background-position:-200% center} }
+        @keyframes ev-cs-orbit   { 0%{transform:rotate(0deg) translateX(28px) rotate(0deg)} 100%{transform:rotate(360deg) translateX(28px) rotate(-360deg)} }
 
         /* ── Hero ── */
         .ev-hero {
@@ -504,6 +506,81 @@
             justify-content: center;
         }
         .ev-thumb-placeholder svg { opacity: 0.18; }
+
+        /* Coming soon thumbnail */
+        .ev-thumb-cs {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(140deg, #0d1120 0%, #111827 50%, #0d1120 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            overflow: hidden;
+        }
+        .ev-thumb-cs::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(130,141,248,0.07) 0%, transparent 70%);
+        }
+        .ev-thumb-cs-orbit {
+            position: relative;
+            width: 48px; height: 48px;
+            flex-shrink: 0;
+        }
+        .ev-thumb-cs-orbit::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 1px dashed rgba(130,141,248,0.2);
+        }
+        .ev-thumb-cs-dot {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #828df8;
+            box-shadow: 0 0 8px rgba(130,141,248,0.8);
+            margin: -3px 0 0 -3px;
+            animation: ev-cs-orbit 3.5s linear infinite;
+        }
+        .ev-thumb-cs-ico {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(130,141,248,0.45);
+        }
+        .ev-thumb-cs-badge {
+            position: relative;
+            z-index: 1;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(130,141,248,0.22);
+            background: rgba(130,141,248,0.07);
+            background-image: linear-gradient(90deg, transparent 0%, rgba(130,141,248,0.12) 50%, transparent 100%);
+            background-size: 200% 100%;
+            color: rgba(130,141,248,0.7);
+            animation: ev-cs-shimmer 2.8s linear infinite;
+        }
+        .ev-card.is-coming-soon {
+            cursor: default;
+            opacity: 0.62;
+        }
+        .ev-card.is-coming-soon:hover {
+            transform: none;
+            border-color: rgba(255,255,255,0.07);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
+        }
         .ev-thumb::after {
             content: '';
             pointer-events: none;
@@ -696,14 +773,14 @@
                                 Platformă de învățare · AdmiterePoli
                             </div>
                             <h1>Exerciții <em>video</em><br>pentru admitere</h1>
-                            <p class="ev-hero-sub">Lecții de ~5 minute, filmate pas cu pas — matematică și informatică. Urmărește-le oriunde, oricând.</p>
+                            <p class="ev-hero-sub">Lecții de ~6 minute, filmate pas cu pas — matematică și informatică. Urmărește-le oriunde, oricând.</p>
                             <div class="ev-hero-stats" aria-label="Statistici catalog">
                                 <div class="ev-stat">
                                     <span class="ev-stat-num">12</span>
                                     <span class="ev-stat-label">Lecții totale</span>
                                 </div>
                                 <div class="ev-stat">
-                                    <span class="ev-stat-num">~5</span>
+                                    <span class="ev-stat-num">~6</span>
                                     <span class="ev-stat-label">Min / lecție</span>
                                 </div>
                                 <div class="ev-stat">
@@ -816,11 +893,11 @@
                 { id: 6,  docId: "mate-6",  title: "Trigonometrie — Cerc unitar", access: "plus",
                   statement: "Pe cercul unitar, identificați coordonatele punctului P(cos θ, sin θ) și demonstrați identitatea fundamentală sin²θ + cos²θ = 1. Deduceți din diagrama cercului unitar formulele pentru sin(α+β) și cos(α+β)." },
                 { id: 7,  docId: "mate-7",  title: "În curând", access: "plus", statement: "" },
-                { id: 8,  docId: "mate-8",  title: "În curând", access: "plus", statement: "" },
-                { id: 9,  docId: "mate-9",  title: "În curând", access: "plus", statement: "" },
-                { id: 10, docId: "mate-10", title: "În curând", access: "plus", statement: "" },
-                { id: 11, docId: "mate-11", title: "În curând", access: "plus", statement: "" },
-                { id: 12, docId: "mate-12", title: "În curând", access: "plus", statement: "" },
+                { id: 8,  docId: "mate-8",  title: "În curând", access: "plus", statement: "", comingSoon: true },
+                { id: 9,  docId: "mate-9",  title: "În curând", access: "plus", statement: "", comingSoon: true },
+                { id: 10, docId: "mate-10", title: "În curând", access: "plus", statement: "", comingSoon: true },
+                { id: 11, docId: "mate-11", title: "În curând", access: "plus", statement: "", comingSoon: true },
+                { id: 12, docId: "mate-12", title: "În curând", access: "plus", statement: "", comingSoon: true },
             ];
             const exercitiiInfo = [
                 { id: 1, docId: "info-1", title: "Baze de numerație — Teorie",  access: "account",
@@ -836,17 +913,47 @@
                 { id: 6,  docId: "info-6",  title: "DFS vs BFS — Grafuri",         access: "plus",
                   statement: "Pe un graf neorientat cu 7 noduri și muchiile {1-2, 1-3, 2-4, 2-5, 3-6, 3-7}, aplicați DFS și BFS plecând din nodul 1. Scrieți ordinea completă de vizitare, identificați muchiile de arbore și muchiile de întoarcere." },
                 { id: 7,  docId: "info-7",  title: "În curând", access: "plus", statement: "" },
-                { id: 8,  docId: "info-8",  title: "În curând", access: "plus", statement: "" },
-                { id: 9,  docId: "info-9",  title: "În curând", access: "plus", statement: "" },
-                { id: 10, docId: "info-10", title: "În curând", access: "plus", statement: "" },
-                { id: 11, docId: "info-11", title: "În curând", access: "plus", statement: "" },
-                { id: 12, docId: "info-12", title: "În curând", access: "plus", statement: "" },
+                { id: 8,  docId: "info-8",  title: "În curând", access: "plus", statement: "", comingSoon: true },
+                { id: 9,  docId: "info-9",  title: "În curând", access: "plus", statement: "", comingSoon: true },
+                { id: 10, docId: "info-10", title: "În curând", access: "plus", statement: "", comingSoon: true },
+                { id: 11, docId: "info-11", title: "În curând", access: "plus", statement: "", comingSoon: true },
+                { id: 12, docId: "info-12", title: "În curând", access: "plus", statement: "", comingSoon: true },
             ];
 
             // Map docId -> videoId, populat din Firestore după auth check
             let videoIdMap = {};
 
             function buildCard(ex, userLevel, idx) {
+                const numLabel = String(ex.id).padStart(2, '0');
+
+                // Coming soon — thumbnail special, non-interactiv
+                if (ex.comingSoon) {
+                    return `
+                        <article class="ev-card is-coming-soon" style="--i:${idx}" aria-label="Lecția ${numLabel} — în curând">
+                            <div class="ev-thumb">
+                                <div class="ev-thumb-cs">
+                                    <div class="ev-thumb-cs-orbit">
+                                        <div class="ev-thumb-cs-ico">
+                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                        </div>
+                                        <div class="ev-thumb-cs-dot"></div>
+                                    </div>
+                                    <span class="ev-thumb-cs-badge">În curând</span>
+                                </div>
+                            </div>
+                            <div class="ev-card-body">
+                                <p class="ev-card-num">Lecția ${numLabel}</p>
+                                <p class="ev-card-title" style="color:rgba(243,237,227,0.32)">În curând</p>
+                                <div class="ev-card-footer">
+                                    <span class="ev-dur-chip" style="opacity:0.35">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                        ~5 min
+                                    </span>
+                                </div>
+                            </div>
+                        </article>`;
+                }
+
                 const canWatch =
                     (ex.access === 'account' && (userLevel === 'account' || userLevel === 'plus')) ||
                     (ex.access === 'plus'    &&  userLevel === 'plus');
@@ -879,7 +986,6 @@
                 }
 
                 const plusCorner = (ex.access === 'plus' && canWatch) ? '<div class="ev-plus-badge">Plus</div>' : '';
-                const numLabel   = String(ex.id).padStart(2, '0');
                 const playBtn    = canWatch ? `<div class="ev-play-btn" aria-hidden="true"><div class="ev-play-circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>` : '';
 
                 // docId în loc de videoId — video ID-ul nu ajunge în DOM

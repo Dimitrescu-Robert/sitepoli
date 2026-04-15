@@ -669,6 +669,13 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = true;
 
     const user = auth.currentUser;
+
+    // Deschidem fereastra sincron (înainte de await) ca să nu fie blocată de mobile
+    let checkoutWin = null;
+    if (plan === 'student-plus' && user) {
+      checkoutWin = window.open('', '_blank', 'noopener');
+    }
+
     if (user) {
       try {
         await syncUserToFirestore(user, plan, billing);
@@ -682,13 +689,13 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = false;
     closeModal();
 
-    if (plan === 'student-plus' && user) {
+    if (plan === 'student-plus' && user && checkoutWin) {
       const returnUrl = encodeURIComponent(`${window.location.origin}/profil?upgraded=1`);
       const gumroadUrls = {
         monthly:   `https://admiterepoli.gumroad.com/l/student-plus-lunar?wanted=true&email=${encodeURIComponent(user.email)}&redirect_url=${returnUrl}`,
         quarterly: `https://admiterepoli.gumroad.com/l/student-plus?wanted=true&email=${encodeURIComponent(user.email)}&redirect_url=${returnUrl}`
       };
-      openGumroadCheckout(gumroadUrls[billing] || gumroadUrls.monthly);
+      checkoutWin.location.href = gumroadUrls[billing] || gumroadUrls.monthly;
     }
   });
 

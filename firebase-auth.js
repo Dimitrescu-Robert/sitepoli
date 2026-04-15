@@ -63,7 +63,11 @@ async function updatePricingButtons(user) {
   let plan = 'standard';
   try {
     const snap = await getDoc(doc(db, 'users', user.uid));
-    if (snap.exists()) plan = snap.data().selectedPlan || 'standard';
+    if (snap.exists()) {
+      const data = snap.data();
+      const isPaid = data.status === 'paid' || data.status === 'pending_cancellation';
+      plan = isPaid ? 'student-plus' : 'standard';
+    }
   } catch (e) {
     console.warn('[Auth] Nu s-a putut citi planul din Firestore:', e.message);
   }

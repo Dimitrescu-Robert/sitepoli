@@ -2326,7 +2326,7 @@ img, button { max-width: 100%; }
 .lp-deco-code1 {
   background: #ede9fe;
   color: var(--lp-deco-code1-color, #6d28d9);
-  top: 15%;
+  top: 4%;
   left: 52%;
   transform: rotate(-1deg);
   animation: lpFloatSlow 6s ease-in-out 0.3s infinite;
@@ -2343,7 +2343,7 @@ img, button { max-width: 100%; }
 .lp-deco-code2 {
   background: #dbeafe;
   color: var(--lp-deco-code2-color, #1e40af);
-  bottom: 5%;
+  bottom: -2%;
   left: 35%;
   transform: rotate(1deg);
   animation: lpFloatSlow 5s ease-in-out 1s infinite;
@@ -2391,13 +2391,7 @@ img, button { max-width: 100%; }
 
 /* Subtle horizontal reference lines behind the title */
 .lp-deco-line {
-  position: absolute;
-  left: -15%;
-  right: -15%;
-  height: 1px;
-  background: var(--lp-deco-line-color, #e5e7eb);
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
 .lp-deco-line-1 {
@@ -3118,6 +3112,7 @@ img, button { max-width: 100%; }
   }
 
   .lp-deco-code1,
+  .lp-deco-code2,
   .lp-deco-code3,
   .lp-deco-matrix {
     display: none;

@@ -4,8 +4,6 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithPopup,
-  signInWithRedirect,
-  getRedirectResult,
   getAdditionalUserInfo,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -30,10 +28,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 const db = getFirestore(app, 'admiterepoli');
-
-function isMobile() {
-  return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-}
 
 /* ── Butoane pricing index.html ───────────────────────────────── */
 
@@ -246,10 +240,6 @@ function injectMobileAuthItem() {
 }
 
 
-function openGumroadCheckout(url) {
-  window.open(url, '_blank', 'noopener');
-}
-
 function closeHamburger() {
   document.querySelector('.hamburger')?.classList.remove('active');
   document.querySelector('.nav-elements')?.classList.remove('active');
@@ -263,15 +253,6 @@ function showError(panelId, message) {
   el.textContent = message;
   el.style.color = '';
   el.style.borderColor = '';
-  el.classList.add('visible');
-}
-
-function showSuccess(panelId, message) {
-  const el = document.getElementById(`auth-error-${panelId}`);
-  if (!el) return;
-  el.textContent = message;
-  el.style.color = 'var(--accent3, #4db6ac)';
-  el.style.borderColor = 'var(--accent3, #4db6ac)';
   el.classList.add('visible');
 }
 
@@ -377,13 +358,9 @@ async function saveSimulationResult(simulationId, data) {
 
 window.saveSimulationResult = saveSimulationResult;
 
-/* ── Google Sign-In (popup pe desktop, redirect pe mobile) ───── */
+/* ── Google Sign-In (popup pe toate platformele) ─────────────── */
 
 async function googleSignIn() {
-  if (isMobile()) {
-    await signInWithRedirect(auth, googleProvider);
-    return;
-  }
   const result = await signInWithPopup(auth, googleProvider);
   const isNewUser = getAdditionalUserInfo(result)?.isNewUser ?? true;
   if (isNewUser) {
@@ -436,7 +413,6 @@ function animateNumber(el, from, to) {
 
 function updateNavButton(user) {
   const trigger = document.getElementById('nav-auth-trigger');
-  const signinBtn = document.getElementById('nav-auth-signin');
   const dropdown = document.getElementById('auth-user-dropdown');
   const emailEl = document.getElementById('auth-user-email');
   const wrapper = document.getElementById('nav-auth-wrapper');
@@ -481,22 +457,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const wrapper = document.getElementById('nav-auth-wrapper');
 
   if (!trigger || !overlay) return;
-
-  // Redirect result (mobile Google sign-in)
-  getRedirectResult(auth).then(result => {
-    if (result && result.user) {
-      const isNewUser = getAdditionalUserInfo(result)?.isNewUser ?? true;
-      if (isNewUser) {
-        openModal();
-        showStep('plan');
-      }
-    }
-  }).catch(e => {
-    if (e.code && e.code !== 'auth/popup-closed-by-user') {
-      openModal();
-      showError('login', friendlyError(e.code));
-    }
-  });
 
   // Ghost "Autentificare" → deschide modal pe tab-ul Login
   document.getElementById('nav-auth-signin')?.addEventListener('click', () => {
@@ -616,7 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
       await googleSignIn();
     } catch (e) {
       console.error('[Auth] Google login error:', e.code, e.message);
-      if (e.code !== 'auth/popup-closed-by-user') {
+      if (e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') {
         showError('login', friendlyError(e.code));
       }
     } finally {
@@ -652,7 +612,7 @@ document.addEventListener('DOMContentLoaded', () => {
       await googleSignIn();
     } catch (e) {
       console.error('[Auth] Google register error:', e.code, e.message);
-      if (e.code !== 'auth/popup-closed-by-user') {
+      if (e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') {
         showError('register', friendlyError(e.code));
       }
     } finally {
@@ -672,7 +632,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (user) {
       try {
-        await syncUserToFirestore(user, plan, billing);
+        const userRef = doc(db, 'users', user.uid);
+        await setDoc(userRef, {
+          selectedPlan: plan,
+          selectedBilling: billing
+        }, { merge: true });
       } catch (e) {
         console.error('[Auth] Nu s-a putut salva în Firestore:', e.code, e.message);
       }

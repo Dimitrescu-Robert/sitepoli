@@ -3095,9 +3095,12 @@ img, button { max-width: 100%; }
 @media (max-width: 768px) {
   .lp-title-wrap {
     padding: 0.5rem 1rem;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .lp-big-title {
+    font-size: clamp(1.8rem, 8vw, 5.5rem) !important;
     letter-spacing: -1.5px !important;
   }
 

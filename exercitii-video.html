@@ -783,7 +783,7 @@
                             <p class="ev-hero-sub">Lecții de ~6 minute, filmate pas cu pas — matematică și informatică. Urmărește-le oriunde, oricând.</p>
                             <div class="ev-hero-stats" aria-label="Statistici catalog">
                                 <div class="ev-stat">
-                                    <span class="ev-stat-num">12</span>
+                                    <span class="ev-stat-num">14</span>
                                     <span class="ev-stat-label">Lecții totale</span>
                                 </div>
                                 <div class="ev-stat">
@@ -887,19 +887,13 @@
 
             // videoId-urile sunt stocate în Firestore, nu în sursă
             const exercitiiMate = [
-                { id: 1, docId: "mate-1", title: "Sume Riemann — Introducere", access: "account",
-                  statement: "Se dă funcția f:[0,1]→ℝ, f(x)=x². Împărțiți intervalul [0,1] în n subintervale egale și scrieți suma Riemann inferioară și superioară. Calculați limita acestor sume când n→∞ și interpretați geometric rezultatul obținut." },
-                { id: 2, docId: "mate-2", title: "Sume Riemann — Aplicații",   access: "account",
-                  statement: "Folosind definiția cu sume Riemann, calculați ∫₀² x³ dx. Scrieți suma Riemann pentru partiția uniformă cu n puncte, simplificați expresia folosind formula sumei cuburilor și treceți la limită." },
-                { id: 3, docId: "mate-3", title: "Sume Riemann — Aprofundare", access: "plus",
-                  statement: "Demonstrați că ∫₀¹ xⁿ dx = 1/(n+1) folosind suma Riemann. Deduceți din această formulă suma seriei 1 + 1/2 + 1/3 + ... interpretând-o ca o integrală și aproximând prin sume." },
-                { id: 4, docId: "mate-4", title: "Kings Rule — Partea 1",       access: "plus",
-                  statement: "Enunțați și demonstrați Kings Rule: dacă ∫ₐᵇ f(x)dx = I, atunci ∫ₐᵇ f(a+b−x)dx = I. Folosiți această proprietate pentru a calcula ∫₀^(π/2) sin(x)/(sin(x)+cos(x)) dx." },
-                { id: 5, docId: "mate-5", title: "Kings Rule — Partea 2",       access: "plus",
-                  statement: "Calculați integrala ∫₀^π x·sin(x)/(1+cos²(x)) dx aplicând Kings Rule. Scrieți pașii detaliați: substituția x→π−x, adunarea celor două integrale și calculul integralei rămase." },
-                { id: 6,  docId: "mate-6",  title: "Trigonometrie — Cerc unitar", access: "plus",
-                  statement: "Pe cercul unitar, identificați coordonatele punctului P(cos θ, sin θ) și demonstrați identitatea fundamentală sin²θ + cos²θ = 1. Deduceți din diagrama cercului unitar formulele pentru sin(α+β) și cos(α+β)." },
-                { id: 7,  docId: "mate-7",  title: "În curând", access: "plus", statement: "" },
+                { id: 1, docId: "mate-1", title: "Numere complexe",                          access: "account", statement: "" },
+                { id: 2, docId: "mate-2", title: "Integrală cu modul",                       access: "account", statement: "" },
+                { id: 3, docId: "mate-3", title: "Integrală cu schimbare de variabilă",      access: "plus",    statement: "" },
+                { id: 4, docId: "mate-4", title: "Integrală cu sfârșit interesant",           access: "plus",    statement: "" },
+                { id: 5, docId: "mate-5", title: "Integrală cu 2 părți întregi",             access: "plus",    statement: "" },
+                { id: 6, docId: "mate-6", title: "Funcții interesante",                      access: "plus",    statement: "" },
+                { id: 7, docId: "mate-7", title: "Funcție derivabilă — integrală",           access: "plus",    statement: "" },
                 { id: 8,  docId: "mate-8",  title: "În curând", access: "plus", statement: "", comingSoon: true },
                 { id: 9,  docId: "mate-9",  title: "În curând", access: "plus", statement: "", comingSoon: true },
                 { id: 10, docId: "mate-10", title: "În curând", access: "plus", statement: "", comingSoon: true },
@@ -907,19 +901,13 @@
                 { id: 12, docId: "mate-12", title: "În curând", access: "plus", statement: "", comingSoon: true },
             ];
             const exercitiiInfo = [
-                { id: 1, docId: "info-1", title: "Baze de numerație — Teorie",  access: "account",
-                  statement: "Convertiți numărul (1101101)₂ în baza 10, baza 8 și baza 16. Descrieți algoritmul general de conversie dintr-o bază oarecare în baza 10 și invers. Convertiți și (347)₁₀ în baza 2." },
-                { id: 2, docId: "info-2", title: "Numere Catalane",              access: "account",
-                  statement: "Câte moduri distincte există de a aranja n perechi de paranteze rotunde astfel încât șirul să fie valid (corect închis)? Găsiți relația de recurență Cₙ₊₁ = ΣCₖ·Cₙ₋ₖ și calculați C₀,...,C₅." },
-                { id: 3, docId: "info-3", title: "Triunghiul lui Pascal",        access: "plus",
-                  statement: "Demonstrați că suma elementelor de pe linia n din triunghiul lui Pascal este 2ⁿ. Folosiți această proprietate împreună cu identitatea C(n,k)+C(n,k+1)=C(n+1,k+1) pentru a calcula C(10,3) și C(12,5)." },
-                { id: 4, docId: "info-4", title: "Deranjamente — Partea 1",      access: "plus",
-                  statement: "Câte permutări ale mulțimii {1,2,...,n} au proprietatea că nici un element nu se află pe poziția sa inițială (deranjamente)? Deduceți formula Dₙ = (n−1)(Dₙ₋₁+Dₙ₋₂) cu D₁=0, D₂=1. Calculați D₅." },
-                { id: 5, docId: "info-5", title: "Deranjamente — Partea 2",      access: "plus",
-                  statement: "Un poștaș trebuie să livreze 6 scrisori la 6 adrese diferite. În câte moduri le poate distribui astfel încât nicio scrisoare să nu ajungă la adresa corectă? Folosiți formula deranjamentelor și verificați cu principiul includerii-excluderii." },
-                { id: 6,  docId: "info-6",  title: "DFS vs BFS — Grafuri",         access: "plus",
-                  statement: "Pe un graf neorientat cu 7 noduri și muchiile {1-2, 1-3, 2-4, 2-5, 3-6, 3-7}, aplicați DFS și BFS plecând din nodul 1. Scrieți ordinea completă de vizitare, identificați muchiile de arbore și muchiile de întoarcere." },
-                { id: 7,  docId: "info-7",  title: "În curând", access: "plus", statement: "" },
+                { id: 1, docId: "info-1", title: "Indexare vector",              access: "account", statement: "" },
+                { id: 2, docId: "info-2", title: "Trepte dinamice",             access: "account", statement: "" },
+                { id: 3, docId: "info-3", title: "Anagrame",                    access: "plus",    statement: "" },
+                { id: 4, docId: "info-4", title: "Numere cu proprietăți",       access: "plus",    statement: "" },
+                { id: 5, docId: "info-5", title: "Recursivă pe cifre",          access: "plus",    statement: "" },
+                { id: 6, docId: "info-6", title: "Dulapuri perfecte",           access: "plus",    statement: "" },
+                { id: 7, docId: "info-7", title: "Combinatorică — Stars & Bars", access: "plus",   statement: "" },
                 { id: 8,  docId: "info-8",  title: "În curând", access: "plus", statement: "", comingSoon: true },
                 { id: 9,  docId: "info-9",  title: "În curând", access: "plus", statement: "", comingSoon: true },
                 { id: 10, docId: "info-10", title: "În curând", access: "plus", statement: "", comingSoon: true },

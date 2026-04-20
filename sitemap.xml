@@ -5,11 +5,11 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
+<!-- Pagini principale -->
 <url>
   <loc>https://admiterepoli.com/</loc>
   <priority>1.00</priority>
 </url>
-
 <url>
   <loc>https://admiterepoli.com/informatii</loc>
   <priority>0.80</priority>
@@ -23,7 +23,11 @@
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://admiterepoli.com/contact</loc>
+  <loc>https://admiterepoli.com/simulari</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/exercitii-video</loc>
   <priority>0.80</priority>
 </url>
 <url>
@@ -35,131 +39,226 @@
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://admiterepoli.com/simulari</loc>
-  <priority>0.80</priority>
+  <loc>https://admiterepoli.com/contact</loc>
+  <priority>0.60</priority>
 </url>
 
+<!-- Simulări AdmiterePoli -->
 <url>
   <loc>https://admiterepoli.com/simulare-2026-03-21</loc>
-  <priority>0.80</priority>
+  <priority>0.70</priority>
 </url>
 <url>
   <loc>https://admiterepoli.com/simulare-2026-03-26</loc>
-  <priority>0.80</priority>
+  <priority>0.70</priority>
 </url>
 <url>
   <loc>https://admiterepoli.com/barem-simulare-admiterepoli-1</loc>
-  <priority>0.80</priority>
+  <priority>0.70</priority>
 </url>
 <url>
   <loc>https://admiterepoli.com/barem-simulare-admiterepoli-2</loc>
-  <priority>0.80</priority>
+  <priority>0.70</priority>
 </url>
 <url>
   <loc>https://admiterepoli.com/rezolvare-simulare-admiterepoli-1</loc>
-  <priority>0.80</priority>
+  <priority>0.70</priority>
 </url>
 <url>
   <loc>https://admiterepoli.com/rezolvare-simulare-admiterepoli-2</loc>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://admiterepoli.com/rezolvare-simulare-2026-matematica</loc>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://admiterepoli.com/simulare-2026-matematica-barem</loc>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://admiterepoli.com/simulare-2026-informatica-barem</loc>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://admiterepoli.com/rezolvare-simulare-2026-informatica</loc>
-  <priority>0.80</priority>
+  <priority>0.70</priority>
 </url>
 
-<url>
-  <loc>https://admiterepoli.com/preadmitere-2026-info-subiect</loc>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://admiterepoli.com/preadmitere-2026-informatica-barem</loc>
-  <priority>0.80</priority>
-</url>
+<!-- Preadmitere 2026 -->
 <url>
   <loc>https://admiterepoli.com/preadmitere-2026-mate-subiect</loc>
-  <priority>0.80</priority>
+  <priority>0.70</priority>
 </url>
 <url>
   <loc>https://admiterepoli.com/preadmitere-2026-matematica-barem</loc>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://admiterepoli.com/rezolvare-preadmitere-2026-informatica</loc>
-  <priority>0.80</priority>
+  <priority>0.70</priority>
 </url>
 <url>
   <loc>https://admiterepoli.com/rezolvare-preadmitere-2026-matematica</loc>
-  <priority>0.80</priority>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/preadmitere-2026-info-subiect</loc>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/preadmitere-2026-informatica-barem</loc>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/rezolvare-preadmitere-2026-informatica</loc>
+  <priority>0.70</priority>
 </url>
 
+<!-- Simulare 2026 -->
 <url>
-  <loc>https://admiterepoli.com/simulare-2025-matematica-barem</loc>
-  <priority>0.80</priority>
+  <loc>https://admiterepoli.com/simulare-2026-matematica-barem</loc>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://admiterepoli.com/simulare-2025-informatica-barem</loc>
-  <priority>0.80</priority>
+  <loc>https://admiterepoli.com/rezolvare-simulare-2026-matematica</loc>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://admiterepoli.com/preadmitere-2025-matematica-barem</loc>
-  <priority>0.80</priority>
+  <loc>https://admiterepoli.com/simulare-2026-informatica-barem</loc>
+  <priority>0.70</priority>
 </url>
 <url>
-  <loc>https://admiterepoli.com/preadmitere-2025-informatica-barem</loc>
-  <priority>0.80</priority>
+  <loc>https://admiterepoli.com/rezolvare-simulare-2026-informatica</loc>
+  <priority>0.70</priority>
 </url>
-<url>
-  <loc>https://admiterepoli.com/rezolvare-preadmitere-2025-matematica</loc>
-  <priority>0.80</priority>
-</url>
+
+<!-- Admitere 2025 -->
 <url>
   <loc>https://admiterepoli.com/admitere-2025-matematica-barem</loc>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://admiterepoli.com/admitere-2025-informatica-barem</loc>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://admiterepoli.com/rezolvare-admitere-2025-informatica</loc>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://admiterepoli.com/preadmitere-2025-info-subiect</loc>
-  <priority>0.80</priority>
+  <priority>0.70</priority>
 </url>
 <url>
   <loc>https://admiterepoli.com/rezolvare-admitere-2025-matematica</loc>
-  <priority>0.80</priority>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/admitere-2025-informatica-barem</loc>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/rezolvare-admitere-2025-informatica</loc>
+  <priority>0.70</priority>
+</url>
+
+<!-- Preadmitere 2025 -->
+<url>
+  <loc>https://admiterepoli.com/preadmitere-2025-matematica-barem</loc>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/rezolvare-preadmitere-2025-matematica</loc>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/preadmitere-2025-info-subiect</loc>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/preadmitere-2025-informatica-barem</loc>
+  <priority>0.70</priority>
+</url>
+
+<!-- Simulare 2025 -->
+<url>
+  <loc>https://admiterepoli.com/simulare-2025-matematica-barem</loc>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/simulare-2025-informatica-barem</loc>
+  <priority>0.70</priority>
+</url>
+
+<!-- Admitere 2024 -->
+<url>
+  <loc>https://admiterepoli.com/admitere-2024-matematica-barem</loc>
+  <priority>0.65</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/admitere-2024-informatica-barem</loc>
+  <priority>0.65</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/rezolvare-admitere-2024-informatica</loc>
+  <priority>0.65</priority>
+</url>
+
+<!-- Preadmitere 2024 -->
+<url>
+  <loc>https://admiterepoli.com/preadmitere-2024-matematica-barem</loc>
+  <priority>0.65</priority>
 </url>
 <url>
   <loc>https://admiterepoli.com/rezolvare-preadmitere-2024-matematica</loc>
-  <priority>0.80</priority>
+  <priority>0.65</priority>
 </url>
 <url>
-  <loc>https://admiterepoli.com/preadmitere-2024-matematica-barem</loc>
-  <priority>0.80</priority>
+  <loc>https://admiterepoli.com/preadmitere-2024-informatica-barem</loc>
+  <priority>0.65</priority>
+</url>
+
+<!-- Simulare 2024 -->
+<url>
+  <loc>https://admiterepoli.com/simulare-2024-matematica-barem</loc>
+  <priority>0.65</priority>
 </url>
 <url>
-  <loc>https://admiterepoli.com/document/Termeni%20%C8%99i%20Condi%C8%9Bii%20%E2%80%93%20admiterepoli.pdf</loc>
-  <priority>0.80</priority>
+  <loc>https://admiterepoli.com/rezolvare-simulare-2024-matematica</loc>
+  <priority>0.65</priority>
 </url>
 <url>
-  <loc>https://admiterepoli.com/document/Politica%20de%20Confiden%C8%9Bialitate%20-%20admiterepoli.com.pdf</loc>
-  <priority>0.80</priority>
+  <loc>https://admiterepoli.com/simulare-2024-informatica-barem</loc>
+  <priority>0.65</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/rezolvare-simulare-2024-informatica</loc>
+  <priority>0.65</priority>
+</url>
+
+<!-- Admitere 2023 -->
+<url>
+  <loc>https://admiterepoli.com/admitere-2023-matematica-barem</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/admitere-2023-informatica-barem</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/rezolvare-admitere-2023-informatica</loc>
+  <priority>0.60</priority>
+</url>
+
+<!-- Preadmitere 2023 -->
+<url>
+  <loc>https://admiterepoli.com/preadmitere-2023-matematica-barem</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/preadmitere-2023-informatica-barem</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/rezolvare-preadmitere-2023-informatica</loc>
+  <priority>0.60</priority>
+</url>
+
+<!-- Simulare 2023 -->
+<url>
+  <loc>https://admiterepoli.com/simulare-2023-matematica-barem</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/simulare-2023-informatica-barem</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/rezolvare-simulare-2023-matematica</loc>
+  <priority>0.60</priority>
+</url>
+
+<!-- Unibuc / Mate-Info -->
+<url>
+  <loc>https://admiterepoli.com/rezolvare-admitere-unibuc-2025-informatica</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/mateinfub-2023-ii-informatica-barem</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://admiterepoli.com/rezolvare-mateinfub-2023-ii-informatica</loc>
+  <priority>0.60</priority>
 </url>
 
 </urlset>

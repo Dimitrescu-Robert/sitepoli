@@ -2909,22 +2909,15 @@ img, button { max-width: 100%; }
 }
 
 .lp-subiecte-section .sub-links > section:nth-child(2) .dropdown-design {
-  border-left: 3px solid #34d399;
+  border-left: 3px solid #5b9cf6;
   padding-left: 1rem;
 }
 
 .lp-subiecte-section .sub-links > section:nth-child(3) .dropdown-design {
-  border-left: 3px solid #818cf8;
+  border-left: 3px solid #5b9cf6;
   padding-left: 1rem;
 }
 
-.lp-subiecte-section .sub-links > section:nth-child(2) .dropdown-design h3 {
-  color: #34d399 !important;
-}
-
-.lp-subiecte-section .sub-links > section:nth-child(3) .dropdown-design h3 {
-  color: #818cf8 !important;
-}
 
 /* ── About ── */
 

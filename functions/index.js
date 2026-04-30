@@ -106,6 +106,22 @@ exports.gumroadWebhook = functions.https.onRequest(async (req, res) => {
       return res.status(200).send("Refund processed");
     }
 
+    // --- sale: simulare plătită ---
+    const SIMULATION_PERMALINK = "simulare-mai-2025";
+    if (product_permalink === SIMULATION_PERMALINK) {
+      await db.collection("users").doc(uid).set(
+        {
+          status: "trial_pending",
+          gumroadSaleId: sale_id || null,
+          gumroadProduct: product_permalink,
+          paidAt: admin.firestore.FieldValue.serverTimestamp(),
+        },
+        { merge: true }
+      );
+      console.log(`[Webhook] Trial pending activat pentru uid ${uid}`);
+      return res.status(200).send("Trial pending activated");
+    }
+
     // --- sale: cumpărare nouă sau reînnoire ---
     await db.collection("users").doc(uid).set(
       {

@@ -145,3 +145,49 @@ exports.gumroadWebhook = functions.https.onRequest(async (req, res) => {
     return res.status(500).send("Internal error");
   }
 });
+
+// Activare trial: 9 mai 2026, 08:00 EEST = 05:00 UTC
+exports.activateTrialUsers = functions.pubsub
+  .schedule("0 5 9 5 *")
+  .timeZone("UTC")
+  .onRun(async () => {
+    const snap = await db.collection("users")
+      .where("status", "==", "trial_pending")
+      .get();
+
+    if (snap.empty) {
+      console.log("[activateTrialUsers] Niciun user trial_pending de activat.");
+      return null;
+    }
+
+    const batch = db.batch();
+    snap.docs.forEach(docSnap => {
+      batch.update(docSnap.ref, { status: "trial" });
+    });
+    await batch.commit();
+    console.log(`[activateTrialUsers] ${snap.docs.length} useri trial_pending → trial`);
+    return null;
+  });
+
+// Expirare trial: 12 mai 2026, 10:00 EEST = 07:00 UTC
+exports.expireTrialUsers = functions.pubsub
+  .schedule("0 7 12 5 *")
+  .timeZone("UTC")
+  .onRun(async () => {
+    const snap = await db.collection("users")
+      .where("status", "==", "trial")
+      .get();
+
+    if (snap.empty) {
+      console.log("[expireTrialUsers] Niciun user trial de expirat.");
+      return null;
+    }
+
+    const batch = db.batch();
+    snap.docs.forEach(docSnap => {
+      batch.update(docSnap.ref, { status: "free" });
+    });
+    await batch.commit();
+    console.log(`[expireTrialUsers] ${snap.docs.length} useri trial → free`);
+    return null;
+  });

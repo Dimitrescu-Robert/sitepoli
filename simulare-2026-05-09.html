@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./cookie-consent.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PC1VMXYCRN"></script>
     <script>
@@ -10,14 +12,12 @@
         gtag('config', 'G-PC1VMXYCRN');
     </script>
     <link rel="stylesheet" href="styles.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulare Admitere Mai 2026 | AdmiterePoli</title>
     <meta name="description" content="Simulare oficială de admitere AdmiterePoli — 9 mai 2026. Acces inclus în abonament sau disponibil individual pentru 30 RON.">
     <link rel="icon" type="image/png" href="logosquared.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <style>
         .sim-gate { max-width: 560px; margin: 4rem auto; padding: 2.5rem; background: var(--glass-bg); border: 1px solid rgba(255,255,255,0.08); border-radius: 1.25rem; text-align: center; }
         .sim-gate-title { font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem; }
@@ -127,7 +127,11 @@
                     'Ai nevoie de un cont pentru a accesa simularea.'
                 );
                 document.getElementById('btn-login-gate').addEventListener('click', () => {
-                    window.openUpgradeModal?.() || window.location.href = './';
+                    if (window.openModal) {
+                        window.openModal();
+                    } else {
+                        document.getElementById('header-signup-btn')?.click();
+                    }
                 });
                 return;
             }

@@ -144,11 +144,40 @@ function renderPlanSection(user, userData) {
   const container = document.getElementById('profile-plan-content');
   if (!container) return;
 
+  const isTrial = userData.status === 'trial';
+  const isTrialPending = userData.status === 'trial_pending';
   const isPaid = userData.status === 'paid' || userData.status === 'pending_cancellation';
   const isPendingCancellation = userData.status === 'pending_cancellation';
   const isQuarterly = isPaid && userData.gumroadProduct && userData.gumroadProduct.includes('student-plus') && !userData.gumroadProduct.includes('lunar');
   const planName = isPaid ? (isQuarterly ? 'Student Plus · 3 luni' : 'Student Plus · Lunar') : 'Standard';
   const planPrice = isQuarterly ? '180 RON / 3 luni' : '75 RON / lună';
+
+  if (isTrial || isTrialPending) {
+    const statusText = isTrialPending
+      ? 'Acces simulare cumpărat · Premium activ din 9 mai, ora 08:00'
+      : 'Trial activ · 9 mai – 12 mai';
+    const badgeText = isTrialPending ? 'În așteptare' : 'Activ';
+    const badgeStyle = isTrialPending ? 'background:var(--gold);color:#222' : '';
+
+    const upgradeUrl = `https://admiterepoli.gumroad.com/l/student-plus-lunar?wanted=true&email=${encodeURIComponent(user.email)}`;
+
+    container.innerHTML = `
+      <div class="profile-plan-current">
+        Planul tău actual: <strong>Trial Simulare</strong>
+        <span class="profile-plan-badge" style="${badgeStyle}">${badgeText}</span>
+      </div>
+      <p class="profile-muted" style="margin-top:0.75rem">${statusText}</p>
+      <div style="margin-top:1.25rem">
+        <p class="profile-label">Vrei acces permanent?</p>
+        <p class="profile-muted">Fă upgrade la Student Plus pentru acces complet după expirarea trial-ului.</p>
+        <a class="profile-btn-upgrade" href="${upgradeUrl}" target="_blank" rel="noopener noreferrer"
+           style="margin-top:0.75rem;display:inline-block;text-decoration:none">
+          Upgrade la Student Plus
+        </a>
+      </div>
+    `;
+    return;
+  }
 
   const standardBenefits = [
     'Acces la toate subiectele și rezolvările',

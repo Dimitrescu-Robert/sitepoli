@@ -175,7 +175,7 @@ exports.expireTrialUsers = functions.pubsub
   .timeZone("UTC")
   .onRun(async () => {
     const snap = await db.collection("users")
-      .where("status", "==", "trial")
+      .where("status", "in", ["trial", "trial_pending"])
       .get();
 
     if (snap.empty) {

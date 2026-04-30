@@ -59,7 +59,7 @@ async function updatePricingButtons(user) {
     const snap = await getDoc(doc(db, 'users', user.uid));
     if (snap.exists()) {
       const data = snap.data();
-      const isPaid = data.status === 'paid' || data.status === 'pending_cancellation';
+      const isPaid = data.status === 'paid' || data.status === 'pending_cancellation' || data.status === 'trial';
       plan = isPaid ? 'student-plus' : 'standard';
     }
   } catch (e) {

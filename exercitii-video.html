@@ -1182,7 +1182,7 @@
                     try {
                         const snap = await getDoc(doc(db, 'users', user.uid));
                         const st = snap.exists() ? snap.data().status : null;
-                        const isPaid = st === 'paid' || st === 'pending_cancellation';
+                        const isPaid = st === 'paid' || st === 'pending_cancellation' || st === 'trial';
                         const level = isPaid ? 'plus' : 'account';
 
                         // Fetch video IDs doar pentru nivelul de acces al userului

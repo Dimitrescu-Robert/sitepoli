@@ -179,7 +179,7 @@ exports.expireTrialUsers = functions.pubsub
       .get();
 
     if (snap.empty) {
-      console.log("[expireTrialUsers] Niciun user trial de expirat.");
+      console.log("[expireTrialUsers] Niciun user trial/trial_pending de expirat.");
       return null;
     }
 
@@ -188,6 +188,6 @@ exports.expireTrialUsers = functions.pubsub
       batch.update(docSnap.ref, { status: "free" });
     });
     await batch.commit();
-    console.log(`[expireTrialUsers] ${snap.docs.length} useri trial → free`);
+    console.log(`[expireTrialUsers] ${snap.docs.length} useri trial/trial_pending → free`);
     return null;
   });

@@ -170,7 +170,7 @@ function renderPlanSection(user, userData) {
       <div style="margin-top:1.25rem">
         <p class="profile-label">Vrei acces permanent?</p>
         <p class="profile-muted">Fă upgrade la Student Plus pentru acces complet după expirarea trial-ului.</p>
-        <a class="profile-btn-upgrade" href="${upgradeUrl}" target="_blank" rel="noopener noreferrer"
+        <a class="profile-btn-upgrade" href="${escHtml(upgradeUrl)}" target="_blank" rel="noopener noreferrer"
            style="margin-top:0.75rem;display:inline-block;text-decoration:none">
           Upgrade la Student Plus
         </a>

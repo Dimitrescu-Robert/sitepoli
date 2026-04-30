@@ -108,7 +108,7 @@ exports.gumroadWebhook = functions.https.onRequest(async (req, res) => {
 
     // --- sale: simulare plătită ---
     const SIMULATION_PERMALINK = "simulare-mai-2025";
-    if (product_permalink === SIMULATION_PERMALINK) {
+    if (product_permalink === SIMULATION_PERMALINK && refunded !== "true" && refunded !== true) {
       await db.collection("users").doc(uid).set(
         {
           status: "trial_pending",

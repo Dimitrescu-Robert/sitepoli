@@ -150,7 +150,7 @@ function renderPlanSection(user, userData) {
   const isPendingCancellation = userData.status === 'pending_cancellation';
   const isQuarterly = isPaid && userData.gumroadProduct && userData.gumroadProduct.includes('student-plus') && !userData.gumroadProduct.includes('lunar');
   const planName = isPaid ? (isQuarterly ? 'Student Plus · 3 luni' : 'Student Plus · Lunar') : 'Standard';
-  const planPrice = isQuarterly ? '180 RON / 3 luni' : '75 RON / lună';
+  const planPrice = isQuarterly ? '120 RON / 3 luni' : '50 RON / lună';
 
   if (isTrial || isTrialPending) {
     const statusText = isTrialPending
@@ -216,8 +216,8 @@ function renderPlanSection(user, userData) {
   const upgradeSection = isPaid ? '' : `
     <div class="plan-toggle-wrap" style="margin-top:1rem">
       <div class="plan-toggle" id="profile-billing-toggle">
-        <button class="plan-toggle-btn active" data-billing="monthly">Lunar · 75 RON</button>
-        <button class="plan-toggle-btn" data-billing="quarterly">3 Luni · 180 RON</button>
+        <button class="plan-toggle-btn active" data-billing="monthly">Lunar · <s>75</s> 50 RON</button>
+        <button class="plan-toggle-btn" data-billing="quarterly">3 Luni · <s>180</s> 120 RON</button>
         <div class="plan-toggle-slider"></div>
       </div>
     </div>
@@ -244,7 +244,7 @@ function renderPlanSection(user, userData) {
       </div>
       <div class="profile-plan-col ${isPaid ? 'plan-col-active' : ''}">
         <div class="profile-plan-col-name">Student Plus</div>
-        <div class="profile-plan-col-price" id="profile-plus-price">${isPaid ? planPrice : '75 RON / lună'}</div>
+        <div class="profile-plan-col-price" id="profile-plus-price">${isPaid ? planPrice : '<s style="color:var(--muted);font-size:0.85em">75 RON</s> 50 RON / lună'}</div>
         <ul class="profile-plan-benefits">
           ${plusBenefits.map(b => `<li>${b}</li>`).join('')}
         </ul>
@@ -265,8 +265,8 @@ function renderPlanSection(user, userData) {
     };
 
     const priceLabels = {
-      monthly:   '75 RON / lună',
-      quarterly: '180 RON / 3 luni'
+      monthly:   '50 RON / lună',
+      quarterly: '120 RON / 3 luni'
     };
 
     const cols = document.querySelectorAll('.profile-plan-col');

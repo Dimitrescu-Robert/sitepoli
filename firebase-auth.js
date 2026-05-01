@@ -186,10 +186,17 @@ function injectModal() {
                 <span class="plan-desc">Acces complet la toate resursele</span>
               </div>
             </div>
-            <div class="plan-price">
-              <span class="plan-amount" data-monthly="75" data-quarterly="180">75</span>
-              <span class="plan-currency">RON</span>
-              <span class="plan-period" data-monthly="/lună" data-quarterly="/3 luni">/lună</span>
+            <div class="plan-price-wrap">
+              <div class="plan-price-old-row">
+                <span class="plan-amount-old" data-monthly="75" data-quarterly="180">75</span>
+                <span class="plan-amount-old">RON</span>
+                <span class="plan-sale-badge">Reducere</span>
+              </div>
+              <div class="plan-price">
+                <span class="plan-amount" data-monthly="50" data-quarterly="120">50</span>
+                <span class="plan-currency">RON</span>
+                <span class="plan-period" data-monthly="/lună" data-quarterly="/3 luni">/lună</span>
+              </div>
             </div>
           </div>
         </div>
@@ -390,6 +397,9 @@ function updatePlanPrices() {
   document.querySelectorAll('.plan-amount').forEach(el => {
     const value = el.getAttribute(`data-${currentBilling}`);
     animateNumber(el, parseInt(el.textContent), parseInt(value));
+  });
+  document.querySelectorAll('.plan-amount-old[data-monthly]').forEach(el => {
+    el.textContent = el.getAttribute(`data-${currentBilling}`);
   });
   document.querySelectorAll('.plan-period').forEach(el => {
     el.textContent = el.getAttribute(`data-${currentBilling}`);

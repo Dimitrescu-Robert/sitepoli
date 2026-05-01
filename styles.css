@@ -7205,6 +7205,56 @@ header.scrolled { background: transparent; }
   font-size: 0.8rem;
   color: var(--muted);
 }
+.plan-price-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+.plan-price-old-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.15rem;
+}
+.plan-amount-old {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: line-through;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.plan-sale-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: #ef4444;
+  color: #fff;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+.lp-plan-price-old {
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: line-through;
+  color: var(--lp-text-faint, #8896ab);
+  align-self: center;
+}
+.lp-plan-featured .lp-plan-price-old {
+  color: rgba(255, 255, 255, 0.35);
+}
+.lp-plan-sale-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: #ef4444;
+  color: #fff;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  align-self: center;
+}
 
 /* ═══════════════════════════════════════════════════════════════
    AUTH MODAL — Light theme override for .lp-body

@@ -2680,6 +2680,173 @@ img, button { max-width: 100%; }
   position: relative;
 }
 
+/* ── Simulare Event Card ── */
+
+.lp-sim-event {
+  padding: 1rem 2rem 2.5rem;
+}
+
+.lp-sim-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  padding: 2.5rem 2.5rem 2.5rem 3rem;
+}
+
+/* Left */
+.lp-sim-card-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.lp-sim-official-badge {
+  display: inline-block;
+  background: rgba(91, 156, 246, 0.15);
+  border: 1px solid rgba(91, 156, 246, 0.35);
+  color: #93c5fd;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  border-radius: 20px;
+  margin-bottom: 0.85rem;
+}
+
+.lp-sim-card-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+.lp-sim-card-desc {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+  margin: 0 0 1.25rem;
+}
+
+.lp-sim-subjects {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.lp-sim-subj {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+}
+
+.lp-sim-subj-mate {
+  background: rgba(167, 139, 250, 0.15);
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  color: #c4b5fd;
+}
+
+.lp-sim-subj-info {
+  background: rgba(91, 156, 246, 0.15);
+  border: 1px solid rgba(91, 156, 246, 0.3);
+  color: #93c5fd;
+}
+
+.lp-sim-subj-fiz {
+  background: rgba(52, 211, 153, 0.12);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  color: #6ee7b7;
+}
+
+.lp-sim-fiz-star {
+  font-size: 0.65rem;
+  opacity: 0.8;
+  margin-left: 0.1rem;
+}
+
+.lp-sim-card-meta {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.38);
+  margin: 0;
+}
+
+/* Right */
+.lp-sim-card-right {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  min-width: 220px;
+  text-align: center;
+}
+
+.lp-sim-pricing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.lp-sim-price {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.lp-sim-price small {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  opacity: 0.7;
+}
+
+.lp-sim-price-alt {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.45);
+}
+
+.lp-sim-price-alt strong {
+  color: rgba(255,255,255,0.75);
+  font-weight: 600;
+}
+
+.lp-sim-cta-btn {
+  width: 100%;
+}
+
+.lp-sim-cta-note {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.3);
+  margin: 0;
+  line-height: 1.4;
+}
+
+@media (max-width: 860px) {
+  .lp-sim-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  .lp-sim-card-right {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .lp-sim-cta-btn {
+    width: 100%;
+  }
+}
+
 /* ── Pricing ── */
 
 .lp-pricing {

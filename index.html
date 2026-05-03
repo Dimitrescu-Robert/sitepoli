@@ -134,6 +134,35 @@
                 </div>
                 </div>
 
+                <section class="lp-sim-event" id="simulare-mai-2026">
+                    <div class="lp-sim-card">
+
+                        <div class="lp-sim-card-left">
+                            <span class="lp-sim-official-badge">Simulare Oficială</span>
+                            <h2 class="lp-sim-card-title">Simulare Completă Admitere 2026</h2>
+                            <p class="lp-sim-card-desc">Prima simulare cu toate trei materiile — în condiții reale de examen.</p>
+                            <div class="lp-sim-subjects">
+                                <span class="lp-sim-subj lp-sim-subj-mate">Matematică</span>
+                                <span class="lp-sim-subj lp-sim-subj-info">Informatică</span>
+                                <span class="lp-sim-subj lp-sim-subj-fiz">Fizică <span class="lp-sim-fiz-star">✦</span></span>
+                            </div>
+                            <p class="lp-sim-card-meta">9 mai 2026, ora 10:00 &nbsp;·&nbsp; 3 ore &nbsp;·&nbsp; 30 subiecte</p>
+                        </div>
+
+                        <div class="lp-sim-card-right">
+                            <div class="lp-sim-pricing">
+                                <span class="lp-sim-price">30 <small>RON</small></span>
+                                <span class="lp-sim-price-alt">sau inclus în <strong>Student Plus</strong></span>
+                            </div>
+                            <div id="sim-event-cta">
+                                <button class="lp-btn lp-btn-fill lp-sim-cta-btn" disabled style="opacity:0.45;cursor:default;">Se încarcă...</button>
+                            </div>
+                            <p class="lp-sim-cta-note" id="sim-event-note"></p>
+                        </div>
+
+                    </div>
+                </section>
+
                 <section class="lp-features" id="ce-oferim">
                     <div class="lp-section-header">
                         <h2>Tot ce ai nevoie pentru admitere</h2>
@@ -299,6 +328,108 @@
 
         <script type="module" src="./firebase-auth.js"></script>
 
+        <script>
+            (function() {
+                const target = new Date("2026-05-09T07:00:00Z");
+                function pad(n) { return String(n).padStart(2, "0"); }
+                function tick() {
+                    const diff = target - Date.now();
+                    if (diff <= 0) {
+                        document.getElementById("sim-countdown")?.remove();
+                        document.querySelector(".lp-sim-cd-caption")?.remove();
+                        return;
+                    }
+                    const d = Math.floor(diff / 86400000);
+                    const h = Math.floor((diff % 86400000) / 3600000);
+                    const m = Math.floor((diff % 3600000) / 60000);
+                    const dEl = document.getElementById("sim-cd-days");
+                    const hEl = document.getElementById("sim-cd-hours");
+                    const mEl = document.getElementById("sim-cd-mins");
+                    if (dEl) dEl.textContent = pad(d);
+                    if (hEl) hEl.textContent = pad(h);
+                    if (mEl) mEl.textContent = pad(m);
+                }
+                tick();
+                setInterval(tick, 30000);
+            })();
+        </script>
+
+        <script type="module">
+            import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+            import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+            import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyAml8nJ8UOh9wrIhI6f-3K6-tOaPYLz_c4",
+                authDomain: "admiterepoli-715cb.firebaseapp.com",
+                projectId: "admiterepoli-715cb",
+                storageBucket: "admiterepoli-715cb.firebasestorage.app",
+                messagingSenderId: "91434186818",
+                appId: "1:91434186818:web:1617d5a2d53b2fea2a95db"
+            };
+
+            const SALE_DEADLINE = new Date("2026-05-09T07:00:00Z"); // 10:00 EEST
+            const GUMROAD_BASE  = "https://admiterepoli.gumroad.com/l/simulare-mai-2025";
+
+            const app  = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+            const auth = getAuth(app);
+            const db   = getFirestore(app, "admiterepoli");
+
+            const ctaEl  = document.getElementById("sim-event-cta");
+            const noteEl = document.getElementById("sim-event-note");
+
+            function render(html, note = "") {
+                ctaEl.innerHTML  = html;
+                noteEl.innerHTML = note;
+            }
+
+            onAuthStateChanged(auth, async (user) => {
+                if (!user) {
+                    render(
+                        `<button class="lp-btn lp-btn-fill" id="sim-event-login-btn">Autentifică-te pentru acces</button>`,
+                        "Ai nevoie de un cont pentru a accesa sau cumpăra."
+                    );
+                    document.getElementById("sim-event-login-btn").addEventListener("click", () => {
+                        document.getElementById("header-signup-btn")?.click();
+                    });
+                    return;
+                }
+
+                let status = "free";
+                try {
+                    const snap = await getDoc(doc(db, "users", user.uid));
+                    if (snap.exists()) status = snap.data().status || "free";
+                } catch { /* fallback */ }
+
+                const hasAccess = ["paid", "pending_cancellation", "trial"].includes(status);
+
+                if (hasAccess) {
+                    render(`<a href="./simulare-2026-05-09" class="lp-btn lp-btn-fill">Intră în simulare &rarr;</a>`);
+                    return;
+                }
+
+                if (status === "trial_pending") {
+                    render(
+                        `<button class="lp-btn lp-btn-fill" disabled style="opacity:0.6;cursor:default;">Acces confirmat ✓</button>`,
+                        "Simularea se deschide pe 9 mai la ora 08:00."
+                    );
+                    return;
+                }
+
+                const now = new Date();
+                if (now < SALE_DEADLINE) {
+                    const url = `${GUMROAD_BASE}?wanted=true&email=${encodeURIComponent(user.email)}`;
+                    render(
+                        `<a href="${url}" class="lp-btn lp-btn-fill" target="_blank" rel="noopener noreferrer">Cumpără acces &middot; 30 RON</a>`,
+                        "Include 3 zile acces premium (9–12 mai)."
+                    );
+                } else {
+                    render(
+                        `<button class="lp-btn" disabled style="opacity:0.45;cursor:default;">Vânzările s-au închis</button>`
+                    );
+                }
+            });
+        </script>
 
 </body>
 </html>

@@ -2683,7 +2683,7 @@ img, button { max-width: 100%; }
 /* ── Simulare Event Card ── */
 
 .lp-sim-event {
-  padding: 0 2rem 2.5rem;
+  padding: 1rem 2rem 2.5rem;
 }
 
 .lp-sim-card {
@@ -2691,10 +2691,8 @@ img, button { max-width: 100%; }
   align-items: center;
   justify-content: space-between;
   gap: 3rem;
-  background: var(--lp-plan-featured-gradient, linear-gradient(160deg, #1a2744 0%, #243353 100%));
-  border: 2px solid rgba(91, 156, 246, 0.4);
   border-radius: 20px;
-  box-shadow: 0 8px 30px rgba(91, 156, 246, 0.1);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.06) inset;
   padding: 2.5rem 2.5rem 2.5rem 3rem;
 }
 

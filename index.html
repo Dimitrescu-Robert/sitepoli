@@ -138,15 +138,15 @@
                     <div class="lp-sim-card">
 
                         <div class="lp-sim-card-left">
-                            <span class="lp-sim-official-badge">Simulare Oficială</span>
+                            <span class="lp-sim-official-badge">Simulare AdmiterePoli</span>
                             <h2 class="lp-sim-card-title">Simulare Completă Admitere 2026</h2>
-                            <p class="lp-sim-card-desc">Prima simulare cu toate trei materiile — în condiții reale de examen.</p>
+                            <p class="lp-sim-card-desc">Subiecte originale, redactate de noi — rezolvate și baremizate complet.</p>
                             <div class="lp-sim-subjects">
                                 <span class="lp-sim-subj lp-sim-subj-mate">Matematică</span>
                                 <span class="lp-sim-subj lp-sim-subj-info">Informatică</span>
                                 <span class="lp-sim-subj lp-sim-subj-fiz">Fizică <span class="lp-sim-fiz-star">✦</span></span>
                             </div>
-                            <p class="lp-sim-card-meta">9 mai 2026, ora 10:00 &nbsp;·&nbsp; 3 ore &nbsp;·&nbsp; 30 subiecte</p>
+                            <p class="lp-sim-card-meta">9 mai 2026, ora 10:00 &nbsp;·&nbsp; 3 ore &nbsp;·&nbsp; 20 subiecte</p>
                         </div>
 
                         <div class="lp-sim-card-right">
@@ -369,7 +369,9 @@
             };
 
             const SALE_DEADLINE = new Date("2026-05-09T07:00:00Z"); // 10:00 EEST
-            const GUMROAD_BASE  = "https://admiterepoli.gumroad.com/l/simulare-mai-2025";
+            const ACCESS_START  = new Date("2026-05-09T06:50:00Z"); // 09:50 EEST
+            const ACCESS_END    = new Date("2026-05-12T06:50:00Z"); // 09:50 EEST +72h
+            const GUMROAD_BASE  = "https://admiterepoli.gumroad.com/l/simulare_09_05";
 
             const app  = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
             const auth = getAuth(app);
@@ -404,7 +406,20 @@
                 const hasAccess = ["paid", "pending_cancellation", "trial"].includes(status);
 
                 if (hasAccess) {
-                    render(`<a href="./simulare-2026-05-09" class="lp-btn lp-btn-fill">Intră în simulare &rarr;</a>`);
+                    const now = new Date();
+                    if (now < ACCESS_START) {
+                        render(
+                            `<button class="lp-btn lp-btn-fill" disabled style="opacity:0.6;cursor:default;">Deja aveți acces ✓</button>`,
+                            "Simularea se deschide pe 9 mai la ora 09:50."
+                        );
+                    } else if (now >= ACCESS_END) {
+                        render(
+                            `<button class="lp-btn lp-btn-fill" disabled style="opacity:0.6;cursor:default;">Accesul a expirat</button>`,
+                            "Fereastra de 72 de ore s-a închis."
+                        );
+                    } else {
+                        render(`<a href="./simulare-2026-05-09" class="lp-btn lp-btn-fill">Intră în simulare &rarr;</a>`);
+                    }
                     return;
                 }
 

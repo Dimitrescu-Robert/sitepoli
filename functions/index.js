@@ -1,4 +1,5 @@
-const functions = require("firebase-functions");
+const { onRequest } = require("firebase-functions/v2/https");
+const { onSchedule } = require("firebase-functions/v2/scheduler");
 const admin = require("firebase-admin");
 
 admin.initializeApp();
@@ -6,7 +7,7 @@ admin.initializeApp();
 const db = admin.firestore();
 db.settings({ databaseId: "admiterepoli" });
 
-exports.gumroadWebhook = functions.https.onRequest(async (req, res) => {
+exports.gumroadWebhook = onRequest(async (req, res) => {
   if (req.method !== "POST") {
     return res.status(405).send("Method Not Allowed");
   }
@@ -107,8 +108,9 @@ exports.gumroadWebhook = functions.https.onRequest(async (req, res) => {
     }
 
     // --- sale: simulare plătită ---
-    const SIMULATION_PERMALINK = "simulare-mai-2025";
-    if (product_permalink === SIMULATION_PERMALINK && refunded !== "true" && refunded !== true) {
+    const isSimulare = product_permalink === "simulare_09_05" ||
+      (typeof product_permalink === "string" && product_permalink.endsWith("/simulare_09_05"));
+    if (isSimulare && refunded !== "true" && refunded !== true) {
       await db.collection("users").doc(uid).set(
         {
           status: "trial_pending",
@@ -147,10 +149,7 @@ exports.gumroadWebhook = functions.https.onRequest(async (req, res) => {
 });
 
 // Activare trial: 9 mai 2026, 08:00 EEST = 05:00 UTC
-exports.activateTrialUsers = functions.pubsub
-  .schedule("0 5 9 5 *")
-  .timeZone("UTC")
-  .onRun(async () => {
+exports.activateTrialUsers = onSchedule({ schedule: "0 5 9 5 *", timeZone: "UTC" }, async () => {
     const snap = await db.collection("users")
       .where("status", "==", "trial_pending")
       .get();
@@ -170,10 +169,7 @@ exports.activateTrialUsers = functions.pubsub
   });
 
 // Expirare trial: 12 mai 2026, 10:00 EEST = 07:00 UTC
-exports.expireTrialUsers = functions.pubsub
-  .schedule("0 7 12 5 *")
-  .timeZone("UTC")
-  .onRun(async () => {
+exports.expireTrialUsers = onSchedule({ schedule: "0 7 12 5 *", timeZone: "UTC" }, async () => {
     const snap = await db.collection("users")
       .where("status", "in", ["trial", "trial_pending"])
       .get();

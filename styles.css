@@ -785,6 +785,7 @@ img, button { max-width: 100%; }
   --lp-separator: #b0bec5;
   --lp-resurse-mate: #828df8;
   --lp-resurse-info: #4db6ac;
+  --lp-resurse-fizica: #fbbf24;
   --lp-compare-link: #d97706;
   --lp-compare-link-dark: #fbbf24;
   --lp-pag-intro-strong: #1a2744;
@@ -1781,6 +1782,21 @@ img, button { max-width: 100%; }
   border: 2px solid rgba(77, 182, 172, 0.5) !important;
   box-shadow: 0 4px 0 rgba(26, 107, 100, 0.45) !important;
   color: var(--accent3) !important;
+}
+
+.lp-body .resurse-title-fizica {
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: var(--lp-resurse-fizica);
+  background-clip: unset;
+  color: var(--lp-resurse-fizica);
+}
+
+.lp-body .resurse-icon-fizica {
+  background: rgba(251, 191, 36, 0.12) !important;
+  border: 2px solid rgba(251, 191, 36, 0.5) !important;
+  box-shadow: 0 4px 0 rgba(146, 96, 10, 0.45) !important;
+  color: var(--lp-resurse-fizica) !important;
 }
 
 /* Cards — use per-card --card-accent / --card-shadow */
@@ -3679,6 +3695,13 @@ img, button { max-width: 100%; }
   font-size: 1rem;
 }
 
+.resurse-icon-fizica {
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  color: #fbbf24;
+  font-size: 1rem;
+}
+
 .resurse-title {
   font-size: 1.75rem;
   font-weight: 700;
@@ -3695,6 +3718,13 @@ img, button { max-width: 100%; }
 
 .resurse-title-info {
   background: linear-gradient(135deg, #fffff1 30%, #4db6ac 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.resurse-title-fizica {
+  background: linear-gradient(135deg, #fffff1 30%, #fbbf24 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -3762,6 +3792,7 @@ img, button { max-width: 100%; }
 
 .resurse-card-title-mate { color: var(--accent2); }
 .resurse-card-title-info { color: var(--accent3); }
+.resurse-card-title-fizica { color: #fbbf24; }
 
 /* Resource */
 .ul-resurse {
@@ -3846,6 +3877,24 @@ img, button { max-width: 100%; }
   background: rgba(77, 182, 172, 0.1);
   border-left-color: rgba(77, 182, 172, 0.6);
   box-shadow: 0 3px 12px rgba(77, 182, 172, 0.1);
+}
+
+/* Fizica */
+.ul-resurse.resurse-fizica li a {
+  border-left: 2px solid rgba(251, 191, 36, 0.35);
+  background: rgba(251, 191, 36, 0.04);
+  border-top-color: rgba(123, 160, 217, 0.08);
+  border-right-color: rgba(123, 160, 217, 0.08);
+  border-bottom-color: rgba(123, 160, 217, 0.08);
+}
+.ul-resurse.resurse-fizica li a::before {
+  color: #fbbf24;
+}
+
+.ul-resurse.resurse-fizica li a:hover {
+  background: rgba(251, 191, 36, 0.1);
+  border-left-color: rgba(251, 191, 36, 0.6);
+  box-shadow: 0 3px 12px rgba(251, 191, 36, 0.1);
 }
 
 @media screen and (max-width: 768px) {

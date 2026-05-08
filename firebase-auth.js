@@ -341,6 +341,74 @@ async function syncUserToFirestore(user, plan, billing) {
   }
 }
 
+/* ── Content gate pentru paginile de simulare ───────────────── */
+
+async function applyExamGate(user) {
+  const content = document.getElementById('exam-content');
+  const gate = document.getElementById('exam-gate');
+  if (!content || !gate) return;
+
+  function showGate(html) {
+    gate.innerHTML = html;
+    gate.style.display = '';
+    content.style.display = 'none';
+  }
+
+  function showContent() {
+    content.style.display = '';
+    gate.style.display = 'none';
+    if (window.renderMathInElement) renderMathInElement(content);
+  }
+
+  // Înainte de ora de start → blocat pentru toată lumea
+  const examStart = window.examGateStart ?? new Date('2026-05-09T09:50:00+03:00');
+  if (new Date() < examStart) {
+    showGate(`
+      <div class="exam-gate-inner">
+        <div class="exam-gate-icon">🕐</div>
+        <h2 class="exam-gate-title">Simularea nu a început încă</h2>
+        <p class="exam-gate-desc">Simularea #3 va fi disponibilă pe <strong>9 Mai 2026, ora 9:50</strong>.<br>Înscrie-te acum cu Student Plus pentru a obține acces imediat după start.</p>
+        <a class="exam-gate-btn" href="https://admiterepoli.gumroad.com/l/student-plus-lunar" target="_blank" rel="noopener">Cumpără acces Student Plus</a>
+      </div>`);
+    return;
+  }
+
+  // După start → verificare membership
+  if (!user) {
+    showGate(`
+      <div class="exam-gate-inner">
+        <div class="exam-gate-icon">🔒</div>
+        <h2 class="exam-gate-title">Acces restricționat</h2>
+        <p class="exam-gate-desc">Această simulare este disponibilă exclusiv membrilor <strong>Student Plus</strong>.<br>Autentifică-te dacă ai deja un abonament activ.</p>
+        <div class="exam-gate-actions">
+          <button class="exam-gate-btn" onclick="openModal()">Autentifică-te</button>
+          <a class="exam-gate-btn exam-gate-btn-outline" href="https://admiterepoli.gumroad.com/l/student-plus-lunar" target="_blank" rel="noopener">Cumpără acces</a>
+        </div>
+      </div>`);
+    return;
+  }
+
+  try {
+    const snap = await getDoc(doc(db, 'users', user.uid));
+    const status = snap.exists() ? snap.data().status : 'free';
+    const isPaid = status === 'paid' || status === 'pending_cancellation' || status === 'trial';
+    if (isPaid) {
+      showContent();
+    } else {
+      showGate(`
+        <div class="exam-gate-inner">
+          <div class="exam-gate-icon">🔒</div>
+          <h2 class="exam-gate-title">Acces restricționat</h2>
+          <p class="exam-gate-desc">Această simulare este disponibilă exclusiv membrilor cu plan <strong>Student Plus</strong>. Fă upgrade pentru a accesa toate simulările și resursele premium.</p>
+          <a class="exam-gate-btn" href="https://admiterepoli.gumroad.com/l/student-plus-lunar" target="_blank" rel="noopener">Cumpără acces Student Plus</a>
+        </div>`);
+    }
+  } catch (e) {
+    console.warn('[Gate] Nu s-a putut verifica statusul:', e.message);
+    showContent();
+  }
+}
+
 /* ── Salvare rezultat simulare în Firestore ──────────────────── */
 
 async function saveSimulationResult(simulationId, data) {
@@ -737,12 +805,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  window.openModal = openModal;
+
   // Listener stare auth
   onAuthStateChanged(auth, async (user) => {
     updateNavButton(user);
-    // Dacă utilizatorul e logat dar documentul Firestore a fost șters, îl recreăm
     if (user) syncUserToFirestore(user, 'standard', 'monthly');
-    await updatePricingButtons(user);
+    await Promise.all([
+      updatePricingButtons(user),
+      applyExamGate(user),
+    ]);
   });
 
   // Expune openUpgradeModal global pentru alte pagini (ex: exercitii-video)

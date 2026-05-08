@@ -5714,6 +5714,20 @@ form .input-box {
     background: linear-gradient(90deg, var(--accent2), rgba(130, 141, 248, 0.5));
 }
 
+.sim-results-card-icon.rc-fizica-res {
+    background: rgba(251, 191, 36, 0.12);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    color: #fbbf24;
+}
+
+.sim-results-card-score.sc-fizica-res {
+    color: #fbbf24;
+}
+
+.sim-results-card-bar-fill.bf-fizica-res {
+    background: linear-gradient(90deg, #fbbf24, rgba(251, 191, 36, 0.5));
+}
+
 .sim-results-meta {
     display: flex;
     justify-content: center;
@@ -9983,5 +9997,89 @@ body.theme-transitions-on .input-box .field {
   .lp-cat-icon svg {
     width: 16px;
     height: 16px;
+  }
+}
+
+/* ── Exam content gate ─────────────────────────────────────── */
+.exam-gate-msg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding: 3rem 1.5rem;
+}
+
+.exam-gate-inner {
+  text-align: center;
+  max-width: 480px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+}
+
+.exam-gate-icon {
+  font-size: 3rem;
+  margin-bottom: 1.25rem;
+  line-height: 1;
+}
+
+.exam-gate-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 1rem;
+}
+
+.exam-gate-desc {
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0 0 2rem;
+  font-size: 1rem;
+}
+
+.exam-gate-desc strong {
+  color: var(--text);
+}
+
+.exam-gate-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.exam-gate-btn {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.exam-gate-btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.exam-gate-btn-outline {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+@media (max-width: 480px) {
+  .exam-gate-inner {
+    padding: 2rem 1.5rem;
+  }
+  .exam-gate-title {
+    font-size: 1.25rem;
   }
 }

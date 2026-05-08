@@ -329,6 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ── Countdown timer (pagina simulări) ────────────────────────────────────────
 const targetDate = new Date("May 8, 2026 10:00:00").getTime();
+window.examGateStart = new Date("May 8, 2026 10:00:00");
 const btn = document.getElementById("glass-countdown-btn");
 const timerText = document.getElementById("countdown-timer");
 

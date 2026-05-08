@@ -5495,6 +5495,9 @@ form .input-box {
 .sim-answer-text {
     flex: 1;
     line-height: 1.5;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    min-width: 0;
 }
 
 /* Single submit button */

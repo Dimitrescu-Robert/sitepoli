@@ -809,7 +809,7 @@ int main() {
             detalii_mate: mateResults
         };
         // TODO: adaugă URL-ul Google Script pentru simulare #3
-        const scriptURL = "";
+        const scriptURL = "https://script.google.com/macros/s/AKfycbxIsBEAPd_9IY57kBCVT1ISmvSfyJ28AZBuIVGnAhSzf7mQkCoEQ4lEDgIpQzKyILLN/exec";
         if (scriptURL) {
             fetch(scriptURL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) })
             .then(() => console.log("Date trimise!"))

@@ -59,7 +59,7 @@ async function updatePricingButtons(user) {
     const snap = await getDoc(doc(db, 'users', user.uid));
     if (snap.exists()) {
       const data = snap.data();
-      const isPaid = data.status === 'paid' || data.status === 'pending_cancellation' || data.status === 'trial';
+      const isPaid = data.status === 'paid' || data.status === 'pending_cancellation';
       plan = isPaid ? 'student-plus' : 'standard';
     }
   } catch (e) {
@@ -390,8 +390,12 @@ async function applyExamGate(user) {
 
   try {
     const snap = await getDoc(doc(db, 'users', user.uid));
-    const status = snap.exists() ? snap.data().status : 'free';
-    const isPaid = status === 'paid' || status === 'pending_cancellation' || status === 'trial';
+    const data = snap.exists() ? snap.data() : {};
+    const status = data.status || 'free';
+    const purchased = data.purchasedSimulations || [];
+    const simId = window.simulationId ?? null;
+    const isPaid = status === 'paid' || status === 'pending_cancellation' || status === 'trial'
+      || (simId && purchased.includes(simId));
     if (isPaid) {
       showContent();
     } else {
@@ -407,6 +411,74 @@ async function applyExamGate(user) {
     console.warn('[Gate] Nu s-a putut verifica statusul:', e.message);
     showContent();
   }
+}
+
+/* ── Gate bloc Simulare #3 pe simulari.html ─────────────────── */
+
+async function applySimulariPaidLinks(user) {
+  const header = document.getElementById('sim3-header');
+  const dropdown = document.getElementById('dropdown-arhiva-sim-3');
+  if (!header || !dropdown) return;
+
+  if (!dropdown._originalHTML) dropdown._originalHTML = dropdown.innerHTML;
+
+  let isPaid = false;
+
+  if (user) {
+    try {
+      const snap = await getDoc(doc(db, 'users', user.uid));
+      const data = snap.exists() ? snap.data() : {};
+      const status = data.status || 'free';
+      const purchased = data.purchasedSimulations || [];
+      isPaid = status === 'paid' || status === 'pending_cancellation' || status === 'trial'
+        || purchased.includes('simulare_09_05');
+    } catch (e) {
+      console.warn('[SimulariGate] Nu s-a putut verifica statusul:', e.message);
+      isPaid = true;
+    }
+  }
+
+  if (isPaid) {
+    dropdown.innerHTML = dropdown._originalHTML;
+    header.querySelector('.sim3-lock-badge')?.remove();
+    return;
+  }
+
+  // Adaugă lock badge pe header
+  const strong = header.querySelector('strong');
+  if (strong && !header.querySelector('.sim3-lock-badge')) {
+    const badge = document.createElement('span');
+    badge.className = 'sim3-lock-badge';
+    badge.style.cssText = 'margin-left:0.6rem;font-size:1rem;opacity:0.8;vertical-align:middle;';
+    badge.textContent = '🔒';
+    strong.appendChild(badge);
+  }
+
+  // Înlocuiește conținutul dropdown-ului cu lock card (doar dacă nu a fost deja înlocuit)
+  const subLinks = dropdown.querySelector('.sub-links');
+  if (!subLinks) return;
+
+  const authButtons = user
+    ? `<button onclick="openUpgradeModal()" style="padding:0.6rem 1.4rem;background:var(--accent2);color:#fff;border:none;border-radius:8px;font-weight:600;font-size:0.95rem;cursor:pointer;">
+        Cumpără acces
+       </button>`
+    : `<div style="display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center;">
+        <button onclick="openModal()" style="padding:0.6rem 1.4rem;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:600;font-size:0.95rem;cursor:pointer;">
+          Autentifică-te
+        </button>
+        <button onclick="openUpgradeModal()" style="padding:0.6rem 1.4rem;background:transparent;color:var(--accent2);border:1px solid var(--accent2);border-radius:8px;font-weight:600;font-size:0.95rem;cursor:pointer;">
+          Cumpără acces
+        </button>
+      </div>`;
+
+  const lockCard = `<div style="display:flex;flex-direction:column;align-items:center;gap:1rem;padding:2rem 1.5rem;text-align:center;">
+    <div style="font-size:2.5rem;line-height:1;">🔒</div>
+    <h3 style="margin:0;color:#fff;font-size:1.15rem;">Acces restricționat</h3>
+    <p style="margin:0;color:var(--muted);font-size:0.95rem;max-width:280px;line-height:1.5;">Simularea #3 este disponibilă exclusiv membrilor <strong style="color:#C3D5F0;">Student Plus</strong>.</p>
+    ${authButtons}
+  </div>`;
+
+  subLinks.outerHTML = lockCard;
 }
 
 /* ── Salvare rezultat simulare în Firestore ──────────────────── */
@@ -814,6 +886,7 @@ document.addEventListener('DOMContentLoaded', () => {
     await Promise.all([
       updatePricingButtons(user),
       applyExamGate(user),
+      applySimulariPaidLinks(user),
     ]);
   });
 

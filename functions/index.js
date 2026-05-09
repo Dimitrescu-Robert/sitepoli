@@ -107,21 +107,21 @@ exports.gumroadWebhook = onRequest(async (req, res) => {
       return res.status(200).send("Refund processed");
     }
 
-    // --- sale: simulare plătită ---
+    // --- sale: cumpărare simulare one-time ---
     const isSimulare = product_permalink === "simulare_09_05" ||
       (typeof product_permalink === "string" && product_permalink.endsWith("/simulare_09_05"));
     if (isSimulare && refunded !== "true" && refunded !== true) {
       await db.collection("users").doc(uid).set(
         {
-          status: "trial_pending",
           gumroadSaleId: sale_id || null,
           gumroadProduct: product_permalink,
           paidAt: admin.firestore.FieldValue.serverTimestamp(),
+          purchasedSimulations: admin.firestore.FieldValue.arrayUnion(product_permalink),
         },
         { merge: true }
       );
-      console.log(`[Webhook] Trial pending activat pentru uid ${uid}`);
-      return res.status(200).send("Trial pending activated");
+      console.log(`[Webhook] Acces simulare ${product_permalink} acordat pentru uid ${uid}`);
+      return res.status(200).send("Simulare access granted");
     }
 
     // --- sale: cumpărare nouă sau reînnoire ---
@@ -148,27 +148,9 @@ exports.gumroadWebhook = onRequest(async (req, res) => {
   }
 });
 
-// Activare trial: 9 mai 2026, 08:00 EEST = 05:00 UTC
-exports.activateTrialUsers = onSchedule({ schedule: "0 5 9 5 *", timeZone: "UTC" }, async () => {
-    const snap = await db.collection("users")
-      .where("status", "==", "trial_pending")
-      .get();
-
-    if (snap.empty) {
-      console.log("[activateTrialUsers] Niciun user trial_pending de activat.");
-      return null;
-    }
-
-    const batch = db.batch();
-    snap.docs.forEach(docSnap => {
-      batch.update(docSnap.ref, { status: "trial" });
-    });
-    await batch.commit();
-    console.log(`[activateTrialUsers] ${snap.docs.length} useri trial_pending → trial`);
-    return null;
-  });
-
-// Expirare trial: 12 mai 2026, 10:00 EEST = 07:00 UTC
+// Migrare + expirare trial: 12 mai 2026, 10:00 EEST = 07:00 UTC
+// Adaugă simulare_09_05 la purchasedSimulations pentru userii cu trial/trial_pending
+// înainte de a le revoca statusul, astfel păstrând accesul la simularea cumpărată.
 exports.expireTrialUsers = onSchedule({ schedule: "0 7 12 5 *", timeZone: "UTC" }, async () => {
     const snap = await db.collection("users")
       .where("status", "in", ["trial", "trial_pending"])
@@ -181,9 +163,12 @@ exports.expireTrialUsers = onSchedule({ schedule: "0 7 12 5 *", timeZone: "UTC" 
 
     const batch = db.batch();
     snap.docs.forEach(docSnap => {
-      batch.update(docSnap.ref, { status: "free" });
+      batch.update(docSnap.ref, {
+        status: "free",
+        purchasedSimulations: admin.firestore.FieldValue.arrayUnion("simulare_09_05"),
+      });
     });
     await batch.commit();
-    console.log(`[expireTrialUsers] ${snap.docs.length} useri trial/trial_pending → free`);
+    console.log(`[expireTrialUsers] ${snap.docs.length} useri migrati → purchasedSimulations + free`);
     return null;
   });

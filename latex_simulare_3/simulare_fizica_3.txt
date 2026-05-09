@@ -1,0 +1,229 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[romanian]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage{geometry}
+\geometry{a4paper, margin=2cm}
+
+\begin{document}
+
+\begin{center}
+    \Large \textbf{SIMULARE FIZICĂ}
+\end{center}
+
+\vspace{0.5cm}
+
+\section*{Partea I: Enunțuri}
+
+\begin{enumerate}
+    \item Accelerația de $12960 \text{ km/h}^2$ în $\text{m/s}^2$ este:
+    \begin{enumerate}[label=\alph*)]
+        \item $\text{m/s}$
+        \item $5 \text{ m/s}$
+        \item $1,2 \text{ m/s}^2$
+        \item $1 \text{ m/s}^2$
+        \item $1 \text{ m/s}^2$
+        \item $1,5 \text{ m/s}^2$
+    \end{enumerate}
+
+    \item Un vas de volum $2,55 \text{ l}$ conține $15 \text{ mg}$ de hidrogen la temperatura de $2700^\circ\text{C}$. La această temperatură o parte din moleculele de hidrogen se descompun în atomi. Gradul de disociere este $\alpha=0,25$. Să se calculeze presiunea gazului în aceste condiții.
+    \begin{enumerate}[label=\alph*)]
+        \item $90,8 \cdot 10^3 \text{ Pa}$
+        \item $90,8 \cdot 10^5 \text{ Pa}$
+        \item $90,8 \cdot 10^3 \text{ Pa}$
+        \item $10^5 \text{ Pa}$
+        \item $72663 \text{ Pa}$
+        \item nu se poate determina
+    \end{enumerate}
+
+    \item Două vapoare, A și B, pornesc dimineața, la aceeași oră, navigând pe mare cu viteze constante pe aceeași rută. Vapoarele se întâlnesc la ora 14. Vaporul A ajunge în punctul de plecare al vaporului B la ora 18, iar vaporul B ajunge în punctul de plecare al vaporului A la ora 23. La ce oră au pornit vapoarele?
+    \begin{enumerate}[label=\alph*)]
+        \item 8:30
+        \item 6:00
+        \item 8:00
+        \item $7^{00}$
+        \item 11:00
+        \item $10^{00}$
+    \end{enumerate}
+
+    \item Ce forță orizontală F trebuie aplicată în mod constant asupra lui $M=100 \text{ kg}$ astfel încât $M_1=45 \text{ kg}$ și $M_2=17 \text{ kg}$ să rămână în repaus față de M?
+    \begin{enumerate}[label=\alph*)]
+        \item 170 N
+        \item 612 N
+        \item 450 N
+        \item 1000 N
+        \item 1620 N
+        \item 180 N
+    \end{enumerate}
+
+    \item Doi cilindri orizontali de secțiune $S_1=3 \cdot 10^{-2} \text{ m}^2$ și $S_2=10^{-2} \text{ m}^2$ au pistoanele cuplate rigid cu ajutorul unei tije. În poziția inițială a pistoanelor se cunosc: $V_1=6 \cdot 10^{-3} \text{ m}^3$, $V_2=2 \cdot 10^{-3} \text{ m}^3$, iar în interiorul și în exteriorul lor se află aer la presiunea $p_0=10^5 \text{ Pa}$ și temperatura $T=300 \text{ K}$. Primul cilindru este încălzit la $T_1=500 \text{ K}$. Să se calculeze distanța x cu care se deplasează pistoanele:
+    \begin{enumerate}[label=\alph*)]
+        \item 100 mm
+        \item 0,75 m
+        \item 1 cm
+        \item 7,5 cm
+        \item 0,075 cm
+        \item 0,1 m
+    \end{enumerate}
+
+    \item Un acumulator alimentează un bec cu filament printr-o linie care are rezistența totală $5 \, \Omega$. Puterea becului reprezintă 50\% din puterea totală a acumulatorului. Tensiunea pe bec este 15 V, iar puterea debitată de acumulator pe circuit este 50 W. Care este intensitatea de scurtcircuit a sursei?
+    \begin{enumerate}[label=\alph*)]
+        \item 12 A
+        \item 16 A
+        \item 8 A
+        \item 12 V
+        \item nu se poate calcula
+        \item 11 A
+    \end{enumerate}
+
+    \item Coeficientul de temperatură al materialului unui rezistor a cărui rezistență la cald, la temperatura $t_2$, este $R_2=nR_1$ (unde $R_1$ este rezistența la rece, la temperatura $t_1$) are expresia:
+    \begin{enumerate}[label=\alph*)]
+        \item $\alpha=\frac{n-1}{t_1}$
+        \item $\alpha=\frac{n-1}{t_2-t_1}$
+        \item $\alpha=\frac{n-1}{t_2}$
+        \item $\alpha=\frac{n-1}{t_2-t_1}$
+        \item $\alpha=\frac{n}{t_1-1}$
+        \item nicio variantă corectă
+    \end{enumerate}
+
+    \item Să se calculeze rezistența echivalentă a circuitului (săgețile simbolizează continuarea la infinit a circuitului), fiecare rezistor orizontal are valoarea $R_1=2 \, \Omega$, iar fiecare rezistor vertical are valoarea $R_2=1 \, \Omega$.
+    \begin{enumerate}[label=\alph*)]
+        \item $\infty$
+        \item $1+\sqrt{3} \, \Omega$
+        \item $1-\sqrt{3} \, \Omega$
+        \item $1+2\sqrt{3} \, \Omega$
+        \item $2+\sqrt{3} \, \Omega$
+        \item 0
+    \end{enumerate}
+
+    \item O mașină termică având randamentul $\eta=0,3$ cedează căldura $Q_c=210 \text{ J}$ în decurs de un ciclu. Puterea utilă a mașinii dacă se efectuează $n=10$ cicluri pe secundă este:
+    \begin{enumerate}[label=\alph*)]
+        \item 900 W
+        \item 1000 W
+        \item 450 W
+        \item 600 W
+        \item 300 W
+        \item 630 W
+    \end{enumerate}
+
+    \item Un punct material de masă $m=1 \text{ kg}$ alunecă fără frecare pe o suprafață curbă. Accelerația gravitațională fiind $g=10 \text{ m/s}^2$ și $R=5 \text{ m}$, dacă mișcarea se face fără viteză inițială. Viteza punctului la nivelul solului este:
+    \begin{enumerate}[label=\alph*)]
+        \item 8 m/s
+        \item 10 m/s
+        \item 4 m/s
+        \item $8 \text{ m/s}^2$
+        \item 20 m/s
+        \item $10 \text{ m/s}^2$
+    \end{enumerate}
+\end{enumerate}
+
+\vspace{1cm}
+
+\section*{Partea II: Rezolvări}
+
+\begin{enumerate}
+    \item 
+    $$12960\frac{\text{km}}{\text{h}^2}=12960\cdot\frac{1000 \text{ m}}{3600^2 \text{ s}^2}=1 \text{ m/s}^2$$
+    Răspuns corect: \textbf{E/D}.
+
+    \item 
+    Fie $N_d = $ numărul de molecule disociate și $N_i = $ numărul inițial de molecule
+    $$N_d = \alpha N_i$$
+    $$N_{\text{atomi}} = 2N_d = 2\alpha N_i$$
+    $$N_{nd} = \text{numărul de molecule nedisociate} = N_i - N_d = N_i - \alpha N_i = N_i(1-\alpha)$$
+    $$N_t = \text{numărul final de molecule} = N_{\text{atomi}} + N_{nd} = 2\alpha N_i + N_i(1-\alpha) = N_i(1+\alpha)$$
+    $$N_t = N_i(1+\alpha) \cdot \frac{1}{N_a} \implies \nu_t = \nu(1+\alpha)$$
+    $$P = \frac{\nu(1+\alpha)RT}{V} \approx 90,8 \cdot 10^3 \text{ Pa}$$
+    Răspuns corect: \textbf{A}.
+
+    \item 
+    Fie $I$ punctul în care se întâlnesc cele două vapoare la ora 14.
+    M.R.U. $\implies v = \frac{d}{t} \implies d = v \cdot t$
+    Fie $\tau$ - timpul parcurs de cele două vapoare până la întâlnire și d - distanța de la A la B, ecuațiile mișcării sunt:
+    \begin{equation*}
+        \begin{cases}
+            \tau(v_1+v_2)=d \\
+            v_1(4+\tau)=d \\
+            v_2(9+\tau)=d
+        \end{cases}
+    \end{equation*}
+    $$\tau \cdot v_1 + \tau \cdot v_2 = v_1(\tau+4) \implies \tau \cdot v_2 = 4v_1 \quad \text{(I)}$$
+    $$v_1(4+\tau) = v_2(9+\tau) \implies v_1 = v_2\frac{\tau+9}{\tau+4} \quad \text{(II)}$$
+    Din (I) și (II) obținem că $\tau(\tau+4) = 4(\tau+9) \implies \tau = 6\text{h}$
+    Ora de plecare $= 14 - 6 = 8$
+    Răspuns corect: \textbf{C}.
+
+    \item 
+    Fie T tensiunea în fir.
+    Corpurile se deplasează pe roți, deci nu există frecare!
+    $M_2$ se află în repaus $\iff T = G_2 \implies T = gM_2$
+    Cum cele două corpuri nu se mișcă față de M $\implies$ față de sol, pe orizontală corpurile se mișcă cu accelerația a imprimată de F corpului M. Principiul II pe orizontală pentru corpul $M_1$ este: $T = aM_1$
+    Din cele două formule ale tensiunii în fir $\implies a = g\frac{M_2}{M_1}$
+    $$F = (M+M_1+M_2)a = (M+M_1+M_2)g\frac{M_2}{M_1} = 612 \text{ N}$$
+    Răspuns corect: \textbf{B}.
+
+    \item 
+    Atunci când cilindrul 1 este încălzit, are loc o transformare generală:
+    $$\frac{P_0 V_1}{T} = \frac{P_1 V'_1}{T_1}$$ unde $V'_1$ este volumul după încălzire, iar $V'_1 = V_1 + xS_1$
+    Gazul din cilindrul 2 suferă o transformare izotermă:
+    $$P_0 V_2 = P_2 V'_2$$ unde $V'_2$ este noul volum al cilindrului, iar $V'_2 = V_2 - xS_2$
+    Pistoanele se află în echilibru dacă forțele ce acționează asupra lor se află în echilibru:
+    $$(P_1 - P_0)S_1 = (P_2 - P_0)S_2$$
+    Înlocuind volumele noi și împreună cu cea de-a treia ecuație se formează un sistem de trei ecuații cu trei necunoscute pe care îl rezolvăm:
+    \begin{equation*}
+        \begin{cases}
+            \frac{P_0 V_1}{T} = \frac{P_1(V_1+xS_1)}{T_1} \\
+            P_0 V_2 = P_2(V_2-xS_2) \\
+            (P_1-P_0)S_1 = (P_2-P_0)S_2
+        \end{cases}
+    \end{equation*}
+    Rezolvând sistemul obținem $P_1 = 1,2 \cdot 10^5 \text{ Pa}$, $P_2 = 1,6 \cdot 10^6 \text{ Pa}$ și $x = 0,075 \text{ m}$
+    $$x = 7,5 \text{ cm}$$
+    Răspuns corect: \textbf{D}.
+
+    \item 
+    $$P_b = U_b I, \quad P_L = I^2 R_1, \quad P_{ext} = P_b + P_L$$
+    Obținem o ecuație de gradul 2 în I: $I^2 + 3I - 10 = 0 \implies I = 2 \text{ A}$
+    $$R_b = 7,5 \, \Omega$$
+    $$P_{totala} = P_{ext} + P_{int}$$
+    $$P_b = U_b I = 30 \text{ W} \implies P_{totala} = 60 \text{ W}$$
+    $$P_{int} = 10 \text{ W}$$
+    $$P_{int} = I^2 r \implies r = 2,5 \, \Omega$$
+    $$U = E - Ir \implies E = U + Ir; \quad U = I R_e$$
+    $$U = 2(7,5 + 5) = 25 \text{ V}$$
+    $$E = 30 \text{ V}$$
+    $$I_{sc} = \frac{E}{r} = 12 \text{ A}$$
+    Răspuns corect: \textbf{A}.
+
+    \item 
+    Din $R = R_0(1+\alpha t)$, obținem $R_1 = R_0(1+\alpha t_1)$ și $R_2 = R_0(1+\alpha t_2)$
+    Facem raportul și obținem:
+    $$\frac{R_2}{R_1} = \frac{1+\alpha t_1}{1+\alpha t_2} = n$$
+    apoi $\alpha = \frac{n-1}{t_2-nt_1}$, deci răspunsul corect este F.
+
+    \item 
+    Notăm cu R rezistența echivalentă a circuitului format din n celule. Dacă se mai adaugă o celulă, rezistența echivalentă trebuie să fie egală tot cu R.
+    $$R = R_1 + \frac{R_2 R}{R+R_2} \implies R^2 - RR_1 - R_1 R_2 = 0$$
+    Cu soluția pozitivă: $R = \frac{R_1+\sqrt{R_1^2+4R_1R_2}}{2} \implies R = 1+\sqrt{3} \, \Omega$
+    Răspuns corect: \textbf{B}.
+
+    \item 
+    $$\eta = 1 - \frac{|Q_c|}{Q_p} \implies Q_p = \frac{Q_c}{1-\eta} = 300 \text{ J}$$
+    $$L = Q_p - |Q_c| = 90 \text{ J}$$
+    $$P = nL = 900 \text{ W}$$
+    Răspuns corect: \textbf{A}.
+
+    \item 
+    Fie v = viteza corpului la nivelul solului, $v_0=0$, la nivelul solului energia potențială este nulă.
+    Se conservă energia mecanică:
+    $$mgR = \frac{mv^2}{2} \implies v = \sqrt{2gR} = 10 \text{ m/s}$$
+    Răspuns corect: \textbf{B}.
+
+\end{enumerate}
+
+\vfill
+\textit{*Nota documentului original: toate desenele fac parte din enunțul problemei, cu excepția celui de la problema 3!}
+
+\end{document}

@@ -412,14 +412,35 @@ int main() {
             correct: "a"
         },
         {
-            text: `<b>Problemă în curs de completare.</b> Această problemă va fi disponibilă la data simulării.`,
-            answers: ["a) —", "b) — —", "c) — — —", "d) — — — —", "e) — — — — —", "f) — — — — — —"],
-            correct: "a"
+            text: `<b>Geometrie analitică și logică.</b> Fie un triunghi cu vârfurile \\(A(x_A, y_A)\\), \\(B(x_B, y_B)\\) și \\(C(x_C, y_C)\\). Care dintre următoarele expresii verifică riguros proprietatea că \\(\\Delta ABC\\) este un triunghi echilateral cu centrul de greutate în originea sistemului cartezian \\((0,0)\\)?
+            <pre style="background:rgba(0,0,0,0.3);padding:0.8em 1em;border-radius:6px;font-family:monospace;font-size:0.93em;line-height:1.7;margin-top:0.6em;white-space:pre-wrap;">I1. xA + xB + xC == 0 &amp;&amp; yA + yB + yC == 0&#10;I2. xA*xA + yA*yA == xB*xB + yB*yB &amp;&amp; xB*xB + yB*yB == xC*xC + yC*yC&#10;I3. xA + yA == 0 &amp;&amp; xB + yB == 0 &amp;&amp; xC + yC == 0&#10;I4. xA&sup2; + xB&sup2; + xC&sup2; == 0 &amp;&amp; yA&sup2; + yB&sup2; + yC&sup2; == 0&#10;I5. xA * xB * xC == yA * yB * yC</pre>`,
+            answers: ["a) I1", "b) I2", "c) I1 și I2", "d) I4 și I5", "e) I1, I2 și I4", "f) I2 și I4"],
+            correct: "c"
         },
         {
-            text: `<b>Problemă în curs de completare.</b> Această problemă va fi disponibilă la data simulării.`,
-            answers: ["a) —", "b) — —", "c) — — —", "d) — — — —", "e) — — — — —", "f) — — — — — —"],
-            correct: "a"
+            text: `<b>Pointeri.</b> Ce va afișa următorul program C++ la execuție?
+            <pre><code class="cpp">#include &lt;iostream&gt;
+using namespace std;
+float f(float* a, float* b, float* C) {
+    *a = *a + *b;
+    *b = *a - C[0];
+    C++;
+    a = C;
+    b = C + 1;
+    *a = *a * 2.0;
+    *b = *a + 1.0;
+    return *a + *b;
+}
+int main() {
+    float a = 3.5;
+    float b = 2.0;
+    float C[3] = {1.0, 2.0, 3.0};
+    float result = f(&amp;a, &amp;b, C);
+    cout &lt;&lt; a + result + b + C[0] &lt;&lt; "\n";
+    return 0;
+}</code></pre>`,
+            answers: ["a) <code>15.5</code>", "b) <code>18</code>", "c) <code>20</code>", "d) <code>23</code>", "e) <code>11.5</code>", "f) Eroare de compilare"],
+            correct: "c"
         }
         ],
 

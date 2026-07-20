@@ -506,6 +506,22 @@ int main() {
                 "f) 40"
             ],
             correct: "c"
+        },
+        {
+            text: `<b>Complexitate — două bucle multiplicative.</b> Analizați următorul fragment de cod:
+    <pre><code class="cpp">for (int i = 1; i &lt;= n; i *= 2)
+    for (int j = 1; j &lt;= i; j *= 2)
+        cout &lt;&lt; "*";</code></pre>
+    Complexitatea de timp este:`,
+            answers: [
+                "a) \\( O(n) \\)",
+                "b) \\( O(\\log n) \\)",
+                "c) \\( O(\\log^2 n) \\)",
+                "d) \\( O(n \\log n) \\)",
+                "e) \\( O(\\sqrt{n}) \\)",
+                "f) \\( O(1) \\)"
+            ],
+            correct: "c"
         }
         ],
 
@@ -514,7 +530,105 @@ int main() {
     };
 
     // Probleme placeholder de matematică — de completat ulterior.
-    const problemsMate = makePlaceholders('Matematică', 10);
+    const problemsMate = [
+        {
+            text: `<b>Progresii geometrice.</b> Determinați \\( x \\in \\mathbb{R} \\) astfel încât numerele \\( x+1 \\), \\( x+3 \\), \\( x+7 \\) să fie termeni consecutivi ai unei progresii geometrice.`,
+            answers: [
+                "a) \\( 0 \\)", "b) \\( 1 \\)", "c) \\( 2 \\)",
+                "d) \\( -1 \\)", "e) \\( 3 \\)", "f) nu există"
+            ],
+            correct: "b"
+        },
+        {
+            text: `<b>Determinant circulant.</b> Fie \\( x_1, x_2, x_3 \\) rădăcinile polinomului \\( f = X^3 - 2X^2 + X - 3 \\). Calculați:
+    \\[ \\Delta = \\begin{vmatrix} x_1 & x_2 & x_3 \\\\ x_2 & x_3 & x_1 \\\\ x_3 & x_1 & x_2 \\end{vmatrix} \\]`,
+            answers: [
+                "a) \\( 2 \\)", "b) \\( 0 \\)", "c) \\( -2 \\)",
+                "d) \\( 3 \\)", "e) \\( -1 \\)", "f) \\( 1 \\)"
+            ],
+            correct: "c"
+        },
+        {
+            text: `<b>Numere complexe — modul și conjugat.</b> Fie \\( z \\in \\mathbb{C} \\) cu \\( |z| = 2 \\). Calculați:
+    \\[ |z + \\bar{z}|^2 + |z - \\bar{z}|^2 \\]`,
+            answers: [
+                "a) \\( 4 \\)", "b) \\( 8 \\)", "c) \\( 16 \\)",
+                "d) \\( 2 \\)", "e) \\( 32 \\)", "f) \\( 12 \\)"
+            ],
+            correct: "c"
+        },
+        {
+            text: `<b>Integrală pe interval simetric.</b> Calculați:
+    \\[ I = \\int_{-1}^{1} \\frac{x^{2025} + \\sin(x^3) + 1}{x^2 + 1} \\, dx \\]`,
+            answers: [
+                "a) \\( 0 \\)", "b) \\( \\pi \\)", "c) \\( \\dfrac{\\pi}{2} \\)",
+                "d) \\( \\dfrac{\\pi}{4} \\)", "e) \\( 1 \\)", "f) \\( 2025 \\)"
+            ],
+            correct: "c"
+        },
+        {
+            text: `<b>Sistem liniar cu parametru.</b> Determinați valorile parametrului \\( m \\in \\mathbb{R} \\) pentru care sistemul de mai jos este compatibil nedeterminat:
+    \\[ \\begin{cases} x + y + z = 1 \\\\ x + 2y + 3z = 2 \\\\ x + 3y + mz = 3 \\end{cases} \\]`,
+            answers: [
+                "a) \\( m = 5 \\)", "b) \\( m = 3 \\)", "c) \\( m \\neq 5 \\)",
+                "d) \\( m = 0 \\)", "e) orice \\( m \\)", "f) niciun \\( m \\)"
+            ],
+            correct: "a"
+        },
+        {
+            text: `<b>Studiul funcțiilor — valoare maximă.</b> Fie funcția \\( f : (0, \\infty) \\to \\mathbb{R} \\), \\( f(x) = \\dfrac{\\ln x}{x} \\). Valoarea maximă a funcției este:`,
+            answers: [
+                "a) \\( e \\)", "b) \\( 1 \\)", "c) \\( \\dfrac{1}{e} \\)",
+                "d) \\( 0 \\)", "e) \\( \\dfrac{1}{e^2} \\)", "f) \\( \\dfrac{2}{e} \\)"
+            ],
+            correct: "c"
+        },
+        {
+            text: `<b>Tangenta dusă dintr-un punct exterior.</b> Tangenta la graficul funcției \\( f(x) = e^x \\) care trece prin originea \\( O(0,0) \\) are panta:`,
+            answers: [
+                "a) \\( 1 \\)", "b) \\( e \\)", "c) \\( \\dfrac{1}{e} \\)",
+                "d) \\( e^2 \\)", "e) \\( 0 \\)", "f) \\( 2e \\)"
+            ],
+            correct: "b"
+        },
+        {
+            text: `<b>Manipulare algebrică — sumă de pătrate.</b> Rezolvați, pentru \\( x \\ge 1, y \\ge 2, z \\ge 3 \\):
+    \\[ \\sqrt{x-1} + \\sqrt{y-2} + \\sqrt{z-3} = \\frac{x+y+z-3}{2} \\]
+    Calculați \\( x+y+z \\).`,
+            answers: [
+                "a) \\( 6 \\)", "b) \\( 9 \\)", "c) \\( 14 \\)",
+                "d) \\( 12 \\)", "e) \\( 0 \\)", "f) o infinitate"
+            ],
+            correct: "b"
+        },
+        {
+            text: `<b>Ecuație trigonometrică — numărare grafică.</b> Numărul soluțiilor reale ale ecuației:
+    \\[ \\sin x = \\frac{x}{100} \\]`,
+            answers: [
+                "a) \\( 63 \\)", "b) \\( 62 \\)", "c) \\( 31 \\)",
+                "d) \\( 64 \\)", "e) \\( 100 \\)", "f) o infinitate"
+            ],
+            correct: "a"
+        },
+        {
+            text: `<b>Limită — forma \\( 1^\\infty \\).</b> Calculați:
+    \\[ \\lim_{n \\to \\infty} \\left( \\frac{n^2+3n+1}{n^2+n+2} \\right)^n \\]`,
+            answers: [
+                "a) \\( 1 \\)", "b) \\( e \\)", "c) \\( e^2 \\)",
+                "d) \\( e^{-2} \\)", "e) \\( \\infty \\)", "f) \\( e^4 \\)"
+            ],
+            correct: "c"
+        },
+        {
+            text: `<b>Sumă binomială — parte reală.</b> Calculați suma cu semne alternante și indici pari:
+    \\[ \\binom{2026}{0} - \\binom{2026}{2} + \\binom{2026}{4} - \\dots \\]`,
+            answers: [
+                "a) \\( 2^{1013} \\)", "b) \\( 0 \\)", "c) \\( 2^{2026} \\)",
+                "d) \\( -2^{1013} \\)", "e) \\( 1 \\)", "f) \\( 2^{2025} \\)"
+            ],
+            correct: "b"
+        }
+    ];
 
     // ===== STATE =====
     const userCode = 'ST' + Math.floor(Math.random() * 1000000);

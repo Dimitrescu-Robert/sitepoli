@@ -356,6 +356,20 @@ function hasSimulationAccess(data, simId) {
     && data.purchasedSimulations.includes(simId);
 }
 
+/* Simulări cu vânzare limitată în timp. După momentul de aici, butoanele de
+   „Cumpără acces" dispar din gate-ul paginii de simulare şi din arhiva de pe
+   simulari.html. Cheia = product_permalink-ul Gumroad (window.simulationId).
+   Atenţie: e doar gating de UI — oprirea reală a vânzării se face din Gumroad
+   (unpublish produs), altfel linkul direct rămâne funcţional. */
+const SIMULATION_SALE_END = {
+  'simulare-21-07': new Date('2026-07-23T21:00:00+03:00')  // joi, 23 iulie 2026
+};
+
+function isSaleClosed(simId) {
+  const end = simId ? SIMULATION_SALE_END[simId] : null;
+  return !!end && new Date() >= end;
+}
+
 /* Deblocare automată la ora de start, fără refresh manual. Un singur timer activ
    pe pagină — applyExamGate poate fi re-apelat la fiecare schimbare de stare auth.
    setTimeout are un plafon de ~24.8 zile, aşa că îl re-programăm în tranşe. */
@@ -392,6 +406,7 @@ async function applyExamGate(user) {
   const simLabel = window.simulationLabel ?? 'Această simulare';
   const buyUrl   = window.simulationBuyUrl ?? STUDENT_PLUS_URL;
   const buyLabel = window.simulationBuyUrl ? 'Cumpără acces la simulare' : 'Cumpără acces Student Plus';
+  const saleClosed = isSaleClosed(simId);
 
   function showGate(html) {
     stopGateCountdown();
@@ -432,7 +447,9 @@ async function applyExamGate(user) {
         <p class="exam-gate-desc">Această simulare este disponibilă membrilor <strong>Student Plus</strong> sau celor care au cumpărat accesul separat.<br>Autentifică-te dacă ai deja acces.</p>
         <div class="exam-gate-actions">
           <button class="exam-gate-btn" onclick="openModal()">Autentifică-te</button>
-          <a class="exam-gate-btn exam-gate-btn-outline" href="${buyUrl}" target="_blank" rel="noopener">Cumpără acces</a>
+          ${saleClosed
+            ? `<a class="exam-gate-btn exam-gate-btn-outline" href="${STUDENT_PLUS_URL}" target="_blank" rel="noopener">Vezi Student Plus</a>`
+            : `<a class="exam-gate-btn exam-gate-btn-outline" href="${buyUrl}" target="_blank" rel="noopener">Cumpără acces</a>`}
         </div>
       </div>`);
     return;
@@ -451,11 +468,16 @@ async function applyExamGate(user) {
         <div class="exam-gate-inner">
           <div class="exam-gate-icon">🔒</div>
           <h2 class="exam-gate-title">Acces restricționat</h2>
-          <p class="exam-gate-desc">${simLabel} este inclusă în abonamentul <strong>Student Plus</strong> sau poate fi cumpărată separat, cu acces permanent.</p>
-          <div class="exam-gate-actions">
-            <a class="exam-gate-btn" href="${buyHref}" target="_blank" rel="noopener">${buyLabel}</a>
-            ${window.simulationBuyUrl ? `<a class="exam-gate-btn exam-gate-btn-outline" href="${STUDENT_PLUS_URL}" target="_blank" rel="noopener">Vezi Student Plus</a>` : ''}
-          </div>
+          ${saleClosed
+            ? `<p class="exam-gate-desc">Vânzarea separată pentru ${simLabel} s-a încheiat. Simularea rămâne inclusă în abonamentul <strong>Student Plus</strong>.</p>
+               <div class="exam-gate-actions">
+                 <a class="exam-gate-btn" href="${STUDENT_PLUS_URL}" target="_blank" rel="noopener">Vezi Student Plus</a>
+               </div>`
+            : `<p class="exam-gate-desc">${simLabel} este inclusă în abonamentul <strong>Student Plus</strong> sau poate fi cumpărată separat, cu acces permanent.</p>
+               <div class="exam-gate-actions">
+                 <a class="exam-gate-btn" href="${buyHref}" target="_blank" rel="noopener">${buyLabel}</a>
+                 ${window.simulationBuyUrl ? `<a class="exam-gate-btn exam-gate-btn-outline" href="${STUDENT_PLUS_URL}" target="_blank" rel="noopener">Vezi Student Plus</a>` : ''}
+               </div>`}
         </div>`);
     }
   } catch (e) {
@@ -469,7 +491,7 @@ async function applyExamGate(user) {
 // Simulările plătite listate în arhivă. `simId` = product_permalink-ul Gumroad.
 const PAID_SIMULATIONS = [
   { headerId: 'sim3-header', dropdownId: 'dropdown-arhiva-sim-3', simId: 'simulare_09_05', label: 'Simularea #3', buyUrl: null },
-  { headerId: 'sim4-header', dropdownId: 'dropdown-arhiva-sim-4', simId: 'simulare-22-07', label: 'Simularea #4', buyUrl: 'https://admiterepoli.gumroad.com/l/simulare-22-07' }
+  { headerId: 'sim4-header', dropdownId: 'dropdown-arhiva-sim-4', simId: 'simulare-21-07', label: 'Simularea #4', buyUrl: 'https://admiterepoli.gumroad.com/l/simulare-21-07' }
 ];
 
 async function applySimulariPaidLinks(user) {
@@ -503,7 +525,10 @@ async function applySimulariPaidLinks(user) {
   }
 }
 
-function applySimulariLock({ header, dropdown, label, buyUrl }, user, isPaid) {
+function applySimulariLock({ header, dropdown, label, simId, buyUrl }, user, isPaid) {
+  // După închiderea vânzării separate rămâne doar ruta Student Plus.
+  if (isSaleClosed(simId)) buyUrl = null;
+
   if (!dropdown._originalHTML) dropdown._originalHTML = dropdown.innerHTML;
 
   if (isPaid) {
@@ -560,14 +585,18 @@ async function saveSimulationResult(simulationId, data) {
   if (!user) return; // utilizator neautentificat — silent fail
   try {
     const resultRef = doc(db, 'users', user.uid, 'simulationResults', simulationId);
+    // Paginile de simulare trimit `scoreDisc` (info SAU fizică, în funcţie de track).
+    // Îl salvăm ca `scoreInfo` pentru că asta citeşte profile.js. Fallback la 0:
+    // setDoc aruncă la `undefined` şi ar pica salvarea întregului rezultat.
     await setDoc(resultRef, {
       simulationId,
-      title: data.title,
-      scoreTotal: data.scoreTotal,
-      scoreInfo: data.scoreInfo,
-      scoreMate: data.scoreMate,
+      track: data.track ?? null,
+      title: data.title ?? simulationId,
+      scoreTotal: data.scoreTotal ?? 0,
+      scoreInfo: data.scoreInfo ?? data.scoreDisc ?? 0,
+      scoreMate: data.scoreMate ?? 0,
       completedAt: serverTimestamp(),
-      timeElapsed: data.timeElapsed
+      timeElapsed: data.timeElapsed ?? 0
     }, { merge: true });
     console.log('[Profile] Rezultat salvat pentru', simulationId);
   } catch (e) {

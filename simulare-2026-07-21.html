@@ -12,16 +12,17 @@
     <!-- Config paywall: simulationId TREBUIE să fie identic cu product_permalink-ul
          Gumroad, pentru că webhook-ul salvează permalink-ul în purchasedSimulations. -->
     <script>
-        window.simulationId       = 'simulare-22-07';
+        window.simulationId       = 'simulare-21-07';
         window.simulationLabel    = 'Simularea #4';
-        window.simulationBuyUrl   = 'https://admiterepoli.gumroad.com/l/simulare-22-07';
-        window.examGateStart      = new Date('2024-07-22T10:00:00+03:00');
-        window.examGateStartLabel = '22 Iulie 2026, ora 10:00';
+        window.simulationBuyUrl   = 'https://admiterepoli.gumroad.com/l/simulare-21-07';
+        window.examGateStart      = new Date('2026-07-21T15:00:00+03:00');
+        window.examGateStartLabel = '21 Iulie 2026, ora 15:00';
+        // Data de închidere a vânzării stă în SIMULATION_SALE_END din firebase-auth.js.
     </script>
     <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulare #4 — 22 Iulie 2026 | AdmiterePoli</title>
+    <title>Simulare #4 — 21 Iulie 2026 | AdmiterePoli</title>
     <meta name="description" content="A patra simulare AdmiterePoli — Matematică + Informatică sau Fizică.">
     <link rel="icon" type="image/png" href="logosquared.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -163,7 +164,7 @@
 
                 <!-- ===== TRACK SELECTOR ===== -->
                 <div id="track-selector" class="sim-start">
-                    <div class="sim-badge-date">&#128197; 22 Iulie 2026 &bull; 10:00 – 22:00</div>
+                    <div class="sim-badge-date">&#128197; 21 Iulie, 15:00 &ndash; 23 Iulie, 21:00</div>
                     <h1>Simulare #4</h1>
                     <p class="sim-start-subtitle">
                         Aceasta este a <strong>patra simulare</strong> AdmiterePoli.<br>
@@ -578,44 +579,46 @@ int main() {
             correct: "a"
         },
         {
-            text: `<b>Aruncare oblică.</b> Un corp este aruncat după o direcție care face unghiul \\( \\alpha \\) cu orizontala. Să se afle acest unghi, știind că distanța parcursă de corp pe orizontală este de patru ori mai mare decât înălțimea maximă atinsă de el pe traiectorie. Se neglijează interacțiunea cu aerul.
-    <svg class="fig-svg" viewBox="0 0 520 235" role="img" aria-label="Traiectoria parabolica a unui corp aruncat oblic sub unghiul alfa, cu inaltimea maxima marcata la mijlocul bataii">
+            text: `<b>Dinamica corpurilor legate.</b> Două corpuri de mase \\( m_1 = 3 \\) kg și \\( m_2 = 2 \\) kg sunt legate printr-un fir inextensibil și de masă neglijabilă, trecut peste un scripete ideal (fără frecare, fără masă). Sistemul este lăsat liber. Se dă \\( g = 10 \\) m/s\\( ^2 \\). Tensiunea din fir este:
+    <svg class="fig-svg" viewBox="0 0 380 260" role="img" aria-label="Doua corpuri de mase m1 si m2 legate printr-un fir trecut peste un scripete ideal fixat de tavan">
+        <defs>
+            <pattern id="fiz-hatch-c" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                <line x1="0" y1="0" x2="0" y2="8" stroke="currentColor" stroke-width="1.3" opacity="0.6"/>
+            </pattern>
+        </defs>
+        <rect x="110" y="18" width="160" height="16" fill="url(#fiz-hatch-c)" stroke="none"/>
         <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <path d="M40 180 H478"/>
-            <path d="M60 205 V38"/>
-            <path d="M92 180 A32 32 0 0 0 82.6 157.4" stroke-width="1.6"/>
+            <path d="M110 34 H270" stroke-width="2.6"/>
+            <path d="M190 34 V52" stroke-width="3"/>
+            <path d="M166 76 A24 24 0 0 1 214 76"/>
+            <path d="M166 76 V150 M214 76 V118"/>
         </g>
-        <g fill="currentColor">
-            <polygon points="478,174 494,180 478,186"/>
-            <polygon points="54,38 60,22 66,38"/>
-        </g>
-        <path d="M60 180 Q240 0 420 180" fill="none" stroke="#7BA0D9" stroke-width="2.6"/>
-        <path d="M240 180 V86" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="6 5" opacity="0.5"/>
+        <circle cx="190" cy="76" r="24" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-width="2.4"/>
+        <circle cx="190" cy="76" r="2.5" fill="currentColor"/>
+        <rect x="144" y="150" width="44" height="44" fill="#7BA0D9" fill-opacity="0.22" stroke="currentColor" stroke-width="2"/>
+        <rect x="192" y="118" width="44" height="44" fill="#e57373" fill-opacity="0.22" stroke="currentColor" stroke-width="2"/>
         <g stroke="#4db6ac" fill="#4db6ac">
-            <path d="M240 96 V174" stroke-width="1.8"/>
-            <polygon points="235,100 240,88 245,100"/>
-            <polygon points="235,170 240,182 245,170"/>
+            <path d="M118 146 V182" stroke-width="2.2" stroke-linecap="round"/>
+            <polygon points="112,180 118,194 124,180"/>
+            <path d="M262 166 V126" stroke-width="2.2" stroke-linecap="round"/>
+            <polygon points="256,128 262,114 268,128"/>
         </g>
-        <g stroke="#fbbf24" fill="#fbbf24">
-            <path d="M60 180 L108 132" stroke-width="2.4" stroke-linecap="round"/>
-            <polygon points="118,122 102.5,129.1 110.9,137.5"/>
-        </g>
-        <g font-family="Georgia, serif" font-style="italic" font-size="18">
-            <text x="250" y="140" fill="#4db6ac">h<tspan font-size="12" font-style="normal" dy="4">max</tspan></text>
-            <text x="96" y="100" fill="#fbbf24" text-anchor="middle">v<tspan font-size="12" font-style="normal" dy="4">0</tspan></text>
-            <g fill="currentColor" text-anchor="middle">
-                <text x="46" y="199">O</text>
-                <text x="240" y="201">M</text>
-                <text x="420" y="201">B</text>
-                <text x="101" y="172" font-size="16">&#945;</text>
+        <g font-family="Georgia, serif" font-style="italic" font-size="18" text-anchor="middle">
+            <g fill="currentColor">
+                <text x="166" y="178">m<tspan font-size="12" font-style="normal" dy="4">1</tspan></text>
+                <text x="214" y="146">m<tspan font-size="12" font-style="normal" dy="4">2</tspan></text>
+            </g>
+            <g fill="#4db6ac">
+                <text x="102" y="176">a</text>
+                <text x="278" y="146">a</text>
             </g>
         </g>
     </svg>`,
             answers: [
-                "a) \\( 45^{\\circ} \\)", "b) \\( \\operatorname{arctg}\\dfrac{4}{5} \\)", "c) \\( \\operatorname{arctg} 2 \\)",
-                "d) \\( 30^{\\circ} \\)", "e) \\( 40^{\\circ} \\)", "f) \\( \\operatorname{arctg}\\dfrac{1}{2} \\)"
+                "a) \\( 10 \\) N", "b) \\( 50 \\) N", "c) \\( 12 \\) N",
+                "d) \\( 24 \\) N", "e) \\( 30 \\) N", "f) \\( 30 \\) kg"
             ],
-            correct: "a"
+            correct: "d"
         },
         {
             text: `<b>Mașină termică Carnot.</b> O mașină termică ideală (Carnot) funcționează între temperaturile \\( t_1 = 227\\,^{\\circ}\\mathrm{C} \\) și \\( t_2 = 27\\,^{\\circ}\\mathrm{C} \\). Randamentul mașinii este:`,
@@ -1103,8 +1106,9 @@ int main() {
 
         renderMathInElement(resultsEl);
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        window.saveSimulationResult?.('simulare-2026-07-20-' + selectedTrack, {
-            title: 'Simulare #4 — Mate + ' + discLabel + ' (22 Iulie 2026)',
+        window.saveSimulationResult?.('simulare-2026-07-21-' + selectedTrack, {
+            title: 'Simulare #4 — Mate + ' + discLabel + ' (21 Iulie 2026)',
+            track: selectedTrack,
             scoreTotal, scoreDisc, scoreMate,
             timeElapsed: TOTAL_SECONDS - secondsLeft
         });

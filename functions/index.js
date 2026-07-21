@@ -10,7 +10,7 @@ db.settings({ databaseId: "admiterepoli" });
 // Produse Gumroad one-time (o simulare, acces permanent), NU abonamente.
 // Valorile sunt permalink-urile Gumroad şi sunt folosite ca atare în
 // users/{uid}.purchasedSimulations.
-const SIMULATION_PERMALINKS = ["simulare_09_05", "simulare-22-07"];
+const SIMULATION_PERMALINKS = ["simulare_09_05", "simulare-21-07"];
 
 // Gumroad trimite fie permalink-ul simplu, fie forma "<user>/<permalink>".
 function matchSimulationPermalink(productPermalink) {

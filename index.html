@@ -146,7 +146,7 @@
                                 <span class="lp-sim-subj lp-sim-subj-info">Informatică</span>
                                 <span class="lp-sim-subj lp-sim-subj-fiz">Fizică <span class="lp-sim-fiz-star">✦</span></span>
                             </div>
-                            <p class="lp-sim-card-meta">22 iulie 2026, 10:00 – 22:00 &nbsp;·&nbsp; 3 ore &nbsp;·&nbsp; 20 subiecte</p>
+                            <p class="lp-sim-card-meta">21 – 24 iulie 2026, intrare oricând &nbsp;·&nbsp; 3 ore &nbsp;·&nbsp; 20 subiecte</p>
                         </div>
 
                         <div class="lp-sim-card-right">
@@ -347,7 +347,7 @@
 
         <script>
             (function() {
-                const target = new Date("2026-07-22T07:00:00Z"); // 22 iulie 2026, 10:00 EEST
+                const target = new Date("2026-07-21T14:00:00Z"); // 21 iulie 2026, 17:00 EEST
                 function pad(n) { return String(n).padStart(2, "0"); }
                 function tick() {
                     const diff = target - Date.now();
@@ -387,9 +387,11 @@
 
             // Simulare #4 — acces permanent după cumpărare, fără deadline de vânzare.
             const SIM_ID        = "simulare-22-07";              // = product_permalink Gumroad
-            const SIM_URL       = "./simulare-2026-07-20";
-            const ACCESS_START  = new Date("2026-07-22T07:00:00Z"); // 10:00 EEST
-            const LAST_ENTRY    = new Date("2026-07-22T19:00:00Z"); // 22:00 EEST — ultima intrare
+            const SIM_URL       = "./simulare-2026-07-21";
+            const ACCESS_START  = new Date("2026-07-21T14:00:00Z"); // 21 iulie, 17:00 EEST
+            // Fără ultimă intrare: se poate porni oricând în fereastră. Pe 24 iulie la
+            // 10:00 subiectul + baremul + rezolvarea devin publice în arhiva de pe /simulari.
+            const PUBLIC_AT     = new Date("2026-07-24T07:00:00Z"); // 24 iulie, 10:00 EEST
             const GUMROAD_BASE  = "https://admiterepoli.gumroad.com/l/simulare-22-07";
 
             const app  = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
@@ -434,12 +436,12 @@
                     if (now < ACCESS_START) {
                         render(
                             `<button class="lp-btn lp-btn-fill" disabled style="opacity:0.6;cursor:default;">Deja aveți acces ✓</button>`,
-                            "Simularea se deschide pe 22 iulie la ora 10:00."
+                            "Simularea se deschide pe 21 iulie la ora 17:00."
                         );
                     } else {
                         render(
                             `<a href="${SIM_URL}" class="lp-btn lp-btn-fill">Intră în simulare &rarr;</a>`,
-                            new Date() < LAST_ENTRY ? "Ultima intrare: 22 iulie, ora 22:00." : ""
+                            now < PUBLIC_AT ? "Poți începe oricând până vineri, 24 iulie, ora 10:00." : ""
                         );
                     }
                     return;
@@ -448,7 +450,7 @@
                 if (status === "trial_pending") {
                     render(
                         `<button class="lp-btn lp-btn-fill" disabled style="opacity:0.6;cursor:default;">Acces confirmat ✓</button>`,
-                        "Simularea se deschide pe 22 iulie la ora 10:00."
+                        "Simularea se deschide pe 21 iulie la ora 17:00."
                     );
                     return;
                 }

@@ -377,7 +377,11 @@ function hasSimulationAccess(data, simId) {
    Atenţie: e doar gating de UI — oprirea reală a vânzării se face din Gumroad
    (unpublish produs), altfel linkul direct rămâne funcţional. */
 const SIMULATION_SALE_END = {
-  'simulare-21-07': new Date('2026-07-23T21:00:00+03:00')  // joi, 23 iulie 2026
+  // Vineri, 24 iulie 2026, ora 10:00 — acelaşi moment cu PUBLIC_AT din index.html
+  // şi cu data-reveal-after a blocului de arhivă din simulari.html. Cele trei
+  // trebuie să rămână identice: în clipa în care baremul devine public în arhivă,
+  // butoanele de cumpărare trebuie să dispară.
+  'simulare-21-07': new Date('2026-07-24T10:00:00+03:00')
 };
 
 function isSaleClosed(simId) {

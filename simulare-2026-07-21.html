@@ -15,14 +15,14 @@
         window.simulationId       = 'simulare-21-07';
         window.simulationLabel    = 'Simularea #4';
         window.simulationBuyUrl   = 'https://admiterepoli.gumroad.com/l/simulare-21-07';
-        window.examGateStart      = new Date('2026-07-21T15:00:00+03:00');
-        window.examGateStartLabel = '21 Iulie 2026, ora 15:00';
+        window.examGateStart      = new Date('2026-07-21T17:00:00+03:00');
+        window.examGateStartLabel = '21 Iulie 2026, ora 17:00';
         // Data de închidere a vânzării stă în SIMULATION_SALE_END din firebase-auth.js.
     </script>
     <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulare #4 — 21 Iulie 2026 | AdmiterePoli</title>
+    <title>Simulare #4 — 21–24 Iulie 2026 | AdmiterePoli</title>
     <meta name="description" content="A patra simulare AdmiterePoli — Matematică + Informatică sau Fizică.">
     <link rel="icon" type="image/png" href="logosquared.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -164,7 +164,7 @@
 
                 <!-- ===== TRACK SELECTOR ===== -->
                 <div id="track-selector" class="sim-start">
-                    <div class="sim-badge-date">&#128197; 21 Iulie, 15:00 &ndash; 23 Iulie, 21:00</div>
+                    <div class="sim-badge-date">&#128197; 21 – 24 Iulie 2026 &bull; intrare oricând</div>
                     <h1>Simulare #4</h1>
                     <p class="sim-start-subtitle">
                         Aceasta este a <strong>patra simulare</strong> AdmiterePoli.<br>
@@ -1190,7 +1190,7 @@ int main() {
         if (!replayingSaved) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
             window.saveSimulationResult?.('simulare-2026-07-21-' + selectedTrack, {
-                title: 'Simulare #4 — Mate + ' + discLabel + ' (21 Iulie 2026)',
+                title: 'Simulare #4 — Mate + ' + discLabel + ' (Iulie 2026)',
                 track: selectedTrack,
                 scoreTotal, scoreDisc, scoreMate,
                 timeElapsed: TOTAL_SECONDS - secondsLeft

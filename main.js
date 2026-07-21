@@ -327,13 +327,40 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// ── Dezvăluire programată ────────────────────────────────────────────────────
+// Elementele cu data-reveal-after pornesc cu style="display:none" în HTML (deci
+// fără flash la încărcare) şi sunt afişate automat când trece data respectivă.
+// Restaurăm display-ul la '' — nu la 'block' — ca să nu rupem regulile de clasă.
+(function () {
+  function revealScheduled() {
+    const now = Date.now();
+    document.querySelectorAll('[data-reveal-after]').forEach(el => {
+      const at = new Date(el.dataset.revealAfter).getTime();
+      if (!Number.isNaN(at) && now >= at) {
+        el.style.display = '';
+        el.removeAttribute('data-reveal-after');
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', revealScheduled);
+  } else {
+    revealScheduled();
+  }
+})();
+
 // ── Countdown timer (pagina simulări) ────────────────────────────────────────
-const targetDate = new Date("May 9, 2026 10:10:00").getTime();
-window.examGateStart = new Date("May 9, 2026 10:10:00");
+// Fallback global — paginile de simulare îşi setează propriul examGateStart în <head>,
+// aşa că nu îl suprascriem aici (main.js se încarcă după acel inline script).
+window.examGateStart = window.examGateStart ?? new Date("May 9, 2026 10:10:00");
 const btn = document.getElementById("glass-countdown-btn");
 const timerText = document.getElementById("countdown-timer");
 
 if (btn && timerText) {
+    // Data ţintă vine din data-target pe buton, ca să nu fie hardcodată aici.
+    const targetDate = new Date(btn.dataset.target).getTime();
+
     function tickCountdown() {
         const distance = targetDate - Date.now();
 

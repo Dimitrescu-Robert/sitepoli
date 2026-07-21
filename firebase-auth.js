@@ -326,6 +326,7 @@ async function syncUserToFirestore(user, plan, billing) {
     if (!snap.exists()) {
       await setDoc(userRef, {
         email: user.email,
+        emailLower: (user.email || '').toLowerCase(),
         status: 'free',
         selectedPlan: plan || 'standard',
         selectedBilling: billing || 'monthly',
@@ -343,18 +344,64 @@ async function syncUserToFirestore(user, plan, billing) {
 
 /* ── Content gate pentru paginile de simulare ───────────────── */
 
+const STUDENT_PLUS_URL = 'https://admiterepoli.gumroad.com/l/student-plus-lunar';
+
+// Statusuri care dau acces la tot conținutul premium.
+const PAID_STATUSES = ['paid', 'pending_cancellation', 'trial'];
+
+function hasSimulationAccess(data, simId) {
+  const status = data?.status || 'free';
+  if (PAID_STATUSES.includes(status)) return true;
+  return !!simId && Array.isArray(data?.purchasedSimulations)
+    && data.purchasedSimulations.includes(simId);
+}
+
+/* Deblocare automată la ora de start, fără refresh manual. Un singur timer activ
+   pe pagină — applyExamGate poate fi re-apelat la fiecare schimbare de stare auth.
+   setTimeout are un plafon de ~24.8 zile, aşa că îl re-programăm în tranşe. */
+const MAX_TIMEOUT_MS = 2147483647;
+let gateUnlockTimer = null;
+
+function stopGateCountdown() {
+  if (gateUnlockTimer) {
+    clearTimeout(gateUnlockTimer);
+    gateUnlockTimer = null;
+  }
+}
+
+function scheduleGateUnlock(target, onExpire) {
+  stopGateCountdown();
+  const diff = target - Date.now();
+  if (diff <= 0) {
+    onExpire();
+    return;
+  }
+  gateUnlockTimer = setTimeout(
+    () => scheduleGateUnlock(target, onExpire),
+    Math.min(diff, MAX_TIMEOUT_MS)
+  );
+}
+
 async function applyExamGate(user) {
   const content = document.getElementById('exam-content');
   const gate = document.getElementById('exam-gate');
   if (!content || !gate) return;
 
+  // Config per pagină (vezi <script> din <head>-ul paginii de simulare)
+  const simId    = window.simulationId ?? null;
+  const simLabel = window.simulationLabel ?? 'Această simulare';
+  const buyUrl   = window.simulationBuyUrl ?? STUDENT_PLUS_URL;
+  const buyLabel = window.simulationBuyUrl ? 'Cumpără acces la simulare' : 'Cumpără acces Student Plus';
+
   function showGate(html) {
+    stopGateCountdown();
     gate.innerHTML = html;
     gate.style.display = '';
     content.style.display = 'none';
   }
 
   function showContent() {
+    stopGateCountdown();
     content.style.display = '';
     gate.style.display = 'none';
     if (window.renderMathInElement) renderMathInElement(content);
@@ -362,14 +409,17 @@ async function applyExamGate(user) {
 
   // Înainte de ora de start → blocat pentru toată lumea
   const examStart = window.examGateStart ?? new Date('2026-05-09T09:50:00+03:00');
+  const startLabel = window.examGateStartLabel ?? '9 Mai 2026, ora 9:50';
   if (new Date() < examStart) {
     showGate(`
       <div class="exam-gate-inner">
         <div class="exam-gate-icon">🕐</div>
         <h2 class="exam-gate-title">Simularea nu a început încă</h2>
-        <p class="exam-gate-desc">Simularea #3 va fi disponibilă pe <strong>9 Mai 2026, ora 9:50</strong>.<br>Înscrie-te acum cu Student Plus pentru a obține acces imediat după start.</p>
-        <a class="exam-gate-btn" href="https://admiterepoli.gumroad.com/l/student-plus-lunar" target="_blank" rel="noopener">Cumpără acces Student Plus</a>
+        <p class="exam-gate-desc">${simLabel} se deschide pe <strong>${startLabel}</strong>.<br>Cumpără acum accesul pentru a intra imediat după start.</p>
+        <a class="exam-gate-btn" href="${buyUrl}" target="_blank" rel="noopener">${buyLabel}</a>
       </div>`);
+    // La ora de start re-rulăm gate-ul: cine are acces intră fără refresh.
+    scheduleGateUnlock(examStart, () => applyExamGate(user));
     return;
   }
 
@@ -379,10 +429,10 @@ async function applyExamGate(user) {
       <div class="exam-gate-inner">
         <div class="exam-gate-icon">🔒</div>
         <h2 class="exam-gate-title">Acces restricționat</h2>
-        <p class="exam-gate-desc">Această simulare este disponibilă exclusiv membrilor <strong>Student Plus</strong>.<br>Autentifică-te dacă ai deja un abonament activ.</p>
+        <p class="exam-gate-desc">Această simulare este disponibilă membrilor <strong>Student Plus</strong> sau celor care au cumpărat accesul separat.<br>Autentifică-te dacă ai deja acces.</p>
         <div class="exam-gate-actions">
           <button class="exam-gate-btn" onclick="openModal()">Autentifică-te</button>
-          <a class="exam-gate-btn exam-gate-btn-outline" href="https://admiterepoli.gumroad.com/l/student-plus-lunar" target="_blank" rel="noopener">Cumpără acces</a>
+          <a class="exam-gate-btn exam-gate-btn-outline" href="${buyUrl}" target="_blank" rel="noopener">Cumpără acces</a>
         </div>
       </div>`);
     return;
@@ -391,20 +441,21 @@ async function applyExamGate(user) {
   try {
     const snap = await getDoc(doc(db, 'users', user.uid));
     const data = snap.exists() ? snap.data() : {};
-    const status = data.status || 'free';
-    const purchased = data.purchasedSimulations || [];
-    const simId = window.simulationId ?? null;
-    const isPaid = status === 'paid' || status === 'pending_cancellation' || status === 'trial'
-      || (simId && purchased.includes(simId));
-    if (isPaid) {
+    if (hasSimulationAccess(data, simId)) {
       showContent();
     } else {
+      const buyHref = window.simulationBuyUrl
+        ? `${window.simulationBuyUrl}?wanted=true&email=${encodeURIComponent(user.email || '')}`
+        : STUDENT_PLUS_URL;
       showGate(`
         <div class="exam-gate-inner">
           <div class="exam-gate-icon">🔒</div>
           <h2 class="exam-gate-title">Acces restricționat</h2>
-          <p class="exam-gate-desc">Această simulare este disponibilă exclusiv membrilor cu plan <strong>Student Plus</strong>. Fă upgrade pentru a accesa toate simulările și resursele premium.</p>
-          <a class="exam-gate-btn" href="https://admiterepoli.gumroad.com/l/student-plus-lunar" target="_blank" rel="noopener">Cumpără acces Student Plus</a>
+          <p class="exam-gate-desc">${simLabel} este inclusă în abonamentul <strong>Student Plus</strong> sau poate fi cumpărată separat, cu acces permanent.</p>
+          <div class="exam-gate-actions">
+            <a class="exam-gate-btn" href="${buyHref}" target="_blank" rel="noopener">${buyLabel}</a>
+            ${window.simulationBuyUrl ? `<a class="exam-gate-btn exam-gate-btn-outline" href="${STUDENT_PLUS_URL}" target="_blank" rel="noopener">Vezi Student Plus</a>` : ''}
+          </div>
         </div>`);
     }
   } catch (e) {
@@ -413,42 +464,59 @@ async function applyExamGate(user) {
   }
 }
 
-/* ── Gate bloc Simulare #3 pe simulari.html ─────────────────── */
+/* ── Gate blocuri simulări plătite pe simulari.html ──────────── */
+
+// Simulările plătite listate în arhivă. `simId` = product_permalink-ul Gumroad.
+const PAID_SIMULATIONS = [
+  { headerId: 'sim3-header', dropdownId: 'dropdown-arhiva-sim-3', simId: 'simulare_09_05', label: 'Simularea #3', buyUrl: null },
+  { headerId: 'sim4-header', dropdownId: 'dropdown-arhiva-sim-4', simId: 'simulare-22-07', label: 'Simularea #4', buyUrl: 'https://admiterepoli.gumroad.com/l/simulare-22-07' }
+];
 
 async function applySimulariPaidLinks(user) {
-  const header = document.getElementById('sim3-header');
-  const dropdown = document.getElementById('dropdown-arhiva-sim-3');
-  if (!header || !dropdown) return;
+  const blocks = PAID_SIMULATIONS
+    .map(cfg => ({
+      ...cfg,
+      header: document.getElementById(cfg.headerId),
+      dropdown: document.getElementById(cfg.dropdownId)
+    }))
+    .filter(b => b.header && b.dropdown);
 
-  if (!dropdown._originalHTML) dropdown._originalHTML = dropdown.innerHTML;
+  if (!blocks.length) return;
 
-  let isPaid = false;
+  let data = null;
+  let fetchFailed = false;
 
   if (user) {
     try {
       const snap = await getDoc(doc(db, 'users', user.uid));
-      const data = snap.exists() ? snap.data() : {};
-      const status = data.status || 'free';
-      const purchased = data.purchasedSimulations || [];
-      isPaid = status === 'paid' || status === 'pending_cancellation' || status === 'trial'
-        || purchased.includes('simulare_09_05');
+      data = snap.exists() ? snap.data() : {};
     } catch (e) {
       console.warn('[SimulariGate] Nu s-a putut verifica statusul:', e.message);
-      isPaid = true;
+      fetchFailed = true;
     }
   }
 
+  for (const block of blocks) {
+    // fail-open: dacă citirea din Firestore crapă, nu blocăm userul autentificat
+    const isPaid = fetchFailed || (!!data && hasSimulationAccess(data, block.simId));
+    applySimulariLock(block, user, isPaid);
+  }
+}
+
+function applySimulariLock({ header, dropdown, label, buyUrl }, user, isPaid) {
+  if (!dropdown._originalHTML) dropdown._originalHTML = dropdown.innerHTML;
+
   if (isPaid) {
     dropdown.innerHTML = dropdown._originalHTML;
-    header.querySelector('.sim3-lock-badge')?.remove();
+    header.querySelector('.sim-lock-badge')?.remove();
     return;
   }
 
   // Adaugă lock badge pe header
   const strong = header.querySelector('strong');
-  if (strong && !header.querySelector('.sim3-lock-badge')) {
+  if (strong && !header.querySelector('.sim-lock-badge')) {
     const badge = document.createElement('span');
-    badge.className = 'sim3-lock-badge';
+    badge.className = 'sim-lock-badge';
     badge.style.cssText = 'margin-left:0.6rem;font-size:1rem;opacity:0.8;vertical-align:middle;';
     badge.textContent = '🔒';
     strong.appendChild(badge);
@@ -458,23 +526,27 @@ async function applySimulariPaidLinks(user) {
   const subLinks = dropdown.querySelector('.sub-links');
   if (!subLinks) return;
 
-  const authButtons = user
-    ? `<button onclick="openUpgradeModal()" style="padding:0.6rem 1.4rem;background:var(--accent2);color:#fff;border:none;border-radius:8px;font-weight:600;font-size:0.95rem;cursor:pointer;">
+  const buyBtn = buyUrl
+    ? `<a href="${buyUrl}${user ? '?wanted=true&email=' + encodeURIComponent(user.email || '') : ''}" target="_blank" rel="noopener" style="display:inline-block;padding:0.6rem 1.4rem;background:var(--accent2);color:#fff;border-radius:8px;font-weight:600;font-size:0.95rem;text-decoration:none;">
         Cumpără acces
-       </button>`
+       </a>`
+    : `<button onclick="openUpgradeModal()" style="padding:0.6rem 1.4rem;background:var(--accent2);color:#fff;border:none;border-radius:8px;font-weight:600;font-size:0.95rem;cursor:pointer;">
+        Cumpără acces
+       </button>`;
+
+  const authButtons = user
+    ? buyBtn
     : `<div style="display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center;">
         <button onclick="openModal()" style="padding:0.6rem 1.4rem;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:600;font-size:0.95rem;cursor:pointer;">
           Autentifică-te
         </button>
-        <button onclick="openUpgradeModal()" style="padding:0.6rem 1.4rem;background:transparent;color:var(--accent2);border:1px solid var(--accent2);border-radius:8px;font-weight:600;font-size:0.95rem;cursor:pointer;">
-          Cumpără acces
-        </button>
+        ${buyBtn}
       </div>`;
 
   const lockCard = `<div style="display:flex;flex-direction:column;align-items:center;gap:1rem;padding:2rem 1.5rem;text-align:center;">
     <div style="font-size:2.5rem;line-height:1;">🔒</div>
     <h3 style="margin:0;color:#fff;font-size:1.15rem;">Acces restricționat</h3>
-    <p style="margin:0;color:var(--muted);font-size:0.95rem;max-width:280px;line-height:1.5;">Simularea #3 este disponibilă exclusiv membrilor <strong style="color:#C3D5F0;">Student Plus</strong>.</p>
+    <p style="margin:0;color:var(--muted);font-size:0.95rem;max-width:280px;line-height:1.5;">${label} este disponibilă membrilor <strong style="color:#C3D5F0;">Student Plus</strong> sau prin cumpărare separată.</p>
     ${authButtons}
   </div>`;
 
@@ -702,7 +774,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Login email/parolă
   document.getElementById('btn-login-email').addEventListener('click', async () => {
     clearError('login');
-    const email = document.getElementById('login-email').value.trim();
+    const email = document.getElementById('login-email').value.trim().toLowerCase();
     const password = document.getElementById('login-password').value;
     if (!email || !password) { showError('login', 'Completează email-ul și parola.'); return; }
     const btn = document.getElementById('btn-login-email');
@@ -737,7 +809,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Register email/parolă
   document.getElementById('btn-register-email').addEventListener('click', async () => {
     clearError('register');
-    const email = document.getElementById('register-email').value.trim();
+    const email = document.getElementById('register-email').value.trim().toLowerCase();
     const password = document.getElementById('register-password').value;
     if (!email || !password) { showError('register', 'Completează email-ul și parola.'); return; }
     const btn = document.getElementById('btn-register-email');

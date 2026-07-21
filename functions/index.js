@@ -7,6 +7,19 @@ admin.initializeApp();
 const db = admin.firestore();
 db.settings({ databaseId: "admiterepoli" });
 
+// Produse Gumroad one-time (o simulare, acces permanent), NU abonamente.
+// Valorile sunt permalink-urile Gumroad şi sunt folosite ca atare în
+// users/{uid}.purchasedSimulations.
+const SIMULATION_PERMALINKS = ["simulare_09_05", "simulare-22-07"];
+
+// Gumroad trimite fie permalink-ul simplu, fie forma "<user>/<permalink>".
+function matchSimulationPermalink(productPermalink) {
+  if (typeof productPermalink !== "string") return null;
+  return SIMULATION_PERMALINKS.find(
+    (p) => productPermalink === p || productPermalink.endsWith(`/${p}`)
+  ) || null;
+}
+
 exports.gumroadWebhook = onRequest(async (req, res) => {
   if (req.method !== "POST") {
     return res.status(405).send("Method Not Allowed");
@@ -64,8 +77,26 @@ exports.gumroadWebhook = onRequest(async (req, res) => {
         console.error("Webhook primit fără email");
         return res.status(400).send("Missing email");
       }
-      const userRecord = await admin.auth().getUserByEmail(rawEmail.toLowerCase());
-      uid = userRecord.uid;
+      const normalizedEmail = rawEmail.toLowerCase();
+      try {
+        const userRecord = await admin.auth().getUserByEmail(normalizedEmail);
+        uid = userRecord.uid;
+      } catch (err) {
+        if (err.code !== "auth/user-not-found") throw err;
+        // Conturile vechi pot avea emailul stocat cu majuscule în Auth, iar
+        // getUserByEmail e case-sensitive și nu le găsește. Fallback: căutăm
+        // după emailLower în Firestore (normalizat la înregistrare).
+        const snap = await db.collection("users")
+          .where("emailLower", "==", normalizedEmail)
+          .limit(1)
+          .get();
+        if (snap.empty) {
+          console.error(`Niciun user Firebase/Firestore cu emailul: ${normalizedEmail}`);
+          return res.status(404).send("User not found");
+        }
+        uid = snap.docs[0].id;
+        console.log(`[Webhook] User găsit prin fallback emailLower: ${normalizedEmail} → uid ${uid}`);
+      }
     }
 
     // --- subscription_ended: subscripția s-a terminat efectiv (acces revocat acum) ---
@@ -108,19 +139,20 @@ exports.gumroadWebhook = onRequest(async (req, res) => {
     }
 
     // --- sale: cumpărare simulare one-time ---
-    const isSimulare = product_permalink === "simulare_09_05" ||
-      (typeof product_permalink === "string" && product_permalink.endsWith("/simulare_09_05"));
-    if (isSimulare && refunded !== "true" && refunded !== true) {
+    // Permalink-ul cumpărat devine cheia din purchasedSimulations; frontend-ul
+    // (window.simulationId) trebuie să folosească exact aceleaşi valori.
+    const simulationPermalink = matchSimulationPermalink(product_permalink);
+    if (simulationPermalink && refunded !== "true" && refunded !== true) {
       await db.collection("users").doc(uid).set(
         {
           gumroadSaleId: sale_id || null,
           gumroadProduct: product_permalink,
           paidAt: admin.firestore.FieldValue.serverTimestamp(),
-          purchasedSimulations: admin.firestore.FieldValue.arrayUnion(product_permalink),
+          purchasedSimulations: admin.firestore.FieldValue.arrayUnion(simulationPermalink),
         },
         { merge: true }
       );
-      console.log(`[Webhook] Acces simulare ${product_permalink} acordat pentru uid ${uid}`);
+      console.log(`[Webhook] Acces simulare ${simulationPermalink} acordat pentru uid ${uid}`);
       return res.status(200).send("Simulare access granted");
     }
 

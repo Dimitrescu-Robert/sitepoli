@@ -87,6 +87,16 @@
                         </div>
                     </div>
 
+                    <div class="sim-countdown-wrap">
+                        <span class="sim-countdown-label">Următoarea simulare</span>
+                        <a href="./simulare-2026-07-20" id="glass-countdown-btn" class="liquid-glass-btn locked"
+                           data-target="2026-07-22T10:00:00+03:00">
+                            <span class="countdown-text" id="countdown-timer">Se calculează...</span>
+                            <span class="ready-text" style="color: rgb(221, 221, 221);">Intră în Simulare &rarr;</span>
+                        </a>
+                        <span class="sim-countdown-hint">Butonul se deblochează automat la data simulării</span>
+                    </div>
+
                 <div class="sim-archive">
                     <div class="sim-archive-header">
                         <h3>Simulări anterioare</h3>
@@ -94,8 +104,13 @@
                     </div>
 
                     <div class="set-container">
-                        <p class="subiecte-box" data-set="arhiva-sim-4" id="sim4-header"><strong>Simulare #4 — 20 Iulie 2026</strong></p>
-                        <div class="dropdown-section" id="dropdown-arhiva-sim-4">
+                        <!-- Intrarea de arhivă pentru Simularea #4 apare automat după ce se
+                             termină simularea (ultima intrare 22:00 + 3h). Până atunci accesul
+                             se face prin butonul de countdown de mai sus. -->
+                        <p class="subiecte-box" data-set="arhiva-sim-4" id="sim4-header"
+                           data-reveal-after="2026-07-23T01:00:00+03:00" style="display:none"><strong>Simulare #4 — 22 Iulie 2026</strong></p>
+                        <div class="dropdown-section" id="dropdown-arhiva-sim-4"
+                             data-reveal-after="2026-07-23T01:00:00+03:00" style="display:none">
                             <div class="sub-links" style="display: flex; justify-content: center; margin: 0; padding: 0;">
                                 <section style="display: flex; flex-direction: column; align-items: center;">
                                     <h3 style="color: #ffffff; margin-bottom: 0.8rem; text-align: center;">Simulare 4 2026 — Informatică</h3>

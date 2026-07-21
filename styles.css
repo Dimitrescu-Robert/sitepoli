@@ -2845,6 +2845,49 @@ img, button { max-width: 100%; }
   line-height: 1.4;
 }
 
+/* ── Countdown în cardul de simulare ── */
+
+.lp-sim-countdown {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.lp-sim-cd-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  min-width: 54px;
+  padding: 0.5rem 0.4rem;
+  background: rgba(91, 156, 246, 0.1);
+  border: 1px solid rgba(91, 156, 246, 0.28);
+  border-radius: 10px;
+}
+
+.lp-sim-cd-num {
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #93c5fd;
+  /* Cifrele au lăţime egală, ca numărul să nu tresară la fiecare tick */
+  font-variant-numeric: tabular-nums;
+}
+
+.lp-sim-cd-label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+
+/* Lipeşte legenda de countdown, peste gap-ul de 1rem al coloanei */
+.lp-sim-cd-caption {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.35);
+  margin-top: -0.7rem;
+}
+
 @media (max-width: 860px) {
   .lp-sim-card {
     flex-direction: column;
@@ -2860,6 +2903,15 @@ img, button { max-width: 100%; }
 
   .lp-sim-cta-btn {
     width: 100%;
+  }
+
+  .lp-sim-countdown {
+    width: 100%;
+  }
+
+  .lp-sim-cd-unit {
+    flex: 1;
+    min-width: 0;
   }
 }
 

@@ -15,7 +15,7 @@
         window.simulationId       = 'simulare-22-07';
         window.simulationLabel    = 'Simularea #4';
         window.simulationBuyUrl   = 'https://admiterepoli.gumroad.com/l/simulare-22-07';
-        window.examGateStart      = new Date('2026-07-22T10:00:00+03:00');
+        window.examGateStart      = new Date('2024-07-22T10:00:00+03:00');
         window.examGateStartLabel = '22 Iulie 2026, ora 10:00';
     </script>
     <link rel="stylesheet" href="styles.css">
@@ -118,6 +118,16 @@
         #quiz-area.fizica-mode #panel-info .sim-answer.selected .sim-answer-check { border-color: #fbbf24; background: rgba(251,191,36,0.12); }
         #quiz-area.fizica-mode #panel-info .sim-answer.selected .sim-answer-check::after { background: #fbbf24; }
         #quiz-area.fizica-mode #panel-info .sim-answer-check { border-color: rgba(251,191,36,0.25); }
+
+        /* ── Figuri (scheme de circuit) ───────────────────────── */
+        .fig-svg {
+            display: block;
+            width: 100%;
+            max-width: 520px;
+            height: auto;
+            margin: 1.1rem auto 0.3rem;
+            color: #cbd5e6;
+        }
     </style>
 </head>
 <body class="lp-body lp-dark">
@@ -258,20 +268,6 @@
 
     <script src="main.js"></script>
     <script>
-    // ===== PLACEHOLDER GENERATOR =====
-    // Înlocuiește enunțurile de mai jos cu problemele reale când sunt gata.
-    function makePlaceholders(label, n) {
-        var arr = [];
-        for (var i = 0; i < n; i++) {
-            arr.push({
-                text: '<b>' + label + ' — Problema ' + (i + 1) + '.</b> (Enunț în lucru — va fi adăugat în curând.)',
-                answers: ["a) —", "b) —", "c) —", "d) —", "e) —", "f) —"],
-                correct: "a"
-            });
-        }
-        return arr;
-    }
-
     // ===== PROBLEM DATA =====
     const allProblems = {
         info: [
@@ -529,11 +525,233 @@ int main() {
         }
         ],
 
-        // Probleme placeholder de fizică — de completat ulterior.
-        fizica: makePlaceholders('Fizică', 10)
+        fizica: [
+        {
+            text: `<b>Ciocnire plastică.</b> Un corp de masă \\( m_1 = 2 \\) kg, având viteza \\( v_1 = 6 \\) m/s, lovește plastic (ciocnire perfect inelastică) un corp de masă \\( m_2 = 4 \\) kg aflat în repaus. Energia cinetică pierdută în ciocnire este:`,
+            answers: [
+                "a) \\( 12 \\) J", "b) \\( 36 \\) J", "c) \\( 24 \\) J",
+                "d) \\( 0 \\) J", "e) \\( 6 \\) J", "f) \\( 18 \\) J"
+            ],
+            correct: "c"
+        },
+        {
+            text: `<b>Calorimetrie.</b> Se amestecă \\( m_1 = 200 \\) g de apă la \\( t_1 = 80\\,^{\\circ}\\mathrm{C} \\) cu \\( m_2 = 300 \\) g de apă la \\( t_2 = 20\\,^{\\circ}\\mathrm{C} \\), într-un calorimetru ideal (fără pierderi). Temperatura de echilibru este:`,
+            answers: [
+                "a) \\( 50\\,^{\\circ}\\mathrm{C} \\)", "b) \\( 40\\,^{\\circ}\\mathrm{C} \\)", "c) \\( 44\\,^{\\circ}\\mathrm{C} \\)",
+                "d) \\( 60\\,^{\\circ}\\mathrm{C} \\)", "e) \\( 44 \\) K", "f) \\( 48\\,^{\\circ}\\mathrm{C} \\)"
+            ],
+            correct: "c"
+        },
+        {
+            text: `<b>Rezistență echivalentă.</b> Se consideră circuitul din figura de mai jos. Să se calculeze rezistența echivalentă între punctele \\( A \\) și \\( B \\), știind că \\( R' = 2R \\).
+    <svg class="fig-svg" viewBox="0 0 560 180" role="img" aria-label="Retea de patru rezistoare intre bornele A si B, cu doua punti conductoare">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M38 90 H80 M140 90 H180 M240 90 H280 M340 90 H380 M440 90 H505"/>
+            <rect x="80" y="76" width="60" height="28"/>
+            <rect x="180" y="76" width="60" height="28"/>
+            <rect x="280" y="76" width="60" height="28"/>
+            <rect x="380" y="76" width="60" height="28"/>
+            <path d="M160 90 V35 H360 V90"/>
+            <path d="M55 90 V150 H260 V90"/>
+            <circle cx="33" cy="90" r="5"/>
+            <circle cx="512" cy="90" r="5"/>
+        </g>
+        <g fill="currentColor">
+            <circle cx="55" cy="90" r="3.5"/>
+            <circle cx="160" cy="90" r="3.5"/>
+            <circle cx="260" cy="90" r="3.5"/>
+            <circle cx="360" cy="90" r="3.5"/>
+        </g>
+        <g fill="currentColor" font-family="Georgia, serif" font-style="italic" font-size="18" text-anchor="middle">
+            <text x="110" y="66">R</text>
+            <text x="210" y="66">R&#8242;</text>
+            <text x="310" y="66">R&#8242;</text>
+            <text x="410" y="66">R</text>
+            <text x="14" y="96">A</text>
+            <text x="536" y="96">B</text>
+        </g>
+    </svg>`,
+            answers: [
+                "a) \\( \\dfrac{3R}{2} \\)", "b) \\( R \\)", "c) \\( \\dfrac{2R}{3} \\)",
+                "d) \\( 6R \\)", "e) \\( \\dfrac{R}{3} \\)", "f) \\( \\dfrac{5R}{2} \\)"
+            ],
+            correct: "a"
+        },
+        {
+            text: `<b>Aruncare oblică.</b> Un corp este aruncat după o direcție care face unghiul \\( \\alpha \\) cu orizontala. Să se afle acest unghi, știind că distanța parcursă de corp pe orizontală este de patru ori mai mare decât înălțimea maximă atinsă de el pe traiectorie. Se neglijează interacțiunea cu aerul.
+    <svg class="fig-svg" viewBox="0 0 520 235" role="img" aria-label="Traiectoria parabolica a unui corp aruncat oblic sub unghiul alfa, cu inaltimea maxima marcata la mijlocul bataii">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M40 180 H478"/>
+            <path d="M60 205 V38"/>
+            <path d="M92 180 A32 32 0 0 0 82.6 157.4" stroke-width="1.6"/>
+        </g>
+        <g fill="currentColor">
+            <polygon points="478,174 494,180 478,186"/>
+            <polygon points="54,38 60,22 66,38"/>
+        </g>
+        <path d="M60 180 Q240 0 420 180" fill="none" stroke="#7BA0D9" stroke-width="2.6"/>
+        <path d="M240 180 V86" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="6 5" opacity="0.5"/>
+        <g stroke="#4db6ac" fill="#4db6ac">
+            <path d="M240 96 V174" stroke-width="1.8"/>
+            <polygon points="235,100 240,88 245,100"/>
+            <polygon points="235,170 240,182 245,170"/>
+        </g>
+        <g stroke="#fbbf24" fill="#fbbf24">
+            <path d="M60 180 L108 132" stroke-width="2.4" stroke-linecap="round"/>
+            <polygon points="118,122 102.5,129.1 110.9,137.5"/>
+        </g>
+        <g font-family="Georgia, serif" font-style="italic" font-size="18">
+            <text x="250" y="140" fill="#4db6ac">h<tspan font-size="12" font-style="normal" dy="4">max</tspan></text>
+            <text x="96" y="100" fill="#fbbf24" text-anchor="middle">v<tspan font-size="12" font-style="normal" dy="4">0</tspan></text>
+            <g fill="currentColor" text-anchor="middle">
+                <text x="46" y="199">O</text>
+                <text x="240" y="201">M</text>
+                <text x="420" y="201">B</text>
+                <text x="101" y="172" font-size="16">&#945;</text>
+            </g>
+        </g>
+    </svg>`,
+            answers: [
+                "a) \\( 45^{\\circ} \\)", "b) \\( \\operatorname{arctg}\\dfrac{4}{5} \\)", "c) \\( \\operatorname{arctg} 2 \\)",
+                "d) \\( 30^{\\circ} \\)", "e) \\( 40^{\\circ} \\)", "f) \\( \\operatorname{arctg}\\dfrac{1}{2} \\)"
+            ],
+            correct: "a"
+        },
+        {
+            text: `<b>Mașină termică Carnot.</b> O mașină termică ideală (Carnot) funcționează între temperaturile \\( t_1 = 227\\,^{\\circ}\\mathrm{C} \\) și \\( t_2 = 27\\,^{\\circ}\\mathrm{C} \\). Randamentul mașinii este:`,
+            answers: [
+                "a) \\( 88\\,\\% \\)", "b) \\( 11{,}9\\,\\% \\)", "c) \\( 50\\,\\% \\)",
+                "d) \\( 40\\,\\% \\)", "e) \\( 60\\,\\% \\)", "f) \\( 100\\,\\% \\)"
+            ],
+            correct: "d"
+        },
+        {
+            text: `<b>Mișcare circulară în plan vertical.</b> O bilă legată de un fir de lungime \\( l = 0{,}4 \\) m este rotită în plan vertical. Se dă \\( g = 10 \\) m/s\\( ^2 \\). Viteza minimă pe care trebuie să o aibă bila în punctul cel mai de sus al traiectoriei, pentru ca firul să rămână întins, este:`,
+            answers: [
+                "a) \\( 4 \\) m/s", "b) \\( 2 \\) m/s", "c) \\( \\sqrt{2} \\) m/s",
+                "d) \\( 8 \\) m/s", "e) \\( 2 \\) m/s\\( ^2 \\)", "f) \\( 0{,}4 \\) m/s"
+            ],
+            correct: "b"
+        },
+        {
+            text: `<b>Inel conductor — putere minimă.</b> Un fir conductor omogen este îndoit sub forma unui inel închis. Inelul este alimentat la o sursă de tensiune constantă \\( U = 6 \\) V prin intermediul a două borne, \\( A \\) și \\( B \\), situate pe circumferința sa. Puterea minimă disipată de circuit este \\( P_{\\min} = 36 \\) W. Să se determine rezistența electrică totală a inelului conductor.
+    <svg class="fig-svg" viewBox="0 0 420 205" role="img" aria-label="Inel conductor alimentat prin doua borne A si B situate pe circumferinta sa">
+        <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+            <circle cx="210" cy="112" r="76"/>
+            <path d="M135.7 96.2 Q95 80 58 94"/>
+            <path d="M284.3 96.2 Q325 80 362 94"/>
+        </g>
+        <g fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="51" cy="94" r="5.5"/>
+            <circle cx="369" cy="94" r="5.5"/>
+        </g>
+        <g fill="currentColor" font-family="Georgia, serif" font-style="italic" font-size="18" text-anchor="middle">
+            <text x="51" y="74">A</text>
+            <text x="369" y="74">B</text>
+        </g>
+    </svg>`,
+            answers: [
+                "a) \\( 1\\ \\Omega \\)", "b) \\( 2\\ \\Omega \\)", "c) \\( 4\\ \\Omega \\)",
+                "d) \\( 10\\ \\Omega \\)", "e) \\( 0{,}75\\ \\Omega \\)", "f) \\( 6\\ \\Omega \\)"
+            ],
+            correct: "c"
+        },
+        {
+            text: `<b>Plan înclinat cu frecare.</b> Un corp este lansat cu viteza inițială \\( v_0 = 35 \\) m/s pe un plan înclinat care formează cu orizontala un unghi \\( \\alpha = 30^{\\circ} \\). Știind că raportul dintre timpul de coborâre și cel de urcare este \\( \\sqrt{7} \\), să se calculeze viteza finală a corpului cu care trece prin punctul de lansare.
+    <svg class="fig-svg" viewBox="0 0 440 250" role="img" aria-label="Corp lansat in sus pe un plan inclinat cu unghiul alfa fata de orizontala">
+        <path d="M60 215 L380 215 L380 30 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M108 215 A48 48 0 0 0 101.6 191" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <text x="122" y="208" fill="currentColor" font-family="Georgia, serif" font-style="italic" font-size="16">&#945;</text>
+        <g transform="translate(60,215) rotate(-30)">
+            <rect x="150" y="-40" width="54" height="40" fill="#7BA0D9" fill-opacity="0.22" stroke="currentColor" stroke-width="2"/>
+            <g stroke="#fbbf24" fill="#fbbf24">
+                <path d="M214 -20 H276" stroke-width="2.4" stroke-linecap="round"/>
+                <polygon points="292,-20 274,-26.5 274,-13.5"/>
+            </g>
+            <text x="252" y="-33" fill="#fbbf24" font-family="Georgia, serif" font-style="italic" font-size="18" text-anchor="middle">v<tspan font-size="12" font-style="normal" dy="4">0</tspan></text>
+        </g>
+    </svg>`,
+            answers: [
+                "a) \\( 5\\sqrt{3} \\) m/s", "b) \\( 35 \\) m/s", "c) \\( 5\\sqrt{7} \\) m/s",
+                "d) \\( 12{,}24 \\) m/s", "e) \\( 17{,}5 \\) m/s", "f) \\( 7\\sqrt{7} \\) m/s"
+            ],
+            correct: "c"
+        },
+        {
+            text: `<b>Gaz într-un cilindru cu piston cuplat cu arc.</b> Într-un cilindru cu piston se găsește un volum de gaz \\( V_0 = 2 \\) L la \\( p_0 = 10^5 \\) Pa și \\( t_0 = 27\\,^{\\circ}\\mathrm{C} \\). Pistonul, de arie \\( S = 1 \\) dm\\( ^2 \\), se sprijină pe un arc cu constanta elastică \\( k = 1000 \\) N/m. Se încălzește gazul cu \\( \\Delta t = 50 \\) K. Să se calculeze comprimarea \\( \\Delta l \\) a arcului în urma încălzirii. Se consideră \\( \\sqrt{5664} \\approx 75{,}25 \\).
+    <svg class="fig-svg" viewBox="0 0 490 215" role="img" aria-label="Gaz intr-un cilindru cu piston, cuplat printr-o tija la un arc elastic fixat de perete">
+        <defs>
+            <pattern id="fiz-hatch-a" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                <line x1="0" y1="0" x2="0" y2="8" stroke="currentColor" stroke-width="1.3" opacity="0.6"/>
+            </pattern>
+            <pattern id="fiz-hatch-b" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+                <line x1="0" y1="0" x2="0" y2="8" stroke="currentColor" stroke-width="1.3" opacity="0.6"/>
+            </pattern>
+        </defs>
+        <g fill="url(#fiz-hatch-a)" stroke="none">
+            <rect x="40" y="10.5" width="231" height="17.5"/>
+            <rect x="40" y="182" width="231" height="17.5"/>
+            <rect x="22.5" y="10.5" width="17.5" height="189"/>
+            <rect x="453" y="10.5" width="17.5" height="189"/>
+        </g>
+        <rect x="222" y="28" width="24.5" height="154" fill="url(#fiz-hatch-b)" stroke="currentColor" stroke-width="2"/>
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M40 28 H271 M40 182 H271 M40 28 V182"/>
+            <path d="M453 10.5 V199.5"/>
+            <path d="M246.5 105 H306"/>
+            <path d="M306 105 H316 L322 91 L334 119 L346 91 L358 119 L370 91 L382 119 L394 91 L406 119 L418 91 L430 119 L436 105 L453 105" stroke-linejoin="round"/>
+        </g>
+        <g fill="currentColor" font-family="Georgia, serif" font-style="italic" font-size="17" text-anchor="middle">
+            <text x="120" y="72">T<tspan font-size="12" font-style="normal" dy="4">0</tspan></text>
+            <text x="120" y="111">p<tspan font-size="12" font-style="normal" dy="4">0</tspan></text>
+            <text x="120" y="150">V<tspan font-size="12" font-style="normal" dy="4">0</tspan></text>
+            <text x="379" y="146">k</text>
+        </g>
+    </svg>`,
+            answers: [
+                "a) \\( 10 \\) cm", "b) \\( 0{,}2 \\) cm", "c) \\( 0{,}2 \\) m",
+                "d) \\( 0{,}27 \\) m", "e) \\( 2{,}7 \\) cm", "f) \\( 0{,}27 \\) cm"
+            ],
+            correct: "e"
+        },
+        {
+            text: `<b>Curent maxim printr-un rezistor.</b> În circuitul de mai jos se consideră \\( R_1 = 9\\ \\Omega \\), \\( R_4 = 4\\ \\Omega \\) și \\( E = 120 \\) V. Să se calculeze valorile rezistențelor \\( R_2 = R_3 \\) astfel încât intensitatea curentului prin \\( R_1 \\) să fie maximă.
+    <svg class="fig-svg" viewBox="0 0 520 305" role="img" aria-label="Circuit cu R3 in serie, R1 in paralel cu R2, apoi R4 si sursa E">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M60 85 H90 M160 85 H200"/>
+            <rect x="90" y="71" width="70" height="28"/>
+            <path d="M200 85 V45 H230 M300 45 H330 V85"/>
+            <rect x="230" y="31" width="70" height="28"/>
+            <path d="M200 85 V125 H230 M300 125 H330 V85"/>
+            <rect x="230" y="111" width="70" height="28"/>
+            <path d="M330 85 H360 M430 85 H470"/>
+            <rect x="360" y="71" width="70" height="28"/>
+            <path d="M60 85 V255 H248"/>
+            <path d="M470 85 V255 H278"/>
+            <path d="M248 237 V273 M258 245 V265 M268 237 V273 M278 245 V265"/>
+        </g>
+        <g fill="currentColor">
+            <circle cx="200" cy="85" r="3.5"/>
+            <circle cx="330" cy="85" r="3.5"/>
+        </g>
+        <g fill="currentColor" font-family="Georgia, serif" font-style="italic" font-size="18" text-anchor="middle">
+            <text x="125" y="61">R<tspan font-size="13" font-style="normal" dy="4">3</tspan></text>
+            <text x="265" y="21">R<tspan font-size="13" font-style="normal" dy="4">1</tspan></text>
+            <text x="265" y="159">R<tspan font-size="13" font-style="normal" dy="4">2</tspan></text>
+            <text x="395" y="61">R<tspan font-size="13" font-style="normal" dy="4">4</tspan></text>
+            <text x="263" y="296">E</text>
+        </g>
+    </svg>`,
+            answers: [
+                "a) \\( 2\\ \\Omega \\)", "b) \\( 1\\ \\Omega \\)", "c) \\( 13\\ \\Omega \\)",
+                "d) \\( 7\\ \\Omega \\)", "e) \\( 3\\ \\Omega \\)", "f) \\( 6\\ \\Omega \\)"
+            ],
+            correct: "f"
+        }
+        ]
     };
 
-    // Probleme placeholder de matematică — de completat ulterior.
+    // Probleme de matematică — comune ambelor variante.
     const problemsMate = [
         {
             text: `<b>Progresii geometrice.</b> Determinați \\( x \\in \\mathbb{R} \\) astfel încât numerele \\( x+1 \\), \\( x+3 \\), \\( x+7 \\) să fie termeni consecutivi ai unei progresii geometrice.`,

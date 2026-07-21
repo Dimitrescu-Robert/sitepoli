@@ -597,6 +597,101 @@ function applySimulariLock({ header, dropdown, label, simId, buyUrl }, user, isP
   subLinks.outerHTML = lockCard;
 }
 
+/* ── Gate pagină de barem ───────────────────────────────────── */
+
+/* Baremul unei simulări încă deschise se vede doar de cine a cumpărat acces ŞI a
+   trimis deja lucrarea — altfel un plătitor care intră marţi ar putea citi
+   răspunsurile înainte să dea simularea joi. După isSaleClosed() pagina devine
+   publică (acelaşi moment cu apariţia în arhiva de pe simulari.html).
+   Config-ul stă în window.baremConfig, în <head>-ul paginii de barem.
+   Nu e securitate reală — răspunsurile sunt oricum în sursa paginii de simulare —
+   ci împiedicarea drumului uşor către ele cât timp fereastra e deschisă. */
+
+async function applyBaremGate(user) {
+  const cfg = window.baremConfig;
+  const content = document.getElementById('barem-content');
+  const gate = document.getElementById('barem-gate');
+  if (!cfg || !content || !gate) return;
+
+  function showGate(html) {
+    gate.innerHTML = `<div class="exam-gate-inner">${html}</div>`;
+    gate.style.display = '';
+    content.style.display = 'none';
+  }
+
+  function showContent() {
+    content.style.display = '';
+    gate.style.display = 'none';
+  }
+
+  // După publicare baremul e liber, ca cele de la simulările anterioare.
+  if (isSaleClosed(cfg.simId)) {
+    showContent();
+    return;
+  }
+
+  if (!user) {
+    showGate(`
+      <div class="exam-gate-icon">🔒</div>
+      <h2 class="exam-gate-title">Barem indisponibil momentan</h2>
+      <p class="exam-gate-desc">${cfg.label} este încă în desfăşurare. Baremul se deblochează după ce trimiți lucrarea, iar pe <strong>24 iulie, ora 10:00</strong> devine public.</p>
+      <div class="exam-gate-actions">
+        <button class="exam-gate-btn" onclick="openModal()">Autentifică-te</button>
+        <a class="exam-gate-btn exam-gate-btn-outline" href="${cfg.simUrl}">Mergi la simulare</a>
+      </div>`);
+    return;
+  }
+
+  // Fail-closed: dacă nu putem verifica, nu arătăm răspunsurile. Invers decât la
+  // celelalte gate-uri, unde fail-open doar deschide conţinut deja cumpărat.
+  let data, done;
+  try {
+    const snap = await getDoc(doc(db, 'users', user.uid));
+    data = snap.exists() ? snap.data() : {};
+    if (hasSimulationAccess(data, cfg.simId)) {
+      const results = await Promise.all(
+        (cfg.resultIds || []).map(id =>
+          getDoc(doc(db, 'users', user.uid, 'simulationResults', id))
+        )
+      );
+      done = results.some(r => r.exists());
+    }
+  } catch (e) {
+    console.warn('[BaremGate] Nu s-a putut verifica statusul:', e.message);
+    showGate(`
+      <div class="exam-gate-icon">⚠️</div>
+      <h2 class="exam-gate-title">Nu am putut verifica accesul</h2>
+      <p class="exam-gate-desc">Reîncarcă pagina. Dacă problema persistă, scrie-ne pe WhatsApp.</p>`);
+    return;
+  }
+
+  if (!hasSimulationAccess(data, cfg.simId)) {
+    const buyHref = `${cfg.buyUrl}?wanted=true&email=${encodeURIComponent(user.email || '')}`;
+    showGate(`
+      <div class="exam-gate-icon">🔒</div>
+      <h2 class="exam-gate-title">Acces restricționat</h2>
+      <p class="exam-gate-desc">Baremul pentru ${cfg.label} este disponibil membrilor <strong>Student Plus</strong> sau celor care au cumpărat simularea separat.</p>
+      <div class="exam-gate-actions">
+        <a class="exam-gate-btn" href="${buyHref}" target="_blank" rel="noopener">Cumpără acces la simulare</a>
+        <a class="exam-gate-btn exam-gate-btn-outline" href="${STUDENT_PLUS_URL}" target="_blank" rel="noopener">Vezi Student Plus</a>
+      </div>`);
+    return;
+  }
+
+  if (!done) {
+    showGate(`
+      <div class="exam-gate-icon">✍️</div>
+      <h2 class="exam-gate-title">Rezolvă simularea întâi</h2>
+      <p class="exam-gate-desc">Baremul se deblochează după ce trimiți lucrarea la ${cfg.label}. Cât timp fereastra e deschisă, n-are rost să te păcălești singur.</p>
+      <div class="exam-gate-actions">
+        <a class="exam-gate-btn" href="${cfg.simUrl}">Intră în simulare &rarr;</a>
+      </div>`);
+    return;
+  }
+
+  showContent();
+}
+
 /* ── Salvare rezultat simulare în Firestore ──────────────────── */
 
 async function saveSimulationResult(simulationId, data) {
@@ -1007,6 +1102,7 @@ document.addEventListener('DOMContentLoaded', () => {
       updatePricingButtons(user),
       applyExamGate(user),
       applySimulariPaidLinks(user),
+      applyBaremGate(user),
     ]);
   });
 

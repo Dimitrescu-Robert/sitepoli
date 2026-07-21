@@ -508,9 +508,14 @@ async function applyExamGate(user) {
 /* ── Gate blocuri simulări plătite pe simulari.html ──────────── */
 
 // Simulările plătite listate în arhivă. `simId` = product_permalink-ul Gumroad.
+// `startsAt` (opţional) = simulare încă nedeschisă: intrarea apare în arhivă, dar
+// cu lăcăt pentru toată lumea, inclusiv plătitori. Trebuie să rămână identic cu
+// window.examGateStart din pagina simulării şi cu startsAt din pagina de barem.
 const PAID_SIMULATIONS = [
   { headerId: 'sim3-header', dropdownId: 'dropdown-arhiva-sim-3', simId: 'simulare_09_05', label: 'Simularea #3', buyUrl: null },
-  { headerId: 'sim4-header', dropdownId: 'dropdown-arhiva-sim-4', simId: 'simulare-21-07', label: 'Simularea #4', buyUrl: 'https://admiterepoli.gumroad.com/l/simulare-21-07' }
+  { headerId: 'sim4-header', dropdownId: 'dropdown-arhiva-sim-4', simId: 'simulare-21-07', label: 'Simularea #4',
+    buyUrl: 'https://admiterepoli.gumroad.com/l/simulare-21-07',
+    startsAt: new Date('2026-07-21T17:00:00+03:00'), startLabel: '21 iulie, ora 17:00' }
 ];
 
 async function applySimulariPaidLinks(user) {
@@ -544,29 +549,34 @@ async function applySimulariPaidLinks(user) {
   }
 }
 
-function applySimulariLock({ header, dropdown, label, simId, buyUrl }, user, isPaid) {
+function applySimulariLock({ header, dropdown, label, simId, buyUrl, startsAt, startLabel }, user, isPaid) {
   // După închiderea vânzării separate rămâne doar ruta Student Plus.
   if (isSaleClosed(simId)) buyUrl = null;
 
   if (!dropdown._originalHTML) dropdown._originalHTML = dropdown.innerHTML;
 
-  if (isPaid) {
-    dropdown.innerHTML = dropdown._originalHTML;
-    header.querySelector('.sim-lock-badge')?.remove();
-    return;
-  }
+  // Fiecare randare porneşte de la markup-ul original. Altfel, odată înlocuit
+  // dropdown-ul, `.sub-links` dispare şi nu mai putem comuta între stări — iar
+  // la ora de start chiar trebuie să comutăm (aşteptare → cumpără / linkuri).
+  dropdown.innerHTML = dropdown._originalHTML;
+  header.querySelector('.sim-lock-badge')?.remove();
 
-  // Adaugă lock badge pe header
+  // Înainte de start intrarea se vede în arhivă, dar închisă pentru toată lumea:
+  // linkurile de barem/rezolvare n-au ce căuta la îndemână cât timp simularea
+  // nu a început. Acelaşi prag ca applyBaremGate şi ca gate-ul paginii de simulare.
+  const beforeStart = !!startsAt && new Date() < startsAt;
+
+  if (isPaid && !beforeStart) return;
+
   const strong = header.querySelector('strong');
-  if (strong && !header.querySelector('.sim-lock-badge')) {
+  if (strong) {
     const badge = document.createElement('span');
     badge.className = 'sim-lock-badge';
     badge.style.cssText = 'margin-left:0.6rem;font-size:1rem;opacity:0.8;vertical-align:middle;';
-    badge.textContent = '🔒';
+    badge.textContent = beforeStart ? '🕐' : '🔒';
     strong.appendChild(badge);
   }
 
-  // Înlocuiește conținutul dropdown-ului cu lock card (doar dacă nu a fost deja înlocuit)
   const subLinks = dropdown.querySelector('.sub-links');
   if (!subLinks) return;
 
@@ -587,22 +597,43 @@ function applySimulariLock({ header, dropdown, label, simId, buyUrl }, user, isP
         ${buyBtn}
       </div>`;
 
-  const lockCard = `<div style="display:flex;flex-direction:column;align-items:center;gap:1rem;padding:2rem 1.5rem;text-align:center;">
-    <div style="font-size:2.5rem;line-height:1;">🔒</div>
-    <h3 style="margin:0;color:#fff;font-size:1.15rem;">Acces restricționat</h3>
-    <p style="margin:0;color:var(--muted);font-size:0.95rem;max-width:280px;line-height:1.5;">${label} este disponibilă membrilor <strong style="color:#C3D5F0;">Student Plus</strong> sau prin cumpărare separată.</p>
-    ${authButtons}
-  </div>`;
+  const card = (icon, title, desc, actions) =>
+    `<div style="display:flex;flex-direction:column;align-items:center;gap:1rem;padding:2rem 1.5rem;text-align:center;">
+      <div style="font-size:2.5rem;line-height:1;">${icon}</div>
+      <h3 style="margin:0;color:#fff;font-size:1.15rem;">${title}</h3>
+      <p style="margin:0;color:var(--muted);font-size:0.95rem;max-width:280px;line-height:1.5;">${desc}</p>
+      ${actions}
+    </div>`;
 
-  subLinks.outerHTML = lockCard;
+  if (beforeStart) {
+    subLinks.outerHTML = card(
+      '🕐',
+      'Nu a început încă',
+      `${label} se deschide pe <strong style="color:#C3D5F0;">${startLabel}</strong>. Subiectul, baremul şi rezolvarea apar aici în acel moment.`,
+      isPaid
+        ? `<span style="padding:0.6rem 1.4rem;color:var(--accent3);font-weight:600;font-size:0.95rem;">Ai deja acces ✓</span>`
+        : authButtons
+    );
+    // La ora de start re-randăm: plătitorii primesc linkurile fără refresh.
+    scheduleGateUnlock(startsAt, () => applySimulariPaidLinks(user));
+    return;
+  }
+
+  subLinks.outerHTML = card(
+    '🔒',
+    'Acces restricționat',
+    `${label} este disponibilă membrilor <strong style="color:#C3D5F0;">Student Plus</strong> sau prin cumpărare separată.`,
+    authButtons
+  );
 }
 
 /* ── Gate pagină de barem ───────────────────────────────────── */
 
-/* Baremul unei simulări încă deschise se vede doar de cine a cumpărat acces ŞI a
-   trimis deja lucrarea — altfel un plătitor care intră marţi ar putea citi
-   răspunsurile înainte să dea simularea joi. După isSaleClosed() pagina devine
-   publică (acelaşi moment cu apariţia în arhiva de pe simulari.html).
+/* Baremul se deblochează în acelaşi moment cu subiectul: la startul simulării,
+   pentru cine are acces. Înainte de start e închis pentru toată lumea, inclusiv
+   pentru plătitori — altfel cine cumpără cu o zi înainte citeşte răspunsurile pe
+   îndelete. După isSaleClosed() pagina devine publică (acelaşi moment cu apariţia
+   în arhiva de pe simulari.html).
    Config-ul stă în window.baremConfig, în <head>-ul paginii de barem.
    Nu e securitate reală — răspunsurile sunt oricum în sursa paginii de simulare —
    ci împiedicarea drumului uşor către ele cât timp fereastra e deschisă. */
@@ -614,12 +645,14 @@ async function applyBaremGate(user) {
   if (!cfg || !content || !gate) return;
 
   function showGate(html) {
+    stopGateCountdown();
     gate.innerHTML = `<div class="exam-gate-inner">${html}</div>`;
     gate.style.display = '';
     content.style.display = 'none';
   }
 
   function showContent() {
+    stopGateCountdown();
     content.style.display = '';
     gate.style.display = 'none';
   }
@@ -630,11 +663,25 @@ async function applyBaremGate(user) {
     return;
   }
 
+  // Înainte de startul simulării, închis pentru toată lumea. La ora de start
+  // re-rulăm gate-ul: cine are acces intră fără refresh.
+  if (cfg.startsAt && new Date() < cfg.startsAt) {
+    showGate(`
+      <div class="exam-gate-icon">🕐</div>
+      <h2 class="exam-gate-title">Baremul nu e disponibil încă</h2>
+      <p class="exam-gate-desc">${cfg.label} se deschide pe <strong>${cfg.startLabel}</strong>. Baremul se deblochează în acelaşi moment pentru cine are acces, iar pe <strong>${cfg.publicLabel}</strong> devine public.</p>
+      <div class="exam-gate-actions">
+        <a class="exam-gate-btn exam-gate-btn-outline" href="${cfg.simUrl}">Mergi la simulare</a>
+      </div>`);
+    scheduleGateUnlock(cfg.startsAt, () => applyBaremGate(user));
+    return;
+  }
+
   if (!user) {
     showGate(`
       <div class="exam-gate-icon">🔒</div>
       <h2 class="exam-gate-title">Barem indisponibil momentan</h2>
-      <p class="exam-gate-desc">${cfg.label} este încă în desfăşurare. Baremul se deblochează după ce trimiți lucrarea, iar pe <strong>24 iulie, ora 10:00</strong> devine public.</p>
+      <p class="exam-gate-desc">${cfg.label} este încă în desfăşurare. Baremul e disponibil celor care au acces, iar pe <strong>${cfg.publicLabel}</strong> devine public.</p>
       <div class="exam-gate-actions">
         <button class="exam-gate-btn" onclick="openModal()">Autentifică-te</button>
         <a class="exam-gate-btn exam-gate-btn-outline" href="${cfg.simUrl}">Mergi la simulare</a>
@@ -644,18 +691,10 @@ async function applyBaremGate(user) {
 
   // Fail-closed: dacă nu putem verifica, nu arătăm răspunsurile. Invers decât la
   // celelalte gate-uri, unde fail-open doar deschide conţinut deja cumpărat.
-  let data, done;
+  let data;
   try {
     const snap = await getDoc(doc(db, 'users', user.uid));
     data = snap.exists() ? snap.data() : {};
-    if (hasSimulationAccess(data, cfg.simId)) {
-      const results = await Promise.all(
-        (cfg.resultIds || []).map(id =>
-          getDoc(doc(db, 'users', user.uid, 'simulationResults', id))
-        )
-      );
-      done = results.some(r => r.exists());
-    }
   } catch (e) {
     console.warn('[BaremGate] Nu s-a putut verifica statusul:', e.message);
     showGate(`
@@ -674,17 +713,6 @@ async function applyBaremGate(user) {
       <div class="exam-gate-actions">
         <a class="exam-gate-btn" href="${buyHref}" target="_blank" rel="noopener">Cumpără acces la simulare</a>
         <a class="exam-gate-btn exam-gate-btn-outline" href="${STUDENT_PLUS_URL}" target="_blank" rel="noopener">Vezi Student Plus</a>
-      </div>`);
-    return;
-  }
-
-  if (!done) {
-    showGate(`
-      <div class="exam-gate-icon">✍️</div>
-      <h2 class="exam-gate-title">Rezolvă simularea întâi</h2>
-      <p class="exam-gate-desc">Baremul se deblochează după ce trimiți lucrarea la ${cfg.label}. Cât timp fereastra e deschisă, n-are rost să te păcălești singur.</p>
-      <div class="exam-gate-actions">
-        <a class="exam-gate-btn" href="${cfg.simUrl}">Intră în simulare &rarr;</a>
       </div>`);
     return;
   }

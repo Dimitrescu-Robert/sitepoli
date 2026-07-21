@@ -104,14 +104,14 @@
                     </div>
 
                     <div class="set-container">
-                        <!-- Intrarea de arhivă pentru Simularea #4 apare odată cu deschiderea
-                             simulării (21 iulie, ora 17:00). Neplătitorii văd lock card-ul din
-                             applySimulariLock; baremul are gate propriu ("ai trimis lucrarea?")
-                             până pe 24 iulie la 10:00, când totul devine public. -->
-                        <p class="subiecte-box" data-set="arhiva-sim-4" id="sim4-header"
-                           data-reveal-after="2026-07-21T17:00:00+03:00" style="display:none"><strong>Simulare #4 — 21–24 Iulie 2026</strong></p>
-                        <div class="dropdown-section" id="dropdown-arhiva-sim-4"
-                             data-reveal-after="2026-07-21T17:00:00+03:00" style="display:none">
+                        <!-- Intrarea de arhivă pentru Simularea #4 e vizibilă permanent, cu lăcăt.
+                             applySimulariLock decide ce se vede înăuntru: 🕐 până pe 21 iulie la
+                             17:00 (închis pentru toţi, inclusiv plătitori), apoi 🔒 doar pentru
+                             neplătitori. Pe 24 iulie la 10:00 baremul devine public.
+                             Fără firebase-auth.js linkurile rămân la vedere — de aceea subiectul
+                             şi baremul au gate propriu pe pagina lor. -->
+                        <p class="subiecte-box" data-set="arhiva-sim-4" id="sim4-header"><strong>Simulare #4 — 21–24 Iulie 2026</strong></p>
+                        <div class="dropdown-section" id="dropdown-arhiva-sim-4">
                             <div class="sub-links" style="display: flex; justify-content: center; margin: 0; padding: 0;">
                                 <section style="display: flex; flex-direction: column; align-items: center;">
                                     <h3 style="color: #ffffff; margin-bottom: 0.8rem; text-align: center;">Simulare 4 2026 — Informatică</h3>

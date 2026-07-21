@@ -847,7 +847,7 @@ int main() {
     ];
 
     // ===== STATE =====
-    const userCode = 'ST' + Math.floor(Math.random() * 1000000);
+    let userCode = 'ST' + Math.floor(Math.random() * 1000000);
     let selectedTrack = null;
     let problemsDisc = null;
     let currentTab = 'info';
@@ -857,12 +857,54 @@ int main() {
     let discN = 0, mateN = 0, totalN = 0;
     const userAnswers = { info: [], mate: [] };
 
+    // ===== PERSISTENTA =====
+    // Simularea tine 3 ore si e platita: un refresh, un tab reciclat de browser
+    // sau un telefon care intra in sleep nu au voie sa stearga munca.
+    // Salvam deadline-ul absolut (examEndsAt), nu secundele ramase — ceasul curge
+    // si cu tab-ul inchis, ca la examenul real, deci nu se poate face pauza.
+    const STORAGE_KEY = 'sim-progress-' + (window.simulationId || 'simulare-2026-07-21');
+    let examEndsAt = null;
+    let replayingSaved = false; // true cat timp reconstruim un rezultat deja trimis
+
+    function saveProgress(extra) {
+        if (!selectedTrack || replayingSaved) return;
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(Object.assign({
+                v: 1,
+                userCode: userCode,
+                track: selectedTrack,
+                answers: userAnswers,
+                endsAt: examEndsAt
+            }, extra || {})));
+        } catch (e) {
+            // quota plina / navigare privata — mergem mai departe fara salvare
+            console.warn('[Sim] Nu pot salva progresul local:', e.message);
+        }
+    }
+
+    function loadProgress() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return null;
+            const s = JSON.parse(raw);
+            if (!s || s.v !== 1 || !allProblems[s.track] || !s.answers || !s.endsAt) return null;
+            if (!Array.isArray(s.answers.info) || !Array.isArray(s.answers.mate)) return null;
+            // Grilele s-au schimbat de la salvare (edit pe pagina) — starea e inutilizabila.
+            if (s.answers.info.length !== allProblems[s.track].length) return null;
+            if (s.answers.mate.length !== problemsMate.length) return null;
+            return s;
+        } catch (e) {
+            return null;
+        }
+    }
+
     // ===== TRACK SELECTION =====
-    function selectTrack(track) {
+    function selectTrack(track, saved) {
         selectedTrack = track;
         problemsDisc = allProblems[track];
         userAnswers.info = new Array(problemsDisc.length).fill(null);
         userAnswers.mate = new Array(problemsMate.length).fill(null);
+        examEndsAt = saved ? saved.endsAt : Date.now() + TOTAL_SECONDS * 1000;
 
         discN = problemsDisc.length;
         mateN = problemsMate.length;
@@ -881,22 +923,29 @@ int main() {
         document.getElementById('submit-total-total').textContent = totalN;
 
         document.getElementById('track-selector').style.display = 'none';
-        startExam();
+        startExam(saved);
     }
 
     // ===== START EXAM =====
-    function startExam() {
+    function startExam(saved) {
         document.getElementById('quiz-area').classList.add('active');
         renderQuestions('info', problemsDisc);
         renderQuestions('mate', problemsMate);
         renderMinimap('info', problemsDisc);
         renderMinimap('mate', problemsMate);
         buildTimerDots();
+        if (saved) applySavedAnswers(saved.answers);
         updateProgress('info');
         updateProgress('mate');
         updateTimerDots();
         updateSubmitCounts();
-        startTimer();
+        if (!saved) saveProgress();
+        // La reconstruirea unui rezultat deja trimis nu pornim ceasul: examEndsAt
+        // e demult trecut si startTimer ar declansa un auto-submit "timp expirat".
+        if (!(saved && saved.finished)) startTimer();
+        // La reluare nu derulam: continutul poate fi inca ascuns de gate, iar
+        // getBoundingClientRect ar da 0 pe elemente cu display:none.
+        if (saved) return;
         requestAnimationFrame(function() {
             requestAnimationFrame(function() {
                 var headerH = document.querySelector('header').offsetHeight;
@@ -907,12 +956,24 @@ int main() {
     }
 
     // ===== TIMER =====
+    // Derivat din examEndsAt, nu decrementat: ramane corect si daca tab-ul e
+    // suspendat de browser (mobil, background) si la reluare dupa refresh.
+    function syncSecondsLeft() {
+        secondsLeft = examEndsAt
+            ? Math.max(0, Math.round((examEndsAt - Date.now()) / 1000))
+            : TOTAL_SECONDS;
+    }
+
     function startTimer() {
+        clearInterval(timerInterval);
+        syncSecondsLeft();
         updateTimerDisplay();
+        // Reluare dupa ce cele 3 ore expirasera cu tab-ul inchis.
+        if (secondsLeft <= 0) { submitAll(true); return; }
         timerInterval = setInterval(function() {
-            secondsLeft--;
-            if (secondsLeft <= 0) { secondsLeft = 0; clearInterval(timerInterval); submitAll(true); }
+            syncSecondsLeft();
             updateTimerDisplay();
+            if (secondsLeft <= 0) { clearInterval(timerInterval); submitAll(true); }
         }, 1000);
     }
 
@@ -958,7 +1019,10 @@ int main() {
             html += '</div></div>';
         });
         container.innerHTML = html;
-        renderMathInElement(container);
+        // KaTeX se incarca cu defer; la reluarea automata de dupa refresh scriptul
+        // asta poate rula inaintea lui, iar auto-render.min.js oricum trece peste
+        // tot body-ul la onload.
+        if (window.renderMathInElement) renderMathInElement(container);
     }
 
     function renderMinimap(section, problems) {
@@ -991,6 +1055,21 @@ int main() {
         updateProgress(section);
         updateTimerDots();
         updateSubmitCounts();
+        saveProgress();
+    }
+
+    // Re-marcheaza in UI raspunsurile venite din localStorage.
+    function applySavedAnswers(saved) {
+        ['info', 'mate'].forEach(function(section) {
+            (saved[section] || []).forEach(function(val, i) {
+                if (!val) return;
+                var input = document.querySelector('#q-' + section + '-' + i + ' input[value="' + val + '"]');
+                var label = input && input.closest('.sim-answer');
+                if (!label) return;
+                input.checked = true;
+                selectAnswer(section, i, val, label);
+            });
+        });
     }
 
     function switchTab(tab) {
@@ -1072,7 +1151,10 @@ int main() {
         };
         // Adaugă aici URL-ul Google Script pentru simularea #4 (dacă există)
         const scriptURL = "https://script.google.com/macros/s/AKfycbwGeM5O5MzcflRFG48ilo9YLWYJ6UF8VAm10bPnkHrE3Ujq9eI7krJDSm-AT5_1LyArsA/exec";
-        if (scriptURL) {
+        // replayingSaved = reconstruim ecranul de rezultate dupa un refresh, deci
+        // rezultatul a fost deja trimis o data. Fara garda asta, fiecare reincarcare
+        // ar adauga un rand duplicat in Google Sheet si ar rescrie Firestore.
+        if (scriptURL && !replayingSaved) {
             fetch(scriptURL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) })
             .then(() => console.log("Date trimise!"))
             .catch(err => console.error("Eroare:", err));
@@ -1104,14 +1186,19 @@ int main() {
             '</div>' +
         '</div>';
 
-        renderMathInElement(resultsEl);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        window.saveSimulationResult?.('simulare-2026-07-21-' + selectedTrack, {
-            title: 'Simulare #4 — Mate + ' + discLabel + ' (21 Iulie 2026)',
-            track: selectedTrack,
-            scoreTotal, scoreDisc, scoreMate,
-            timeElapsed: TOTAL_SECONDS - secondsLeft
-        });
+        if (window.renderMathInElement) renderMathInElement(resultsEl);
+        if (!replayingSaved) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.saveSimulationResult?.('simulare-2026-07-21-' + selectedTrack, {
+                title: 'Simulare #4 — Mate + ' + discLabel + ' (21 Iulie 2026)',
+                track: selectedTrack,
+                scoreTotal, scoreDisc, scoreMate,
+                timeElapsed: TOTAL_SECONDS - secondsLeft
+            });
+        }
+        // Marcam simularea ca incheiata: un refresh de-acum arata rezultatul,
+        // nu reporneste examenul.
+        saveProgress({ finished: true, finishedTimeUp: !!timeUp, elapsedSeconds: TOTAL_SECONDS - secondsLeft });
     }
 
     function submitAll(timeUp, forceSubmit = false) {
@@ -1144,6 +1231,29 @@ int main() {
         document.body.appendChild(overlay);
         setTimeout(() => overlay.classList.add('show'), 10);
     }
+
+    // ===== RELUARE DUPA REFRESH =====
+    // Rulam pe window.load, ca sa fie deja incarcat KaTeX (defer). Continutul poate
+    // fi inca ascuns de gate — nu conteaza, gate-ul doar comuta display-ul.
+    window.addEventListener('load', function resumeSavedSession() {
+        var saved = loadProgress();
+        if (!saved) return;
+
+        if (saved.userCode) userCode = saved.userCode;
+
+        if (saved.finished) {
+            // Rezultatul a fost deja trimis: il reconstruim din raspunsurile salvate,
+            // fara sa retrimitem nimic si fara sa lasam userul sa reintre in test.
+            replayingSaved = true;
+            selectTrack(saved.track, saved);
+            secondsLeft = Math.max(0, TOTAL_SECONDS - (saved.elapsedSeconds || 0));
+            submitAll(!!saved.finishedTimeUp, true);
+            replayingSaved = false;
+            return;
+        }
+
+        selectTrack(saved.track, saved);
+    });
     </script>
     <script type="module" src="./firebase-auth.js"></script>
 </body>

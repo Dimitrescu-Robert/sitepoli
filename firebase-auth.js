@@ -323,16 +323,31 @@ async function syncUserToFirestore(user, plan, billing) {
   try {
     const userRef = doc(db, "users", user.uid);
     const snap = await getDoc(userRef);
+    const emailLower = (user.email || '').toLowerCase();
     if (!snap.exists()) {
       await setDoc(userRef, {
         email: user.email,
-        emailLower: (user.email || '').toLowerCase(),
+        emailLower,
         status: 'free',
         selectedPlan: plan || 'standard',
         selectedBilling: billing || 'monthly',
         createdAt: serverTimestamp()
       });
       console.log('[Auth] Firestore: document creat pentru', user.uid);
+    } else if (emailLower && snap.data().emailLower !== emailLower) {
+      // Backfill: conturile create înainte de introducerea câmpului nu îl au, iar
+      // webhook-ul Gumroad se bazează pe el ca fallback când getUserByEmail (care e
+      // case-sensitive) nu găseşte un email salvat cu majuscule în Auth. Scriem o
+      // singură dată, la primul onAuthStateChanged de după deploy.
+      // Catch local: dacă regulile Firestore nu permit update-ul, scrierea ar eşua
+      // la FIECARE încărcare de pagină pentru fiecare cont vechi. E o îmbunătăţire
+      // oportunistă, nu are voie să rupă fluxul de autentificare.
+      try {
+        await setDoc(userRef, { emailLower }, { merge: true });
+        console.log('[Auth] Firestore: emailLower completat pentru', user.uid);
+      } catch (e) {
+        console.warn('[Auth] Nu am putut completa emailLower:', e.code || e.message);
+      }
     } else {
       console.log('[Auth] Firestore: document deja existent pentru', user.uid);
     }
